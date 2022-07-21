@@ -1,0 +1,22 @@
+---
+title: "appunti"
+author: "Ottavia M. Epifania"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Quello che serve/può variare: 
+
+- numero di stimuli (quanti per riga e quanti per colonna)
+
+- se si vuole riempire per riga o per colonna (questo lo vedo in un secondo momento) (anche se penso che usando `matrix(c2,2, byrow=F))` si dovrebbe forzare la compilazione per colonna
+
+- la grandezza (fissa, variabile)
+
+- la figura (per ora sono in grado di fare il rettangolo, il triangolo, il quadrato e forse il rombo)
+
+- il riempimento
+
+- bordi (ci sto ancora studiando)
+
+- la posizione del punto intterogativo (Rome wasn't built in a day)
