@@ -23,7 +23,7 @@ for(i in 1:8){
   plot(c(10, 80), c(30, 80), type = "n", xlab = "", ylab = "", 
        axes = F)
   
-  coords<-shape(3)
+  coords<-shape(1)
   polygon(coords$x,coords$y,col=cols[i])
  
 }
