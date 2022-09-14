@@ -357,10 +357,30 @@ stimElli = function(rotation = NULL,
                     rot = rot_rule1[[i]][[j]])
       }
     }
+  } else if (is.null(rotation) == F & is.null(color) == F & is.null(line) == F) {
+    lty_rule1 = list(first = c(1:3), 
+                     second = c(2,1,3), 
+                     third = c(3,1))
+    
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(size_rule1x)) {
+      for (j in 1:length(size_rule1x[[i]])) {
+        Canvas(15, 15)
+        DrawEllipse(x = 0, 
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    lty = lty_rule1[[i]][[j]], 
+                    col=SetAlpha(c(rep("black", 3)), 
+                                 col_rule1[[i]][[j]]), 
+                    rot = rot_rule1[[i]][[j]])
+      }
+    }
+    
   }
 }
 
-stimElli(color = T, rotation = F)
+stimElli(color = T, rotation = T, line = T)
 elliCorrect = function(x, 
                        rotation = NULL, 
                        color = NULL, 
@@ -374,6 +394,9 @@ elliCorrect = function(x,
   col_rule1 = list(first = c(0.10, 0.50, 0.00), 
                    second = c(0.50, 0.00, 0.10), 
                    third = c(0.00, 0.10))
+  lty_rule1 = list(first = c(1:3), 
+                   second = c(2,1,3), 
+                   third = c(3,1))
   if ((is.null(rotation) == F & is.null(color) == T & is.null(line) == T)) {
     rule1_last = rot_rule1[[length(rot_rule1)]] 
     rule1_last = rule1_last[order(rule1_last)]
@@ -416,9 +439,9 @@ elliCorrect = function(x,
     rule2_first = rule2_first[order(rule2_first)]
     component2 = rule2_first[!rule2_first %in% rule2_last]
     
-    rule3_last = lty_rule3[[length(lty_rule3)]] 
+    rule3_last = lty_rule1[[length(lty_rule1)]] 
     rule3_last = rule3_last[order(rule3_last)]
-    rule3_first = lty_rule3[[3]] 
+    rule3_first = lty_rule1[[1]] 
     rule3_first = rule3_first[order(rule3_first)]
     component3 = rule3_first[!rule3_first %in% rule3_last]
     
@@ -426,13 +449,16 @@ elliCorrect = function(x,
     Canvas(15,15)
     DrawEllipse(x = 0, y = 0, radius.x = 10, radius.y = 15, lwd = 2,
                 rot = component1, col = SetAlpha("black", 
-                                                       component2) , lty = component3,  
+                                                       component2) ,
+                
+                lty = component3,  
                 plot = T)
   }
 }
-stimElli(rotation = T, color = T)
-elliCorrect(stimElli(rotation = T, color = T), 
-            rotation = T, color = T)
+
+stimElli(rotation = T, color = T, line=T)
+elliCorrect(stimElli(rotation = T, color = T, line = T), 
+            rotation = T, color = T, line = T)
 
 rule1_last = rot_rule1[[length(rot_rule1)]] 
 rule1_last = rule1_last[order(rule1_last)]
