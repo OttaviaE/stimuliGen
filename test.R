@@ -6,13 +6,6 @@ alpha = c(.10, .50, .70)
 rot = c(0, 45, 90)
 
 
-alpha = list(first = c(.10, .50, .90), 
-             second = c(.90, .50, .10), 
-             third = c(.50, .10))
-
-rot = list(first =  c(0, 45, 90), 
-           second = c(90, 45, 0), 
-           third = c(45, 0))
 
 par(mfrow=c(3,3))
 for (i in 1:length(alpha)) {
@@ -27,7 +20,13 @@ for (i in 1:length(alpha)) {
   }
   
 
+alpha = list(first = c(.10, .50, .90), 
+             second = c(.90, .50, .10), 
+             third = c(.50, .10))
 
+rot = list(first =  c(0, 45, 90), 
+           second = c(90, 45, 0), 
+           third = c(45, 0))
 
 stimGen("ellipse", color = "blue", rotation = rot)
 stimGen("ellipse", color = "red", rotation = rot, alpha = alpha)
