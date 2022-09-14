@@ -1,5 +1,20 @@
 library(DescTools)
 
+# 14/09/ 2022 ellisse ----
+
+stimElli(rotation = T)
+elliCorrect(stimElli(rotation = T), 
+            rotation = T)
+
+stimElli(rotation = T, color = T)
+elliCorrect(stimElli(rotation = T, color = T), 
+            rotation = T, color = T)
+
+stimElli(rotation = T, color = T, line=T)
+elliCorrect(stimElli(rotation = T, color = T, line = T), 
+            rotation = T, color = T, line = T)
+
+
 alpha = c(.10, .50, .70)
 
 

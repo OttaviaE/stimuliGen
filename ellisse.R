@@ -1,3 +1,4 @@
+library(DescTools)
 # funzione generativa ellisse -----
 stimElli = function(rotation = NULL, 
                     color = NULL, 
