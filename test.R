@@ -40,7 +40,7 @@ Canvas(15, 15)
 DrawEllipse(x = 0, y = 0, 
             radius.x = 15, 
             radius.y = 10, 
-            rot = rot[[1]][3])
+            rot = 45)
 # cerchio 
 Canvas(15, 15)
 DrawEllipse(x = 0, y = 0, 
