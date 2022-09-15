@@ -3,23 +3,25 @@ library(DescTools)
 # 14/09/ 2022 ellisse ----
 
 stimElli(rotation = T)
-elliCorrect(stimElli(rotation = T), 
-            rotation = T)
+elliCorrect(rotation = T)
 
 stimElli(rotation = T, color = T)
-elliCorrect(stimElli(rotation = T, color = T), 
-            rotation = T, color = T)
+elliCorrect(rotation = T, color = T)
 
 stimElli(rotation = T, color = T, line=T)
-elliCorrect(stimElli(rotation = T, color = T, line = T), 
-            rotation = T, color = T, line = T)
+elliCorrect(rotation = T, color = T, line = T)
 
 
 stimElli(color = T)
+elliCorrect(color = T)
 
 stimElli(line = T)
+elliCorrect(line = T)
+
+
 
 stimElli(color = T, line = T)
+elliCorrect(color = T, line = T)
 
 
 
