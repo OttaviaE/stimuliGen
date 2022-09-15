@@ -1,5 +1,14 @@
 library(DescTools)
 
+a = c(1:3)
+
+r1 = c(1,2)
+r2 = c(2:3)
+
+a[!a %in% r1]
+a[!a %in% r2]
+
+
 # 14/09/ 2022 ellisse ----
 
 stimElli(rotation = T)
