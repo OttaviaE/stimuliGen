@@ -1,0 +1,20 @@
+current_path = rstudioapi::getActiveDocumentContext()$path
+setwd(dirname(current_path))
+cat("\014")
+rm(list = ls())
+source("Object_and_methods.R")
+
+Stmolo1<-field(c("triangle","elipse"),c(17,10),c(15,10),c(pi/6,pi),c(1,1))
+M1<-Raven(Stmolo1,c("rotation","size"),"rotation") 
+draw(M1)
+M1<-apply_rule(M1)
+draw(M1)
+M2<-Raven(Stmolo1,c("rotation","size"),c("rotation","size")) 
+draw(M2)
+M2<-apply_rule(M2)
+draw(M2)
+
+Stmolo2<-field(c("square","elipse"),c(15,10),c(15,10),c(pi/4,0),c(1,1))
+M3<-Raven(Stmolo2,c("size"),"rotation") 
+M3<-apply_rule(M3)
+draw(M3)
