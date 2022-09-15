@@ -6,10 +6,16 @@ stimElli = function(rotation = NULL,
   if (is.null(rotation) == T & is.null(color) == T & is.null(line) == T) {
     stop("Please specify at least one argument")
   }
+  rot_rule1 = list(first = c(1:3) * pi/3, 
+                   second = c(2,3, 1) * pi/3, 
+                   third = c(3, 1)* pi/3)
+  col_rule1 = list(first = c(0.10, 0.50, 0.00), 
+                   second = c(0.50, 0.00, 0.10), 
+                   third = c(0.00, 0.10))
+  lty_rule1 = list(first = c(1:3), 
+                   second = c(2,1,3), 
+                   third = c(3,1))
   if (is.null(rotation) == F & is.null(color) == T & is.null(line) == T) {
-    rot_rule1 = list(first = c(1:3) * pi/3, 
-                     second = c(2,3, 1) * pi/3, 
-                     third = c(3, 1)* pi/3)
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
     for (i in 1:length(rot_rule1)) {
       for (j in 1:length(rot_rule1[[i]])) {
@@ -21,12 +27,9 @@ stimElli = function(rotation = NULL,
       }
     }
   } else if (is.null(rotation) == F & is.null(color) == F & is.null(line) == T) {
-    col_rule1 = list(first = c(0.10, 0.50, 0.00), 
-                     second = c(0.50, 0.00, 0.10), 
-                     third = c(0.00, 0.10))
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(size_rule1x)) {
-      for (j in 1:length(size_rule1x[[i]])) {
+    for (i in 1:length(col_rule1)) {
+      for (j in 1:length(col_rule1[[i]])) {
         Canvas(15, 15)
         DrawEllipse(x = 0, 
                     radius.x = 10, 
@@ -38,13 +41,9 @@ stimElli = function(rotation = NULL,
       }
     }
   } else if (is.null(rotation) == F & is.null(color) == F & is.null(line) == F) {
-    lty_rule1 = list(first = c(1:3), 
-                     second = c(2,1,3), 
-                     third = c(3,1))
-    
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(size_rule1x)) {
-      for (j in 1:length(size_rule1x[[i]])) {
+    for (i in 1:length(lty_rule1)) {
+      for (j in 1:length(lty_rule1[[i]])) {
         Canvas(15, 15)
         DrawEllipse(x = 0, 
                     radius.x = 10, 
@@ -57,10 +56,49 @@ stimElli = function(rotation = NULL,
       }
     }
     
+  } else if (is.null(rotation) == T & is.null(color) == F & is.null(line) == T) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(col_rule1)) {
+      for (j in 1:length(col_rule1[[i]])) {
+        Canvas(15, 15)
+        DrawEllipse(x = 0, 
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    col=SetAlpha(c(rep("black", 3)), 
+                                 col_rule1[[i]][[j]]))
+      }
+    }
+  } else if (is.null(rotation) == T & is.null(color) == F & is.null(line) == F) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(col_rule1)) {
+      for (j in 1:length(col_rule1[[i]])) {
+        Canvas(15, 15)
+        DrawEllipse(x = 0, 
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    col=SetAlpha(c(rep("black", 3)), 
+                                 col_rule1[[i]][[j]]), 
+                    lty = lty_rule1[[i]][[j]])
+      }
+    }
+  } else if (is.null(rotation) == T & is.null(color) == T & is.null(line) == F) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(col_rule1)) {
+      for (j in 1:length(col_rule1[[i]])) {
+        Canvas(15, 15)
+        DrawEllipse(x = 0, 
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    lty = lty_rule1[[i]][[j]])
+      }
+    }
   }
 }
 
-# codice per generale l'ellisse corretta ----
+# codice per generare l'ellisse corretta ----
 # (volendo il codice per l'identificazione della risposta corretta può essere unico
 # per tutti - il codice che identifica la componente - e viene usato in modo diverso 
 # a seconda dello stimolo)

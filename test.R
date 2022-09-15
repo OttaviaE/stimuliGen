@@ -15,6 +15,14 @@ elliCorrect(stimElli(rotation = T, color = T, line = T),
             rotation = T, color = T, line = T)
 
 
+stimElli(color = T)
+
+stimElli(line = T)
+
+stimElli(color = T, line = T)
+
+
+
 alpha = c(.10, .50, .70)
 
 
