@@ -18,8 +18,11 @@ stimElli = function(rotation = NULL,
     for (i in 1:length(rot_rule1)) {
       for (j in 1:length(rot_rule1[[i]])) {
         temp = NULL
-        Canvas()
-        DrawEllipse(x = 0, y = 0, 
+        Canvas(15, 15)
+        DrawEllipse(x = 0,
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
                     rot = rot_rule1[[i]][[j]], plot = T)
       }
     }
