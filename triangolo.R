@@ -1,12 +1,12 @@
 # triangolo ---- 
 
-stimTri = function(rotation = NULL, 
+stimTri = function(object, rotation = NULL, 
                    color = NULL, 
                    line = NULL) {
-  rot_rule = rotation[["rotation"]]
-  shade_rule = color[["shade"]]
-  line_rule = line[["line"]]
-  
+  rot_rule = object[["rotation"]]
+  shade_rule = object[["shade"]]
+  line_rule = object[["line"]]
+  # rotaion only ----
   if (!is.null(rotation) & is.null(color) & is.null(line)) {
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
     for (i in 1:length(rot_rule)) {
@@ -16,7 +16,8 @@ stimTri = function(rotation = NULL,
         DrawRegPolygon(rot = rot_rule[[i]][[j]], nv=3, lwd = 2)
       }
     }
-  } else if (!is.null(rotation) & !is.null(color) & is.null(line)) {
+  } # rotation and color ---- 
+  else if (!is.null(rotation) & !is.null(color) & is.null(line)) {
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
     for (i in 1:length(rot_rule)) {
       for (j in 1:length(rot_rule[[i]])) {
@@ -27,7 +28,8 @@ stimTri = function(rotation = NULL,
                        nv=3, lwd = 2)
       }
     }
-  } else if (!is.null(rotation) & !is.null(color) & !is.null(line)) {
+  } # rotation color and line ---- 
+  else if (!is.null(rotation) & !is.null(color) & !is.null(line)) {
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
     for (i in 1:length(rot_rule)) {
       for (j in 1:length(rot_rule[[i]])) {
