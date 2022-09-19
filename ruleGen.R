@@ -14,60 +14,52 @@ rm(rule_relation)
 rule_relation = function(rotation = c("htv", "vth", 
                                       "dtv", "dth"), 
                          shade = c("wtg", "wtb", "btw", "btg"), 
-                         size = NULL) {
- # if (is.null(rotation) == F & is.null(shade) == T & is.null(size) == T) {
+                         line = c("sdad", "dads", "sdda", "ddas")) {
   # rotations
     h = 0; d= pi/3; v = pi/2
     rot_rule = list()
     # colors 
     sw = 0; sg = 0.10; sb = 0.6
     shade_rule = list()
+    # line 
+    s = 1; da = 5; do = 3
+    line_rule = list()
     if (rotation == "htv") {
+      for (i in 1:3) {
+        # rotations
+        rot_ruleG = c(h, d, v)
+        rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
+        # colors
+        shade_ruleG = c(sw, sb, sg)
+        shade_rule[[i]] = shade_ruleG
+        # lines 
+        line_ruleG = c(s,da,do)
+        line_rule[[i]] = line_ruleG
+      }
+    } else if (rotation == "htv") {
       for (i in 1:3) {
         rot_ruleG = c(h, d, v)
         rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
       }
-    } else if (rotation == "vth") {
-      for (i in 1:3) {
-        rot_ruleG = c(v,d,h)
-        rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
-      }
-    } else if (rotation == "dth") {
-      for (i in 1:3) {
-        rot_ruleG = c(d,h,v)
-        rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
-      }
-    } else if (rotation == "dtv") {
-      for (i in 1:3) {
-        rot_ruleG = c(d,v,h)
-        rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
-      }
-    }
- # }
-    the_rule = list()
-    if (is.null(rotation) == F) {
-      the_rule[["rotation"]] = rot_rule
-    } else if (is.null(shade) == F) {
-      the_rule[["shade"]] = shade_rule
-    } else if (is.null(size == F)) {
-      the_rule[["size"]] = size_rule
     }
     
+    the_rule = list()
+    the_rule[["rotation"]] = rot_rule
+    the_rule[["shade"]] = shade_rule
+    the_rule[["line"]] = line_rule
     return(the_rule)
 }
 
-
-vuota = list()
-vuota[["rotazione"]] = my_rot
-vuota[["shade"]] = b
-  
-b = rule_relation(rotation = "htv")
-
-my_rot = rule_relation(rotation = "dth")
+(my_rot = rule_relation(rotation = "htv"))
+(my_shade = rule_relation(rotation = "htv", shade = "wtg"))
+my_rules = rule_relation(rotation = "htv", shade = "wtg", line = "sdad")
 par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
 Canvas()
 stimElli(rotation = my_rot)
-DrawEllipse(x= 0, rot = my_rot[[2]][1])
+stimElli(rotation = my_rot, color = my_shade)
+stimTri(rotation = my_rot, 
+        color = my_shade)
+
 
 
 Canvas()
@@ -75,7 +67,13 @@ stimTri(rotation = my_rot)
 
 par(mfrow = c(1,1))
 plot(c(0,1),c(0,1), asp=1, type="n", xaxt="n", yaxt="n", xlab="", ylab="")
-Canvas()
+Canvas(15,15)
+DrawEllipse(x = 0,
+            radius.x = 10, 
+            radius.y = 15, 
+            lwd = 2, 
+            rot = pi/3, plot = T)
+
 DrawRegPolygon(rot = my_rot[[2]][1], nv=3)
 
 DrawRegPolygon(x = 0.5, y = 0.5, rot =  c(my_rot[[1]][1], 
