@@ -13,12 +13,15 @@ list(first = c(0.10, 0.50, 0.00),
 rm(rule_relation)
 rule_relation = function(rotation = c("htv", "vth", 
                                       "dtv", "dth"), 
-                         shade = NULL, 
+                         shade = c("wtg", "wtb", "btw", "btg"), 
                          size = NULL) {
-  if (is.null(rotation) == F & is.null(shade) == T & is.null(size) == T) {
+ # if (is.null(rotation) == F & is.null(shade) == T & is.null(size) == T) {
+  # rotations
     h = 0; d= pi/3; v = pi/2
     rot_rule = list()
-    shade_ruleG = c(0, 0.10, 0.50)
+    # colors 
+    sw = 0; sg = 0.10; sb = 0.6
+    shade_rule = list()
     if (rotation == "htv") {
       for (i in 1:3) {
         rot_ruleG = c(h, d, v)
@@ -40,11 +43,25 @@ rule_relation = function(rotation = c("htv", "vth",
         rot_rule[[i]] = rep(rot_ruleG[i], length(rot_ruleG))
       }
     }
-    the_rule = rot_rule
-  } 
-  return(the_rule)
+ # }
+    the_rule = list()
+    if (is.null(rotation) == F) {
+      the_rule[["rotation"]] = rot_rule
+    } else if (is.null(shade) == F) {
+      the_rule[["shade"]] = shade_rule
+    } else if (is.null(size == F)) {
+      the_rule[["size"]] = size_rule
+    }
+    
+    return(the_rule)
 }
 
+
+vuota = list()
+vuota[["rotazione"]] = my_rot
+vuota[["shade"]] = b
+  
+b = rule_relation(rotation = "htv")
 
 my_rot = rule_relation(rotation = "dth")
 par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
@@ -56,9 +73,11 @@ DrawEllipse(x= 0, rot = my_rot[[2]][1])
 Canvas()
 stimTri(rotation = my_rot)
 
+par(mfrow = c(1,1))
 plot(c(0,1),c(0,1), asp=1, type="n", xaxt="n", yaxt="n", xlab="", ylab="")
 Canvas()
-DrawRegPolygon(rot = my_rot[[2]][1], nv=4)
+DrawRegPolygon(rot = my_rot[[2]][1], nv=3)
+
 DrawRegPolygon(x = 0.5, y = 0.5, rot =  c(my_rot[[1]][1], 
                                           my_rot[[2]][1], 
                                           my_rot[[3]][1]), radius.x = 0.5, nv = 3,
