@@ -11,7 +11,7 @@
 
 <meta name="author" content="Ottavia M. Epifania" />
 
-<meta name="date" content="2022-07-21" />
+<meta name="date" content="2022-09-19" />
 
 <title>appunti</title>
 
@@ -365,10 +365,13 @@ pre code {
 
 <h1 class="title toc-ignore">appunti</h1>
 <h4 class="author">Ottavia M. Epifania</h4>
-<h4 class="date">2022-07-21</h4>
+<h4 class="date">2022-09-19</h4>
 
 </div>
 
+<div id="TOC">
+true
+</div>
 
 <p>Quello che serve/può variare:</p>
 <ul>
@@ -382,9 +385,41 @@ per colonna</p></li>
 triangolo, il quadrato e forse il rombo)</p></li>
 <li><p>il riempimento</p></li>
 <li><p>bordi (ci sto ancora studiando)</p></li>
-<li><p>la posizione del punto intterogativo (Rome wasn’t built in a
+<li><p>la posizione del punto interogativo (Rome wasn’t built in a
 day)</p></li>
 </ul>
+<div id="section" class="section level2">
+<h2>19/09/2022</h2>
+<div id="relation-rule" class="section level3">
+<h3>Relation rule</h3>
+<pre><code>## $first
+## [1] 0.1 0.5 0.0
+## 
+## $second
+## [1] 0.5 0.0 0.1
+## 
+## $third
+## [1] 0.0 0.1</code></pre>
+<pre><code>## Warning in rm(rule_relation): oggetto &#39;rule_relation&#39; non trovato</code></pre>
+<p>La regola generale è implementata in una funzione che, per il
+momento, serve a genera o delle ellissi (funzione
+<code>stimElli()</code> nel file <code>newEllisse.R</code>) o dei
+triangoli (funzione <code>stimTri()</code> nel file
+<code>triangolo.R</code>).</p>
+<p>Mi sono basata sulle regole della macrocategoria “Relation”. Per il
+momento le funzioni funzionano con una serie di regole pre definite che
+ho dato io sulla logica delle immagini presenti su drive. Ad esempio, la
+rotazione può avvenire “vertical-to-horizontal” (<code>vth</code>) o
+“horizontal-to-vertical” (<code>htv</code>). L’ideale (anche pensando a
+una shiny app) sarebbe di lasciare inserire i valori a mano, ad esempio
+per la rotazione, e una regola (e.g., clockwise, andticlockwise) e
+generare lo stimolo. Sono solo all’inizio.</p>
+<p>Generazione della regola:</p>
+<pre class="r"><code>my_rule = rule_relation(rotation = T,  which_rot = &quot;vth&quot;, 
+                         shade = T, which_shade = &quot;wtg&quot;,
+                         line = T, which_line = &quot;sdad&quot;)</code></pre>
+</div>
+</div>
 
 
 
