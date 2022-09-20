@@ -6,11 +6,6 @@ library(DescTools)
 # and the third)
 # which_rot
 
-list(first = c(0.10, 0.50, 0.00), 
-     second = c(0.50, 0.00, 0.10), 
-     third = c(0.00, 0.10))
-
-rm(rule_relation)
 rule_relation = function(rotation = NULL,
     which_rot = c("htv", "vth", 
                                       "dtv", "dth"), shade = NULL, 

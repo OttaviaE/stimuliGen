@@ -2,9 +2,20 @@
 title: "appunti"
 author: "Ottavia M. Epifania"
 date: "`r Sys.Date()`"
-output: html_document
-toc: true
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+editor_options: 
+  chunk_output_type: console
 ---
+
+```{r echo=F}
+source("newEllisse.R")
+source("ruleGen.R")
+source("triangolo.R")
+```
+
 
 Quello che serve/può variare: 
 
@@ -22,10 +33,19 @@ Quello che serve/può variare:
 
 - la posizione del punto interogativo (Rome wasn't built in a day)
 
-## 19/09/2022
-### Relation rule 
+# 19/09/2022
+## Relation rule 
 
-```{r echo = F, eval=TRUE}
+La regola generale è implementata in una funzione che, per il momento, serve a generare o delle ellissi (funzione `stimElli()` nel file `newEllisse.R`) o dei triangoli (funzione `stimTri()` nel file `triangolo.R`). 
+
+Mi sono basata sulle regole della macrocategoria "Relation". 
+Per il momento le funzioni funzionano con una serie di regole pre definite che ho dato io sulla logica delle immagini presenti su drive. Ad esempio, la rotazione può avvenire "vertical-to-horizontal" (`vth`) o "horizontal-to-vertical" (`htv`). 
+L'ideale (anche pensando a una shiny app) sarebbe di lasciare inserire i valori a mano, ad esempio per la rotazione, e una regola (e.g., clockwise, andticlockwise) e generare lo stimolo. Sono solo all'inizio. 
+
+L'idea generale è che le tutte le regole che si desidera implentare vengano salvate all'interno un oggetto. Questo oggetto viene passato poi alle funzioni per generare gli stimoli, dove non rimane altro da fare che specificare le regole che si vogliono vedere effettivamente implementate nello stimolo.
+
+<details><summary>Vedi codice</summary>
+```{r rule, eval=F}
 # triangolo ---- 
 
 library(DescTools)
@@ -36,26 +56,24 @@ library(DescTools)
 # and the third)
 # which_rot
 
-list(first = c(0.10, 0.50, 0.00), 
-     second = c(0.50, 0.00, 0.10), 
-     third = c(0.00, 0.10))
-
-rm(rule_relation)
-rule_relation = function(rotation = NULL,
-    which_rot = c("htv", "vth", 
-                                      "dtv", "dth"), shade = NULL, 
-                         which_shade = c("wtg", "wtb", "btw", "btg"),
-    line = NULL,
-                         which_line = c("sdad", "dads", "sdda", "ddas")) {
+rule_relation = function(rotation = NULL, # definisce se viene specificata la rotazione
+                         which_rot = c("htv", "vth", # quale rotazione
+                                      "dtv", "dth"), 
+                         shade = NULL, # definisce se viene specificata la colorazione
+                         which_shade = c("wtg", "wtb", # quale tipo di sfumratura
+                                         "btw", "btg"),
+                         line = NULL, # definisce se viene specificata la linea
+                         which_line = c("sdad", "dads",  # quale tipo di riga
+                                        "sdda", "ddas")) {
   the_rule = list()
   # which_rots
-    h = 0; d= pi/3; v = pi/2
-    rot_rule = list()
+    h = 0; d= pi/3; v = pi/2 # definisce i radianti per l'ellisse orizzonatle 
+    rot_rule = list() # diagonale e verticale
     # colors 
-    sw = 0; sg = 0.10; sb = 0.6
+    sw = 0; sg = 0.10; sb = 0.6 # definisce i  livelli di sfumuatura per ottenere  bianco, grigio, nero
     shade_rule = list()
     # which_line 
-    s = 1; da = 5; do = 3
+    s = 1; da = 5; do = 3 # definisce la riga continua, dashed, a puntini
     line_rule = list()
     if (!is.null(rotation) && is.null(shade) && is.null(line)) {
       # htv ----
@@ -210,93 +228,15 @@ rule_relation = function(rotation = NULL,
     return(the_rule)
 }
 
+```
+</details>
+
+## Ellipse generation
 
 
-stimTri = function(object, rotation = NULL, 
-                   color = NULL, 
-                   line = NULL) {
-  rot_rule = object[["rotation"]]
-  shade_rule = object[["shade"]]
-  line_rule = object[["line"]]
-  # rotation only ----
-  if (!is.null(rotation) & is.null(color) & is.null(line)) {
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(rot = rot_rule[[i]][[j]], nv=3, lwd = 2)
-      }
-    }
-  }  # color only  ---- 
-  else if (is.null(rotation) & !is.null(color) & is.null(line)) {
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(col = SetAlpha("black",shade_rule[[i]][[j]]),
-                       nv=3, lwd = 2)
-      }
-    }
-  } # line only ------
-  else if(is.null(rotation) & is.null(color) & !is.null(line)){
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(lty = line_rule[[i]][[j]],
-                       nv=3, lwd = 2)
-      }
-    }
-  }
-  # rotation and color ---- 
-  else if (!is.null(rotation) & !is.null(color) & is.null(line)) {
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(lty = line_rule[[i]][[j]],
-                       nv=3, lwd = 2)
-      }
-    }
-  } else if (is.null(rotation) & !is.null(color) & !is.null(line)) { # line and color ----- 
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(col = SetAlpha("black",shade_rule[[i]][[j]]),
-                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
-      }
-    }
-  } else if (!is.null(rotation) & is.null(color) & !is.null(line)) { # rotation and line ----
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(rot = rot_rule[[i]][[j]],
-                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
-      }
-    }
-  } # rotation color and line ---- 
-  else if (!is.null(rotation) & !is.null(color) & !is.null(line)) {
-    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
-    for (i in 1:length(rot_rule)) {
-      for (j in 1:length(rot_rule[[i]])) {
-        temp = NULL
-        Canvas()
-        DrawRegPolygon(rot = rot_rule[[i]][[j]],
-                       col = SetAlpha("black",shade_rule[[i]][[j]]),
-                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
-      }
-    }
-  } 
-}
-# ellisse
+
+<details><summary>Vedi codice</summary>
+```{r ellipse, eval=FALSE}
 
 # ellisse ---- 
 
@@ -306,8 +246,23 @@ stimElli = function(object, rotation = NULL,
   rot_rule = object[["rotation"]]
   shade_rule = object[["shade"]]
   line_rule = object[["line"]]
-  # rotation only
-  if(!is.null(rotation) & is.null(color) & is.null(line)) {
+
+  if (is.null(rotation) & is.null(color) & is.null(line)) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas(15, 15)
+        DrawEllipse(x = 0,
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    rot = rot_rule[[i]][[j]], 
+                    col = SetAlpha("black",shade_rule[[i]][[j]]), 
+                    plot = T, lty = line_rule[[i]][[j]])
+      }
+    }   # rotation only -----
+  } else if (!is.null(rotation) & is.null(color) & is.null(line)) {
      par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
   for (i in 1:length(rot_rule)) {
     for (j in 1:length(rot_rule[[i]])) {
@@ -415,19 +370,163 @@ stimElli = function(object, rotation = NULL,
   }
 
 ```
+</details>
+
+## Triangle generation
+
+<details><summary>Vedi codice</summary>
+```{r eval=F}
+# triangolo ---- 
+
+# triangolo ---- 
+
+stimTri = function(object, rotation = NULL, 
+                   color = NULL, 
+                   line = NULL) {
+  rot_rule = object[["rotation"]]
+  shade_rule = object[["shade"]]
+  line_rule = object[["line"]]
+  if (is.null(rotation) & is.null(color) & is.null(line)) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(rot = rot_rule[[i]][[j]],
+                       col = SetAlpha("black",shade_rule[[i]][[j]]),
+                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
+      }
+    }
+  } else if (!is.null(rotation) & is.null(color) & is.null(line)) {   # rotation only ----
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(rot = rot_rule[[i]][[j]], nv=3, lwd = 2)
+      }
+    }
+  }  # color only  ---- 
+  else if (is.null(rotation) & !is.null(color) & is.null(line)) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(col = SetAlpha("black",shade_rule[[i]][[j]]),
+                       nv=3, lwd = 2)
+      }
+    }
+  } # line only ------
+  else if(is.null(rotation) & is.null(color) & !is.null(line)){
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(lty = line_rule[[i]][[j]],
+                       nv=3, lwd = 2)
+      }
+    }
+  }
+  # rotation and color ---- 
+  else if (!is.null(rotation) & !is.null(color) & is.null(line)) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(col = SetAlpha("black",shade_rule[[i]][[j]]), 
+                       rot = rot_rule[[i]][[j]],
+                       nv=3, lwd = 2)
+      }
+    }
+  } else if (is.null(rotation) & !is.null(color) & !is.null(line)) { # line and color ----- 
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(col = SetAlpha("black",shade_rule[[i]][[j]]),
+                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
+      }
+    }
+  } else if (!is.null(rotation) & is.null(color) & !is.null(line)) { # rotation and line ----
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(rot = rot_rule[[i]][[j]],
+                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
+      }
+    }
+  } # rotation color and line ---- 
+  else if (!is.null(rotation) & !is.null(color) & !is.null(line)) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(rot_rule)) {
+      for (j in 1:length(rot_rule[[i]])) {
+        temp = NULL
+        Canvas()
+        DrawRegPolygon(rot = rot_rule[[i]][[j]],
+                       col = SetAlpha("black",shade_rule[[i]][[j]]),
+                       nv=3, lwd = 2, lty = line_rule[[i]][[j]])
+      }
+    }
+  } 
+}
 
 
-La regola generale è implementata in una funzione che, per il momento, serve a genera o delle ellissi (funzione `stimElli()` nel file `newEllisse.R`) o dei triangoli (funzione `stimTri()` nel file `triangolo.R`). 
+```
+</details>
 
-Mi sono basata sulle regole della macrocategoria "Relation". 
-Per il momento le funzioni funzionano con una serie di regole pre definite che ho dato io sulla logica delle immagini presenti su drive. Ad esempio, la rotazione può avvenire "vertical-to-horizontal" (`vth`) o "horizontal-to-vertical" (`htv`). 
-L'ideale (anche pensando a una shiny app) sarebbe di lasciare inserire i valori a mano, ad esempio per la rotazione, e una regola (e.g., clockwise, andticlockwise) e generare lo stimolo. Sono solo all'inizio. 
 
-Generazione della regola: 
+### Esempio
+
+Generazione delle regole: 
 
 ```{r}
 my_rule = rule_relation(rotation = T,  which_rot = "vth", 
                          shade = T, which_shade = "wtg",
                          line = T, which_line = "sdad")
+```
+
+Si può scegliere anche di non mettere tutte le regole insieme, ma di selezionarne solo alcune.
+
+
+L'oggetto `my_rule` è una lista di liste: 
+
+```{r echo=FALSE}
+str(my_rule)
+```
+
+Contiene tre liste (``r names(my_rule)``), ognuna di lunghezza 3. Ogni lista contiene le regole relative al suo nome per ora quindi abbiamo solo rotazione, solore e linea di contorno. 
+
+Una volta salvate le regole, si possono usare per generare gli stimoli: 
+
+```{r}
+stimElli(my_rule)
+```
+
+Se non viene specificato nulla, vengono applicate tutte le regole in `my_rule`(rotazione, colore, linea), altrimenti^[per come ho scritto ora la funzione, se non vengono passati argomenti funziona solo se in `my_rule` sono presenti tutte le regole, ma si può cambiare con poco]: 
+
+```{r}
+stimElli(my_rule, rotation =T)
+```
+
+Stessa cosa per il triangolo: 
+
+```{r}
+stimTri(my_rule, line =T)
+```
+
+Oppure combinando diversi elementi e ottenendo delle relazioni binarie: 
+
+```{r}
+stimElli(my_rule, color = T, rotation = T)
+```
+
+```{r}
+stimTri(my_rule, line = T, rotation = T)
 ```
 
