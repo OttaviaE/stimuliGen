@@ -1,5 +1,5 @@
 # ellisse ---- 
-
+library(DescTools)
 stimElli = function(object, rotation = NULL, 
                    color = NULL, 
                    line = NULL) {

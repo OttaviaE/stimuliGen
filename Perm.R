@@ -20,7 +20,6 @@ sdad = c(s = 1, da =5, do = 3)
 dasd = c(da = 5, s = 1, do = 3)
 
 
-
 start = list(rot = htv, 
              shade = btw, 
              line = sdad)
