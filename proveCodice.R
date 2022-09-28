@@ -148,10 +148,11 @@ plot(c(0,1),c(0,1), asp=1, type="n", xaxt="n", yaxt="n", xlab="", ylab="")
 DrawRegPolygon(x = 0.5, y = 0.5, rot = (1:4)*pi/6, radius.x = 0.5, nv = 3,
                col = SetAlpha("yellow",0.5))
 
-Canvas()
+Canvas(15,15)
 DrawRegPolygon(radius.x = 10, 
                radius.y = 10, 
                nv=4, rot=pi)
+Canvas()
 
 DrawRegPolygon(radius.x=c(0.7, 0.5), 
                radius.y = c(0.5, 0.5), 
