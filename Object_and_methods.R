@@ -71,6 +71,45 @@ resize.field<-function(obj,n) {
   return(obj)
 }
 
+diff_shapes <- function(obj,n) {
+  UseMethod("diff_shapes")
+}
+diff_shapes.field<-function(obj,n) {
+  if(length(obj$visible)!=3)
+  {
+    stop("You must have at least three forms to change shapes!")
+  }
+  index<-c(1:3,1:2)
+  obj$visible<-c(0,0,0)
+  obj$visible[index[n]]<-1
+  return(obj)
+}
+
+AND <- function(obj) {
+  UseMethod("AND")
+}
+AND.Raven_matrix<-function(obj) {
+ 
+  if(length(obj[[1]]$shape)!=5)
+  {
+    stop("You must have five forms to apply a logical AND !")
+  }
+  
+  squares<-paste0("Sq",1:9)
+  
+  obj[[1]]$visible<-c(1,1,1,0,0)
+  obj[[2]]$visible<-c(1,0,1,0,1)
+  obj[[3]]$visible<-c(1,0,1,0,0)
+  
+  obj[[4]]$visible<-c(1,1,0,1,0)
+  obj[[5]]$visible<-c(1,0,0,1,1)
+  obj[[6]]$visible<-c(1,0,0,1,0)
+  
+  obj[[7]]$visible<-c(1,1,0,0,0)
+  obj[[8]]$visible<-c(1,0,0,0,1)
+  obj[[9]]$visible<-c(1,0,0,0,0)
+  return(obj)
+}
 ### Applying Rule
 apply_rule <- function(obj) {
   UseMethod("apply_rule")
@@ -99,6 +138,17 @@ apply_rule.Raven_matrix <- function(obj) {
       obj[[row_2[i]]] <- resize(obj[[row_2[i]]],i)
       obj[[row_3[i]]] <- resize(obj[[row_3[i]]],i)
       }
+    }else if(hrules[r] == "diff_shapes")
+    {
+      for (i in 1:3)
+      {
+        obj[[row_1[i]]] <- diff_shapes(obj[[row_1[i]]],i)
+        obj[[row_2[i]]] <- diff_shapes(obj[[row_2[i]]],i+1)
+        obj[[row_3[i]]] <- diff_shapes(obj[[row_3[i]]],i+2)
+      }
+    }else if(hrules[r] == "AND")
+    {
+      obj<-AND(obj)
     }
   }
   
@@ -126,6 +176,14 @@ apply_rule.Raven_matrix <- function(obj) {
       obj[[col_2[i]]] <- resize(obj[[col_2[i]]],i)
       obj[[col_3[i]]] <- resize(obj[[col_3[i]]],i)
       }
+    }else if(vrules[r] == "diff_shapes" & !any(hrules == "diff_shapes"))
+    {
+      for (i in 1:3)
+      {
+        obj[[col_1[i]]] <- diff_shapes(obj[[col_1[i]]],i)
+        obj[[col_2[i]]] <- diff_shapes(obj[[col_2[i]]],i)
+        obj[[col_3[i]]] <- diff_shapes(obj[[col_3[i]]],i)
+      }
     }
   }
   return(obj)
@@ -148,24 +206,36 @@ draw.Raven_matrix<- function(obj) {
     x<-obj[[squares[i]]]$size.x
     y<-obj[[squares[i]]]$size.y
     rot<-obj[[squares[i]]]$rotation
+    visible <- obj[[squares[i]]]$visible
     Canvas(15,15)
     for(j in 1:length(shapes))
     {
-      if(shapes[j]=="triangle")
-        {
-        
-        DrawRegPolygon(x = 0, y = 0, rot = rot[j], 
-                        radius.x = x[j], nv = 3)
-      }else if(shapes[j]=="elipse")
-        {
-        DrawEllipse(x = 0, y = 0, 
-                    rot = rot[j], 
-                    radius.x = x[j],radius.y = y[j])
-      }else if(shapes[j]=="square")
+      if(visible[j]==1)
       {
-        DrawRegPolygon(x = 0, y = 0, rot = rot[j], 
-                       radius.x = x[j], nv = 4)
+        if(shapes[j]=="triangle")
+        {
+          
+          DrawRegPolygon(x = 0, y = 0, rot = rot[j], 
+                         radius.x = x[j], nv = 3)
+        }else if(shapes[j]=="elipse")
+        {
+          DrawEllipse(x = 0, y = 0, 
+                      rot = rot[j], 
+                      radius.x = x[j],radius.y = y[j])
+        }else if(shapes[j]=="square")
+        {
+          DrawRegPolygon(x = 0, y = 0, rot = rot[j], 
+                         radius.x = x[j], nv = 4)
+        }else if(shapes[j]=="cross")
+        {
+
+          DrawRegPolygon(x = 0, y = 0,radius.x = x[j],
+                         rot = pi/2+rot[j],  nv = 2) 
+          DrawRegPolygon(x = 0, y = 0,radius.x = x[j],
+                         rot = rot[j],  nv = 2) 
+        }
       }
+      
     }
     
   }
