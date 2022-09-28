@@ -530,3 +530,258 @@ stimElli(my_rule, color = T, rotation = T)
 stimTri(my_rule, line = T, rotation = T)
 ```
 
+
+
+
+# 28/09/2022
+
+L'evoluzione del codice: 
+
+## Regola di alto livello
+
+```{r echo = F}
+rm(list = ls())
+```
+
+Stabilisce una "classe"
+
+<details><summary>Vedi codice</summary>
+```{r}
+highRule = function(rotation = NULL, shade = NULL, line = NULL, 
+                    multi = F) {
+  if (is.null(rotation) & is.null(shade) & is.null(line) & multi == F) {
+    stop("Please specificy an argument") 
+  } else if (!is.null(rotation) & is.null(shade) & is.null(line)){
+    ruleG = "rotation"
+  } else if (!is.null(rotation) & !is.null(shade) & is.null(line)) {
+    ruleG = "rot_shade"
+  } else if (!is.null(rotation) & is.null(shade) & !is.null(line)) {
+    ruleG = "rot_line" 
+  } else if (is.null(rotation) & !is.null(shade) & !is.null(line)) {
+    ruleG = "shade_line"
+  } else if (!is.null(rotation) & !is.null(shade) & !is.null(line)) {
+    ruleG = "all"
+  } else if (is.null(rotation) & !is.null(shade) & is.null(line)) {
+    ruleG = "shade"
+  } else if(is.null(rotation) & is.null(shade) & !is.null(line)) {
+    ruleG = "line"
+  } else if (multi == T) {
+    ruleG = "multi"
+  }
+  return(ruleG)
+}
+```
+
+</details>
+
+## Regola pratica
+
+Utilizza l'oggetto prodotto da `highRule()` per generare le regole^[è ancora in fase di costruzione, per ora ho solo scritto un po' di regole di esempio]
+
+In questa funzione, vengono definite tutte le regole all'inizio e vengono poi combinate insieme dentro l'oggetto `start` (è una lista) che definisce tutte le altre righe della matrice. Ho usato le permutazioni. 
+
+L'idea è stata quella di creare un oggetto finale (`rest` contentuo all'interno di `the_rule`) che sia sempre uguale (i.e., stessa lunghezza e stessi elementi all'interno), indipendentemente da cosa c'è al suo interno. 
+`rest` conterrà sempre 3 liste (una per rotazione, una per lo shade della figura, una per il contorno). Se la regola viene specificata, la lista corrispondente avrà i valori della regola scelta. Se la regola non viene scelta, la lista avrà i valori di default (ad esempio, nel caso dello shade, si avrà sempre il riempimento bianco).
+
+<details><summary>Vedi codice</summary>
+```{r}
+getDone = function(object, 
+                   rotation = c("htv", "vth", "dtv", "dth"), 
+                   shade = c("wtg", "wtb", "btw", "btg"), 
+                   line = c("sdad", "dads", "sdda", "ddas"), 
+                   multi = c("increasing", "decreasing")){
+  the_rule = list()
+  # empty rotation 
+  empty_rot = matrix(0, nrow = 3, ncol = 3)
+  # empty shade 
+  empty_shade = matrix(0, nrow = 3, ncol = 3)
+  # empty line 
+  empty_line = matrix(1, nrow = 3, ncol = 3)
+  
+  
+  # htv 
+  htv = c(h = pi/2, d= pi/3, v = 0)
+  # vth 
+  vth = c(v=0, d=pi/3, h=pi/2)
+ 
+  # wtb
+  wtb = c(sw = 0, sg = 0.20, sb = 0.8)
+  # wtg 
+  wtg = c(sw = 0,  sb = 0.8, sg = 0.20)
+  
+  # sdad 
+  sdad = c(s = 1, da = 5, do = 3)
+  # dads
+  dads = c(da = 5, do = 3, s = 1)
+  
+  if (object == "rotation") {
+    if (rotation == "htv") {
+      start = list(rot = htv)
+      
+    } else if (rotation == "vth") {
+      start = list(rot = htv)
+    }
+    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
+                shade = empty_shade, 
+                line = empty_line)
+  } else if (object == "shade") {
+    if (shade == "wtb") {
+      start = list(shade = wtb)
+    } else if (shade == "wtg") {
+      start = list(shade = wtg)
+    }
+    rest = list(rotation = empty_rot, 
+                shade =Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
+                line = empty_line)
+  } else if (object == "line") {
+    if (line == "sdad") {
+      
+      start = list(line = sdad)
+    } else if (line == "dads") {
+      start = list(line = dads)
+    }
+    rest = list(rotation = empty_rot, 
+                shade = empty_shade, 
+                line =Permn(start[["line"]])[c(seq(1,5,by=2)), ])
+  } else if (object == "rot_shade") { # rot_shade -----
+    if (rotation == "htv" & shade == "wtg") { # htv and wtg ----
+      start = list(rot = htv, 
+                   shade = wtg)
+    } else if (rotation == "htv" & shade == "wtb") { # htv and wtg -----
+      start = list(rot = htv, 
+                   shade = wtb)
+    }
+    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
+                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
+                line= empty_line)
+  } else if (object == "rot_line") {
+    if (rotation == "htv" & line == "sdad") { # htv and wtg ----
+      start = list(rot = htv, 
+                   line = sdad)
+    } else if (rotation == "htv" & line == "dads") { # htv and wtg -----
+      start = list(rot = htv, 
+                   line = dads)
+    }
+    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
+                shade = empty_shade, 
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
+  } else if (object == "shade_line") {
+    if (shade == "wtb" & line == "sdad") { # htv and wtg ----
+      start = list(shade = wtb, 
+                   line = sdad)
+    } else if (shade == "wtg" & line == "sdad") { # htv and wtg -----
+      start = list( shade = wtg, 
+                   line = sdad)
+    }
+    rest = list(rotation = empty_rot, 
+                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
+  } else if (object == "all") {
+    if (rotation == "htv" & shade == "wtb" & line == "sdad") {
+      start = list(rot = htv, 
+                   shade = wtb, 
+                   line = sdad)
+    } else if (rotation == "vth" & shade == "wtb" & line == "sdad") {
+      start = list(rot = vth, 
+                   shade = wtb, 
+                   line = sdad)
+    }
+    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
+                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
+  } else if (multi == "increasing") {
+    rest = matrix(c(c(1:3), c(2,1,3), c(3:1)), nrow=3, ncol= 3, byrow = T)
+  } else if (multi == "decreasing") {
+    rest = matrix(c(c(3:1), c(2,1,3), c(1:3),), nrow=3, ncol= 3, byrow = T)
+  }
+  the_rule = rest
+  return(the_rule)
+  }
+```
+</details>
+
+## La generazaione effettiva dello stimolo 
+
+Stabilendo "bene" le regole a monte, il codice per la generazione dello stimolo è moooooolto ridotto:
+
+<details><summary>Vedi codice</summary>
+```{r}
+stimElli = function(object, multi = F) {
+  if (multi == F) {
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:length(object)) {
+      for (j in 1:length(object)) {
+        Canvas(15, 15)
+        DrawEllipse(x = 0,
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    rot = object[["rotation"]][i, j], 
+                    col = SetAlpha("black",object[["shade"]][i, j]), 
+                    plot = T, lty = object[["line"]][i, j])
+      }
+    }
+  } else if (multi == T) { # new feature (beta)
+    par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
+    for (i in 1:nrow(object)) {
+      for (j in 1:ncol(object)) {
+        temp = NULL
+        Canvas()
+        DrawEllipse(lwd = 2, 
+                    rot = (1:object[i, j])*pi/3)
+      }}
+  }
+
+}
+```
+</details>
+
+## Un esempio 
+
+Generare la regola:
+
+```{r}
+ob = getDone(highRule(rotation = T, shade = T), 
+             rotation = "htv", shade = "wtb")
+
+ob
+```
+
+Disegnare lo stimolo: 
+
+```{r}
+stimElli(ob)
+```
+
+
+Mettere solo lo shading:
+
+```{r}
+ob1 = getDone(highRule(shade = T), shade = "wtg")
+ob1
+```
+
+```{r}
+stimElli(ob1)
+```
+
+
+Mettere tutto: 
+
+```{r}
+ob2 = getDone(highRule(rotation = T, shade = T, line = T), 
+              rotation = "htv", shade = "wtb", line = "sdad")
+
+ob2
+```
+
+```{r}
+stimElli(ob2)
+```
+
+### Multi ellisse - beta
+
+```{r}
+stimElli(getDone(highRule(multi = T), multi = "increasing"), multi = T)
+```
+

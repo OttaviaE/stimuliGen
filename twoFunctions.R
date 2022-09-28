@@ -95,7 +95,7 @@ getDone = function(object,
                    shade = wtb)
     }
     rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
-                shade = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
+                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
                 line= empty_line)
   } else if (object == "rot_line") {
     if (rotation == "htv" & line == "sdad") { # htv and wtg ----
@@ -162,5 +162,4 @@ prova = (getDone(highRule(line = T, shade = T, rotation = T),
                  rotation = "htv"))
 p = getDone(highRule(multi = T), multi = "increasing")
 
-stimElli(getDone(highRule(multi = T), multi = "increasing"))
-highRule(rotation  = T)
+
