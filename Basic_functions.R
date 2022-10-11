@@ -7,6 +7,8 @@ field <- list(
   rotation = NULL,
   pos.x = NULL,
   pos.y = NULL,
+  lty = NULL,
+  lwd = NULL,
   num = NULL,
   visible= NULL
   )
@@ -42,7 +44,7 @@ class(Raven) <- "Raven_matrix"
 #' @examples
 #'
 #' @export
-field <- function(shapes,sz.x,sz.y,p.x,p.y,rot,num,vis) {
+field <- function(shapes,sz.x,sz.y,p.x,p.y,rot,lty,lwd,num,vis) {
   value <- list(
     shape = shapes,
     size.x = sz.x,
@@ -50,6 +52,8 @@ field <- function(shapes,sz.x,sz.y,p.x,p.y,rot,num,vis) {
     rotation = rot,
     pos.x = p.x, 
     pos.y = p.y,
+    lty = lty,
+    lwd = lwd,
     num = num,
     visible=vis
   )
@@ -86,7 +90,7 @@ Raven <- function(st1,hrule="identity",vrule="identity") {
 #' @examples
 #' circle()
 #' @export
-circle <- function() {
+circle <- function(vis=1) {
   value <- list(
     shape = "elipse",
     size.x = 10,
@@ -95,7 +99,9 @@ circle <- function() {
     pos.x = 0, 
     pos.y = 0,
     num = 1,
-    visible=1
+    lty=1,
+    lwd=1,
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -107,7 +113,7 @@ circle <- function() {
 #' @examples
 #' triangle()
 #' @export
-triangle <- function() {
+triangle <- function(vis=1) {
   value <- list(
     shape = "triangle",
     size.x = 15,
@@ -116,7 +122,9 @@ triangle <- function() {
     pos.x = 0, 
     pos.y = 0,
     num = 1,
-    visible=1
+    lty=1,
+    lwd=1,
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -128,7 +136,7 @@ triangle <- function() {
 #' @examples
 #' square()
 #' @export
-square <- function() {
+square <- function(vis=1) {
   value <- list(
     shape = "square",
     size.x = 15,
@@ -137,7 +145,9 @@ square <- function() {
     pos.x = 0, 
     pos.y = 0,
     num = 1,
-    visible=1
+    lty=1,
+    lwd=1,
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -149,7 +159,7 @@ square <- function() {
 #' @examples
 #' cross()
 #' @export
-cross <- function() {
+cross <- function(vis=1) {
   value <- list(
     shape = "cross",
     size.x = 10,
@@ -157,8 +167,10 @@ cross <- function() {
     rotation = pi,
     pos.x = 0, 
     pos.y = 0,
+    lty=1,
+    lwd=1,
     num = 1,
-    visible=1
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -170,7 +182,7 @@ cross <- function() {
 #' @examples
 #' dice()
 #' @export
-dice <- function() {
+dice <- function(vis=1) {
   value <- list(
     shape = "dice",
     size.x = 3,
@@ -178,8 +190,10 @@ dice <- function() {
     rotation = pi,
     pos.x = 14, 
     pos.y = 13,
+    lty=1,
+    lwd=1,
     num = 4,
-    visible=1
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -192,7 +206,7 @@ dice <- function() {
 #' @examples
 #' elipse()
 #' @export
-elipse <- function() {
+elipse <- function(vis=1) {
   value <- list(
     shape = "elipse",
     size.x = 10,
@@ -200,8 +214,10 @@ elipse <- function() {
     rotation = 0,
     pos.x = 0, 
     pos.y = 0,
+    lty=1,
+    lwd=1,
     num = 1,
-    visible=1
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -213,7 +229,7 @@ elipse <- function() {
 #' @examples
 #' small_triangle()
 #' @export
-small_triangle <- function() {
+small_triangle <- function(vis=1) {
   value <- list(
     shape = "striangle",
     size.x = 3,
@@ -221,8 +237,10 @@ small_triangle <- function() {
     rotation = 0,
     pos.x = 14, 
     pos.y = 13,
+    lty=1,
+    lwd=1,
     num = 1,
-    visible=1
+    visible=vis
   )
   attr(value, "class") <- "field"
   value
@@ -242,5 +260,29 @@ cof <- function(...) {
 cof.field<-function(...) {
   obj<-Map("c",...)
   attr(obj, "class") <- "field"
+  obj
+}
+
+cof.character<-function(...) {
+  obj<-c(...)
+  attr(obj, "class") <- "character"
+  obj
+}
+
+
+#' Concatenationof matrix
+#'
+#' Function for the concatenation of difference matrices
+#' @return Return a Matrix object 
+#' @examples
+#'
+#' @export
+com <- function(...) {
+  UseMethod("com")
+}
+
+com.Raven_matrix<-function(...) {
+  obj<-Map("cof",...)
+  attr(obj, "class") <- "Raven_matrix"
   obj
 }
