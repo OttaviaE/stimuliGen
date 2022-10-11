@@ -1,17 +1,13 @@
 library(DescTools)
 # funzione generativa ellisse -----
 stimElli = function(rotation = NULL, 
-                    color = NULL, 
+                    shade = NULL, 
                     line = NULL) {
   if (is.null(rotation) == T & is.null(color) == T & is.null(line) == T) {
     stop("Please specify at least one argument")
   }
-  rot_rule1 = list(first = c(1:3) * pi/3, 
-                   second = c(2,3, 1) * pi/3, 
-                   third = c(3, 1)* pi/3)
-  col_rule1 = list(first = c(0.10, 0.50, 0.00), 
-                   second = c(0.50, 0.00, 0.10), 
-                   third = c(0.00, 0.10))
+  rot_rule1 = rotation[["rotation"]]
+  col_rule1 = shade[["shade"]]
   lty_rule1 = list(first = c(1:3), 
                    second = c(3,1,2), 
                    third = c(2,3))
@@ -21,9 +17,11 @@ stimElli = function(rotation = NULL,
       for (j in 1:length(rot_rule1[[i]])) {
         temp = NULL
         Canvas(15, 15)
-        DrawEllipse(x = 0, y = 0, 
-                    rot = rot_rule1[[i]][[j]], 
-                    radius.x = 10, radius.y = 15, plot = T)
+        DrawEllipse(x = 0,
+                    radius.x = 10, 
+                    radius.y = 15, 
+                    lwd = 2, 
+                    rot = rot_rule1[[i]][[j]], plot = T)
       }
     }
   } else if (is.null(rotation) == F & is.null(color) == F & is.null(line) == T) {
