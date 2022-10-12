@@ -1,3 +1,5 @@
+## Definizione degli oggetti campo (field) e matrice (Raven)
+
 field <- list(
   shape = NULL,
   size.x = NULL,
@@ -25,7 +27,7 @@ Raven<-list(
 class(field) <- "field"
 class(Raven) <- "Raven_matrix"
 
-
+#funzione per costruzione dei oggetto campo generico
 field <- function(shapes,x,y,rot,vis) {
   value <- list(
     shape = shapes,
