@@ -8,7 +8,7 @@ source("Complex_functions.R")
 source("Rules.R")
 
 Stimoli<-cof(square(),triangle(),cross(),dice())
-M<-Raven(Stimoli,"XOR")
+M<-Raven(Stimoli,"AND")
 M<-apply_rule(M)
 draw(M)
 
