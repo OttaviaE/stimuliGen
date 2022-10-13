@@ -1,52 +1,54 @@
-# 27/09 ----
-# provo a creare le regole gerarchiche con integrate le permutazioni
-rm(list = ls()[!ls() %in% "stimElli"])
-highRule = function(rotation = NULL, shade = NULL, line = NULL, 
-                    multi = F) {
-  if (is.null(rotation) & is.null(shade) & is.null(line) & multi == F) {
+highRule = function(rotation = NULL, shade = NULL, line = NULL, shape = NULL, size = NULL) {
+  if (is.null(rotation) & is.null(shade) & is.null(line) ) {
     stop("Please specificy an argument") 
-  } else if (!is.null(rotation) & is.null(shade) & is.null(line)){
+  } else if (!is.null(rotation) & !is.null(shape)  & is.null(shade) & is.null(line) & is.null(size)){
     ruleG = "rotation"
-  } else if (!is.null(rotation) & !is.null(shade) & is.null(line)) {
+  } else if (!is.null(rotation) & !is.null(shape) & !is.null(shade) & is.null(line)& is.null(size)) {
     ruleG = "rot_shade"
-  } else if (!is.null(rotation) & is.null(shade) & !is.null(line)) {
+  } else if (!is.null(rotation) & !is.null(shape) & is.null(shade) & !is.null(line) & is.null(size)) {
     ruleG = "rot_line" 
-  } else if (is.null(rotation) & !is.null(shade) & !is.null(line)) {
+  } else if (is.null(rotation) & !is.null(shape) &  !is.null(shade) & !is.null(line) & is.null(size)) {
     ruleG = "shade_line"
-  } else if (!is.null(rotation) & !is.null(shade) & !is.null(line)) {
-    ruleG = "all"
-  } else if (is.null(rotation) & !is.null(shade) & is.null(line)) {
+  } else if (!is.null(rotation)& !is.null(shape) & !is.null(shade) & !is.null(line) & is.null(size)) {
+    ruleG = "rot_shade_line"
+  } else if (is.null(rotation) & !is.null(shape) & !is.null(shade) & is.null(line) & is.null(size)) {
     ruleG = "shade"
-  } else if(is.null(rotation) & is.null(shade) & !is.null(line)) {
+  } else if(is.null(rotation) & !is.null(shape) & is.null(shade) & !is.null(line) & is.null(size)) {
     ruleG = "line"
-  } else if (multi == T) {
-    ruleG = "multi"
+  }  else if (!is.null(rotation) & !is.null(shade) & !is.null(line) & !is.null(shape) & !is.null(size)) {
+    ruleG = "rot_shade_line_shape_size"
+  } else if (is.null(rotation) & !is.null(shade) & is.null(line) & !is.null(shape) & !is.null(size)) {
+    ruleG = "shade_shape_size"
   }
   return(ruleG)
 }
 
 
-highRule(shade = T)
-  
+
+
 getDone = function(object, 
                    rotation = c("htv", "vth", "dtv", "dth"), 
                    shade = c("wtg", "wtb", "btw", "btg"), 
                    line = c("sdad", "dads", "sdda", "ddas"), 
-                   multi = c("increasing", "decreasing")){
+                   shape = c("ellipse", "triangle", "pentagon", "all"),
+                   size = c("increasing", "decreasing")){
   the_rule = list()
   # empty rotation 
-  empty_rot = matrix(0, nrow = 3, ncol = 3)
+  empty_rot = matrix(pi/2, nrow = 3, ncol = 3)
   # empty shade 
   empty_shade = matrix(0, nrow = 3, ncol = 3)
   # empty line 
   empty_line = matrix(1, nrow = 3, ncol = 3)
-  
+  # empty size 
+  empty_x_ell = matrix(10, nrow = 3, ncol = 3)
+  empty_y_ell = matrix(15, nrow = 3, ncol = 3)
+  empty_x = matrix(15, nrow = 3, ncol = 3)
+  empty_y = matrix(15, nrow = 3, ncol = 3)
   
   # htv 
   htv = c(h = pi/2, d= pi/3, v = 0)
   # vth 
   vth = c(v=0, d=pi/3, h=pi/2)
- 
   # wtb
   wtb = c(sw = 0, sg = 0.20, sb = 0.8)
   # wtg 
@@ -57,6 +59,14 @@ getDone = function(object,
   # dads
   dads = c(da = 5, do = 3, s = 1)
   
+  # increasing size x elli 
+  plus_x_elli = c(10, 15, 20)
+  plus_y_elli = plus_x_elli/2
+  
+  # increasing other shapes 
+  plus_x = c(10, 15, 20)
+  plus_y = plus_x
+  
   if (object == "rotation") {
     if (rotation == "htv") {
       start = list(rot = htv)
@@ -66,7 +76,12 @@ getDone = function(object,
     }
     rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
                 shade = empty_shade, 
-                line = empty_line)
+                line = empty_line, 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y 
+                )
   } else if (object == "shade") {
     if (shade == "wtb") {
       start = list(shade = wtb)
@@ -75,7 +90,11 @@ getDone = function(object,
     }
     rest = list(rotation = empty_rot, 
                 shade =Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
-                line = empty_line)
+                line = empty_line, 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y )
   } else if (object == "line") {
     if (line == "sdad") {
       
@@ -85,19 +104,12 @@ getDone = function(object,
     }
     rest = list(rotation = empty_rot, 
                 shade = empty_shade, 
-                line =Permn(start[["line"]])[c(seq(1,5,by=2)), ])
-  } else if (object == "rot_shade") { # rot_shade -----
-    if (rotation == "htv" & shade == "wtg") { # htv and wtg ----
-      start = list(rot = htv, 
-                   shade = wtg)
-    } else if (rotation == "htv" & shade == "wtb") { # htv and wtg -----
-      start = list(rot = htv, 
-                   shade = wtb)
-    }
-    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
-                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
-                line= empty_line)
-  } else if (object == "rot_line") {
+                line =Permn(start[["line"]])[c(seq(1,5,by=2)), ], 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y )
+  }  else if (object == "rot_line") {
     if (rotation == "htv" & line == "sdad") { # htv and wtg ----
       start = list(rot = htv, 
                    line = sdad)
@@ -107,19 +119,27 @@ getDone = function(object,
     }
     rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
                 shade = empty_shade, 
-                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ], 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y )
   } else if (object == "shade_line") {
     if (shade == "wtb" & line == "sdad") { # htv and wtg ----
       start = list(shade = wtb, 
                    line = sdad)
     } else if (shade == "wtg" & line == "sdad") { # htv and wtg -----
       start = list( shade = wtg, 
-                   line = sdad)
+                    line = sdad)
     }
     rest = list(rotation = empty_rot, 
                 shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
-                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
-  } else if (object == "all") {
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ], 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y )
+  } else if (object == "rot_shade_line") {
     if (rotation == "htv" & shade == "wtb" & line == "sdad") {
       start = list(rot = htv, 
                    shade = wtb, 
@@ -131,21 +151,63 @@ getDone = function(object,
     }
     rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ], 
                 shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ], 
-                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ])
-  } else if (multi == "increasing") {
-    rest = matrix(c(c(1:3), c(2,1,3), c(3:1)), nrow=3, ncol= 3, byrow = T)
-  } else if (multi == "decreasing") {
-    rest = matrix(c(c(3:1), c(2,1,3), c(1:3),), nrow=3, ncol= 3, byrow = T)
+                line= Permn(start[["line"]])[c(seq(1,5,by=2)), ], 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell, 
+                size.x = empty_x, 
+                size.y = empty_y )
+  }  else if (object == "shade_shape_size") {
+    if (shade == "wtb" & size == "increasing") {
+      start = list(rot = htv, 
+                   shade = wtb, 
+                   size.x.elli = plus_x_elli, 
+                   size.y.elli = plus_y_elli, 
+                   size.x = plus_x, 
+                   size.y = plus_y)
+    }
+    rest = list(rotation = empty_rot, 
+                shade = matrix(start[["shade"]],  ncol = 3, nrow = 3, byrow = T), 
+                line = empty_line, 
+                size.x.elli = matrix(plus_x_elli, ncol = 3, nrow = 3, byrow = T), 
+                size.y.elli = matrix(plus_y_elli, ncol = 3, nrow = 3, byrow = T), 
+                size.x = matrix(plus_x, ncol = 3, nrow = 3, byrow = T), 
+                size.y = matrix(plus_y, ncol = 3, nrow = 3, byrow = T))
+  } else if (object == "rot_shade") {
+    if (rotation == "htv" & shade == "wtg") { # htv and wtg ----
+      start = list(rot = htv,
+                   shade = wtg, 
+                   size.x.elli = empty_x_ell, 
+                   size.y.elli = empty_y_ell)
+    } else if (rotation == "htv" & shade == "wtb") { # htv and wtg -----
+      start = list(rot = htv,
+                   shade = wtb, 
+                   size.x.elli = empty_x_ell, 
+                   size.y.elli = empty_y_ell)
+    }
+    rest = list(rotation = Permn(start[["rot"]])[c(seq(1,5,by=2)), ],
+                shade = Permn(start[["shade"]])[c(seq(1,5,by=2)), ],
+                line= empty_line, 
+                size.x.elli = empty_x_ell, 
+                size.y.elli = empty_y_ell)
+  }
+  if (shape == "ellipse") {
+    rest$shape = "ellipse"
+  } else if (shape == "triangle") {
+    rest$shape = "triangle" 
+  } else if (shape == "pentagon") {
+    rest$shape = "pentagon"
+  } else if (shape == "all") {
+    rest$shape = "all"
   }
   the_rule = rest
   return(the_rule)
-  }
-matrix(c(c(1:3), c(3:1), c(2,1,3)), nrow=3, ncol= 3, byrow = T)
+}
 
-stimElli(getDone(highRule(multi = T), multi = "increasing"))
+getDone(highRule(shade = T, shape = T, size = T), 
+        shade = "wtb", size = "increasing", shape = "all")
 
-stimElli(getDone(highRule(multi = T), multi = "increasing"))
-getDone(highRule(rotation = T), rotation = "htv")
+getDone(highRule(rotation = T, shape = T), rotation = "htv", shape = "ellipse")
+
 cont = prova[which(is.null(prova)) == F]
 
 prova = (getDone(highRule(shade = T), shade = "wtb"))
@@ -161,5 +223,3 @@ prova = (getDone(highRule(line = T, shade = T, rotation = T),
                  shade = "wtb", 
                  rotation = "htv"))
 p = getDone(highRule(multi = T), multi = "increasing")
-
-
