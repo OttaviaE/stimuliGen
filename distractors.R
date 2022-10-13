@@ -57,7 +57,7 @@ Canvas(20, 20)
 DrawRegPolygon(radius.x = c(ob$size.x[1,1], ob$size.x[2,2], ob$size.x[3,3]), 
                radius.y = c(ob$size.y[1,1], ob$size.y[2,2], ob$size.y[3,3]), 
                nv=c(100, 5,3), 
-               rot = ob[["rotation"]][1, 1], 
+               rot = 3*pi, 
                lty = ob[["line"]][1, 1], lwd = 2, 
                col = SetAlpha("black",ob[["shade"]][1,1]))
 # D diff
