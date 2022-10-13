@@ -1,3 +1,4 @@
+# i distractors sono stati creati a mano, non c'è la funzione (ancora)
 library(DescTools)
 Canvas(15, 15)
 DrawRegPolygon(radius.x = 10, radius.y = 10,rot = pi/2, nv = 3)

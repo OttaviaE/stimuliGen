@@ -1,6 +1,7 @@
-#27/09 nuovo codice per l'ellisse basato sulla generazione gerarchica di regole
-
-# ellisse ---- 
+# nuovo codice per generare ellissi, pentagoni (i quadrati non stanno dritti), 
+# triangoli e combinazioni degli stessi 
+# c'è anche il codice per la risposta corretta 
+# l'ultima in fondo a destra viene oscurata 
 library(DescTools)
 drawCorrect = function(object) {
   if (object[["shape"]] == "ellipse") {
@@ -59,6 +60,12 @@ drawStim = function(object) {
                     plot = T, lty = object[["line"]][i, j])
       }
     }
+    DrawRegPolygon(x = 0,
+                   radius.x = 20, 
+                   radius.y = 20, 
+                   nv=100, 
+                   rot = object[["rotation"]][1, 1], 
+                   plot = T, lty = object[["line"]][1, 1], col = "white")
   } else if (object[["shape"]] == "triangle") {
     
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
@@ -74,7 +81,13 @@ drawStim = function(object) {
                        radius.y = object[["size.y"]][i, j])
       }
     }
-    
+    DrawRegPolygon(x = 0,
+                   radius.x = 20, 
+                   radius.y = 20, 
+                   nv=100, 
+                   rot = object[["rotation"]][1, 1], 
+                   plot = T, lty = object[["line"]][1, 1], col = "white", 
+                   border = NA)
   } else if (object[["shape"]] == "pentagon") {
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
     for (i in 1:3) {
@@ -89,6 +102,13 @@ drawStim = function(object) {
                        radius.y = object[["size.y"]][i, j])
       }
     }
+    DrawRegPolygon(x = 0,
+                   radius.x = 20, 
+                   radius.y = 20, 
+                   nv=100, 
+                   rot = object[["rotation"]][1, 1], 
+                   plot = T, lty = object[["line"]][1, 1], col = "white", 
+                   border = NA)
   } else if (object[["shape"]] == "all") {
     vert = Permn(c(3,5,100))[c(seq(1,5,by=2)), ]
     par(mfrow=c(3,3), mar = c(0.5,6,0.5,2)+0.1)
@@ -104,6 +124,13 @@ drawStim = function(object) {
                        radius.y = object[["size.y"]][i, j])
       }
     }
+    DrawRegPolygon(x = 0,
+                   radius.x = 20, 
+                   radius.y = 20, 
+                   nv=100, 
+                   rot = object[["rotation"]][1, 1], 
+                   plot = T, lty = object[["line"]][1, 1], col = "white", 
+                   border = NA)
     
   }
 }
