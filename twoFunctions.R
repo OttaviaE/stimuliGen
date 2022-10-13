@@ -1,3 +1,4 @@
+
 highRule = function(rotation = NULL, shade = NULL, line = NULL, shape = NULL, size = NULL) {
   if (is.null(rotation) & is.null(shade) & is.null(line) ) {
     stop("Please specificy an argument") 
