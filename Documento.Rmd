@@ -1,0 +1,214 @@
+---
+title: "Documentazione"
+author: "Andrea Brancaccio"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    df_print: paged
+  bookdown::html_document2:
+    toc: yes
+    toc_float: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r include=FALSE}
+source("Basic_function_18102022.R")
+source("Complex_function_18102022.R")
+source("Rules_18102022.R")
+```
+## Classe campo
+La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
+
+```{r}
+field <- list(
+  shape = NULL,
+  size.x = NULL,
+  size.y = NULL,
+  rotation = NULL,
+  pos.x = NULL,
+  pos.y = NULL,
+  lty = NULL,
+  lwd = NULL,
+  num = NULL,
+  nv=NULL,
+  visible= NULL
+  )
+```
+
+
+- `shape` è un vettore contente stringhe di caratteri, ogni elemento della stringa indica la forma che si vuole sviluppare, per esempio `c('circle','square')`
+
+- `size.x` e `size.y` un vettore o un scalare che danno informazione per il semi-asse maggiore e minore del elisse entro il quale è inscritto il poligono (corrispondono a `radius.x` e `radius.y` del pacchetto `DescTools`)
+
+```{r}
+library(DescTools)
+Canvas(c(-5,5),c(-5,5))
+DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 100)
+DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 3)
+
+```
+
+- `rotation` angolo di rotazione in radianti (corrisponde a `rot` del pacchetto `DescTools`)
+
+- `x` e `y` un vettore delle coordinate xy del centro del polygono (corrispondono a `x` e `y` del pacchetto `DescTools`)
+
+- `lty` e `lwd` rispettivamente il tipo di linea per il perimetro e lo spessore della stessa. Le figure di default hanno `lty=1` e `lwd=2` (corrispondono a `lty` e `lwd` del pacchetto `DescTools`)
+
+- `num` il numero di volte che un oggetto è ripetuto sulla cella (più un desiderata che altro al momento)
+
+- `nv` il numero di vertici del poligono (per cerchi/elipsi `nv = 100`)
+
+- `visible` un vettore binario che contiene un 1 se la forma nella posizione relativa deve venire disegnata, uno 0 se non deve venire disegnata. Per esempio `list(shapes=c('circle','square'), visible = c(0,1))` plottera solo il quadrato e non il cerchio.
+
+## Classe matrice
+
+La classe `Raven_matrix` contiene tutte le informazioni neccessarie per classificare la creazione della matrice.
+```{r}
+Raven<-list(
+    Sq1 = list(),
+    Sq2 = list(),
+    Sq3 = list(),
+    
+    Sq4 = list(),
+    Sq5 = list(),
+    Sq6 = list(),
+    
+    Sq7 = list(),
+    Sq8 = list(),
+    Sq9 = list(),
+    hrule = list(),
+    vrule = list()
+  )
+```
+
+I campi da `Sq1` a `Sq9` corrispondono alle celle della matrice.
+```{r,echo=FALSE}
+matrix(paste0("Sq", 1:9),byrow=TRUE,ncol=3)
+```
+Ogni cella della matrice andrà a contenere un oggetto di classe `field` contenente tutte le possibili forme al suo interno.
+
+I campi `hrule` e `vrule` sono due vettori contententi le regole. 
+
+- `hrule` contiene le regole che verranno applicate secondo la logica orizzontale. L'ordine delle regole nel vettore corrisponde al ordine di applicazione. 
+- `vrule` contiene le regole che verranno applicate secondo la logica verticale. L'ordine delle regole nel vettore corrisponde al ordine di applicazione. 
+
+Logiche più complesse vengono ottenute tramite composizioni di orizzontale e verticale.
+
+## Forme di Default
+
+### Cerchio
+```{r,echo=FALSE}
+Canvas(15,15)
+
+DrawRegPolygon(x = circle()$pos.x, y = circle()$pos.y, radius.x=circle()$size.x,
+               radius.y = circle()$size.y, rot=circle()$rotation,
+               lwd = circle()$lwd, lty=circle()$lty, nv = 100)
+```
+
+### Triangolo
+
+### Quadrato
+
+### Linea verticale
+
+### Linea orizzontale
+
+### Croce
+
+### Dado 
+
+### Elisse
+
+### Piccolo triangolo (circa)
+
+## Concatenazione di Forme
+
+La funzione field puo venire utilizzata per generare una qualsiasi forma, gli input della funzione sono esattamente le caratteristiche della classe campo. 
+
+```{r}
+source("Basic_function_18102022.R")
+campo_generico<-field("simbolo_di_batman",15,5,pi,0,0,1,2,1,15,0)
+campo_generico
+
+```
+
+
+La funzione `cof` concatena diversi campi esattamente secondo la stessa logica di `c()` 
+```{r}
+cof(campo_generico,circle(),triangle())
+
+```
+
+## Creazione di una matrice
+
+La funzione `Raven` crea una matrice di Raven in cui tutte le celle della matrice vengono inizializzate identiche alla cella `Sq1`, e vengono inizializzate le regole.
+
+- `St1` classe field che contiene i campi di partenza per tutte le celle
+- `hrule` vettore delle regole applicabili con logica orizzontale 
+- `vrule` vettore delle regole applicabili con logica verticale
+
+
+```{r}
+M<-Raven(st1=square(),hrule=c("size"),vrule=c("identity"))
+draw(M)
+```
+Nella matrice `M` le regole non sono ancora state applicate, infatti nel plot d'esempio i quadrati hanno tutti le stesse dimensioni.
+
+L'estensione del metodo `apply` applica le regole presenti nella matrice a tutte le celle. 
+Al momento applica le regole prima in riga e poi in colonna.   
+
+```{r}
+M<-apply(M)
+draw(M)
+```
+
+
+## Regole
+
+### Rotazione
+Il metodo rotazione cambia il valore `field$rotation` di rotazioni fisse con un angolo di $\frac{\pi}{6}$ 
+
+-  `obj` il contenuti di una cella della matrice
+-  `n` rappresenta l'ennesimo elemento a cui viene applicata la regola. Per esempio se la regola viene applicata orizzontalmente `n =1` per `Sq1`,`Sq4` e `Sq7`, `n =2` per `Sq2`,`Sq5` e `Sq8` e per finire `n =3` per `Sq3`,`Sq6` e `Sq9`.
+
+```{r}
+rotation.field<-function(obj,n,...) {
+  obj$rotation<-obj$rotation+n*pi/6
+  return(obj)
+}
+```
+
+La rotazione può essere applicata con le regole orizzontali, verticali e diagonalmente da asso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=square(),hrule=c("rotation"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=square(),hrule=c("identity"),vrule=c("rotation")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=square(),hrule=c("rotation"),vrule=c("rotation")))
+draw(M)
+
+
+```
+
+### Dimensione
+
+### Cambio delle forme
+
+### Spessore del contorno
+
+### Tipo del contorno
+
+### Movimento
+
+### Logica
+#### AND 
+#### OR
+#### Xor
