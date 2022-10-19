@@ -1,2 +1,3 @@
 [update generazione stimoli](appunti.html)
-[update codice - Andrea](documento.html)
+
+[update codice - Andrea](Documento.html)
