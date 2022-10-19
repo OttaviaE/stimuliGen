@@ -105,7 +105,7 @@ Raven <- function(st1, hrule = "identity", vrule = "identity") {
 #' @export
 circle <- function(vis = 1) {
   value <- list(
-    shape = "elipse",
+    shape = "circle",
     size.x = 10,
     size.y = 10,
     rotation = 0,
@@ -169,6 +169,29 @@ square <- function(vis = 1) {
   value
 }
 
+#' Default pentagon
+#'
+#' @return Return the default pentagon object
+#' @examples
+#' pentagon()
+#' @export
+pentagon <- function(vis = 1) {
+  value <- list(
+    shape = "pentagon",
+    size.x = 15,
+    size.y = 15,
+    rotation = pi / 2,
+    pos.x = 0,
+    pos.y = 0,
+    lty = 1,
+    lwd = 3,
+    num = 1,
+    nv = 5,
+    visible = vis
+  )
+  attr(value, "class") <- "field"
+  value
+}
 
 #' Default vertical line 
 #'
