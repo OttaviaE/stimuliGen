@@ -11,12 +11,6 @@ ob = getDone(highRule(shape = T, shade = T, size  = T),
              shade  = "wtb", shape = "all", size = "increasing")
 
 drawStim(ob)
-DrawRegPolygon(x = 0,
-               radius.x = 20, 
-               radius.y = 20, 
-               nv=100, 
-               rot = object[["rotation"]][1, 1], 
-               plot = T, lty = object[["line"]][1, 1], col = "white")
 drawCorrect(ob)
 
 # repetition error ----
@@ -30,8 +24,6 @@ DrawRegPolygon(radius.x = ob$size.x[3,2],
             lty = ob[["line"]][1, 1], 
                col = SetAlpha("black",ob[["shade"]][3, 2]))
 
-
-par(mfrow=c(4,3), mar = c(0.5,6,0.5,2)+0.1)
 
 # r top 
 Canvas(20, 20)
@@ -57,7 +49,7 @@ Canvas(20, 20)
 DrawRegPolygon(radius.x = c(ob$size.x[1,1], ob$size.x[2,2], ob$size.x[3,3]), 
                radius.y = c(ob$size.y[1,1], ob$size.y[2,2], ob$size.y[3,3]), 
                nv=c(100, 5,3), 
-               rot = 3*pi, 
+               rot = pi/2, 
                lty = ob[["line"]][1, 1], lwd = 2, 
                col = SetAlpha("black",ob[["shade"]][1,1]))
 # D diff
@@ -75,15 +67,15 @@ DrawRegPolygon(radius.x = ob$size.x[2,2],
 Canvas(20, 20)
 DrawRegPolygon(radius.x = ob$size.x[3,3], 
                radius.y = ob$size.y[3,3], 
-               nv=5, 
+               nv=3, 
                rot = pi/2, 
                lty = ob[["line"]][1, 1], 
                col = SetAlpha("black",ob[["shade"]][1,1]), lwd=25)
 
 # WP Copy ----
 Canvas(20, 20)
-DrawRegPolygon(radius.x = ob$size.x[3,3], 
-               radius.y = ob$size.y[3,3], 
+DrawRegPolygon(radius.x = ob$size.x[1,1], 
+               radius.y = ob$size.y[1,1], 
                nv=3, 
                rot = pi/2, 
                lty = ob[["line"]][1, 1], 
@@ -91,12 +83,21 @@ DrawRegPolygon(radius.x = ob$size.x[3,3],
 # WP Flip ----
 
 Canvas(20, 20)
-DrawRegPolygon(radius.x = ob$size.x[3,3], 
-               radius.y = ob$size.y[3,3], 
+DrawRegPolygon(radius.x = ob$size.x[2,2], 
+               radius.y = ob$size.y[2,2], 
                nv=3, 
                rot = pi, 
                lty = ob[["line"]][1, 1], 
                col = SetAlpha("black",ob[["shade"]][2,2]), lwd = 2)
+
+# WP MAatrix ----
+Canvas(20, 20)
+DrawRegPolygon(radius.x = c(ob$size.x[1,1], ob$size.x[2,2], ob$size.x[3,3]), 
+               radius.y = c(ob$size.y[1,1], ob$size.y[2,2], ob$size.y[3,3]), 
+               nv=c(100, 5,3), 
+               rot = 3*pi, 
+               lty = ob[["line"]][1, 1], lwd = 2, 
+               col = SetAlpha("black",ob[["shade"]][1,1]))
 
 # IC neg ----
 Canvas(20, 20)
