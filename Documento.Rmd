@@ -15,7 +15,7 @@ source("Basic_function_18102022.R")
 source("Complex_function_18102022.R")
 source("Rules_18102022.R")
 ```
-## Classe campo
+# Classe campo
 La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
 
 ```{r}
@@ -30,6 +30,7 @@ field <- list(
   lwd = NULL,
   num = NULL,
   nv=NULL,
+  shade=NULL,
   visible= NULL
   )
 ```
@@ -57,9 +58,11 @@ DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 3)
 
 - `nv` il numero di vertici del poligono (per cerchi/elipsi `nv = 100`)
 
+- `shade` è il riempimento monocromatico di una forma
+
 - `visible` un vettore binario che contiene un 1 se la forma nella posizione relativa deve venire disegnata, uno 0 se non deve venire disegnata. Per esempio `list(shapes=c('circle','square'), visible = c(0,1))` plottera solo il quadrato e non il cerchio.
 
-## Classe matrice
+# Classe matrice
 
 La classe `Raven_matrix` contiene tutte le informazioni neccessarie per classificare la creazione della matrice.
 ```{r}
@@ -93,9 +96,9 @@ I campi `hrule` e `vrule` sono due vettori contententi le regole.
 
 Logiche più complesse vengono ottenute tramite composizioni di orizzontale e verticale.
 
-## Forme di Default
+# Forme di Default
 
-### Cerchio
+## Cerchio
 ```{r,echo=TRUE}
 Canvas(15,15)
 
@@ -104,7 +107,7 @@ DrawRegPolygon(x = circle()$pos.x, y = circle()$pos.y, radius.x=circle()$size.x,
                lwd = circle()$lwd, lty=circle()$lty, nv = circle()$nv)
 ```
 
-### Triangolo
+## Triangolo
 
 ```{r}
 Canvas()
@@ -115,21 +118,23 @@ DrawRegPolygon(radius.x = triangle()$size.x,
 ```
 
 
-### Quadrato
+## Quadrato
 
-### Linea verticale
 
-### Linea orizzontale
 
-### Croce
+## Linea verticale
 
-### Dado 
+## Linea orizzontale
 
-### Elisse
+## Croce
 
-### Piccolo triangolo (circa)
+## Dado 
 
-## Concatenazione di Forme
+## Elisse
+
+## Piccolo triangolo (circa)
+
+# Concatenazione di Forme
 
 La funzione field puo venire utilizzata per generare una qualsiasi forma, gli input della funzione sono esattamente le caratteristiche della classe campo. 
 
@@ -147,7 +152,7 @@ cof(campo_generico,circle(),triangle()) # ho corretto il codice di circle perch�
 # bisogna correggere tutto il codice (è ellipse non elipse), lo faccio io
 ```
 
-## Creazione di una matrice
+# Creazione di una matrice
 
 La funzione `Raven` crea una matrice di Raven in cui tutte le celle della matrice vengono inizializzate identiche alla cella `Sq1`, e vengono inizializzate le regole.
 
@@ -171,9 +176,9 @@ draw(M)
 ```
 
 
-## Regole
+# Regole
 
-### Rotazione
+## Rotazione
 Il metodo rotazione cambia il valore `field$rotation` di rotazioni fisse con un angolo di $\frac{\pi}{6}$ 
 
 -  `obj` il contenuto di una cella della matrice
@@ -204,17 +209,16 @@ draw(M)
 
 ```
 
-### Dimensione
+## Dimensione
 
-### Cambio delle forme
+## Cambio delle forme
 
-### Spessore del contorno
+## Spessore del contorno
 
-### Tipo del contorno
+## Tipo del contorno
+## Movimento
 
-### Movimento
-
-### Logica
-#### AND 
-#### OR
-#### Xor
+## Logica
+### AND 
+### OR
+### Xor
