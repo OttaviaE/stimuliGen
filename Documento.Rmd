@@ -110,7 +110,7 @@ DrawRegPolygon(x = circle()$pos.x, y = circle()$pos.y, radius.x=circle()$size.x,
 ## Triangolo
 
 ```{r}
-Canvas()
+Canvas(15, 15)
 DrawRegPolygon(radius.x = triangle()$size.x, 
                radius.y = triangle()$size.y, 
                lwd = triangle()$lwd, 
@@ -203,7 +203,7 @@ M<-apply(Raven(st1=square(),hrule=c("identity"),vrule=c("rotation")))
 draw(M)
 
 # Top Left Low Right
-M<-apply(Raven(st1=pentagon(),hrule=c("rotation"),vrule=c("rotation")))
+M<-apply(Raven(st1=cof(pentagon(), square(), circle()),hrule=c("diff_shapes"),vrule=c("rotation")))
 draw(M)
 
 

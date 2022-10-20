@@ -18,39 +18,12 @@ p = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = .70,
 # do.call("clip", as.list(usr)) # non serve perché il quadrato è dentro al cerchio
 polygon(p, col = "white")
 
+Canvas()
+polygon(q)
 # rimpimento a sinistra
 clip(-0.70, .70, .70, -.70)
 DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
                nv = 2, rot=pi -pi/4, radius.x = 15, radius.y = 15)
-
-
-# alcuni esempi ---- 
-# destra
-Canvas(bg = "white")
-polygon(q, lwd = 2)
-clip(-0.70, .70, .70, -.70) # definisce l'area entro cui disegnare il riempimento
-DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
-               nv = 2, rot=pi/4, radius.x = 15, radius.y = 15) # disegna il rimepimento
-# sinistra
-Canvas()
-polygon(q, lwd = 2)
-clip(-0.70, .70, .70, -.70) # definisce l'area entro cui disegnare il riempimento
-DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
-               nv = 2, rot=pi - pi/4, radius.x = 15, radius.y = 15) # disegna il rimepimento
-# incrocio
-Canvas()
-polygon(q, lwd = 2)
-clip(-0.70, .70, .70, -.70) # definisce l'area entro cui disegnare il riempimento
-DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
-               nv = 2, rot=pi/4, radius.x = 15, radius.y = 15) # disegna il rimepimento
-DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
-               nv = 2, rot=pi - pi/4, radius.x = 15, radius.y = 15) # disegna il rimepimento
-
-# overimpose un cerchio 
-p = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = .70,
-                   nv = 100, plot = F, rot = pi/4, 
-                   lwd = 3, col = "white", lty = 2)
-polygon(p, col = "white")
 
 # figure complesse --- 
 t = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = 0.7826238,
@@ -112,42 +85,40 @@ polygon(r, col = "white", lwd=2)
 
 
 
-# clipping
+# quadrato con sfondo della stessa grandezza di square -----
+Canvas(15, 15, bg = "white")
+Canvas(15, 15)
+DrawRegPolygon(radius.x = square()$size.x, 
+               radius.y = square()$size.y, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = square()$nv, rot = square()$rotation)
+# in questo modo si fa una clip dell'area di grafico che è uguale al lato del quadrato
+# inscritto nel ceerchio di raggio 15
+clip(-square()$size.x/sqrt(2), square()$size.x/sqrt(2), 
+     square()$size.x/sqrt(2),
+     -square()$size.x/sqrt(2))
 
-clip(0, 2, 2, -2)
-DrawRegPolygon(radius.x = 1, radius.y = 1, 
-               nv = 100, col = "black")
-Canvas(bg="lightgrey", main="Yin ~ Yang")
-DrawRegPolygon(radius.x = 1, radius.y = 1, 
-               nv = 100, col = "white")
-clip(-2, 0, -2, -2)
-DrawRegPolygon(y = c(1.5, 1), 
-               radius.x = c(0.5, 0.5), radius.y = c(0.5, 0.5), 
-               nv = 100, col = c("black", "white"))
-
-DrawRegPolygon(y = c(-0.5,0.5), 
-               radius.x = c(0.1, 0.1), radius.y = c(0.1, 0.1), 
-               nv = 100, col = c("white", "black"), border = NA)
-
-
+DrawRegPolygon(x = seq(-20, 20, by = 1), y = 0, 
+               nv = 2, rot=pi - pi/4, radius.x = square()$size.x, 
+               radius.y = square()$size.y) 
 
 
 
-# LE FUNZIONI PER IL PACCHETTO -------
+# LE FUNZIONI PER IL PACCHETTO da sistemare -------
 #' Square with left lines
 #'
 #' @return Return the square with left lines object
 #' @examples
-#' square.left()
+#' diag.left()
 #' @export
-square.left <- function(vis = 1) {
+diag.left <- function(vis = 1, move.diag = 1) {
   value <- list(
-    shape = "square.left",
-    size.x = 15,
-    size.y = 15,
+    shape = "diag.left",
+    size.x = square()$size.x,
+    size.y = square()$size.y,
     rotation = pi -pi/4,
-    pos.x = c(seq(-12, 12, by = .10)),
-    pos.y = 1,
+    pos.x = (- square()$size.x-5) + move.diag,
+    pos.y = 0,
     lty = 1,
     lwd = 3,
     num = 1,
@@ -158,18 +129,44 @@ square.left <- function(vis = 1) {
   value
 }
 
+#' Default square with left filling 
+#'
+#' @return Return the default square with left filling
+#' @examples
+#' square.left()
+#' @export
+square.left <- function() {
+   value = diag.left()
+  for (i in 1:length(seq(-20, 20, by = 1))) {
+    value = cof(value, diag.left(move.diag = i))
+  }
+  attr(value, "class") <- "field"
+  value
+}
+
 Canvas(15,15)
 DrawRegPolygon(radius.x = square()$size.x, 
                radius.y = square()$size.y, 
                lwd = square()$lwd, 
                lty = square()$lty, nv = square()$nv, rot = square()$rotation)
+square.left()
+clip(-square()$size.x/sqrt(2), square()$size.x/sqrt(2), 
+     square()$size.x/sqrt(2),
+     -square()$size.x/sqrt(2))
+# funziona 
 DrawRegPolygon(radius.x = square.left()$size.x, 
                radius.y = square.left()$size.y, 
+               x = square.left()$pos.x, 
+               y = square.left()$pos.y,
                lwd = square.left()$lwd, 
                lty = square.left()$lty, nv = square.left()$nv, 
                rot = square.left()$rotation)
 
+# non nella matrice
+M<-Raven(st1=square.left(),hrule=c("identity"),vrule=c("identity"))
+draw(M)
 
+# Non guadare perché non ha senso -----
 
 #' Square with right lines
 #'
