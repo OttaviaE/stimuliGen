@@ -209,18 +209,7 @@ getDone(highRule(shade = T, shape = T, size = T),
 
 getDone(highRule(rotation = T, shape = T), rotation = "htv", shape = "ellipse")
 
-cont = prova[which(is.null(prova)) == F]
 
-prova = (getDone(highRule(shade = T), shade = "wtb"))
 
-stimElli(getDone(highRule(line = T), line = "sdad"))
-stimElli(getDone(highRule(line = T, rotation = T), line = "sdad", 
-                 rotation = "htv"))
-stimElli(getDone(highRule(line = T, shade = T), line = "sdad", 
-                 shade = "wtg"))
 
-prova = (getDone(highRule(line = T, shade = T, rotation = T), 
-                 line = "sdad", 
-                 shade = "wtb", 
-                 rotation = "htv"))
-p = getDone(highRule(multi = T), multi = "increasing")
+

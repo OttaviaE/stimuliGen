@@ -1,6 +1,10 @@
 # i distractors sono stati creati a mano, non c'è la funzione (ancora)
 library(DescTools)
 Canvas(15, 15)
+source("drawStim.R")
+source("twoFunctions.R")
+
+Canvas(15,15)
 DrawRegPolygon(radius.x = 10, radius.y = 10,rot = pi/2, nv = 3)
 DrawRegPolygon(radius.x = 15, radius.y = 15, rot = pi/2, nv = 5)
 DrawRegPolygon(radius.x = 10, radius.y = 10, rot = pi/2, nv = 5)
