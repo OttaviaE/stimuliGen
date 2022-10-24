@@ -308,12 +308,27 @@ polygon(x = unlist(lapply(p, "[", "x")),
 
 
 
+Canvas(20, 20)
+DrawRegPolygon(radius.x = square()$size.x, 
+               radius.y = square()$size.y,
+               x =lily()$pos.x, 
+               y = lily()$pos.y, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = square()$nv, rot = square()$rotation)
 
 
 
 
 
 
+Canvas(16, 16)
+DrawCircle(x =lily()$pos.x, 
+           y = lily()$pos.y, 
+           r.out = lily()$size.x, 
+           r.in = lily()$size.y, 
+           theta.1 = lily()$theta.1, 
+           theta.2 = lily()$theta.2, 
+           border =  "red", lwd = 3)
 
 
 
