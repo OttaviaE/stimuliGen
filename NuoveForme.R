@@ -7,7 +7,7 @@ start.y = 1
 
 # Angolo retto tocca alla perfezione
 # ELICA --------
-
+helix = NULL
 helix[[1]] = DrawRegPolygon(x= start.x, y = start.y, 
                              radius.x = radius.x, 
                              radius.y = radius.y,
@@ -37,7 +37,7 @@ for (i in 1:length(helix)) {
 
 # Fiorellino ------ 
 Canvas(20, 20)
-
+flower = NULL
 flower[[1]] = DrawRegPolygon(x= start.x, y = start.y, 
                             radius.x = radius.x, 
                             radius.y = radius.y,
@@ -66,34 +66,117 @@ for (i in 1:length(flower)) {
 Canvas(3, 3)
 # mi sono disegnata i cerchi per aiutarmi a capire dove mettere gli archi, 
 # ma si può fare solo l'arco (per questo è il codice dei cerchi è commentato)
-## primo cerchio
-# DrawCircle(x = 0, y =0, r.out = 1)
-# # cerchio sx
-# DrawCircle(x = -1.4, y =0, r.out = 1)
-# # cerchio sx in alto
-# DrawCircle(x = -1.4, y =1.4, r.out = 1)
-# # cerchio alto 
-# DrawCircle(x = 0, y =1.4, r.out = 1)
+# primo cerchio
+DrawCircle(x = 0, y =0, r.out = 1)
+# cerchio sx
+DrawCircle(x = -1.4, y =0, r.out = 1)
+# cerchio sx in alto
+DrawCircle(x = -1.4, y =1.4, r.out = 1)
+# cerchio alto
+DrawCircle(x = 0, y =1.4, r.out = 1)
+DrawRegPolygon(x = 0, y =1.4, radius.x = 1, radius.y = 1, nv = 100, 
+               col = NA)
+Canvas(15,15)
+DrawCircle(x = 0, y =0, r.out = 8)
+DrawCircle(x = -11.2, y =0, r.out = 8)
+DrawCircle(x = 0, y = -11.2, r.out = 8)
+DrawCircle(x = -11.2, y =-11.2, r.out = 8)
+# disegno gli archi con queste coordinate che funzionano per motivi a me oscuri
+# arco sx v 
+# DrawArc(x = 0, y = 0, rx = 8,
+#         theta.1 = 3*pi/4, 
+#         theta.2 = 5*pi/4, col="red", nv = 100, lwd = 3)
+# # arco dx v
+# DrawArc(x = -11.2, y = 0, rx = 8,
+#         theta.1 = 7*pi/4, 
+#         theta.2 = pi/4, col="red", nv = 100, lwd = 3)
+# arco sx left down v
+# DrawArc(x = 0, y = -11.2, rx = 8,
+#         theta.1 = 3*pi/4, 
+#         theta.2 = 5*pi/4,col="red", nv = 100, lwd = 3)
+# arco dx right down v
+# DrawArc(x = -11.2, y = -11.2, rx = 8,
+#         theta.1 = 7*pi/4, 
+#         theta.2 = pi/4,col="red", nv = 100, lwd = 3)
+# h left up 
+# DrawArc(x = -11.2, y = -11.2, rx = 8,
+#         theta.1 = pi/4, 
+#         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
+# h right up
+# DrawArc(x = 0, y = -11.2, rx = 8,
+#         theta.1 = pi/4, 
+#         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
+# h arco dx down
+# DrawArc(x = -11.2, y = 0, rx = 8,
+#         theta.1 = 5*pi/4, 
+#         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
+# h arco sx down 
+# DrawArc(x = 0, y = 0, rx = 8,
+#         theta.1 = 5*pi/4, 
+#         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
+# traduco in DrawCircle 
+Canvas(15, 15)
+#arco sx v up: v.arc.left.up
+DrawCircle(x = 0, y = 0, r.out = 8, r.in = 8,
+        theta.1 = 3*pi/4,
+        theta.2 = 5*pi/4, col="red", nv = 100, lwd = 3)
+# arco dx v up: v.arc.right.up
+DrawCircle(x = -11.2, y = 0, r.out = 8, r.in = 8,
+        theta.1 = 7*pi/4,
+        theta.2 = pi/4, col="red", nv = 100, lwd = 3)
+#arco sx left down v: v.arc.left.down
+DrawCircle(x = 0, y = -11.2, r.out = 8, r.in = 8,
+        theta.1 = 3*pi/4,
+        theta.2 = 5*pi/4,col="red", nv = 100, lwd = 3)
+#arco dx right down v: v.arc.right.down
+DrawCircle(x = -11.2, y = -11.2, r.out = 8, r.in = 8,
+        theta.1 = 7*pi/4,
+        theta.2 = pi/4,col="red", nv = 100, lwd = 3)
+#h left up: h.arc.left.up
+DrawCircle(x = -11.2, y = -11.2, r.out = 8, r.in = 8,
+        theta.1 = pi/4,
+        theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
+#h right up: h.arc.right.up
+DrawCircle(x = 0, y = -11.2, r.out = 8, r.in = 8,
+        theta.1 = pi/4,
+        theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
+#h arco sx down: h.arc.left.down
+DrawCircle(x = -11.2, y = 0, r.out = 8, r.in = 8,
+        theta.1 = 5*pi/4,
+        theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
+#h arco dx down: h.arc.right.down
+DrawCircle(x = 0, y = 0, r.out = 8, r.in = 8,
+        theta.1 = 5*pi/4,
+        theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
+
+# h arc right up
 arc1 = DrawArc(x = 0, y = 0, rx = 1, 
                theta.1 = pi/4, theta.2 = 3*pi/4, col="red", lwd = 3, 
                plot = T)
 polygon(arc1$x, arc1$y, col = "red")
 
+# h arc left up 
 DrawArc(x = -1.4, y = 0, rx = 1,
         theta.1 = pi/4, theta.2 = 3*pi/4, col="red", nv = 100, lwd = 3)
+# h arc left down
 DrawArc(x = -1.4, y = 1.4, rx = 1, 
         theta.1 = 5*pi/4, theta.2 =  7*pi/4, col="red", nv = 100, lwd = 3)
+# h arc right down
 DrawArc(x = 0, y = 1.4, rx = 1, 
         theta.1 = 5*pi/4, theta.2 =  7*pi/4, col="red", nv = 100, lwd = 3)
+#v arc left up
 DrawArc(0, 1.4, rx = 1,
         theta.1 = 3*pi/4, theta.2 = 5*pi/4, nv = 100, 
         col = "red", lwd = 3)
+# v arc right up
 DrawArc(-1.4, 1.4, rx = 1,
         theta.1 = 7*pi/4, theta.2 = pi/4, nv = 100, 
         col = "red", lwd = 3)
+# v arc down left
 DrawArc(0, 0, rx = 1,
         theta.1 = 3*pi/4, theta.2 = 5*pi/4, nv = 100, 
         col = "red", lwd = 3)
+# v arc down r
 DrawArc(-1.4, 0, rx = 1,
         theta.1 = 7*pi/4, theta.2 = pi/4, nv = 100, 
         col = "red", lwd = 3)
@@ -104,6 +187,13 @@ Canvas(3,3)
 polygon(arca[[1]]$x, arca[[1]]$y) # per ragioni che non so, mi disegna proprio 
 # la sezione del cerchio. 
 
+# stella ----
+# di fatto, due triangoli
+Canvas(3,3)
+DrawRegPolygon(radius.x = 3, nv = 6, 
+               radius.y = 3,  col = NA, rot = 0)
+DrawRegPolygon(x=0, y = 0, radius.x = 3, nv = 6, 
+               radius.y = 3, rot = 3*pi/2, col = NA)
 
 # la figata di DrawArc è che puoi stabilire il numero di vertici -----
 Canvas(3,3)
@@ -175,6 +265,9 @@ Canvas(3,3)
 for (i in 1:length(lily)) {
   polygon(lily[[i]][[1]]$x, lily[[i]][[1]]$y, lwd = 3)
 }
+
+
+
 
 # archetti ------
 Canvas(2, 2)
