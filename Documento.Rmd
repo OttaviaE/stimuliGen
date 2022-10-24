@@ -130,6 +130,8 @@ DrawRegPolygon(radius.x = triangle()$size.x,
 
 ## Dado 
 
+## Dot
+
 ## Elisse
 
 ## Piccolo triangolo (circa)

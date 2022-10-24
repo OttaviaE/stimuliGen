@@ -262,28 +262,39 @@ cross <- function() {
   value
 }
 
-#' Default dice NON FUNZIONA CON IL NUOVO CODICE LA NUMEROSITA è 
-#' UN PROBLEMA
+#' Default small black circle
 #'
 #' @return Return the default dice object
 #' @examples
-#' dice()
+#' dot()
 #' @export
-dice <- function(vis = 1) {
+dot <- function(x=0,y=0,vis = 1) {
   value <- list(
     shape = "dice",
     size.x = 3,
     size.y = 3,
     rotation = pi,
-    pos.x = 14,
-    pos.y = 13,
+    pos.x = x,
+    pos.y = y,
     lty = 1,
-    lwd = 3,
-    num = 4,
+    lwd = 1,
+    num = 1,
     nv = 100,
-    shade = NULL,
+    shade = "black",
     visible = vis
   )
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default dice
+#'
+#' @return Return the default dice object
+#' @examples
+#' dice()
+#' @export
+dice <- function() {
+  value <-cof(dot(13,13),dot(-13,13),dot(13,-13),dot(-13,-13))
   attr(value, "class") <- "field"
   value
 }
