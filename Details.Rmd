@@ -205,3 +205,224 @@ DrawCircle(x = lily()$pos.x,
 
 
 ::::
+
+NB: Gli archetti del giglio sono tutti creati separati in modo che si possano combianre diversamente tra di loro 
+
+## Combinazioni di forme
+
+::::{style="display: flex;"}
+
+:::{}
+
+
+
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = square()$size.x, 
+               radius.y = square()$size.y, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = circle()$nv, rot = square()$rotation)
+# il diametro della circonferenza inscritta nel quadrato è uguale al lato del quadrato
+# per disegnare i quadrati con questa funzione, si fa riferimento al cerchio entro cui è iscritto il quadrato. il diametro del cerchio entro cui è inscritto il quadrato è uguale alla diagonale del quadrato. Per trovare questa diagonale e di conseguenza il raggio della circonferenza entro cui è inscritto il quadrato devo
+# applicare pitagora per trovare l'ipotenusa (il diametro/diagonale) quindi prendo il raggio del cerchio inscritto nella cinconferenza, lo moltiplico per due e applico pitagora. Il risultato va diviso per due in modo da trovare il raggio dello stramaleddeto quadrato
+DrawRegPolygon(radius.x = sqrt((square()$size.x*2)^2 + (square()$size.x*2)^2)/2, 
+               radius.y = sqrt((square()$size.x*2)^2 + (square()$size.x*2)^2)/2, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = square()$nv, rot = square()$rotation, col = NA)
+DrawRegPolygon(radius.x = square()$size.x, 
+               radius.y = square()$size.x, 
+               rot = cross()$rotation,
+               nv = cross()$nv, lwd = cross()$lwd)
+
+
+
+
+```
+
+
+```{r echo = F}
+# è il contrario dell'altro
+Canvas(15, 15)
+DrawRegPolygon(radius.x = sqrt(square()$size.x^2 + square()$size.x^2)/2, 
+               radius.y = sqrt(square()$size.y^2 + square()$size.y^2)/2, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 100, rot = square()$rotation, col = NA)
+
+DrawRegPolygon(radius.x = sqrt(square()$size.x^2 + square()$size.x^2)/2, 
+               radius.y = sqrt(square()$size.y^2 + square()$size.y^2)/2, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 4, rot = square()$rotation, col = NA)
+DrawRegPolygon(radius.x = square()$size.x, 
+               radius.y = square()$size.x, 
+               rot = cross()$rotation,
+               nv = cross()$nv, lwd = cross()$lwd)
+DrawCircle(x =lily()$pos.x, 
+           y = lily()$pos.y, 
+           r.out = lily()$size.x, 
+           r.in = lily()$size.y, 
+           theta.1 = lily()$theta.1, 
+           theta.2 = lily()$theta.2, lwd = lily()$lwd)
+
+```
+
+
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = star()$size.x, 
+               radius.y = star()$size.y, 
+               lwd = star()$lwd, 
+               lty = star()$lty, nv = star()$nv, rot = star()$rotation, 
+               col = star()$shade)
+
+```
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = cross()$size.x, 
+               radius.y = cross()$size.y, 
+               lwd = cross()$lwd, 
+               lty = cross()$lty, nv = cross()$nv, rot = cross()$rotation, 
+               col = cross()$shade)
+
+```
+
+
+```{r echo = F}
+Canvas(16,16)
+DrawCircle(x = vertical.eight()$pos.x, 
+           y = vertical.eight()$pos.y, 
+           r.out = vertical.eight()$size.x, 
+           r.in = vertical.eight()$size.y, 
+           theta.1 = vertical.eight()$theta.1, 
+           theta.2 = vertical.eight()$theta.2, 
+           border =  vertical.eight()$shade, lwd = vertical.eight()$lwd)
+```
+
+:::
+
+:::{}
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = circle()$size.x, 
+               radius.y = circle()$size.y, 
+               lwd = circle()$lwd, 
+               lty = circle()$lty, nv = circle()$nv, rot = circle()$rotation)
+
+
+```
+
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = pentagon()$size.x, 
+               radius.y = pentagon()$size.y, 
+               lwd = pentagon()$lwd, 
+               lty = pentagon()$lty, nv = pentagon()$nv, rot = pentagon()$rotation)
+
+
+```
+
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = hline()$size.x, 
+               radius.y = hline()$size.y, 
+               lwd = hline()$lwd, 
+               lty = hline()$lty, nv = hline()$nv, rot = hline()$rotation)
+```
+
+
+```{r echo = F}
+Canvas(15,15)
+DrawCircle(x = s.vertical.inv()$pos.x, 
+           y = s.vertical.inv()$pos.y, 
+           r.out = s.vertical.inv()$size.x, 
+           r.in = s.vertical.inv()$size.y, 
+           theta.1 = s.vertical.inv()$theta.1, 
+           theta.2 = s.vertical.inv()$theta.2, 
+           border =  s.vertical.inv()$shade, lwd = s.vertical.inv()$lwd)
+```
+
+
+
+```{r echo = F}
+Canvas(16,16)
+DrawCircle(x = horizontal.eight()$pos.x, 
+           y = horizontal.eight()$pos.y, 
+           r.out = horizontal.eight()$size.x, 
+           r.in = horizontal.eight()$size.y, 
+           theta.1 = horizontal.eight()$theta.1, 
+           theta.2 = horizontal.eight()$theta.2, 
+           border =  horizontal.eight()$shade, lwd = horizontal.eight()$lwd)
+```
+
+
+:::
+
+
+:::{}
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = ellipse()$size.x, 
+               radius.y = ellipse()$size.y, 
+               lwd = ellipse()$lwd, 
+               lty = ellipse()$lty, nv = ellipse()$nv, rot = ellipse()$rotation)
+
+
+```
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = hexagon()$size.x, 
+               radius.y = hexagon()$size.y, 
+               lwd = hexagon()$lwd, 
+               lty = hexagon()$lty, nv = hexagon()$nv, rot = hexagon()$rotation)
+
+
+```
+
+```{r echo = F}
+Canvas(15, 15)
+DrawRegPolygon(radius.x = vline()$size.x, 
+               radius.y = vline()$size.y, 
+               lwd = vline()$lwd, 
+               lty = vline()$lty, nv = vline()$nv, rot = vline()$rotation)
+```
+
+
+
+
+```{r echo = F}
+Canvas(15,15)
+DrawCircle(x = s.vertical()$pos.x, 
+           y = s.vertical()$pos.y, 
+           r.out = s.vertical()$size.x, 
+           r.in = s.vertical()$size.y, 
+           theta.1 = s.vertical()$theta.1, 
+           theta.2 = s.vertical()$theta.2, 
+           border =  s.vertical()$shade, lwd = s.vertical()$lwd)
+```
+
+
+
+```{r echo = F}
+Canvas(16,16)
+DrawCircle(x = lily()$pos.x, 
+           y = lily()$pos.y, 
+           r.out = lily()$size.x, 
+           r.in = lily()$size.y, 
+           theta.1 = lily()$theta.1, 
+           theta.2 = lily()$theta.2, 
+           border =  lily()$shade, lwd = lily()$lwd)
+```
+
+
+:::
+
+
+::::
+

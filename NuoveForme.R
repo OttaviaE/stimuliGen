@@ -117,35 +117,45 @@ DrawCircle(x = -11.2, y =-11.2, r.out = 8)
 # traduco in DrawCircle 
 Canvas(15, 15)
 #arco sx v up: v.arc.left.up
-DrawCircle(x = 5, y = 5, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
+border="red", nv = 100, lwd = 3)
+DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
+           r.in = square()$size.y/2,
         theta.1 = 3*pi/4,
         theta.2 = 5*pi/4, col="red", nv = 100, lwd = 3)
 # arco dx v up: v.arc.right.up
-DrawCircle(x = -6.2, y = 5, r.out = 8, r.in = 8,
+DrawCircle(x = -5.5, y = 5,r.out = square()$size.x/2, 
+border="red", nv = 100, lwd = 3)
+DrawCircle(x = -5.5, y = 5,r.out = square()$size.x/2, 
+           r.in = square()$size.y/2,
         theta.1 = 7*pi/4,
         theta.2 = pi/4, col="red", nv = 100, lwd = 3)
 #arco sx left down v: v.arc.left.down
-DrawCircle(x = 5, y = -6.2, r.out = 8, r.in = 8,
+DrawCircle(x = 5.1, y = -5.5, r.out = square()$size.x/2,
+           border="red", nv = 100, lwd = 3)
+DrawCircle(x = 5.1, y = -5.5, r.out = square()$size.x/2, r.in = square()$size.x/2,,
         theta.1 = 3*pi/4,
         theta.2 = 5*pi/4,col="red", nv = 100, lwd = 3)
 #arco dx right down v: v.arc.right.down
-DrawCircle(x = -6.2, y = -5.2, r.out = 8, r.in = 8,
+DrawCircle(x = -5.5, y = -5.5, r.out = square()$size.x/2, 
+           border="red", nv = 100, lwd = 3)
+DrawCircle(x = -5.5, y = -5.5,  r.out =  square()$size.x/2, r.in =  square()$size.x/2,
         theta.1 = 7*pi/4,
         theta.2 = pi/4,col="red", nv = 100, lwd = 3)
 #h left up: h.arc.left.up
-DrawCircle(x = -6.2, y = -6.2, r.out = 8, r.in = 8,
+DrawCircle(x = -5.5, y = -5.5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
         theta.1 = pi/4,
         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
 #h right up: h.arc.right.up
-DrawCircle(x = 5, y = -6.2, r.out = 8, r.in = 8,
+DrawCircle(x = 5.1, y = -5.5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
         theta.1 = pi/4,
         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
 #h arco sx down: h.arc.left.down
-DrawCircle(x = -6.2, y = 5, r.out = 8, r.in = 8,
+DrawCircle(x = -5.5, y = 5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
         theta.1 = 5*pi/4,
         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
 #h arco dx down: h.arc.right.down
-DrawCircle(x = 5, y = 5, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = 5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
         theta.1 = 5*pi/4,
         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
 
@@ -315,7 +325,8 @@ DrawRegPolygon(radius.x = square()$size.x,
                y = -0.1,
                lwd = square()$lwd, 
                lty = square()$lty, nv = square()$nv, 
-               rot = square()$rotation)
+               rot = square()$rotation, 
+               col = SetAlpha("black", 1))
 Canvas(20, 20)
 DrawCircle(x = c(-6.53,6.53, 4.67), 
            y = c(-6.53,4.67, -4.67), 
@@ -326,7 +337,63 @@ DrawCircle(x = c(-6.53,6.53, 4.67),
            border =  "red", lwd = 3)
 
 
+Canvas(15, 15)
+#arco sx v up: v.arc.left.up
+DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
+           border="white", nv = 100, lwd = 3)
+DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
+           r.in = square()$size.y/2,
+           theta.1 = 3*pi/4,
+           theta.2 = 5*pi/4, border="red", nv = 100, lwd = 3)
+# arco dx v up: v.arc.right.up
+# DrawCircle(x = -5.5, y = 5,r.out = square()$size.x/2, 
+#            border="red", nv = 100, lwd = 3)
+DrawCircle(x = -5.5, y = 5,r.out = square()$size.x/2, 
+           r.in = square()$size.y/2,
+           theta.1 = 7*pi/4,
+           theta.2 = pi/4, border="white", nv = 100, lwd = 3)
+#arco sx left down v: v.arc.left.down
+# DrawCircle(x = 5.1, y = -5.5, r.out = square()$size.x/2,
+#            border="red", nv = 100, lwd = 3)
+DrawCircle(x = 5.1, y = -5.5, r.out = square()$size.x/2, r.in = square()$size.x/2,
+           theta.1 = 3*pi/4,
+           theta.2 = 5*pi/4,border="white", nv = 100, lwd = 3)
+#arco dx right down v: v.arc.right.down
+# DrawCircle(x = -5.5, y = -5.5, r.out = square()$size.x/2, 
+#            border="red", nv = 100, lwd = 3)
+DrawCircle(x = -5.5, y = -5.5,  r.out =  square()$size.x/2, r.in =  square()$size.x/2,
+           theta.1 = 7*pi/4,
+           theta.2 = pi/4,border="white", nv = 100, lwd = 3)
+#h left up: h.arc.left.up
+DrawCircle(x = -5.5, y = -5.5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
+           theta.1 = pi/4,
+           theta.2 = 3*pi/4,border="white", nv = 100, lwd = 3)
+#h right up: h.arc.right.up
+DrawCircle(x = 5.1, y = -5.5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
+           theta.1 = pi/4,
+           theta.2 = 3*pi/4,border="white", nv = 100, lwd = 3)
+#h arco sx down: h.arc.left.down
+DrawCircle(x = -5.5, y = 5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
+           theta.1 = 5*pi/4,
+           theta.2 = 7*pi/4, border="white", nv = 100, lwd = 3)
+#h arco dx down: h.arc.right.down
+DrawCircle(x = 5, y = 5, r.out =  square()$size.x/2, r.in =  square()$size.x/2,
+           theta.1 = 5*pi/4,
+           theta.2 = 7*pi/4, border="white", nv = 100, lwd = 3)
 
+# provo con il quadrato pieno 
+
+Canvas(20, 20)
+q = DrawRegPolygon(radius.x = square()$size.x, radius.y = square()$size.y,
+                   nv = square()$nv, 
+                   plot = T, rot = pi/4) # crea le coordinate del quadrato
+clip(-square()$size.x/sqrt(2), square()$size.x/sqrt(2), 
+     square()$size.x/sqrt(2),
+     -square()$size.x/sqrt(2)) # definisce l'area entro cui disegnare il riempimento
+DrawRegPolygon(x = c(seq(-25, 25, by = 1)), y = 1, 
+               nv = 2, rot=pi/4, radius.x = 15, radius.y = 15)
+Canvas()
+polygon(q) # disegna il quadrato
 
 
 
