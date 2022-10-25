@@ -117,35 +117,35 @@ DrawCircle(x = -11.2, y =-11.2, r.out = 8)
 # traduco in DrawCircle 
 Canvas(15, 15)
 #arco sx v up: v.arc.left.up
-DrawCircle(x = 0, y = 0, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = 5, r.out = 8, r.in = 8,
         theta.1 = 3*pi/4,
         theta.2 = 5*pi/4, col="red", nv = 100, lwd = 3)
 # arco dx v up: v.arc.right.up
-DrawCircle(x = -11.2, y = 0, r.out = 8, r.in = 8,
+DrawCircle(x = -6.2, y = 5, r.out = 8, r.in = 8,
         theta.1 = 7*pi/4,
         theta.2 = pi/4, col="red", nv = 100, lwd = 3)
 #arco sx left down v: v.arc.left.down
-DrawCircle(x = 0, y = -11.2, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = -6.2, r.out = 8, r.in = 8,
         theta.1 = 3*pi/4,
         theta.2 = 5*pi/4,col="red", nv = 100, lwd = 3)
 #arco dx right down v: v.arc.right.down
-DrawCircle(x = -11.2, y = -11.2, r.out = 8, r.in = 8,
+DrawCircle(x = -6.2, y = -5.2, r.out = 8, r.in = 8,
         theta.1 = 7*pi/4,
         theta.2 = pi/4,col="red", nv = 100, lwd = 3)
 #h left up: h.arc.left.up
-DrawCircle(x = -11.2, y = -11.2, r.out = 8, r.in = 8,
+DrawCircle(x = -6.2, y = -6.2, r.out = 8, r.in = 8,
         theta.1 = pi/4,
         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
 #h right up: h.arc.right.up
-DrawCircle(x = 0, y = -11.2, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = -6.2, r.out = 8, r.in = 8,
         theta.1 = pi/4,
         theta.2 = 3*pi/4,col="red", nv = 100, lwd = 3)
 #h arco sx down: h.arc.left.down
-DrawCircle(x = -11.2, y = 0, r.out = 8, r.in = 8,
+DrawCircle(x = -6.2, y = 5, r.out = 8, r.in = 8,
         theta.1 = 5*pi/4,
         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
 #h arco dx down: h.arc.right.down
-DrawCircle(x = 0, y = 0, r.out = 8, r.in = 8,
+DrawCircle(x = 5, y = 5, r.out = 8, r.in = 8,
         theta.1 = 5*pi/4,
         theta.2 = 7*pi/4, col="red", nv = 100, lwd = 3)
 
@@ -311,21 +311,16 @@ polygon(x = unlist(lapply(p, "[", "x")),
 Canvas(20, 20)
 DrawRegPolygon(radius.x = square()$size.x, 
                radius.y = square()$size.y,
-               x =lily()$pos.x, 
-               y = lily()$pos.y, 
+               x = -0.1,
+               y = -0.1,
                lwd = square()$lwd, 
-               lty = square()$lty, nv = square()$nv, rot = square()$rotation)
-
-
-
-
-
-
-Canvas(16, 16)
-DrawCircle(x =lily()$pos.x, 
-           y = lily()$pos.y, 
-           r.out = lily()$size.x, 
-           r.in = lily()$size.y, 
+               lty = square()$lty, nv = square()$nv, 
+               rot = square()$rotation)
+Canvas(20, 20)
+DrawCircle(x = c(-6.53,6.53, 4.67), 
+           y = c(-6.53,4.67, -4.67), 
+           r.out = 7.5, 
+           r.in = 7.5, 
            theta.1 = lily()$theta.1, 
            theta.2 = lily()$theta.2, 
            border =  "red", lwd = 3)
