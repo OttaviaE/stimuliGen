@@ -14,6 +14,10 @@ p = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = .70,
                    nv = 100, plot = F, rot = pi/4, 
                    lwd = 3, col = "white", lty = 2)
 
+p = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = .70,
+                   nv = 100, plot = T, rot = pi/4, 
+                   lwd = 3,  lty = 2, col = "white")
+
 # usr <- par("usr")
 # do.call("clip", as.list(usr)) # non serve perché il quadrato è dentro al cerchio
 polygon(p, col = "white")
@@ -164,6 +168,9 @@ DrawRegPolygon(radius.x = square.left()$size.x,
 
 # non nella matrice
 M<-Raven(st1=square.left(),hrule=c("identity"),vrule=c("identity"))
+clip(-square()$size.x/sqrt(2), square()$size.x/sqrt(2), 
+     square()$size.x/sqrt(2),
+     -square()$size.x/sqrt(2))
 draw(M)
 
 # Non guadare perché non ha senso -----
