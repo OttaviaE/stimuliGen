@@ -118,7 +118,7 @@ circle <- function(vis = 1) {
     lwd = 2,
     num = 1,
     nv = 100,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -143,7 +143,7 @@ triangle <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv = 3,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -168,7 +168,7 @@ square <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv = 4,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -193,7 +193,7 @@ pentagon <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv = 5,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -218,7 +218,7 @@ vline <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv =  2,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -243,7 +243,7 @@ hline <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv =  2,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -318,7 +318,7 @@ elipse <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv = 100,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"
@@ -343,7 +343,7 @@ small_triangle <- function(vis = 1) {
     lwd = 3,
     num = 1,
     nv = 3,
-    shade = NULL,
+    shade ='none',
     visible = vis
   )
   attr(value, "class") <- "field"

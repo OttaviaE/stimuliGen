@@ -25,9 +25,9 @@ apply.Raven_matrix <- function(obj) {
     f<-get(function_list$function.[function_list$label==hrules[r]])
       for (i in 1:3)
       {
-        obj[[row_1[i]]] <- f(obj[[row_1[i]]],i,hrules[r])
-        obj[[row_2[i]]] <- f(obj[[row_2[i]]],i,hrules[r])
-        obj[[row_3[i]]] <- f(obj[[row_3[i]]],i,hrules[r])
+        obj[[row_1[i]]] <- f(obj[[row_1[i]]],i,hrules[r],seed=1)
+        obj[[row_2[i]]] <- f(obj[[row_2[i]]],i,hrules[r],seed=5)
+        obj[[row_3[i]]] <- f(obj[[row_3[i]]],i,hrules[r],seed=6)
       }
   }
   
@@ -37,9 +37,9 @@ apply.Raven_matrix <- function(obj) {
     f<-get(function_list$function.[function_list$label==vrules[r]])
     for (i in 1:3)
     {
-      obj[[col_1[i]]] <- f(obj[[col_1[i]]],i,vrules[r])
-      obj[[col_2[i]]] <- f(obj[[col_2[i]]],i,vrules[r])
-      obj[[col_3[i]]] <- f(obj[[col_3[i]]],i,vrules[r])
+      obj[[col_1[i]]] <- f(obj[[col_1[i]]],i,vrules[r],seed=1)
+      obj[[col_2[i]]] <- f(obj[[col_2[i]]],i,vrules[r],seed=5)
+      obj[[col_3[i]]] <- f(obj[[col_3[i]]],i,vrules[r],seed=6)
     }
   }
   attr(obj, "class") <- "Raven_matrix"
@@ -81,11 +81,17 @@ draw.Raven_matrix<- function(obj) {
         {
           coords<-do.call("data.frame",DrawRegPolygon(x = pos.x[j], y = pos.y[j], rot = rot[j], 
                                                       radius.x = sz.x[j], nv = nvert[j],plot = FALSE))
+           if(shades[j]=='none'){
+             shd<-NULL
+           }else{
+             shd<-shades[j]
+             }
           polygon(coords[, c("x","y")],
-                  lty=lty[j],lwd=lwd[j],col = shades[j])
+                  lty=lty[j],lwd=lwd[j],col = shd)
         }
       }
     }
     
   }
 }
+
