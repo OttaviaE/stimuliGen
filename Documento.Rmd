@@ -151,7 +151,7 @@ campo_generico
 La funzione `cof` concatena diversi campi esattamente secondo la stessa logica di `c()` 
 ```{r}
 cof(campo_generico,circle(),triangle()) # ho corretto il codice di circle perché altrimenti diceva ellipse
-# bisogna correggere tutto il codice (è ellipse non elipse), lo faccio io
+# bisogna correggere tutto il codice (è ellipse non ellipse), lo faccio io
 ```
 
 # Creazione di una matrice
