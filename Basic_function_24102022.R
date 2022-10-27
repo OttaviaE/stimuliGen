@@ -2,17 +2,18 @@
 
 field <- list(
   shape = NULL,
-  size.x = NULL,
-  size.y = NULL,
-  rotation = NULL,
-  pos.x = NULL,
-  pos.y = NULL,
-  lty = NULL,
-  lwd = NULL,
-  num = NULL,
-  nv = NULL,
-  shade =NULL,  
-  visible = NULL
+  size.x = list(),
+  size.y = list(),
+  rotation = list(),
+  pos.x = list(),
+  pos.y = list(),
+  lty =list(),
+  lwd = list(),
+  num = list(),
+  nv = list(),
+  shade =list(),  
+  visible = NULL, 
+  tag = list()
 )
 
 Raven <- list(
@@ -560,6 +561,25 @@ lily <- function() {
   value
 }
 
+lily.logic <- function(vis = 1) {
+  value <- list(
+    shape = "lily.logic",
+    size.x = rep(square()$size.x/2, 2),
+    size.y = rep(square()$size.x/2, 2),
+    theta.1 = c(5*pi/4,  7*pi/4),
+    theta.2 = c(7*pi/4, pi/4),
+    pos.x = c(5,-5.5),
+    pos.y =c(5, 5),
+    lty = 1,
+    lwd = 3,
+    num = 1,
+    nv = 100, # non cambia nulla che sia indicato o meno
+    shade = NULL,
+    visible = vis
+  )
+  attr(value, "class") <- "field"
+  value
+}
 
 
 

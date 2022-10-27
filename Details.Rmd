@@ -230,8 +230,8 @@ DrawRegPolygon(radius.x = sqrt((square()$size.x*2)^2 + (square()$size.x*2)^2)/2,
                radius.y = sqrt((square()$size.x*2)^2 + (square()$size.x*2)^2)/2, 
                lwd = square()$lwd, 
                lty = square()$lty, nv = square()$nv, rot = square()$rotation, col = NA)
-DrawRegPolygon(radius.x = square()$size.x, 
-               radius.y = square()$size.x, 
+DrawRegPolygon(radius.x = square()$size.x + square()$size.x/3, 
+               radius.y = square()$size.x + square()$size.x/3, 
                rot = cross()$rotation,
                nv = cross()$nv, lwd = cross()$lwd)
 
@@ -257,12 +257,18 @@ DrawRegPolygon(radius.x = square()$size.x,
                radius.y = square()$size.x, 
                rot = cross()$rotation,
                nv = cross()$nv, lwd = cross()$lwd)
-DrawCircle(x =lily()$pos.x, 
-           y = lily()$pos.y, 
-           r.out = lily()$size.x, 
-           r.in = lily()$size.y, 
-           theta.1 = lily()$theta.1, 
-           theta.2 = lily()$theta.2, lwd = lily()$lwd)
+# DrawCircle(x =lily()$pos.x, 
+#            y = lily()$pos.y, 
+#            r.out = lily()$size.x, 
+#            r.in = lily()$size.y, 
+#            theta.1 = lily()$theta.1, 
+#            theta.2 = lily()$theta.2, lwd = lily()$lwd)
+# DrawRegPolygon(radius.x = dice()$size.x-1, 
+#                radius.y = dice()$size.x-1, 
+#                x = dice()$pos.x + square()$pos.x/2,
+#                y = dice()$pos.y + square()$pos.x/2,
+#                rot = dice()$rotation,
+#                nv = dice()$nv, lwd = cross()$lwd, col = "black")
 
 ```
 
@@ -270,11 +276,51 @@ DrawCircle(x =lily()$pos.x,
 
 ```{r echo = F}
 Canvas(15, 15)
-DrawRegPolygon(radius.x = star()$size.x, 
-               radius.y = star()$size.y, 
-               lwd = star()$lwd, 
-               lty = star()$lty, nv = star()$nv, rot = star()$rotation, 
-               col = star()$shade)
+DrawCircle(x =lily()$pos.x,
+           y = lily()$pos.y,
+           r.out = lily()$size.x,
+           r.in = lily()$size.y,
+           theta.1 = lily()$theta.1,
+           theta.2 = lily()$theta.2, lwd = lily()$lwd)
+DrawRegPolygon(radius.x = dice()$size.x-1,
+               radius.y = dice()$size.x-1,
+               rot = dice()$rotation,
+               nv = dice()$nv, lwd = cross()$lwd)
+
+# DrawRegPolygon(radius.x = dice()$size.x-1,
+#                radius.y = dice()$size.x-1,
+#                x = dice()$pos.x + square()$pos.x/2,
+#                y = dice()$pos.y + square()$pos.x/2,
+#                rot = dice()$rotation,
+#                nv = dice()$nv, lwd = cross()$lwd, col = "black")
+DrawRegPolygon(radius.x = dice()$size.x-2,
+               radius.y = dice()$size.x-2,
+               x = v.arc.left.up()$pos.x,
+               y = v.arc.left.up()$pos.y,
+               rot = dice()$rotation,
+               nv = dice()$nv, lwd = cross()$lwd, col = "black")
+
+DrawRegPolygon(radius.x = dice()$size.x-2,
+               radius.y = dice()$size.x-2,
+               x = v.arc.left.down()$pos.x,
+               y = v.arc.left.down()$pos.y,
+               rot = dice()$rotation,
+               nv = dice()$nv, lwd = cross()$lwd, col = "black")
+
+DrawRegPolygon(radius.x = dice()$size.x-2,
+               radius.y = dice()$size.x-2,
+               x = v.arc.right.up()$pos.x,
+               y = v.arc.right.up()$pos.y,
+               rot = dice()$rotation,
+               nv = dice()$nv, lwd = cross()$lwd, col = "black")
+
+DrawRegPolygon(radius.x = dice()$size.x-2,
+               radius.y = dice()$size.x-2,
+               x = v.arc.right.down()$pos.x,
+               y = v.arc.right.down()$pos.y,
+               rot = dice()$rotation,
+               nv = dice()$nv, lwd = cross()$lwd, col = "black")
+
 
 ```
 
@@ -305,22 +351,46 @@ DrawCircle(x = vertical.eight()$pos.x,
 :::{}
 
 ```{r echo = F}
+# è il contrario dell'altro
 Canvas(15, 15)
-DrawRegPolygon(radius.x = circle()$size.x, 
-               radius.y = circle()$size.y, 
-               lwd = circle()$lwd, 
-               lty = circle()$lty, nv = circle()$nv, rot = circle()$rotation)
+DrawRegPolygon(radius.x = sqrt(square()$size.x^2 + square()$size.x^2)/2, 
+               radius.y = sqrt(square()$size.y^2 + square()$size.y^2)/2, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 100, rot = square()$rotation, col = NA)
 
-
+DrawRegPolygon(radius.x = sqrt(square()$size.x^2 + square()$size.x^2)/2, 
+               radius.y = sqrt(square()$size.y^2 + square()$size.y^2)/2, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 4, rot = square()$rotation, col = NA)
+DrawCircle(x =lily()$pos.x,
+           y = lily()$pos.y,
+           r.out = lily()$size.x,
+           r.in = lily()$size.y,
+           theta.1 = lily()$theta.1,
+           theta.2 = lily()$theta.2, lwd = lily()$lwd)
 ```
 
 
 ```{r echo = F}
 Canvas(15, 15)
+# DrawRegPolygon(radius.x = square()$size.x, 
+#                radius.y = square()$size.y, 
+#                lwd = square()$lwd, 
+#                lty = square()$lty, nv = square()$nv, rot = square()$rotation)
 DrawRegPolygon(radius.x = pentagon()$size.x, 
                radius.y = pentagon()$size.y, 
-               lwd = pentagon()$lwd, 
-               lty = pentagon()$lty, nv = pentagon()$nv, rot = pentagon()$rotation)
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 5, rot = pentagon()$rotation, col = NA)
+DrawRegPolygon(radius.x = pentagon()$size.x, 
+               radius.y = pentagon()$size.y, 
+               lwd = square()$lwd, 
+               lty = square()$lty, nv = 100, rot = pentagon()$rotation, col = NA)
+
+# 
+# DrawRegPolygon(radius.x = sqrt(((square()$size.x*sqrt(2))/2)^2 + (square()$size.x*sqrt(2))^2), 
+#                radius.y = square()$size.x*sqrt(2), 
+#                lwd = square()$lwd, 
+#                lty = square()$lty, nv = 3, rot = triangle()$rotation, col = NA)
 
 
 ```

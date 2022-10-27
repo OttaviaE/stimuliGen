@@ -339,8 +339,12 @@ DrawCircle(x = c(-6.53,6.53, 4.67),
 
 Canvas(15, 15)
 #arco sx v up: v.arc.left.up
-DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
-           border="white", nv = 100, lwd = 3)
+DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, nv = 100, lwd = 3)
+DrawCircle(x = 5- square()$size.x/2, y = 5,r.out = square()$size.x/2,
+           border="black", nv = 100, lwd = 3)
+DrawCircle(x = 5- square()$size.x/2, y = 5-(square()$size.x/2),
+           r.out = square()$size.x/2,
+           border="black", nv = 100, lwd = 3)
 DrawCircle(x = 5, y = 5, r.out = square()$size.x/2, 
            r.in = square()$size.y/2,
            theta.1 = 3*pi/4,
@@ -397,6 +401,11 @@ polygon(q) # disegna il quadrato
 
 
 
-
+Canvas(15,15)
+DrawCircle(x = lily.logic()$pos.x, 
+           y = lily.logic()$pos.x, 
+           r.out =  lily.logic()$size.x, r.in =  lily.logic()$size.x,
+           theta.1 = lily.logic()$theta.1,
+           theta.2 = lily.logic()$theta.2, nv = lily.logic()$nv, lwd = 3)
 
 
