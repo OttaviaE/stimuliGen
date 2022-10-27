@@ -37,54 +37,54 @@ fill <- function(obj,n,...) {
 
 fill.field<-function(obj,n,...){
   index <- rep(c("white","grey","black"),3)
-  pos <- index==obj$shade
+   pos <- index==obj[[1]]$shade
   if(sum(pos)==0)
   {
-    obj$shade<-index[n] 
+    obj[[1]]$shade<-index[n] 
   }else{
     pos <- which(pos)
-    obj$shade<-index[pos+n]
+    obj[[1]]$shade<-index[pos+n]
   }
   return(obj)
 }
 
 
 identity.field <- function(obj,...) {
-  return(obj)
+ return(obj)
 }
 
 
 movement.field<-function(obj,n,rule,...) {
   if(rule=="mov_hrl"){
-    obj$pos.x<-obj$pos.x+18*(n-1)
+    obj[[1]]$pos.x<-obj[[1]]$pos.x+18*(n-1)
   }else if(rule=="mov_hlr"){
-    obj$pos.x<-obj$pos.x-18*(n-1)
+    obj[[1]]$pos.x<-obj[[1]]$pos.x-18*(n-1)
   }else if(rule=="mov_vud"){
-    obj$pos.y<-obj$pos.y-12*(n-1)
+    obj[[1]]$pos.y<-obj[[1]]$pos.y-12*(n-1)
   }else if(rule=="mov_vdu"){
-    obj$pos.y<-obj$pos.y+12*(n-1)
+    obj[[1]]$pos.y<-obj[[1]]$pos.y+12*(n-1)
   }
   return(obj)
 }
 
 rotation.field<-function(obj,n,...) {
-  obj$rotation<-obj$rotation+(n-1)*pi/4
+  obj$rotation[[1]]<-obj$rotation[[1]]+(n-1)*pi/4
   return(obj)
 }
 
 size.field<-function(obj,n,...) {
-  obj$size.x<-obj$size.x/(n*.9)
-  obj$size.y<-obj$size.y/(n*.9)
+  obj$size.x[[1]]<-obj$size.x[[1]]/(n*.9)
+  obj$size.y[[1]]<-obj$size.y[[1]]/(n*.9)
   return(obj)
 }
 
 margin.field<-function(obj,n,rules,...){
   index<-c(3:1,3:1,3:1)
   if(grepl("lwd",rules)){
-    obj$lwd<- index[obj$lwd+n]+1
+    obj$lwd[[1]]<- index[obj$lwd[[1]]+n]+1
   }else if(grepl("lty",rules)){
-    obj$lty<-index[obj$lty+n]
-  }
+    obj$lty[[1]]<-index[obj$lty[[1]]+n]
+    }
   return(obj)
 }
 
@@ -93,7 +93,8 @@ diff_shapes.field<-function(obj,n,...) {
   {
     stop("You must have at least three forms to change shapes!")
   }
-  index<-c(3:1,3:1,3:1)
+  #index<-c(3:1,3:1,3:1) TL-LR
+  index<-c(1:3,1:3,1:3) #TR-LL
   pos<-which(obj$visible==1)
   if(length(pos)>1){
     obj$visible[pos]<-0
@@ -102,22 +103,22 @@ diff_shapes.field<-function(obj,n,...) {
     obj$visible[pos]<-0
     obj$visible[index[pos+n]]<-1
   }
-  
+ 
   return(obj)
 }
 
 
 
 logic.field<-function(obj,n,rule,seed,...) {
-  if(length(obj$shape)<3)
-  {
-    stop("You must have three forms to apply a logical AND !")
-  }
+    if(length(obj[[1]]$shape)<3)
+    {
+      stop("You must have three forms to apply a logical AND !")
+    }
   ##gestione di più immagini
-  domain<-1:length(obj$shape)
+  domain<-1:length(obj[[1]]$shape)
   obj$visible[domain]<-1
   set.seed(seed)
-  fixed<-sample(domain,round(length(obj$shape)/5))
+  fixed<-sample(domain,round(length(obj[[1]]$shape)/5))
   domain<-setdiff(domain,fixed)
   half<-length(domain)%/%2
   index<-list()
@@ -138,19 +139,24 @@ logic.field<-function(obj,n,rule,seed,...) {
   return(obj)
 }
 
+logic_rules <- function(obj,n,...) {
+  UseMethod("logic_rules")
+}
+
+
 logic_rules.Raven_matrix<-function(obj,rule) {
-  
+
   if(length(obj[[1]]$shape)!=4)
   {
     stop("You must have four forms to apply a logical AND !")
   }
-  
+
   squares<-paste0("Sq",1:9)
   if(rule=="OR"){
     ele<-list(Sq1=1,Sq2=2,Sq3=c(1,2),
               Sq4=3,Sq5=4,Sq6=c(3,4),
               Sq7=c(1,3),Sq8=c(2,4),Sq9=1:4)
-    
+      
   }else if(rule=="AND"){
     ele<-list(Sq9=1,Sq8=2,Sq7=c(1,2),
               Sq6=3,Sq5=4,Sq4=c(3,4),
