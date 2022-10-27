@@ -113,7 +113,6 @@ logic.field<-function(obj,n,rule,seed,...) {
     {
       stop("You must have three forms to apply a logical AND !")
     }
-
   ##gestione di più immagini
   domain<-1:length(obj$shape)
   obj$visible[domain]<-1
@@ -139,25 +138,37 @@ logic.field<-function(obj,n,rule,seed,...) {
   return(obj)
 }
 
-# AND.Raven_matrix<-function(obj) {
-#   
-#   if(length(obj[[1]]$shape)!=5)
-#   {
-#     stop("You must have five forms to apply a logical AND !")
-#   }
-#   
-#   squares<-paste0("Sq",1:9)
-#   
-#   obj[[1]]$visible<-c(1,1,1,0,0)
-#   obj[[2]]$visible<-c(1,0,1,0,1)
-#   obj[[3]]$visible<-c(1,0,1,0,0)
-#   
-#   obj[[4]]$visible<-c(1,1,0,1,0)
-#   obj[[5]]$visible<-c(1,0,0,1,1)
-#   obj[[6]]$visible<-c(1,0,0,1,0)
-#   
-#   obj[[7]]$visible<-c(1,1,0,0,0)
-#   obj[[8]]$visible<-c(1,0,0,0,1)
-#   obj[[9]]$visible<-c(1,0,0,0,0)
-#   return(obj)
-# }
+logic_rules.Raven_matrix<-function(obj,rule) {
+
+  if(length(obj[[1]]$shape)!=4)
+  {
+    stop("You must have four forms to apply a logical AND !")
+  }
+
+  squares<-paste0("Sq",1:9)
+  if(rule=="OR"){
+    ele<-list(Sq1=1,Sq2=2,Sq3=c(1,2),
+              Sq4=3,Sq5=4,Sq6=c(3,4),
+              Sq7=c(1,3),Sq8=c(2,4),Sq9=1:4)
+      
+  }else if(rule=="AND"){
+    ele<-list(Sq9=1,Sq8=2,Sq7=c(1,2),
+              Sq6=3,Sq5=4,Sq4=c(3,4),
+              Sq3=c(1,3),Sq2=c(2,4),Sq1=1:4)
+    
+  }else if(rule=="XOR"){
+    ele<-list(Sq1=1,Sq2=c(1,4),Sq3=4,
+              Sq4=c(1,2),Sq5=1:4,Sq6=c(3,4),
+              Sq7=2,Sq8=c(2,3),Sq9=3)
+    
+  }
+  for(i in squares)
+  {
+    new<-integer(4)
+    new[ele[[i]]]<-1
+    obj[[i]]$visible<-new
+  }
+  
+  attr(obj, "class") <- "Raven_matrix"
+  return(obj)
+}

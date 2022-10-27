@@ -3,6 +3,10 @@ apply <- function(obj) {
   UseMethod("apply")
 }
 
+logic_rules <- function(...) {
+  UseMethod("logic_rules")
+}
+
 apply.Raven_matrix <- function(obj) {
   # The rules are applied by row keeping fixed the row by means of the three vectors
   hrules <- obj$hrule
