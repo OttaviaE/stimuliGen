@@ -1,6 +1,6 @@
 ---
 title: "Documentazione"
-author: "Andrea Brancaccio"
+author: "Andrea & Ottavia"
 date: "`r Sys.Date()`"
 output:
     bookdown::html_document2:
@@ -418,23 +418,18 @@ logic.field<-function(obj,n,rule,seed,...) {
 Questi insiemi vengono mantenuti costanti per riga (o per colonna) tramite dei differenti semi.
 
 ```{r,echo=FALSE}
-nshapes<-4
-seed<-c(1,5.6)
-for(i in 1:length(seed)){
-  set.seed(seed[i])
- domain<-1:nshapes
- fixed[i]<-sample(domain,round(nshapes/5))
- domain<-setdiff(domain,fixed)
- half<-length(domain)%/%2
- cell_1[[i]]<-sample(domain,half)
- cell_2[[i]]<-sample(setdiff(domain,index[[1]]),half)
-}
+#nshapes<-4
+#seed<-c(1,5.6)
+#for(i in 1:length(seed)){
+#  set.seed(seed[i])
+# domain<-1:nshapes
+# fixed[i]<-sample(domain,round(nshapes/5))
+# domain<-setdiff(domain,fixed)
+# half<-length(domain)%/%2
+# cell_1[[i]]<-sample(domain,half)
+# cell_2[[i]]<-sample(setdiff(domain,index[[1]]),half)
+#}
 
-
-seed
-fixed
-cell_1
-cell_2
 ```
 
 
