@@ -10,6 +10,7 @@ apply_rule.Raven_matrix <- function(obj) {
   row_1 <- paste0("Sq", 1:3)
   row_2 <- paste0("Sq", 4:6)
   row_3 <- paste0("Sq", 7:9)
+  
   for (r in 1:length(hrules))
   {
     if (hrules[r] == "rotation")
@@ -48,10 +49,18 @@ apply_rule.Raven_matrix <- function(obj) {
     {
     for (i in 1:3)
     {
-      obj[[row_1[i]]] <- logic(obj[[row_1[i]]],i,hrules[r])
-      obj[[row_2[i]]] <- logic(obj[[row_2[i]]],i,hrules[r])
-      obj[[row_3[i]]] <- logic(obj[[row_3[i]]],i,hrules[r])
+      obj[[row_1[i]]] <- logic(obj[[row_1[i]]],i,1,hrules[r])
+      obj[[row_2[i]]] <- logic(obj[[row_2[i]]],i,2,hrules[r])
+      obj[[row_3[i]]] <- logic(obj[[row_3[i]]],i,3,hrules[r])
     }
+    }else if(grepl( "mov",hrules[r]))
+    {
+      for (i in 1:3)
+      {
+        obj[[row_1[i]]] <- movement(obj[[row_1[i]]],i,hrules[r])
+        obj[[row_2[i]]] <- movement(obj[[row_2[i]]],i,hrules[r])
+        obj[[row_3[i]]] <- movement(obj[[row_3[i]]],i,hrules[r])
+      }
     }
   }
   
@@ -101,9 +110,17 @@ apply_rule.Raven_matrix <- function(obj) {
     {
       for (i in 1:3)
       {
-        obj[[col_1[i]]] <- logic(obj[[col_1[i]]],i,vrules[r])
-        obj[[col_2[i]]] <- logic(obj[[col_2[i]]],i,vrules[r])
-        obj[[col_3[i]]] <- logic(obj[[col_3[i]]],i,vrules[r])
+        obj[[col_1[i]]] <- logic(obj[[col_1[i]]],i,1,vrules[r])
+        obj[[col_2[i]]] <- logic(obj[[col_2[i]]],i,2,vrules[r])
+        obj[[col_3[i]]] <- logic(obj[[col_3[i]]],i,3,vrules[r])
+      }
+    }else if(grepl( "mov",vrules[r]))
+    {
+      for (i in 1:3)
+      {
+        obj[[col_1[i]]] <- movement(obj[[col_1[i]]],i,hrules[r])
+        obj[[col_2[i]]] <- movement(obj[[col_2[i]]],i,hrules[r])
+        obj[[col_3[i]]] <- movement(obj[[col_3[i]]],i,hrules[r])
       }
     }
   }
@@ -173,6 +190,7 @@ draw.Raven_matrix<- function(obj) {
                   lty=lty[j],lwd=lwd[j])
         }else if(shapes[j]=="dice")
         {
+
           position<-matrix(c(1,1,-1,1,1,-1,-1,-1),byrow = TRUE,ncol=2)
           for(corn in 1:numerosity[j])
           {

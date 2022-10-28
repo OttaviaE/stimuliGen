@@ -20,15 +20,18 @@ par(mfrow=c(3,3))
 
 cols<-c("white","grey","black","black","white","grey","grey","black")
 for(i in 1:8){
-  plot(c(10, 80), c(30, 80), type = "n", xlab = "", ylab = "", 
+  
+  plot(c(10-10*n, 40+10*n), c(30-10*n, 80+10*n), type = "n", xlab = "", ylab = "", 
        axes = F)
   
-  coords<-shape(1)
-  polygon(coords$x,coords$y,col=cols[i])
- 
+  coords<-shape("elipse")
+  polygon(coords$x,coords$y)
 }
 
 plot(c(-10, 10), c(-30, 30), type = "n", xlab = "", ylab = "", 
+     axes = F)
+
+plot(c(-100, 100), c(-100, 100), type = "n", xlab = "", ylab = "", 
      axes = F)
 
 

@@ -44,7 +44,7 @@ class(Raven) <- "Raven_matrix"
 #' @examples
 #'
 #' @export
-field <- function(shapes,sz.x,sz.y,p.x,p.y,rot,lty,lwd,num,vis) {
+field <- function(shapes,sz.x,sz.y,rot,p.x,p.y,lty,lwd,num,vis) {
   value <- list(
     shape = shapes,
     size.x = sz.x,
@@ -64,9 +64,9 @@ field <- function(shapes,sz.x,sz.y,p.x,p.y,rot,lty,lwd,num,vis) {
 #' Matrix Raven function
 #'
 #' Function for the definition of a generic Raven matrix
-#' @param st1
-#' @param hrule
-#' @param vrule
+#' @param st1 Fields in the top left square
+#' @param hrule Rules applied with an horizontal logic
+#' @param vrule Rules applied with an vertical logic
 #' @return Return a Raven matrix object 
 #' @examples
 #'
@@ -76,7 +76,7 @@ Raven <- function(st1,hrule="identity",vrule="identity") {
   squares<-paste0("Sq",1:9)
   for(i in 1:length(squares))
   {
-    value[[squares[i]]]<-st1
+    value[[squares[i]]]<-st1 #Copy the same field in all the cells
   }
   value$hrule<-hrule
   value$vrule<-vrule
@@ -85,7 +85,7 @@ Raven <- function(st1,hrule="identity",vrule="identity") {
 }
 
 #' Default circle
-#'
+#' @param vis Binary index that define if the shapes should be plot
 #' @return Return the default circle object 
 #' @examples
 #' circle()
@@ -98,9 +98,9 @@ circle <- function(vis=1) {
     rotation = 0,
     pos.x = 0, 
     pos.y = 0,
-    num = 1,
     lty=1,
-    lwd=1,
+    lwd=2,
+    num = 1,
     visible=vis
   )
   attr(value, "class") <- "field"
@@ -121,9 +121,9 @@ triangle <- function(vis=1) {
     rotation = pi/6,
     pos.x = 0, 
     pos.y = 0,
-    num = 1,
     lty=1,
-    lwd=1,
+  lwd=3,
+    num = 1,
     visible=vis
   )
   attr(value, "class") <- "field"
@@ -144,9 +144,9 @@ square <- function(vis=1) {
     rotation = pi/4,
     pos.x = 0, 
     pos.y = 0,
-    num = 1,
     lty=1,
-    lwd=1,
+  lwd=3,
+    num = 1,
     visible=vis
   )
   attr(value, "class") <- "field"
@@ -168,7 +168,7 @@ cross <- function(vis=1) {
     pos.x = 0, 
     pos.y = 0,
     lty=1,
-    lwd=1,
+  lwd=3,
     num = 1,
     visible=vis
   )
@@ -191,7 +191,7 @@ dice <- function(vis=1) {
     pos.x = 14, 
     pos.y = 13,
     lty=1,
-    lwd=1,
+  lwd=3,
     num = 4,
     visible=vis
   )
@@ -215,7 +215,7 @@ elipse <- function(vis=1) {
     pos.x = 0, 
     pos.y = 0,
     lty=1,
-    lwd=1,
+  lwd=3,
     num = 1,
     visible=vis
   )
@@ -235,10 +235,10 @@ small_triangle <- function(vis=1) {
     size.x = 3,
     size.y = 3,
     rotation = 0,
-    pos.x = 14, 
+    pos.x = 18, 
     pos.y = 13,
     lty=1,
-    lwd=1,
+  lwd=3,
     num = 1,
     visible=vis
   )
@@ -263,6 +263,8 @@ cof.field<-function(...) {
   obj
 }
 
+#Per generalizzare la funzione per concatenzione di materici ho definito il metodo cof anche per 
+#i caratteri
 cof.character<-function(...) {
   obj<-c(...)
   attr(obj, "class") <- "character"

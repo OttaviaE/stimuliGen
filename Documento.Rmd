@@ -1,6 +1,6 @@
 ---
 title: "Documentazione"
-author: "Andrea Brancaccio"
+author: "Andrea & Ottavia"
 date: "`r Sys.Date()`"
 output:
     bookdown::html_document2:
@@ -11,9 +11,9 @@ editor_options:
 ---
 
 ```{r include=FALSE}
-source("Basic_function_18102022.R")
-source("Complex_function_18102022.R")
-source("Rules_18102022.R")
+source("Basic_function_20102022.R")
+source("Complex_function_20102022.R")
+source("Rules_25102022.R")
 ```
 # Classe campo
 La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
@@ -130,6 +130,8 @@ DrawRegPolygon(radius.x = triangle()$size.x,
 
 ## Dado 
 
+## Dot
+
 ## Elisse
 
 ## Piccolo triangolo (circa)
@@ -139,8 +141,8 @@ DrawRegPolygon(radius.x = triangle()$size.x,
 La funzione field puo venire utilizzata per generare una qualsiasi forma, gli input della funzione sono esattamente le caratteristiche della classe campo. 
 
 ```{r}
-source("Basic_function_18102022.R")
-campo_generico<-field("simbolo_di_batman",15,5,pi,0,0,1,2,1,15,0)
+source("Basic_function_20102022.R")
+campo_generico<-field("simbolo_di_batman",15,5,pi,0,0,1,2,1,15,1,0)
 campo_generico
 
 ```
@@ -179,46 +181,258 @@ draw(M)
 # Regole
 
 ## Rotazione
-Il metodo rotazione cambia il valore `field$rotation` di rotazioni fisse con un angolo di $\frac{\pi}{6}$ 
+Il metodo rotazione cambia il valore `field$rotation` di rotazioni fisse con un angolo di $\frac{\pi}{4}$ 
 
 -  `obj` il contenuto di una cella della matrice
 -  `n` rappresenta l'ennesimo elemento a cui viene applicata la regola. Per esempio se la regola viene applicata orizzontalmente `n =1` per `Sq1`,`Sq4` e `Sq7`, `n =2` per `Sq2`,`Sq5` e `Sq8` e per finire `n =3` per `Sq3`,`Sq6` e `Sq9`.
 
 ```{r}
 rotation.field<-function(obj,n,...) {
-  obj$rotation<-obj$rotation+n*pi/6
+  obj$rotation<-obj$rotation+(n-1)*pi/4
   return(obj)
 }
 ```
 
-La rotazione può essere applicata con le regole orizzontali, verticali e diagonalmente da asso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+La rotazione può essere applicata con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
 
 ```{r}
 #Horizontal
-M<-apply(Raven(st1=square(),hrule=c("rotation"),vrule=c("identity")))
+M<-apply(Raven(st1=pentagon(),hrule=c("rotation"),vrule=c("identity")))
 draw(M)
 
 #Vertical
-M<-apply(Raven(st1=square(),hrule=c("identity"),vrule=c("rotation")))
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("rotation")))
 draw(M)
 
 # Top Left Low Right
-M<-apply(Raven(st1=cof(pentagon(), square(), circle()),hrule=c("diff_shapes"),vrule=c("rotation")))
+M<-apply(Raven(st1=pentagon(),hrule=c("rotation"),vrule=c("rotation")))
 draw(M)
 
 
 ```
 
 ## Dimensione
+Il metodo di cambio di dimensioni, riduce i valori di `field$size.x` e `field$size.y` di un valore costante pari a numero di riga (o colonna) della matrice per $k=.9$. Se per esempio la regola è applicata orizzontalmente, gli elementi nelle celle `Sq1,Sq4,sq7`della prima colonna hanno dimensioni $(\frac{x}{k},\frac{y}{k})$,  gli elementi nelle celle `Sq2,Sq5,sq8` hanno dimensioni $(\frac{x}{2k},\frac{y}{2k})$ e quelli nella terza colonna $(\frac{x}{3k},\frac{y}{3k})$.
+
+```{r}
+size.field<-function(obj,n,...) {
+  obj$size.x<-obj$size.x/(n*.9)
+  obj$size.y<-obj$size.y/(n*.9)
+  return(obj)
+}
+```
+
+La cambio di dimensione può essere applicata con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=circle(),hrule=c("size"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=circle(),hrule=c("identity"),vrule=c("size")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=circle(),hrule=c("size"),vrule=c("size")))
+draw(M)
+
+
+```
 
 ## Cambio delle forme
+Il metodo di cambio di forma manipola il campo `field$visible` in modo di alternare tre diverse forme. L'ordine di applicazione va dalla terza alla prima forma. Per ogni cella individua quali forme sono visibili 
+- Se più di una forma è visibile le rende tutte invisibili e seleziona solo quella in posizione $n$. Dove $n$ è l'indice di riga (o di colonna) 
+- Se una sola forma è visibile la regola la mette invisibile e seleziona quella a distante $n$ nel vettore `index`
 
-## Spessore del contorno
+```{r}
+diff_shapes.field<-function(obj,n,...) {
+  if(length(obj$visible)!=3)
+  {
+    stop("You must have at least three forms to change shapes!")
+  }
+  index<-c(3:1,3:1,3:1)
+  pos<-which(obj$visible==1)
+  if(length(pos)>1){
+    obj$visible[pos]<-0
+    obj$visible[index[n]]<-1
+  }else {
+    obj$visible[pos]<-0
+    obj$visible[index[pos+n]]<-1
+  }
+ 
+  return(obj)
+}
+```
 
-## Tipo del contorno
-## Movimento
+Il cambio di forma può essere applicato con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("identity"),vrule=c("diff_shapes")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+
+
+```
+
+## Contorno
+La regola per il cambiamento del contorno può cambiare sia lo spessore che il tipo di contorno
+utilizzando i parametri standard di R `lwd` e `lty`. Tre diversi spessori vengono utilizzati dipendenti dal indice di riga (o di colonna) $n$. Le forme di default hanno come spessore di partenza $2$.
+Il tipo di contorno cambia allo stesso modo in funzione del indice di riga (o di colonna) $n$.
+
+```{r}
+margin.field<-function(obj,n,rules,...){
+  index<-c(3:1,3:1,3:1)
+  if(grepl("lwd",rules)){
+    obj$lwd<- index[obj$lwd+n]+1
+  }else if(grepl("lty",rules)){
+    obj$lty<-index[obj$lty+n]
+    }
+  return(obj)
+}
+```
+
+### Spessore del contorno
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("lwd"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("lwd")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("lwd"),vrule=c("lwd")))
+draw(M)
+
+```
+
+### Tipo del contorno
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("lty"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("lty")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("lty"),vrule=c("lty")))
+draw(M)
+
+```
+## Riempimento
+Il riempimento monocromatico viene applicato campo per campo.
+
+### Riempimento monocromatico
+La regola per il rimepimento monocromatico cambia il campo `field$shade` tra i valori `white`, `black` e `grey`. I tre diversi riempimenti vengono assegnati tramite l'indice di riga (o di colonna) $n$.
+Il solo perimentro si ottiene con `field$shade="none"`
+
+```{r}
+fill.field<-function(obj,n,...){
+  index <- rep(c("white","grey","black"),3)
+   pos <- index==obj$shade
+  if(sum(pos)==0)
+  {
+    obj$shade<-index[n] 
+  }else{
+    pos <- which(pos)
+    obj$shade<-index[pos+n]
+  }
+  return(obj)
+}
+```
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("fill"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("fill")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("fill"),vrule=c("fill")))
+draw(M)
+
+```
+
+### Riempimento con altre forme
 
 ## Logica
+Le regole logiche vengono applicate per riga e per colonna con 3 o più forme. 
+Presento gli elementi basi per applicare la logica  in termini insiemistici.
+
+```{r}
+logic.field<-function(obj,n,rule,seed,...) {
+    if(length(obj$shape)<3)
+    {
+      stop("You must have three forms to apply a logical AND !")
+    }
+
+  ##gestione di più immagini
+  domain<-1:length(obj$shape)
+  
+  obj$visible[domain]<-1
+  set.seed(seed)
+  fixed<-sample(domain,round(length(obj$shape)/5))
+  domain<-setdiff(domain,fixed)
+  half<-length(domain)%/%2
+  index<-list()
+  index[[1]]<-sample(domain,half)
+  index[[2]]<-sample(setdiff(domain,index[[1]]),half)
+  
+  if(rule=="AND"){
+    index[[3]]<-union(index[[1]],index[[2]])
+    obj$visible[index[[n]]]<-0
+  }else if(rule=="OR"){
+    if(n<3){
+      obj$visible[index[[n]]]<-0
+    }
+  }else if(rule=="XOR"){
+    index[[3]]<-union(setdiff(domain,union(index[[1]],index[[2]])),fixed)
+    obj$visible[index[[n]]]<-0
+  }
+  return(obj)
+}
+
+```
+
+- `domain`è l'insieme delle forme $D$
+- `fixed` è l'intersezione tra la prima e la seconda cella  $C_1 \cap C_2$
+- `index[[1]]` è l'insieme delle forme nella prima cella meno l'intersezione $C_1 / \{ C_1 \cap C_2\}$
+- `index[[2]]` è l'insieme delle forme nella seconda cella meno l'intersezione $C_2 / \{ C_1 \cap C_2\}$
+
+Questi insiemi vengono mantenuti costanti per riga (o per colonna) tramite dei differenti semi.
+
+```{r,echo=FALSE}
+#nshapes<-4
+#seed<-c(1,5.6)
+#for(i in 1:length(seed)){
+#  set.seed(seed[i])
+# domain<-1:nshapes
+# fixed[i]<-sample(domain,round(nshapes/5))
+# domain<-setdiff(domain,fixed)
+# half<-length(domain)%/%2
+# cell_1[[i]]<-sample(domain,half)
+# cell_2[[i]]<-sample(setdiff(domain,index[[1]]),half)
+#}
+
+```
+
+
 ### AND 
 ### OR
 ### Xor
