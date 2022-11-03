@@ -37,13 +37,13 @@ fill <- function(obj,n,...) {
 
 fill.field<-function(obj,n,...){
   index <- rep(c("white","grey","black"),3)
-   pos <- index==obj[[1]]$shade
-  if(sum(pos)==0)
+   pos <- index==obj$shade[[1]]
+  if(is.na(sum(pos)))
   {
-    obj[[1]]$shade<-index[n] 
+    obj$shade[[1]]<-index[n] 
   }else{
     pos <- which(pos)
-    obj[[1]]$shade<-index[pos+n]
+    obj$shade[[1]]<-index[pos+n]
   }
   return(obj)
 }
@@ -108,17 +108,16 @@ diff_shapes.field<-function(obj,n,...) {
 }
 
 
-
 logic.field<-function(obj,n,rule,seed,...) {
-    if(length(obj[[1]]$shape)<3)
-    {
-      stop("You must have three forms to apply a logical AND !")
-    }
+  if(length(obj$shape)<3)
+  {
+    stop("You must have three forms to apply a logical AND !")
+  }
   ##gestione di più immagini
-  domain<-1:length(obj[[1]]$shape)
+  domain<-1:length(obj$shape)
   obj$visible[domain]<-1
   set.seed(seed)
-  fixed<-sample(domain,round(length(obj[[1]]$shape)/5))
+  fixed<-sample(domain,round(length(obj$shape)/5))
   domain<-setdiff(domain,fixed)
   half<-length(domain)%/%2
   index<-list()

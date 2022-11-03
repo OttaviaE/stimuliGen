@@ -107,3 +107,4 @@ M2<-logic_rules(Raven(lilth),"XOR")
 draw(com(M1,M2))
 
 dev.off()
+
