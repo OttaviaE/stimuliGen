@@ -732,6 +732,19 @@ dice <- function() {
   value
 }
 
+#' Default dice
+#'
+#' @return Return the default dice object
+#' @examples
+#' dice()
+#' @export
+cross.dice <- function() {
+  value <-cof(dot(13,0),dot(-13,0),dot(0,-13),dot(0,13),
+              single = TRUE,name = "cross.dice")
+  value$tag <- list("single")
+  attr(value, "class") <- "field"
+  value
+}
 
 ##############################################################
 ######## SEGMENTI
@@ -801,7 +814,7 @@ hline <- function(p.x=0 ,p.y=0, vis = 1) {
 #' @export
 cross <- function() {
   value <-cof(vline(),hline(),single = TRUE,name = "cross")
-  value$tag <- list("single")
+  value$tag <- list("single","fill")
   value$visible<-1
   attr(value, "class") <- "field"
   value
@@ -816,6 +829,77 @@ cross <- function() {
 square4 <- function() {
   value <-cof(vline(p.x=-8,),vline(p.x=8),hline(p.y=-8,),hline(p.y=8))
   value$tag <- list("compose4")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default inverse diagonal line
+#'
+#' @return Return the default diag line object
+#' @examples
+#' diagline.inv()
+#' @export
+diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
+  value <- list(
+    shape = "diagline.inv",
+    size.x = sqrt(square()$ size.x[[1]]^2 /2),
+    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(pi + pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv =  list(2),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default main diagonal line
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' diagline()
+#' @export
+diagline <- function(p.x=0 ,p.y=0,vis = 1) {
+  value <- list(
+    shape = "diagline.inv",
+    size.x = sqrt(square()$ size.x[[1]]^2 /2),
+    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv =  list(2),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default cross 
+#'
+#' @return Return the default cross object
+#' @examples
+#' X()
+#' @export
+X <- function() {
+  value <-cof(diagline(),diagline.inv(),single = TRUE,name = "X")
+  value$tag <- list("single","fill")
+  value$visible<-1
   attr(value, "class") <- "field"
   value
 }

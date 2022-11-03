@@ -261,7 +261,8 @@ draw.Raven_matrix<- function(obj) { ###Definito Draw per i field si può semplif
     theta2<-obj[[squares[i]]]$theta.2
     
     #Fixing the plot area for each cells
-    Canvas(16,16)
+    Canvas(xlim=16,mar=c(1,1,1,1))
+    #Canvas(16,16)
     for(j in 1:length(shapes))
     {
       if(visible[[j]]==1)
