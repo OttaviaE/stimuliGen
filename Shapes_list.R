@@ -31,6 +31,71 @@ circle <- function(vis = 1) {
   value
 }
 
+#' Default ellipse
+#'
+#' @return Return the default ellipse object
+#' @examples
+#' ellipse()
+#' @export
+ellipse <- function(s.x=10,
+                    s.y=7,
+                    rot=0,
+                    shd=NA,
+                    vis = 1) {
+  value <- list(
+    shape = "ellipse",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(100),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default triangle
+#'
+#' @return Return the default triangle object
+#' @examples
+#' triangle()
+#' @export
+triangle <- function(s.x=15,
+                     s.y=15,
+                     rot=pi / 6,
+                     shd=NA,
+                     vis = 1) {
+  value <- list(
+    shape = "triangle",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(3),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
 #' Default square
 #'
 #' @return Return the default square object
@@ -94,6 +159,88 @@ pentagon <- function(s.x=15,
   attr(value, "class") <- "field"
   value
 }
+
+
+#' Default hexagon
+#'
+#' @return Return the default hexagon object
+#' @examples
+#' hexagon()
+#' @export
+hexagon <- function(s.x=15,
+                    s.y=15,
+                    rot=0,
+                    shd=SetAlpha("black", alpha = 1),
+                    vis = 1) {
+  value <- list(
+    shape = "hexagon",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(6),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default rot.hexagon
+#'
+#' @return Return the default rot.hexagon object
+#' @examples
+#' rot.hexagon()
+#' @export
+rot.hexagon <- function(s.x=15,
+                    s.y=15,
+                    rot=3*pi/2,
+                    shd=SetAlpha("black", alpha = 1),
+                    vis = 1) {
+  value <- list(
+    shape = "rot.hexagon",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(6),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default star
+#'
+#' @return Return the star object
+#' @examples
+#' star()
+#' @export
+star <- function() {
+  value <-cof(hexagon(),rot.hexagon())
+  value$tag <- list("small", "compose2","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+
 
 #################################################################
 #### ARCHI DI CERCHIO
@@ -410,7 +557,8 @@ s_vertical <- function() {
 #' s.vertical.inv()
 #' @export
 s_vertical.inv <- function() {
-  value <-cof( v.arc.right.up(), v.arc.left.down(),single=TRUE,name="s.vertical.inv")
+  value <-cof( v.arc.right.up(), v.arc.left.down(),single=TRUE,
+               name="s.vertical.inv")
   value$tag <- list("single","fill")
   attr(value, "class") <- "field"
   value
@@ -424,7 +572,8 @@ s_vertical.inv <- function() {
 #' s.horizontal()
 #' @export
 s_horizontal <- function() {
-  value <-cof(h.arc.left.up(), h.arc.right.down(),single=TRUE,name="s.horizontal")
+  value <-cof(h.arc.left.up(), h.arc.right.down(),single=TRUE,
+              name="s.horizontal")
   value$tag <- list("single","fill")
   attr(value, "class") <- "field"
   value
@@ -437,7 +586,8 @@ s_horizontal <- function() {
 #' s.horizontal.inv()
 #' @export
 s_horizontal.inv <- function() {
-  value <-cof( h.arc.left.down(), h.arc.right.up(),single=TRUE,name="s.horizontal.inv")
+  value <-cof( h.arc.left.down(), h.arc.right.up(),single=TRUE,
+               name="s.horizontal.inv")
   value$tag <- list("single","fill")
   attr(value, "class") <- "field"
   value
@@ -543,11 +693,14 @@ s.lily <- function() {
 #' @examples
 #' dot()
 #' @export
-dot <- function(x=0,y=0,vis = 1) {
+dot <- function(x=0,y=0,
+                size.x = 2, 
+                size.y =2, 
+                  vis = 1) {
   value <- list(
     shape = "dot",
-    size.x = list(3),
-    size.y = list(3),
+    size.x = list(size.x),
+    size.y = list(size.x),
     theta.1  = list(5*pi/4),
     theta.2  = list(7*pi/4),
     rotation = list(pi),
@@ -572,7 +725,8 @@ dot <- function(x=0,y=0,vis = 1) {
 #' dice()
 #' @export
 dice <- function() {
-  value <-cof(dot(13,13),dot(-13,13),dot(13,-13),dot(-13,-13),single = TRUE,name = "dice")
+  value <-cof(dot(13,13),dot(-13,13),dot(13,-13),dot(-13,-13),
+              single = TRUE,name = "dice")
   value$tag <- list("single")
   attr(value, "class") <- "field"
   value
