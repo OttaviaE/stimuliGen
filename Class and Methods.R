@@ -47,10 +47,11 @@ class(Raven) <- "Raven_matrix"
 #' @examples
 #'
 #' @export
+#'  
 concatenation <- function(...) {
   UseMethod("concatenation")
 }
-
+##concatenation puo essere sostituito con c(..., recursive=TRUE)
 concatenation.list <- function(...) {
   obj <- Map("c", ...)  
   return(obj)
@@ -179,7 +180,6 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   #and in the second row the function associated
   function_list <- read.csv("function_list.prn", sep="")
   #applying the horizontal rules
-
   if(rules=="HV")
   {
     for (r in 1:length(hrules))

@@ -68,7 +68,8 @@ movement.field<-function(obj,n,rule,...) {
 }
 
 rotation.field<-function(obj,n,...) {
-  obj$rotation[[1]]<-obj$rotation[[1]]+(n-1)*pi/4
+   obj$rotation[[1]]<-obj$rotation[[1]]+(n-1)*pi/4
+   #obj$rotation<-Map('+', obj$rotation,(n-1)*pi/4)
   return(obj)
 }
 
@@ -157,9 +158,9 @@ logic_rules.Raven_matrix<-function(obj,rule) {
               Sq7=c(1,3),Sq8=c(2,4),Sq9=1:4)
       
   }else if(rule=="AND"){
-    ele<-list(Sq9=1,Sq8=2,Sq7=c(1,2),
-              Sq6=3,Sq5=4,Sq4=c(3,4),
-              Sq3=c(1,3),Sq2=c(2,4),Sq1=1:4)
+    ele<-list(Sq1=c(1,2,4),Sq2=c(1,2,3),Sq3=c(1,2),
+              Sq4=c(1,3,4),Sq5=c(1,2,4),Sq6=c(1,3),
+              Sq7=c(1,4),Sq8=c(1,2),Sq9=1)
     
   }else if(rule=="XOR"){
     ele<-list(Sq1=1,Sq2=c(1,4),Sq3=4,

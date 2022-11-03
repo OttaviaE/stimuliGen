@@ -1,5 +1,6 @@
 ---
-title: "Presetazione0411"
+title: "Generazione automatica di matrici secondo regole"
+subtitle: "Progetto PRIN 2020, 4 Novembre 2022"
 author: "Andrea & Ottavia"
 output:
     bookdown::html_document2:
@@ -23,11 +24,11 @@ library(DescTools)
 
 # Introduzione
 
-Abbiamo deciso di usare R per generare le matrici, nello scpeifico stimao utilizzando il paschetto `DescTools`, il quale, tra le tante amenità, permette di ottenere rappresentazioni grafiche di alto livello. 
+Abbiamo deciso di usare R per generare le matrici, nello specifico stiamo utilizzando il pachetto `DescTools`, il quale, tra le tante amenità, permette di ottenere rappresentazioni grafiche di alto livello. 
 
 Tutte la rappresentazioni grafiche in `DescTools` sono basate su figure inscritte in un cerchio. Per questa ragione, le dimensioni delle figure sono basate sul raggio del cerchio entro cui sono inscritte (rendendo necessario un ripasso di geometria...)
 
-Il funzionamento è molto semplice: creaiamo le figure, o meglio, le loro coordinate con le funzioni di `DescTools`, queste vengono salvate e date in  pasto alla funzione base `polygon()` per poi andare a disegnare effettivamente le singole celle della matrice.  
+Il funzionamento è molto semplice: definiamo le caratteristiche delle figure e le diamo in pasto alle funzioni di di `DescTools`, queste poi vanno a disegnare effettivamente le singole celle della matrice.  
 
 # Cosa
 
@@ -80,17 +81,17 @@ field <- list(
   
   `pos.y`: posizione sull'ordinata rispetto allo 0
   
-  `lty`: Tipo di controno (`solid`, `dashed`, `dotted)` 
+  `lty`: Tipo di controno (`solid`, `dashed`, `dotted` )
   
   `lwd`: Spessore del contorno
   
-  `num`: Non mi ricordo
+  `num`: Figura a base di segmenti o di archi
   
   `nv`: Numero dei vertici da disegnare
   
   `shade`: Riempimento della figura
 (scala di grigi)  
-  `visible`: determina se la figrua definita in shape va mostrata della *x* esima cella
+  `visible`: determina se la figura definita in shape va mostrata nella *x* esima cella
   
   `tag`: serve in seguito per definire se l'immagine può essere rimpicciolita, se è un'immagine semplice o che è composta da altre immagini
 
@@ -130,7 +131,7 @@ DrawRegPolygon(x =  unlist(square()$pos.x),
 
 Per unire più figure inisieme, si utilizza la funzione `cof()`, che non fa altro che andare ad aggiungere dettagli delle singole figure all'interno di  `field`
 
-## Classe `Raven_matrix()`
+## Classe `Raven_matrix`
 
 Tutte le informazioni relative alle singole figure e le logiche le dominano devono essere combiante nella matrice. Tutte queste informazioni sono contenute all'interno della classe `Raven_matrix()`
 
@@ -174,6 +175,8 @@ matrix(paste0("Sq", 1:9),byrow=TRUE,ncol=3)
 source("Class and Methods.R")
 ```
 
+La generazione di una matrice è fatta tramite due passaggi. Nel primo si crea l'oggetto `Raven_matrix` inserendo al suo interno le forme e le regole che devono essere applicate utilizzando la funzione `Raven()`.
+Nel secondo le regole vengono applicate agli elementi della classe tramite il metodo `apply()`.
 
 ```{r}
 
@@ -187,7 +190,6 @@ draw(M) # disegna la matrice
 ## Stesse regole, matrici diverse 
 
 In entrambi questi esempi vengono disegnate due matrici separate (`M1`, `M2` e `M3`, `M4`) e vengono combinate insieme (i.e., sovraimposte) grazie alla funzione `com()`.
-
 
 
 
@@ -228,9 +230,9 @@ s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]
 
 
 xcros<- cross()
-xcros$lwd<-xcros$lwd[[1]]+4
-xcros$size.x<-xcros$size.x-4
-xcros$size.y<-xcros$size.y-4
+xcros$lwd[[1]]<-xcros$lwd[[1]]+4
+xcros$size.x[[1]]<-xcros$size.x[[1]]-4
+xcros$size.y[[1]]<-xcros$size.y[[1]]-4
 M1<-apply(Raven(cof(s.lilth,square(s.x=3,s.y=3,rot = pi/2),cross()),
                 "diff_shapes"))
 M2<-apply(Raven(cof(square(),circle(),dice()),vrule = "diff_shapes"))      
@@ -275,9 +277,9 @@ s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]
 
 
 xcros<- cross()
-xcros$lwd<-xcros$lwd[[1]]+4
-xcros$size.x<-xcros$size.x-4
-xcros$size.y<-xcros$size.y-4
+xcros$lwd[[1]]<-xcros$lwd[[1]]+4
+xcros$size.x[[1]]<-xcros$size.x[[1]]-4
+xcros$size.y[[1]]<-xcros$size.y[[1]]-4
 M3<-apply(Raven(cof(dot(),square(s.x=3,s.y=3,rot = pi/2, 
                                  shd="black"),xcros),
                 "diff_shapes"))
