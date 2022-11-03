@@ -236,10 +236,10 @@ apply.Raven_matrix <- function(obj,rules="HV") {
 }
 
 
-draw.Raven_matrix<- function(obj) {
+draw.Raven_matrix<- function(obj) { ###Definito Draw per i field si può semplificare questa
  
   library(DescTools)
-  par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + 0.1)
+  par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + .1, mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
   
   squares <- paste0("Sq", 1:9)
   for (i in 1:length(squares))
