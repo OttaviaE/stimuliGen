@@ -1,0 +1,308 @@
+---
+title: "Presetazione0411"
+author: "Andrea & Ottavia"
+output:
+    bookdown::html_document2:
+        toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = F, 
+                      fig.align = "center", 
+                      out.width = "100%")
+source("Class and Methods.R")
+source("Rules_27102022.R")
+source("Shapes_list.R")
+library(DescTools)
+```
+
+# Introduzione
+
+Abbiamo deciso di usare R per generare le matrici, nello scpeifico stimao utilizzando il paschetto `DescTools`, il quale, tra le tante amenità, permette di ottenere rappresentazioni grafiche di alto livello. 
+
+Tutte la rappresentazioni grafiche in `DescTools` sono basate su figure inscritte in un cerchio. Per questa ragione, le dimensioni delle figure sono basate sul raggio del cerchio entro cui sono inscritte (rendendo necessario un ripasso di geometria...)
+
+Il funzionamento è molto semplice: creaiamo le figure, o meglio, le loro coordinate con le funzioni di `DescTools`, queste vengono salvate e date in  pasto alla funzione base `polygon()` per poi andare a disegnare effettivamente le singole celle della matrice.  
+
+# Cosa
+
+Come prima cosa, vanno definiti gli oggetti da includere nella matrice e le loro carattertistiche. 
+
+Per questo, viene creata la classe `field`
+
+## Classe `field`
+
+Si tratta di una lista di lista. Ogni lista contiene le informazioni relative alle diverse caratteristiche degli oggetti.  
+
+
+
+
+```{r}
+field <- list(
+  shape = NULL,
+  size.x = list(),
+  size.y = list(),
+  theta.1 = list(), 
+  theta.2 = list(),
+  rotation = list(),
+  pos.x = list(),
+  pos.y = list(),
+  lty =list(),
+  lwd = list(),
+  num = list(),
+  nv = list(),
+  shade =list(),  
+  visible = NULL, 
+  tag = list()
+)
+```
+
+
+
+
+
+  `shape`: Definisce le forme da usare nella matrice 
+  
+  `size.x`: Definisce la lunghezza di un raggio del cerchio entro cui è inscritta la figura
+  
+  `size.y`: Definisce la lunghezza dell'altro raggio del cerchio entro cui è inscritta la figura
+  
+  `theta.1`: coordinate per disegnare le sezioni di cerchio
+  
+`rotation`: definisce la rotazione della figura in **radianti**
+
+  `pos.x`: posizione sull'ascissa rispetto allo 0
+  
+  `pos.y`: posizione sull'ordinata rispetto allo 0
+  
+  `lty`: Tipo di controno (`solid`, `dashed`, `dotted)` 
+  
+  `lwd`: Spessore del contorno
+  
+  `num`: Non mi ricordo
+  
+  `nv`: Numero dei vertici da disegnare
+  
+  `shade`: Riempimento della figura
+(scala di grigi)  
+  `visible`: determina se la figrua definita in shape va mostrata della *x* esima cella
+  
+  `tag`: serve in seguito per definire se l'immagine può essere rimpicciolita, se è un'immagine semplice o che è composta da altre immagini
+
+
+
+
+<details><summary>Vedi esempio</summary>
+
+:::: {style="display: flex;"}
+
+::: {}
+::: {.column width="200%"}
+
+```{r}
+square()
+```
+:::
+:::
+::::
+
+
+```{r, echo = F}
+Canvas(15,15)
+
+DrawRegPolygon(x =  unlist(square()$pos.x), 
+               y = unlist(square()$pos.y), 
+               radius.x=unlist(square()$size.x),
+              radius.y = unlist(square()$size.y),
+              rot=unlist(square()$rotation),
+               lwd = unlist(square()$lwd), 
+              lty=unlist(square()$lty), 
+              nv = unlist(square()$nv))
+```
+
+
+</details>
+
+Per unire più figure inisieme, si utilizza la funzione `cof()`, che non fa altro che andare ad aggiungere dettagli delle singole figure all'interno di  `field`
+
+## Classe `Raven_matrix()`
+
+Tutte le informazioni relative alle singole figure e le logiche le dominano devono essere combiante nella matrice. Tutte queste informazioni sono contenute all'interno della classe `Raven_matrix()`
+
+
+:::: {style="display: flex;" class="space-between"}
+
+::: {}
+```{r}
+Raven<-list(
+    Sq1 = list(),
+    Sq2 = list(),
+    Sq3 = list(),
+    
+    Sq4 = list(),
+    Sq5 = list(),
+    Sq6 = list(),
+    
+    Sq7 = list(),
+    Sq8 = list(),
+    Sq9 = list(),
+    hrule = list(),
+    vrule = list()
+  )
+```
+:::
+
+::: {}
+```{r,echo=FALSE}
+matrix(paste0("Sq", 1:9),byrow=TRUE,ncol=3)
+```
+
+:::
+
+
+::::
+
+# Creazione di una matrice 
+
+
+```{r echo = FALSE}
+source("Class and Methods.R")
+```
+
+
+```{r}
+
+M<-Raven(st1=square(),hrule=c("size"),vrule=c("identity"))
+M<-apply(M) # applica effetivamente la regola 
+draw(M) # disegna la matrice
+```
+
+# Alcuni esempi di possibili stimoli
+
+## Stesse regole, matrici diverse 
+
+In entrambi questi esempi vengono disegnate due matrici separate (`M1`, `M2` e `M3`, `M4`) e vengono combinate insieme (i.e., sovraimposte) grazie alla funzione `com()`.
+
+
+
+
+`M1<-apply(Raven(cof(`**<span style="color:red">`s.lilth`</span>**`,square(s.x=3,s.y=3,rot = pi/2),`**<span style="color:red">`cross()`</span>**`), "diff_shapes"))`
+
+
+`M2<-apply(Raven(cof(square(), circle(), `**<span style="color:red">`dice()`</span>**`), vrule = "diff_shapes"))`
+
+<details><summary>Vedi figura</summary>
+```{r echo = FALSE, eval = T}
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+  lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]
+  lilth$size.y[[i]] <-lilth$size.y[[i]]
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]
+  
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]
+
+
+xcros<- cross()
+xcros$lwd<-xcros$lwd[[1]]+4
+xcros$size.x<-xcros$size.x-4
+xcros$size.y<-xcros$size.y-4
+M1<-apply(Raven(cof(s.lilth,square(s.x=3,s.y=3,rot = pi/2),cross()),
+                "diff_shapes"))
+M2<-apply(Raven(cof(square(),circle(),dice()),vrule = "diff_shapes"))      
+draw(com(M2,M1))
+```
+</details>
+
+
+`M3<-apply(Raven(cof(`**<span style="color:blue">`dot()`</span>**`, square(s.x=3,s.y=3,rot = pi/2,shd="black"),`**<span style="color:blue">`xcros`</span>**`), "diff_shapes"))`
+
+`M4<-apply(Raven(cof(square(),circle(),`**<span style="color:blue">`pentagon()`</span>**`),vrule = "diff_shapes"))`
+
+<details><summary>Vedi figura</summary>
+```{r echo = FALSE, eval = T}
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+  lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]
+  lilth$size.y[[i]] <-lilth$size.y[[i]]
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]
+  
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]
+
+
+xcros<- cross()
+xcros$lwd<-xcros$lwd[[1]]+4
+xcros$size.x<-xcros$size.x-4
+xcros$size.y<-xcros$size.y-4
+M3<-apply(Raven(cof(dot(),square(s.x=3,s.y=3,rot = pi/2, 
+                                 shd="black"),xcros),
+                "diff_shapes"))
+M4<-apply(Raven(cof(square(),circle(),pentagon()),vrule = "diff_shapes"))        
+draw(com(M3,M4))
+
+```
+</details>
+
+
+## Regole logiche 
+
+### Una sola regola logica (OR)
+
+```{r}
+M<-logic_rules(Raven(lily()),"OR")
+draw(M)
+```
+
+
+### Più regole logiche (AND e XOR)
+
+```{r}
+M1<-logic_rules(Raven(square4()),"AND")
+M2<-logic_rules(Raven(lilth),"XOR")
+draw(com(M1,M2))
+```
+

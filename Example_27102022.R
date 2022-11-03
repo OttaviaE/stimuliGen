@@ -96,7 +96,6 @@ dev.off()
 pdf("E1_v02.pdf")
 M<-logic_rules(Raven(cof(hline(),square(s.x=3,s.y=3,rot = pi/2, shd="black"),dice(),vline())),"OR")
 draw(M)
-
 dev.off()
 
 # Esempio di svillupo di stimolo E11
