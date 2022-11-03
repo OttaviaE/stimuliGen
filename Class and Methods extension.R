@@ -3,7 +3,7 @@ draw.field<- function(obj) {
   par(mfrow = c(1, 1))
   plot.new()
 
-    Canvas(16,16)
+    Canvas(xlim=16,mar=c(1,1,1,1))
     for(j in 1:length(obj$shape))
     {
       if(obj$visible[[j]]==1)

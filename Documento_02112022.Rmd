@@ -14,6 +14,7 @@ editor_options:
 
 ```{r include=FALSE}
 source("Class and Methods.R")
+source("Class and Methods extension.R")
 source("Rules_27102022.R")
 source("Shapes_list.R")
 ```
@@ -107,42 +108,189 @@ Logiche più complesse vengono ottenute tramite composizioni di orizzontale e ve
 
 # Forme di Default
 
-## Cerchio
+## Forme Geometriche
 
-```{r,echo=TRUE}
-Canvas(15,15)
+::::{style="display: flex;"}
 
-DrawRegPolygon(x = circle()$pos.x[[1]], 
-               y = circle()$pos.y[[1]], radius.x=circle()$size.x[[1]],
-              radius.y = circle()$size.y[[1]], rot=circle()$rotation[[1]],
-               lwd = circle()$lwd[[1]], lty=circle()$lty[[1]], nv = circle()$nv[[1]])
+:::{}
+
+```{r,echo=FALSE}
+draw(circle())
 ```
 
-## Triangolo
 
-## Quadrato
+```{r,echo=FALSE}
+draw(square())
+```
 
-## Linea verticale
 
-## Linea orizzontale
+```{r,echo=FALSE}
+draw(rot.hexagon())
+```
+:::
 
-## Croce
+:::{}
 
-## Dado
+```{r,echo=FALSE}
+draw(ellipse())
+```
 
-## Dot
 
-## Elisse
+```{r,echo=FALSE}
+draw(pentagon())
+```
 
-## Piccolo triangolo (circa)
+```{r,echo=FALSE}
+draw(star())
+```
+:::
 
+:::{}
+
+```{r,echo=FALSE}
+draw(triangle())
+```
+
+
+```{r,echo=FALSE}
+draw(hexagon())
+```
+
+:::
+
+
+::::
+
+## Segmenti
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(vline())
+```
+
+```{r,echo=FALSE}
+draw(diagline())
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(hline())
+```
+
+```{r,echo=FALSE}
+draw(diagline.inv())
+```
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(cross())
+```
+
+```{r,echo=FALSE}
+draw(X())
+```
+:::
+
+
+::::
+
+## Archi 
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_vertical())
+```
+
+
+```{r,echo=FALSE}
+draw(s_horizontal.inv())
+```
+
+```{r,echo=FALSE}
+draw(lily())
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_vertical.inv())
+```
+
+
+```{r,echo=FALSE}
+draw(vertical.eight() )
+```
+
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_horizontal())
+```
+
+
+```{r,echo=FALSE}
+draw(horizontal.eight())
+```
+
+:::
+
+
+::::
+
+
+## Forme puntinate
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(dot())
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(cross.dice())
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(dice())
+```
+
+:::
+
+
+::::
 # Concatenazione di Forme
 
 La funzione `cof` concatena diversi campi esattamente secondo la stessa logica di `c()`
 
 ```{r}
 source("Class and Methods.R")
-cof(square(),circle(),pentagon()) 
+cof(square(),circle(),pentagon())
 ```
 
 # Creazione di una matrice
