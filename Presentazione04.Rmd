@@ -186,7 +186,7 @@ draw(M) # disegna la matrice
 
 ## Stesse regole, matrici diverse 
 
-In entrambi questi esempi vengono disegnate due matrici separate (`M1`, `M2` e `M3`, `M4`) e vengono combinate insieme (i.e., sovraimposte) grazie alla funzione `com()`.
+In entrambi questi esempi vengono disegnate due matrici separate (`M1`, `M2` e `M3`, `M4`, rispettivamente) e vengono combinate insieme (i.e., sovraimposte) grazie alla funzione `com()`.
 
 
 

@@ -1,9 +1,9 @@
-draw.field<- function(obj) {
+draw.field<- function(obj, main = NULL) {
   library(DescTools)
-  par(mfrow = c(1, 1))
-  plot.new()
+#  par(mfrow = c(1, 1))
+#  plot.new()
 
-    Canvas(xlim=16,mar=c(1,1,1,1))
+    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
     for(j in 1:length(obj$shape))
     {
       if(obj$visible[[j]]==1)

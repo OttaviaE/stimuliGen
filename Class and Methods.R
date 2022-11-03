@@ -236,7 +236,7 @@ apply.Raven_matrix <- function(obj,rules="HV") {
 }
 
 
-draw.Raven_matrix<- function(obj) { ###Definito Draw per i field si può semplificare questa
+draw.Raven_matrix<- function(obj, main = NULL) { ###Definito Draw per i field si può semplificare questa
  
   library(DescTools)
   par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + .1, mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
@@ -261,7 +261,7 @@ draw.Raven_matrix<- function(obj) { ###Definito Draw per i field si può semplif
     theta2<-obj[[squares[i]]]$theta.2
     
     #Fixing the plot area for each cells
-    Canvas(xlim=16,mar=c(1,1,1,1))
+    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
     #Canvas(16,16)
     for(j in 1:length(shapes))
     {
