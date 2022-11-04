@@ -38,8 +38,8 @@ header-includes:
             \begin{frame}
              \frametitle{Table of Contents}
              \tableofcontents[currentsection]
-            \end{frame}
-            }
+             \end{frame}
+          }
 editor_options: 
   chunk_output_type: console
 ---

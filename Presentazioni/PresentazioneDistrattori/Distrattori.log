@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2022.6.6)  4 NOV 2022 14:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2022.6.6)  4 NOV 2022 14:44
 entering extended mode
 **./Distrattori.tex
 (Distrattori.tex
@@ -1658,7 +1658,7 @@ Package rerunfilecheck Info: File `Distrattori.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29498 strings out of 480236
- 626689 string characters out of 2880084
+ 626843 string characters out of 2880084
  1021545 words of memory out of 3000000
  45256 multiletter control sequences out of 15000+200000
  584531 words of font info for 70 fonts, out of 3000000 for 9000
@@ -1673,7 +1673,7 @@ lmss8.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmssbx10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 lm/lmsso10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/lm/lmsy10.pfb>
-Output written on Distrattori.pdf (16 pages, 990439 bytes).
+Output written on Distrattori.pdf (16 pages, 990425 bytes).
 PDF statistics:
  536 PDF objects out of 1000 (max. 8388607)
  47 named destinations out of 1000 (max. 500000)
