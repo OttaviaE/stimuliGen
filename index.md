@@ -6,4 +6,4 @@
 
 [Presentazione04-11](Presentazione04.html)
 
-[Distrattori](Distrattori.pdf)
+[Distrattori](Presentazione Distrattori/Distrattori.pdf)
