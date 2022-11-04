@@ -1,7 +1,8 @@
 ---
 title: "Distrattori"
 author: "Andrea & Ottavia"
-date: "`r Sys.Date()`"
+date: "Riunione PRIN 4 Nov 2022"
+institute: Università di Padova
 output: 
   beamer_presentation: 
     template: C:/Users/huawei/OneDrive/Documenti/template.tex
@@ -33,12 +34,11 @@ header-includes:
     - \setbeamertemplate{frametitle}[default][center]
     - \AtBeginSection{\frame{\sectionpage}}
     - \setbeamercolor{section name}{fg=white}
-    - \setbeamercolor{title}{fg=template, bg=template}
     - \setbeamercolor{section title}{fg=template}
     - \setbeamercolor{frame subtitle}{fg=template}
     - \setbeamercolor{title}{fg=template}
     - \setbeamersize{text margin left=5mm,text margin right=5mm} 
-    - \useinnertheme[shadow=true]{rounded}
+    - \useinnertheme{rounded}
     - \AtBeginSection[]
           {
             \begin{frame}

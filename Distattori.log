@@ -1504,4 +1504,124 @@ Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-2-1.pdf
 used on input line 123.
 (pdftex.def)             Requested size: 298.75264pt x 209.1299pt.
 
-Overfull \vbox (18.58798pt too high) detected at
+Overfull \vbox (18.58798pt too high) detected at line 123
+ []
+
+[7
+
+ <./Distattori_files/figure-beamer/unnamed-chunk-2-1.pdf>]
+<Distattori_files/figure-beamer/unnamed-chunk-3-1.pdf, id=266, 722.7pt x 505.89
+pt>
+File: Distattori_files/figure-beamer/unnamed-chunk-3-1.pdf Graphic file (type p
+df)
+<use Distattori_files/figure-beamer/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-3-1.pdf  
+used on input line 128.
+(pdftex.def)             Requested size: 298.75264pt x 209.1299pt.
+
+Overfull \vbox (18.58798pt too high) detected at line 128
+ []
+
+[8
+
+ <./Distattori_files/figure-beamer/unnamed-chunk-3-1.pdf>] (Distattori.toc) [9
+
+] [10
+
+]
+<Distattori_files/figure-beamer/unnamed-chunk-5-1.pdf, id=344, 722.7pt x 505.89
+pt>
+File: Distattori_files/figure-beamer/unnamed-chunk-5-1.pdf Graphic file (type p
+df)
+<use Distattori_files/figure-beamer/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-5-1.pdf  
+used on input line 199.
+(pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
+<Distattori_files/figure-beamer/unnamed-chunk-6-1.pdf, id=345, 722.7pt x 505.89
+pt>
+File: Distattori_files/figure-beamer/unnamed-chunk-6-1.pdf Graphic file (type p
+df)
+<use Distattori_files/figure-beamer/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-6-1.pdf  
+used on input line 199.
+(pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
+[11
+
+ <./Distattori_files/figure-beamer/unnamed-chunk-5-1.pdf> <./Distattori_files/f
+igure-beamer/unnamed-chunk-6-1.pdf>] (Distattori.toc) [12
+
+] [13
+
+]pdfTeX warning (ext4): destination with the same identifier (name{section-1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.227 \end{frame}
+                  [14
+
+]
+Overfull \vbox (14.33707pt too high) detected at line 257
+ []
+
+[15
+
+]
+<Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf, id=477, 722.7pt x 505.89
+pt>
+File: Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file (type p
+df)
+<use Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf  
+used on input line 278.
+(pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
+<Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf, id=478, 722.7pt x 505.89
+pt>
+File: Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type p
+df)
+<use Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf  
+used on input line 278.
+(pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
+[16
+
+ <./Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf> <./Distattori_files/f
+igure-beamer/unnamed-chunk-8-1.pdf>]
+\tf@nav=\write6
+\openout6 = `Distattori.nav'.
+
+\tf@toc=\write7
+\openout7 = `Distattori.toc'.
+
+\tf@snm=\write8
+\openout8 = `Distattori.snm'.
+
+(Distattori.aux)
+Package rerunfilecheck Info: File `Distattori.out' has not changed.
+(rerunfilecheck)             Checksum: 09412CD77119309A3B7B67348174D05A;229.
+ ) 
+Here is how much of TeX's memory you used:
+ 29673 strings out of 480236
+ 631358 string characters out of 2880084
+ 1032625 words of memory out of 3000000
+ 45415 multiletter control sequences out of 15000+200000
+ 583248 words of font info for 70 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 111i,19n,112p,1811b,820s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{
+C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}
+{C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}<C:
+/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx
+10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
+x12.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+r10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+r6.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr
+8.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri
+10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lms
+y10.pfb>
+Output written on Distattori.pdf (16 pages, 1049948 bytes).
+PDF statistics:
+ 549 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 15095 words of extra memory for PDF output out of 17280 (max. 10000000)
+
