@@ -59,9 +59,7 @@ source("Class and Methods extension.R")
 source("Shapes_list.R")
 source("Rules_27102022.R")
 library(ggplot2)
-
 ## Forme modificate ad Hoc per questi esempi
-
 lilth<-lily()
 s.lilth<-s.lily()
 for(i in 1:length(lilth$shape)) {
@@ -71,20 +69,15 @@ for(i in 1:length(lilth$shape)) {
   lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
   
 }
-
 d = dice()
 d$nv = list(rep(4,4))
 d$shade =list(rep("white", 4))
-
 d1 = dice()
 d1$shade =list(rep("white", 4))
-
-
 s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
 s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
 s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
 s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
-
 for(i in 1:length(lilth$shape)) {
   lilth$size.x[[i]] <-lilth$size.x[[i]]
   lilth$size.y[[i]] <-lilth$size.y[[i]]
@@ -92,23 +85,17 @@ for(i in 1:length(lilth$shape)) {
   lilth$pos.x[[i]] <-lilth$pos.x[[i]]
   
 }
-
 s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]
 s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]
 s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]
 s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]
-
-
 xcros<- cross()
 xcros$lwd<-xcros$lwd[[1]]+4
 xcros$size.x<-xcros$size.x-4
 xcros$size.y<-xcros$size.y-4
-
 data = read.csv( "D:/PRIN2020/Raven/Raven-Distrattori/distrattori.csv", 
                 header = T, sep = ",")
-
 colnames(data)[ncol(data)] = "note"
-
 for (i in 3:ncol(data)) {
   for (j in 1:nrow(data)) {
     if (data[j,i] == "x") {
@@ -118,9 +105,7 @@ for (i in 3:ncol(data)) {
     }
   }
 }
-
 data$set = gsub("[0-9]", "", data$Item)
-
 small = data[, c("set", "Item",
                  "Distrattore", "R", "D", "WP", "IC", "R.IC")]
 small$var = paste0(small$Item, small$Distrattore)
@@ -188,7 +173,6 @@ ggplot(sum_dist[sum_dist$used %in% 1, ],
   geom_text(aes(label=label), vjust=1.6, color="white",
             position = position_dodge(0.9), size=8)+
   scale_fill_brewer(palette="Paired")
-
 ```
 
 <!-- :::: -->
@@ -288,14 +272,10 @@ Correct<-M$Sq9
 # matrice con blank
 M1<-M
 M1$Sq9<-hide(M1$Sq9)
-
-
 # crea i distrattori 
 wp_copy = (M[[4]])
-
 #wp_flip
 wp_flip = cof(diagline.inv(), square(s.x=3,s.y=3, shd="black"))
-
 #wp_matrix
 wp_matrix = cof(d1, 
                 square(s.x=3,s.y=3, shd="white"), 
@@ -303,27 +283,17 @@ wp_matrix = cof(d1,
 # d union
 d.union = hide(Correct, c(1, 2,4))
 d.union = cof(d.union, Correct, square(s.x=3,s.y=3, shd="black"), X())
-
 # r left 
 r.left = M$Sq8
-
 # ic neg 
-
 # IC-neg 
 ic.neg = cof(d1, square(s.x=3,s.y=3,rot = pi/2), cross())
-
-
 # ic flip 
-
-ic.flip = hide(Correct, c(1, 2,4))
-ic.flip = cof(ic.flip,square(s.x=3,s.y=3, shd="black"), X())
-
+ic.flip = cof(cross.dice(),square(s.x=3,s.y=3, shd="black"), X())
 # ic inc 
-
 ic.inc = hide(Correct, 2)
-
 distracters = list(d.union = d.union, 
-                   ic.neg = ic.neg, 
+                   ic.flip = ic.flip, 
                    ic.inc = ic.inc, 
                    wp.flip =wp_flip, 
                    wp.copy = wp_copy, 
@@ -331,9 +301,6 @@ distracters = list(d.union = d.union,
                    r.left = r.left, 
                    correct = Correct)
 responses = sample(distracters)
-
-
-
 ```
 
 
@@ -359,7 +326,7 @@ Risposte
 \end{center}
 
 ```{r out.width="100%"}
-par(mfcol = c(4,2))
+par(mfcol = c(4,2), mai = c(1, 5, 1, 5))
 for (i in 1:length(responses)) {
   draw(responses[[i]], main = names(responses)[i])
 }
@@ -394,7 +361,6 @@ Dipendenza distrattori/regole/logiche (under investigation right now)
 
 ? Il tipo di distrattori
 
-? Stabilire una distanza distrattore-risposta corretta
 \end{block}
 
 
@@ -411,9 +377,9 @@ Come:
 \begin{table}
 \centering
 
-\begin{tabular}{p{3cm}| p{3cm} | p{3cm} | p{3cm}}
+\begin{tabular}{|p{3cm}| p{3cm} | p{3cm} | p{3cm}|}
 \hline
-\multicolumn{2}{c}{Set A} & \multicolumn{2}{c}{Set B} \\\hline
+\multicolumn{2}{|c|}{Set A} & \multicolumn{2}{c|}{Set B} \\\hline
 & & & \\ 
 5 distrattori & 7 distrattori   & 5 distrattori & 7 distrattori\\
 & & & \\
@@ -462,6 +428,3 @@ draw(com(M3,M4))
 ::::
 
 :::
-
-
-

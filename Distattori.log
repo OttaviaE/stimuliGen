@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2022.6.6)  4 NOV 2022 13:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2022.6.6)  4 NOV 2022 13:55
 entering extended mode
 **./Distattori.tex
 (Distattori.tex
@@ -1556,11 +1556,11 @@ igure-beamer/unnamed-chunk-6-1.pdf>] (Distattori.toc) [12
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.227 \end{frame}
+l.226 \end{frame}
                   [14
 
 ]
-Overfull \vbox (14.33707pt too high) detected at line 257
+Overfull \vbox (14.33707pt too high) detected at line 256
  []
 
 [15
@@ -1572,7 +1572,7 @@ File: Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file (type p
 df)
 <use Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-7-1.pdf  
-used on input line 278.
+used on input line 277.
 (pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
 <Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf, id=478, 722.7pt x 505.89
 pt>
@@ -1580,7 +1580,7 @@ File: Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type p
 df)
 <use Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Distattori_files/figure-beamer/unnamed-chunk-8-1.pdf  
-used on input line 278.
+used on input line 277.
 (pdftex.def)             Requested size: 204.85802pt x 143.4005pt.
 [16
 
@@ -1619,7 +1619,7 @@ r6.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr
 8.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri
 10.pfb><C:/Users/huawei/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lms
 y10.pfb>
-Output written on Distattori.pdf (16 pages, 1049948 bytes).
+Output written on Distattori.pdf (16 pages, 1049920 bytes).
 PDF statistics:
  549 PDF objects out of 1000 (max. 8388607)
  47 named destinations out of 1000 (max. 500000)
