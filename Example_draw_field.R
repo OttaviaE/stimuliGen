@@ -136,8 +136,7 @@ r = list(r.left, r.diag, r.top)
 
 # Incomplete correlate 
 # IC-neg 
-ic.neg = hide(Correct, 2)
-ic.neg = cof(ic.neg, square(s.x=3,s.y=3,rot = pi/2))
+ic.neg = cof(d1, square(s.x=3,s.y=3,rot = pi/2), cross())
 draw(ic.neg)
 # anche i pallozzi bianchi? Forse aumenta la distanza
 
