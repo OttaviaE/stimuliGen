@@ -7,7 +7,7 @@ output:
   beamer_presentation: 
     template: C:/Users/huawei/OneDrive/Documenti/template.tex
     theme: metropolis
-    colortheme: spruce
+    colortheme: default
     highlight: kate
 classoption: aspectratio=1610 
 header-includes:
@@ -28,7 +28,9 @@ header-includes:
     - \newcommand\Factor{1.2}
     - \setbeamerfont{subtitle}{size=\large, series=\bfseries}
     - \setbeamertemplate{frametitle}[default][center]
-    - \AtBeginSection{\frame{\sectionpage}}
+    - \definecolor{background}{RGB}{250, 250, 250}
+    - \definecolor{template}{RGB}{34, 55, 58}
+    - \setbeamercolor{frametitle}{bg=background, fg=template}
     - \setbeamersize{text margin left=5mm,text margin right=5mm} 
     - \useinnertheme{circles}
     - \AtBeginSection[]
@@ -46,10 +48,10 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, 
                       fig.align = "center")
 library(DescTools)
-source("Class and Methods.R")
-source("Class and Methods extension.R")
-source("Shapes_list.R")
-source("Rules_27102022.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods extension.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Shapes_list.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Rules_27102022.R")
 library(ggplot2)
 ## Forme modificate ad Hoc per questi esempi
 lilth<-lily()
