@@ -11,9 +11,9 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
-source("Class and Methods.R")
-source("Shapes_list.R")
-source("Rules_27102022.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Shapes_list.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Rules_27102022.R")
 library(DescTools)
 ```
 

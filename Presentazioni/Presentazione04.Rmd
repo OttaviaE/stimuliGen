@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = F, 
                       fig.align = "center", 
                       out.width = "100%")
-source("Class and Methods.R")
-source("Rules_27102022.R")
-source("Shapes_list.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Rules_27102022.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Shapes_list.R")
 library(DescTools)
 ```
 
@@ -171,7 +171,7 @@ matrix(paste0("Sq", 1:9),byrow=TRUE,ncol=3)
 
 
 ```{r echo = FALSE}
-source("Class and Methods.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods.R")
 ```
 
 
