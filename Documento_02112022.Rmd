@@ -128,7 +128,7 @@ draw(circle(), main = "circle()")
 
 
 ```{r,echo=FALSE}
-draw(square(), main = "square")
+draw(square(), main = "square()")
 ```
 
 
