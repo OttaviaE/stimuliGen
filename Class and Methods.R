@@ -157,7 +157,7 @@ apply <- function(obj,rules) {
   UseMethod("apply")
 }
 
-draw <- function(obj) {
+draw <- function(obj, main = NULL) {
   UseMethod("draw")
 }
 
