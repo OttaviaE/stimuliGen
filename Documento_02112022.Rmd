@@ -115,45 +115,45 @@ Logiche più complesse vengono ottenute tramite composizioni di orizzontale e ve
 :::{}
 
 ```{r,echo=FALSE}
-draw(circle())
+draw(circle(), main = "circle()")
 ```
 
 
 ```{r,echo=FALSE}
-draw(square())
+draw(square(), main = "square")
 ```
 
 
 ```{r,echo=FALSE}
-draw(rot.hexagon())
-```
-:::
-
-:::{}
-
-```{r,echo=FALSE}
-draw(ellipse())
-```
-
-
-```{r,echo=FALSE}
-draw(pentagon())
-```
-
-```{r,echo=FALSE}
-draw(star())
+draw(rot.hexagon(), "rot.hexagon()")
 ```
 :::
 
 :::{}
 
 ```{r,echo=FALSE}
-draw(triangle())
+draw(ellipse(), "ellipse()")
 ```
 
 
 ```{r,echo=FALSE}
-draw(hexagon())
+draw(pentagon(), "pentagon()")
+```
+
+```{r,echo=FALSE}
+draw(star(), "star()")
+```
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(triangle(), "traingle()")
+```
+
+
+```{r,echo=FALSE}
+draw(hexagon(), "hexagon()")
 ```
 
 :::
@@ -168,11 +168,11 @@ draw(hexagon())
 :::{}
 
 ```{r,echo=FALSE}
-draw(vline())
+draw(vline(), main = "vline()")
 ```
 
 ```{r,echo=FALSE}
-draw(diagline())
+draw(diagline(), main = "diagline()")
 ```
 
 :::
@@ -180,22 +180,22 @@ draw(diagline())
 :::{}
 
 ```{r,echo=FALSE}
-draw(hline())
+draw(hline(), main = "hline()")
 ```
 
 ```{r,echo=FALSE}
-draw(diagline.inv())
+draw(diagline.inv(), main = "diagline.inv()")
 ```
 :::
 
 :::{}
 
 ```{r,echo=FALSE}
-draw(cross())
+draw(cross(), main = "cross()")
 ```
 
 ```{r,echo=FALSE}
-draw(X())
+draw(X(), main = "X()")
 ```
 :::
 
@@ -209,16 +209,16 @@ draw(X())
 :::{}
 
 ```{r,echo=FALSE}
-draw(s_vertical())
+draw(s_vertical(), main = "s_vertical()")
 ```
 
 
 ```{r,echo=FALSE}
-draw(s_horizontal.inv())
+draw(s_horizontal.inv(), main = "s_horizontal.inv()")
 ```
 
 ```{r,echo=FALSE}
-draw(lily())
+draw(lily(), main = "lily()")
 ```
 
 :::
@@ -226,12 +226,12 @@ draw(lily())
 :::{}
 
 ```{r,echo=FALSE}
-draw(s_vertical.inv())
+draw(s_vertical.inv(), main = "s_vertical.inv()")
 ```
 
 
 ```{r,echo=FALSE}
-draw(vertical.eight() )
+draw(vertical.eight(), main = "vertical.eight()" )
 ```
 
 
@@ -240,12 +240,12 @@ draw(vertical.eight() )
 :::{}
 
 ```{r,echo=FALSE}
-draw(s_horizontal())
+draw(s_horizontal(), main = "s_horizontal()")
 ```
 
 
 ```{r,echo=FALSE}
-draw(horizontal.eight())
+draw(horizontal.eight(), main = "horizontal()")
 ```
 
 :::
@@ -261,7 +261,7 @@ draw(horizontal.eight())
 :::{}
 
 ```{r,echo=FALSE}
-draw(dot())
+draw(dot(), "dot()")
 ```
 
 :::
@@ -269,7 +269,7 @@ draw(dot())
 :::{}
 
 ```{r,echo=FALSE}
-draw(cross.dice())
+draw(cross.dice(), "cross.dice()")
 ```
 
 :::
@@ -277,7 +277,7 @@ draw(cross.dice())
 :::{}
 
 ```{r,echo=FALSE}
-draw(dice())
+draw(dice(), "dice()")
 ```
 
 :::
