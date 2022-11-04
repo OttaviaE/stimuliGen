@@ -19,6 +19,14 @@ source("Rules_27102022.R")
 source("Shapes_list.R")
 ```
 
+# Files 
+
+- *Class and Methods.R* e *Class and Methods extension.R* contengono le definizioni delle classi e dei metodi presentati in seguito.
+
+- *Shapes_list.R* contiene le forme sviluppate di default.
+
+- *Rules_27102022.R* contiene le regole per la creazone delle matrici.
+
 # Classe campo
 
 La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
