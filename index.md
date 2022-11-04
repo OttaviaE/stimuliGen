@@ -4,6 +4,6 @@
 
 [Documentazione "ufficiale"](Details.html)
 
-[Presentazione04-11](Presentazione04.html)
+[Presentazione04-11](Presentazioni/Presentazione04.html)
 
-[Distrattori](PresentazioneDistrattori/Distrattori.pdf)
+[Distrattori](Presentazioni/PresentazioneDistrattori/Distrattori.pdf)
