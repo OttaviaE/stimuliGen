@@ -8,12 +8,11 @@ output:
     template: C:/Users/huawei/OneDrive/Documenti/template.tex
     theme: metropolis
     colortheme: spruce
-    fonttheme: serif
     highlight: kate
 classoption: aspectratio=1610 
 header-includes:
     - \setbeamertemplate{navigation symbols}{}
-    - \useoutertheme{miniframes}
+    - \useoutertheme{smoothbars}
     - \usepackage{graphicx} 
     - \usepackage{setspace}
     - \usepackage{tabularx}
@@ -28,17 +27,10 @@ header-includes:
     - \usepackage{multirow}
     - \newcommand\Factor{1.2}
     - \setbeamerfont{subtitle}{size=\large, series=\bfseries}
-    - \definecolor{template}{RGB}{181, 18, 27}
-    - \definecolor{background}{RGB}{250, 250, 250}
-    - \setbeamercolor{frametitle}{bg=background}
     - \setbeamertemplate{frametitle}[default][center]
     - \AtBeginSection{\frame{\sectionpage}}
-    - \setbeamercolor{section name}{fg=white}
-    - \setbeamercolor{section title}{fg=template}
-    - \setbeamercolor{frame subtitle}{fg=template}
-    - \setbeamercolor{title}{fg=template}
     - \setbeamersize{text margin left=5mm,text margin right=5mm} 
-    - \useinnertheme{rounded}
+    - \useinnertheme{circles}
     - \AtBeginSection[]
           {
             \begin{frame}
@@ -130,6 +122,11 @@ sum_dist = merge(sum_dist, count_dist,
 # Tassonomia dei distrattori 
 
 ## Piccola nota
+
+Solo matrici standard e loro distrattori 
+
+Tutto basato sull analisi degli errori che vengono riportate in letteratura
+
 
 - Set A-B: matrici $2 \times 2$ $\rightarrow$ 5 distrattori, una corretta
 
