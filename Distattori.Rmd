@@ -4,8 +4,9 @@ author: "Andrea & Ottavia"
 date: "`r Sys.Date()`"
 output: 
   beamer_presentation: 
+    template: C:/Users/huawei/OneDrive/Documenti/template.tex
     theme: metropolis
-    colortheme: orchid
+    colortheme: spruce
     fonttheme: serif
     highlight: kate
 classoption: aspectratio=1610 
@@ -15,7 +16,7 @@ header-includes:
     - \usepackage{graphicx} 
     - \usepackage{setspace}
     - \usepackage{tabularx}
-    - \usepackage[english]{babel}
+    - \usepackage[italian]{babel}
     - \usepackage{tikzsymbols}
     - \usepackage{subcaption}
     - \usepackage{tikz}
@@ -23,6 +24,7 @@ header-includes:
     - \usepackage{tabularx}
     - \usepackage[absolute,overlay]{textpos}
     - \usepackage{booktabs}
+    - \usepackage{multirow}
     - \newcommand\Factor{1.2}
     - \setbeamerfont{subtitle}{size=\large, series=\bfseries}
     - \definecolor{template}{RGB}{181, 18, 27}
@@ -36,6 +38,7 @@ header-includes:
     - \setbeamercolor{frame subtitle}{fg=template}
     - \setbeamercolor{title}{fg=template}
     - \setbeamersize{text margin left=5mm,text margin right=5mm} 
+    - \useinnertheme[shadow=true]{rounded}
     - \AtBeginSection[]
           {
             \begin{frame}
@@ -68,6 +71,14 @@ for(i in 1:length(lilth$shape)) {
   lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
   
 }
+
+d = dice()
+d$nv = list(rep(4,4))
+d$shade =list(rep("white", 4))
+
+d1 = dice()
+d1$shade =list(rep("white", 4))
+
 
 s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
 s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
@@ -133,6 +144,13 @@ sum_dist = merge(sum_dist, count_dist,
 
 # Tassonomia dei distrattori 
 
+## Piccola nota
+
+- Set A-B: matrici $2 \times 2$ $\rightarrow$ 5 distrattori, una corretta
+
+- Set C-E: matrici $3 \times 3$ $\rightarrow$  7 distrattori, una corretta
+
+
 ## 
 
 \vspace*{-1cm}
@@ -140,44 +158,310 @@ sum_dist = merge(sum_dist, count_dist,
 \includegraphics[width=\linewidth]{tassonomia.pdf}
 \end{figure}
 
+## Non sempre è così facile...
 
-## Piccola nota
+```{r out.width = "35%"}
+knitr::include_graphics("c11.png")
+```
 
-- Set A-B: matrici $2 \times 2$ $\rightarrow$ 5 distrattori, una corretta
 
-- Set C-E: matrici $3 \times 3$ $\rightarrow$  7 distrattori, una corretta
 
-## I distrattori delle SPM
+# I distrattori delle SPM
 
-```{r, out.width = "50%"}
+## Frequenza
+
+<!-- ::: columns -->
+
+<!-- :::: column -->
+
+
+```{r, out.width = "70%"}
 ggplot(sum_dist[sum_dist$used %in% 1, ], 
        aes(x = macro, y = label, fill = macro)) + 
-  geom_bar(stat = "identity", position = position_dodge()) + theme_bw() + 
+  geom_bar(stat = "identity", position = position_dodge()) + theme_bw() + xlab("Macro categoria di distrattori") +
   theme(legend.position = "top", 
-        legend.title = element_blank()) + 
+        legend.title = element_blank(), 
+        legend.text = element_text(size = 28), 
+        axis.text = element_text(size = 28),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_text(size = 28)) + 
   geom_text(aes(label=label), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5)+
+            position = position_dodge(0.9), size=8)+
   scale_fill_brewer(palette="Paired")
 
 ```
 
+<!-- :::: -->
 
+<!-- \pause -->
+
+<!-- :::: column -->
+
+
+
+<!-- :::: -->
+
+<!-- ::: -->
+
+## Set e frequenza
+
+```{r, out.width = "70%"}
+ggplot(sum_dist[sum_dist$used %in% 1, ], 
+       aes(x = set, y = Freq, fill = macro)) + 
+  geom_bar(stat = "identity", position = position_dodge()) + theme_bw() + 
+  theme(legend.position = "top", 
+        legend.title = element_blank(), 
+        legend.text = element_text(size = 28), 
+        axis.text = element_text(size = 28),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_text(size = 28))+ 
+  geom_text(aes(label=Freq), vjust=.50, color="black",
+            position = position_dodge(0.9), size=6.5)+
+  scale_fill_brewer(palette="Paired")
+```
+
+# Cosa abbiamo pensato 
+
+## Quanti e quali
+
+::: columns
+
+:::: column
+
+\begin{center}
+Matrici $2 \times 2$: 
+\end{center}
+
+\begin{table}
+\centering
+
+\begin{tabular}{p{1cm} p{2cm}}
+1 &D\\
+
+2 &WP\\
+
+1 &IC \\
+
+1 & R \\
+\end{tabular}
+
+\end{table}
+
+
+
+::::
+
+:::: column
+
+\begin{center}
+Matrici $3 \times 3$: 
+\end{center}
+
+\begin{table}
+\centering
+
+\begin{tabular}{p{1cm} p{2cm}}
+1 &D\\
+
+3 &WP\\
+
+2 &IC \\
+
+1 & R \\
+\end{tabular}
+
+\end{table}
+
+::::
+
+:::
+
+
+## Un esempio
+
+
+```{r}
+M<-logic_rules(Raven(cof(hline(),square(s.x=3,s.y=3,rot = pi/2, shd="black"),
+                         dice(),vline())),"OR")
+# risposta corretta
+Correct<-M$Sq9
+# matrice con blank
+M1<-M
+M1$Sq9<-hide(M1$Sq9)
+
+
+# crea i distrattori 
+wp_copy = (M[[4]])
+
+#wp_flip
+wp_flip = cof(diagline.inv(), square(s.x=3,s.y=3, shd="black"))
+
+#wp_matrix
+wp_matrix = cof(d1, 
+                square(s.x=3,s.y=3, shd="white"), 
+                vline())
+# d union
+d.union = hide(Correct, c(1, 2,4))
+d.union = cof(d.union, Correct, square(s.x=3,s.y=3, shd="black"), X())
+
+# r left 
+r.left = M$Sq8
+
+# ic neg 
+
+# IC-neg 
+ic.neg = cof(d1, square(s.x=3,s.y=3,rot = pi/2), cross())
+
+
+# ic flip 
+
+ic.flip = hide(Correct, c(1, 2,4))
+ic.flip = cof(ic.flip,square(s.x=3,s.y=3, shd="black"), X())
+
+# ic inc 
+
+ic.inc = hide(Correct, 2)
+
+distracters = list(d.union = d.union, 
+                   ic.neg = ic.neg, 
+                   ic.inc = ic.inc, 
+                   wp.flip =wp_flip, 
+                   wp.copy = wp_copy, 
+                   wp.matrix = wp_matrix, 
+                   r.left = r.left, 
+                   correct = Correct)
+responses = sample(distracters)
+
+
+
+```
 
 
 ::: columns
 
 :::: column
-left
+
+\begin{center}
+Matrice
+\end{center}
+
+```{r out.width="100%"}
+draw(M1)
+```
+
+
 ::::
 
 :::: column
-right
 
-```{r your-chunk-name, echo=FALSE, fig.cap="your-caption-name"}
-plot(cars)
+\begin{center}
+Risposte
+\end{center}
 
-#The figure will appear on the right side of the slide...
+```{r out.width="100%"}
+par(mfcol = c(4,2))
+for (i in 1:length(responses)) {
+  draw(responses[[i]], main = names(responses)[i])
+}
 ```
+
+
+::::
+
+
+:::
+
+# Osservazioni e dubbi
+
+##
+
+\begin{exampleblock}{Osservazioni}
+
+Non tutti i distrattori possono essere sempre usati 
+
+Dipendenza distrattori/regole/logiche (under investigation right now)
+
+
+\vspace{5mm}
+
+\end{exampleblock}
+
+\pause
+
+\begin{block}{Dubbi}
+
+? Il numero dei distrattori
+
+? Il tipo di distrattori
+
+? Stabilire una distanza distrattore-risposta corretta
+\end{block}
+
+
+## Un'idea
+
+Studio sperimentale *within-subjects*::
+
+1. Le matrici create con le stesse regole ma che si distinguono per un aspetto (e.g., le figure) sono realmente equivalenti?
+
+2. Il numero di distrattori influenza le risposte alla matrice?
+
+Come: 
+
+\begin{table}
+\centering
+
+\begin{tabular}{p{3cm}| p{3cm} | p{3cm} | p{3cm}}
+\hline
+\multicolumn{2}{c}{Set A} & \multicolumn{2}{c}{Set B} \\\hline
+& & & \\ 
+5 distrattori & 7 distrattori   & 5 distrattori & 7 distrattori\\
+& & & \\
+\hline
+\multicolumn{4}{p{12cm}}{Nota: Set A e Set B sono due set di 5/6 matrici generate con le stesse identiche regole ma che differiscono per un grado (e.g., utilizzo di figure differenti)}
+\end{tabular}
+
+\end{table}
+
+
+## Esempio di matrici equivalenti 
+
+::: columns
+
+:::: column
+
+\begin{center}
+Set A
+\end{center}
+
+```{r out.width="100%"}
+M1<-apply(Raven(cof(s.lilth,square(s.x=3,s.y=3,rot = pi/2),cross()),
+                "diff_shapes"))
+M2<-apply(Raven(cof(square(),circle(),dice()),vrule = "diff_shapes"))      
+draw(com(M2,M1))
+```
+
+
+
+:::: 
+
+:::: column
+
+\begin{center}
+Set B
+\end{center}
+
+```{r out.width="100%"}
+M3<-apply(Raven(cof(dot(),square(s.x=3,s.y=3,rot = pi/2, 
+                                 shd="black"),xcros),
+                "diff_shapes"))
+M4<-apply(Raven(cof(square(),circle(),pentagon()),vrule = "diff_shapes"))        
+draw(com(M3,M4))
+```
+
 ::::
 
 :::
+
+
+
