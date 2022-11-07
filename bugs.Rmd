@@ -1,0 +1,325 @@
+---
+title: "Bugs"
+subtitle: "Non odiarmi"
+author: "Ottavia"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+    toc: yes
+---
+
+```{r include=FALSE}
+library(DescTools)
+source("Class and Methods.R")
+source("Class and Methods extension.R")
+source("Rules_27102022.R")
+source("Shapes_list-07-11-Ottavia.R")
+knitr::opts_chunk$set(fig.align = "center")
+```
+
+# Intro 
+
+Sto provando a rompere il codice il più possibile.
+
+# Rotation 
+
+## H 
+
+SI
+
+```{r}
+rot_h <-apply(Raven(st1=cof(e.hexagon()),
+                   hrule=c("rotation"),vrule=c("identity")))
+draw(rot_h)
+```
+
+
+
+## V 
+
+```{r}
+rot_v <-apply(Raven(st1=cof(pentagon()),
+                   hrule=c("rotation"),vrule=c("identity")))
+draw(rot_v)
+```
+
+
+
+## HV 
+
+SI ( ma viene il mal di mare)
+
+```{r}
+rot_hv <-apply(Raven(st1=cof(pentagon()),
+                   hrule=c("rotation"),vrule=c("rotation")))
+draw(rot_hv)
+```
+
+
+# Size
+
+## H 
+
+SI
+
+```{r}
+s_h = apply(Raven(st1=pentagon(),
+                  hrule=c("size"),
+                  vrule=c("identity")))
+draw(s_h)
+```
+
+
+## V
+
+SI
+
+```{r}
+s_v = apply(Raven(st1=pentagon(),
+                  hrule=c("identity"),
+                  vrule=c("size")))
+draw(s_v)
+
+```
+
+
+## HV 
+
+SI 
+
+```{r}
+s_hv = apply(Raven(st1=pentagon(),
+                  hrule=c("size"),
+                  vrule=c("size")))
+draw(s_hv)
+```
+
+
+# Bordo - spessore 
+
+## H 
+SI
+
+```{r}
+lwd_h = apply(Raven(st1=circle(),
+                  hrule=c("lwd"),
+                  vrule=c("identity")))
+draw(lwd_h)
+
+```
+
+## V
+
+SI
+
+```{r}
+lwd_v = apply(Raven(st1=circle(),
+                  hrule=c("identity"),
+                  vrule=c("lwd")))
+draw(lwd_v)
+
+```
+
+
+## HV 
+
+SI 
+
+```{r}
+lwd_hv = apply(Raven(st1=circle(),
+                  hrule=c("lwd"),
+                  vrule=c("lwd")))
+draw(lwd_hv)
+
+```
+
+
+# Bordo - Tipo 
+
+
+## H 
+SI
+
+```{r}
+lty_h = apply(Raven(st1=circle(),
+                  hrule=c("lty"),
+                  vrule=c("identity")))
+draw(lty_h)
+
+```
+
+## V
+
+SI
+
+```{r}
+lty_v = apply(Raven(st1=circle(),
+                  hrule=c("identity"),
+                  vrule=c("lty")))
+draw(lty_v)
+
+```
+
+
+## HV 
+
+SI 
+
+```{r}
+lty_hv = apply(Raven(st1=circle(),
+                  hrule=c("lty"),
+                  vrule=c("lty")))
+draw(lty_hv)
+
+```
+
+
+# Different shapes 
+
+## H 
+
+
+
+## V
+
+## HV 
+
+# Rotation * Shapes
+
+## H 
+
+## V
+
+## HV 
+
+# Rotation * size
+
+## HV
+
+SI 
+
+```{r}
+rs_hv = apply(Raven(st1=pentagon(),
+                  hrule=c("rotation"),
+                  vrule=c("size")))
+draw(rs_hv)
+
+```
+
+## VH
+
+```{r}
+rs_vh = apply(Raven(st1=pentagon(),
+                  hrule=c("size"),
+                  vrule=c("rotation")))
+draw(rs_vh)
+
+```
+
+
+# LWD * Rotation 
+
+## HV
+
+```{r}
+lwdr_hv = apply(Raven(st1=e.hexagon(),
+                  hrule=c("lwd"),
+                  vrule=c("rotation")))
+draw(lwdr_hv)
+
+```
+
+## VH
+
+```{r}
+lwdr_vh = apply(Raven(st1=e.hexagon(),
+                  hrule=c("rotation"),
+                  vrule=c("lwd")))
+draw(lwdr_vh)
+
+```
+
+
+# LWD * size 
+
+## HV
+
+```{r}
+lwds_hv = apply(Raven(st1=e.hexagon(),
+                  hrule=c("lwd"),
+                  vrule=c("size")))
+draw(lwds_hv)
+
+```
+
+## VH
+
+```{r}
+lwds_vh = apply(Raven(st1=e.hexagon(),
+                  hrule=c("size"),
+                  vrule=c("lwd")))
+draw(lwds_vh)
+
+```
+
+# LTY * Rotation 
+
+## HV
+
+```{r}
+ltyr_hv = apply(Raven(st1=e.hexagon(),
+                  hrule=c("lty"),
+                  vrule=c("rotation")))
+draw(ltyr_hv)
+
+```
+
+## VH
+
+```{r}
+ltyr_vh = apply(Raven(st1=ellipse(),
+                  hrule=c("rotation"),
+                  vrule=c("lty")))
+draw(ltyr_vh)
+
+```
+
+
+# lty * size 
+
+## HV
+
+```{r}
+ltys_hv = apply(Raven(st1=e.hexagon(),
+                  hrule=c("lty"),
+                  vrule=c("size")))
+draw(ltys_hv)
+
+```
+
+## VH
+
+```{r}
+ltys_vh = apply(Raven(st1=triangle(),
+                  hrule=c("size"),
+                  vrule=c("lty")))
+draw(ltys_vh)
+
+```
+
+# Shapes * size 
+
+## H 
+
+## V
+
+## HV 
+
+# Regole logiche 
+
+
+
+
+
