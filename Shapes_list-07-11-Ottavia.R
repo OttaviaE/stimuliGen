@@ -161,6 +161,38 @@ pentagon <- function(s.x=15,
 }
 
 
+#' Default empty hexagon
+#'
+#' @return Return the default empty hexagon object
+#' @examples
+#' e.hexagon()
+#' @export
+e.hexagon <- function(s.x=15,
+                      s.y=15,
+                      rot=0,
+                      shd=SetAlpha("black", alpha = 0),
+                      vis = 1) {
+  value <- list(
+    shape = "e.hexagon",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(6),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
 #' Default hexagon
 #'
 #' @return Return the default hexagon object
@@ -236,6 +268,20 @@ rot.hexagon <- function(s.x=15,
 star <- function() {
   value <-cof(hexagon(),rot.hexagon())
   value$tag <- list("small", "compose2","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default star (unique)
+#'
+#' @return Return the star object (seen as a unique object)
+#' @examples
+#' u.star()
+#' @export
+u.star <- function() {
+  value <-cof(hexagon(),rot.hexagon())
+  value$shape = "u.star"
+  value$tag <- list("small", "simple","fill")
   attr(value, "class") <- "field"
   value
 }
