@@ -8,6 +8,8 @@ output:
     theme: tactile
     highlight: github
     toc: yes
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r include=FALSE}
@@ -22,6 +24,12 @@ knitr::opts_chunk$set(fig.align = "center")
 # Intro 
 
 Sto provando a rompere il codice il più possibile.
+
+## Summary errori
+
+Ci sono problemi quando si prova a combianre diff_shapes() con altre regole. Nello specifico, se diff_shapes() è la regola applicata in orizzontale, la regola che dovrebbe essere applicata in verticale è applicata solo alla prima colonna (Sq1, Sq4, Sq7). 
+
+Viceversa, se diff_shapes() è la regola applicata in verticale, la regola che dovrebbe essere applicata in orizzontale è applicata solo sulla prima riga (Sq1, Sq2, Sq3)
 
 # Rotation 
 
@@ -382,9 +390,102 @@ draw(M)
 M1<-apply(Raven(st1=cof(horizontal.eight(), vertical.eight(), s_horizontal.inv()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
 draw(M1)
 ```
+# shapes * rotation 
+
+## HV - NO
+
+Le figure cambiano per riga. La rotazione è applicata solo sulla prima colonna 
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),hrule=c("diff_shapes"),vrule=c("rotation")))
+draw(M)
+```
 
 
+## VH - NO
 
+Le figure cambiano per colonna. La rotazione è applicata solo sulla prima riga 
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),vrule=c("diff_shapes"),hrule=c("rotation")))
+draw(M)
+```
+
+
+# shapes * lwd/lty 
+
+## HV - NO 
+
+Le figure cambiano per riga, ma il cambio di linea è applicato solo sulla prima colonna
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),hrule=c("diff_shapes"),vrule=c("lwd")))
+draw(M)
+
+
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),hrule=c("diff_shapes"),vrule=c("lty")))
+draw(M)
+```
+
+
+## VH - NO 
+
+Le figure cambiano per colonna, ma i contorno cambia solo sulla prima riga.
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),vrule=c("diff_shapes"),hrule=c("lwd")))
+draw(M)
+```
+
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),vrule=c("diff_shapes"),hrule=c("lty")))
+draw(M)
+```
+
+
+# shapes * size 
+
+## HV - NO 
+
+Le figure cambiano per riga. La dimensione cambia solo sulla prima colonna
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),hrule=c("diff_shapes"),vrule=c("size")))
+draw(M)
+```
+
+
+## VH - NO 
+
+Le figure cambiano per colonna. La dimensione cambia solo sulla prima riga.
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),vrule=c("diff_shapes"),hrule=c("size")))
+draw(M)
+```
+
+
+# shapes * fill 
+
+## HV - NO 
+
+Le figure cambiano per riga. Il riempimento cambia solo sulla prima colonna
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),hrule=c("diff_shapes"),vrule=c("fill")))
+draw(M)
+```
+
+
+## VH - NO 
+
+Le figure cambiano per colonna. Il rimepimento cambia solo sulla prima riga.
+
+```{r}
+M<-apply(Raven(st1=cof(square(), ellipse(), triangle()),vrule=c("diff_shapes"),hrule=c("fill")))
+draw(M)
+```
 
 # Regole logiche 
 
