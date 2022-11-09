@@ -392,7 +392,7 @@ draw(M1)
 ```
 # shapes * rotation 
 
-## HV - NO
+## HV - CORRETTO
 
 Le figure cambiano per riga. La rotazione è applicata solo sulla prima colonna 
 
@@ -402,7 +402,7 @@ draw(M)
 ```
 
 
-## VH - NO
+## VH - CORRETTO
 
 Le figure cambiano per colonna. La rotazione è applicata solo sulla prima riga 
 
@@ -414,7 +414,7 @@ draw(M)
 
 # shapes * lwd/lty 
 
-## HV - NO 
+## HV - CORRETTO 
 
 Le figure cambiano per riga, ma il cambio di linea è applicato solo sulla prima colonna
 
@@ -428,7 +428,7 @@ draw(M)
 ```
 
 
-## VH - NO 
+## VH - CORRETTO 
 
 Le figure cambiano per colonna, ma i contorno cambia solo sulla prima riga.
 
@@ -446,7 +446,7 @@ draw(M)
 
 # shapes * size 
 
-## HV - NO 
+## HV - CORRETTO 
 
 Le figure cambiano per riga. La dimensione cambia solo sulla prima colonna
 
@@ -456,7 +456,7 @@ draw(M)
 ```
 
 
-## VH - NO 
+## VH - CORRETTO 
 
 Le figure cambiano per colonna. La dimensione cambia solo sulla prima riga.
 
@@ -468,7 +468,7 @@ draw(M)
 
 # shapes * fill 
 
-## HV - NO 
+## HV - CORRETTO 
 
 Le figure cambiano per riga. Il riempimento cambia solo sulla prima colonna
 
@@ -478,7 +478,7 @@ draw(M)
 ```
 
 
-## VH - NO 
+## VH - CORRETTO 
 
 Le figure cambiano per colonna. Il rimepimento cambia solo sulla prima riga.
 

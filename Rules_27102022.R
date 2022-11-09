@@ -37,14 +37,17 @@ fill <- function(obj,n,...) {
 
 fill.field<-function(obj,n,...){
   index <- rep(c("white","grey","black"),3)
-   pos <- index==obj$shade[[1]]
-  if(is.na(sum(pos)))
+  obj$shade <- lapply(obj$shade, function(x,i)
   {
-    obj$shade[[1]]<-index[n] 
-  }else{
-    pos <- which(pos)
-    obj$shade[[1]]<-index[pos+n]
-  }
+    pos <- pos <- index==x
+    if(is.na(sum(pos)))
+    {
+      return(index[n])
+    }else{
+      pos <- which(pos)
+      return(index[pos+n])
+    }
+  },index)
   return(obj)
 }
 
@@ -69,8 +72,8 @@ movement.field<-function(obj,n,rule,...) {
 
 rotation.field<-function(obj,n,...) {
   obj$rotation<-Map('+', obj$rotation,(n-1)*pi/4)
-  obj$theta.1<-Map('+', obj$theta.1,(n-1)*pi/4)
-  obj$theta.2<-Map('+', obj$theta.2,(n-1)*pi/4)
+  #obj$theta.1<-Map('+', obj$theta.1,(n-1)*pi/4)
+  #obj$theta.2<-Map('+', obj$theta.2,(n-1)*pi/4)
   return(obj)
 }
 
@@ -83,9 +86,9 @@ size.field<-function(obj,n,...) {
 margin.field<-function(obj,n,rules,...){
   index<-c(3:1,3:1,3:1)
   if(grepl("lwd",rules)){
-    obj$lwd[[1]]<- index[obj$lwd[[1]]+n]+1
+    obj$lwd<- lapply(obj$lwd,function(x,i,n){i[x+n]+1},index,n)
   }else if(grepl("lty",rules)){
-    obj$lty[[1]]<-index[obj$lty[[1]]+n]
+    obj$lty<- lapply(obj$lty,function(x,i,n){i[x+n]},index,n)
     }
   return(obj)
 }
