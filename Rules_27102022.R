@@ -69,6 +69,8 @@ movement.field<-function(obj,n,rule,...) {
 
 rotation.field<-function(obj,n,...) {
   obj$rotation<-Map('+', obj$rotation,(n-1)*pi/4)
+  obj$theta.1<-Map('+', obj$theta.1,(n-1)*pi/4)
+  obj$theta.2<-Map('+', obj$theta.2,(n-1)*pi/4)
   return(obj)
 }
 
