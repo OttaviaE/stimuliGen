@@ -7,3 +7,5 @@
 [Presentazione04-11](Presentazioni/Presentazione04.html)
 
 [Distrattori](Presentazioni/PresentazioneDistrattori/Distrattori.pdf)
+
+[Bugs](bugs.html)
