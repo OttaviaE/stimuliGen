@@ -25,9 +25,7 @@ Sto provando a rompere il codice il più possibile.
 
 # Rotation 
 
-## H 
-
-SI
+## H - SI
 
 ```{r}
 rot_h <-apply(Raven(st1=cof(e.hexagon()),
@@ -37,7 +35,7 @@ draw(rot_h)
 
 
 
-## V 
+## V - SI
 
 ```{r}
 rot_v <-apply(Raven(st1=cof(pentagon()),
@@ -47,9 +45,7 @@ draw(rot_v)
 
 
 
-## HV 
-
-SI ( ma viene il mal di mare)
+## HV - SI ( ma viene il mal di mare)
 
 ```{r}
 rot_hv <-apply(Raven(st1=cof(pentagon()),
@@ -60,9 +56,7 @@ draw(rot_hv)
 
 # Size
 
-## H 
-
-SI
+## H - SI
 
 ```{r}
 s_h = apply(Raven(st1=pentagon(),
@@ -72,9 +66,7 @@ draw(s_h)
 ```
 
 
-## V
-
-SI
+## V - SI
 
 ```{r}
 s_v = apply(Raven(st1=pentagon(),
@@ -85,9 +77,7 @@ draw(s_v)
 ```
 
 
-## HV 
-
-SI 
+## HV - SI 
 
 ```{r}
 s_hv = apply(Raven(st1=pentagon(),
@@ -99,8 +89,7 @@ draw(s_hv)
 
 # Bordo - spessore 
 
-## H 
-SI
+## H - SI
 
 ```{r}
 lwd_h = apply(Raven(st1=circle(),
@@ -110,9 +99,7 @@ draw(lwd_h)
 
 ```
 
-## V
-
-SI
+## V - SI
 
 ```{r}
 lwd_v = apply(Raven(st1=circle(),
@@ -123,9 +110,7 @@ draw(lwd_v)
 ```
 
 
-## HV 
-
-SI 
+## HV - SI 
 
 ```{r}
 lwd_hv = apply(Raven(st1=circle(),
@@ -139,8 +124,7 @@ draw(lwd_hv)
 # Bordo - Tipo 
 
 
-## H 
-SI
+## H - SI
 
 ```{r}
 lty_h = apply(Raven(st1=circle(),
@@ -150,9 +134,7 @@ draw(lty_h)
 
 ```
 
-## V
-
-SI
+## V - SI
 
 ```{r}
 lty_v = apply(Raven(st1=circle(),
@@ -163,9 +145,7 @@ draw(lty_v)
 ```
 
 
-## HV 
-
-SI 
+## HV - SI 
 
 ```{r}
 lty_hv = apply(Raven(st1=circle(),
@@ -176,29 +156,9 @@ draw(lty_hv)
 ```
 
 
-# Different shapes 
-
-## H 
-
-
-
-## V
-
-## HV 
-
-# Rotation * Shapes
-
-## H 
-
-## V
-
-## HV 
-
 # Rotation * size
 
-## HV
-
-SI 
+## HV - SI 
 
 ```{r}
 rs_hv = apply(Raven(st1=pentagon(),
@@ -208,7 +168,7 @@ draw(rs_hv)
 
 ```
 
-## VH
+## VH - SI
 
 ```{r}
 rs_vh = apply(Raven(st1=pentagon(),
@@ -221,7 +181,7 @@ draw(rs_vh)
 
 # LWD * Rotation 
 
-## HV
+## HV - SI
 
 ```{r}
 lwdr_hv = apply(Raven(st1=e.hexagon(),
@@ -231,7 +191,7 @@ draw(lwdr_hv)
 
 ```
 
-## VH
+## VH - SI
 
 ```{r}
 lwdr_vh = apply(Raven(st1=e.hexagon(),
@@ -244,7 +204,7 @@ draw(lwdr_vh)
 
 # LWD * size 
 
-## HV
+## HV - SI
 
 ```{r}
 lwds_hv = apply(Raven(st1=e.hexagon(),
@@ -254,7 +214,7 @@ draw(lwds_hv)
 
 ```
 
-## VH
+## VH - SI
 
 ```{r}
 lwds_vh = apply(Raven(st1=e.hexagon(),
@@ -266,7 +226,7 @@ draw(lwds_vh)
 
 # LTY * Rotation 
 
-## HV
+## HV - SI
 
 ```{r}
 ltyr_hv = apply(Raven(st1=e.hexagon(),
@@ -276,7 +236,7 @@ draw(ltyr_hv)
 
 ```
 
-## VH
+## VH - SI
 
 ```{r}
 ltyr_vh = apply(Raven(st1=ellipse(),
@@ -289,7 +249,7 @@ draw(ltyr_vh)
 
 # lty * size 
 
-## HV
+## HV - SI
 
 ```{r}
 ltys_hv = apply(Raven(st1=e.hexagon(),
@@ -299,7 +259,7 @@ draw(ltys_hv)
 
 ```
 
-## VH
+## VH - SI
 
 ```{r}
 ltys_vh = apply(Raven(st1=triangle(),
@@ -309,13 +269,122 @@ draw(ltys_vh)
 
 ```
 
-# Shapes * size 
+# Shapes
 
-## H 
+## H - Si  
 
-## V
 
-## HV 
+```{r}
+#Horizontal
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("identity")))
+draw(M)
+
+```
+
+## V - SI 
+
+```{r}
+#Vertical
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("identity"),vrule=c("diff_shapes")))
+draw(M)
+
+
+
+```
+
+
+## HV - SI
+
+```{r}
+# Top Left Low Right
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+
+Il problema di shapes è che non funziona con alcune delle forme 
+
+### circle(), triangle(), pentagon() - SI 
+
+```{r}
+M<-apply(Raven(st1=cof(circle(), triangle(), pentagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+
+### circle(), ellipse(), pentagon() - SI 
+
+```{r}
+M<-apply(Raven(st1=cof(circle(), ellipse(), pentagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+### circle(), ellipse(), e.hexagon() - SI 
+
+```{r}
+M<-apply(Raven(st1=cof(circle(), ellipse(), e.hexagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+### circle(), ellipse(), lily() - NO
+
+```{r, eval = F}
+Ma<-apply(Raven(st1=cof(circle(), ellipse(), lily()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(Ma)
+```
+
+
+### circle(), ellipse(), star() - NO
+
+```{r eval = F}
+Mb<-apply(Raven(st1=cof(circle(), ellipse(), star()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(Mb)
+```
+
+
+### circle(), ellipse(), v.arc.left.down() - SI
+
+```{r}
+M<-apply(Raven(st1=cof(circle(), ellipse(), v.arc.left.down()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+
+### (v.arc.right.down(), h.arc.right.down(), v.arc.left.down() - SI
+
+```{r}
+M<-apply(Raven(st1=cof(v.arc.right.down(), h.arc.right.down(), v.arc.left.down()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+
+Gli archetti funzionano tutti
+
+
+### s_vertical(), s_horizontal(), s_horizontal.inv() - SI
+
+```{r}
+M<-apply(Raven(st1=cof(s_vertical(), s_horizontal(), s_horizontal.inv()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+### s_vertical.inv(), s_horizontal(), s_horizontal.inv() - SI
+
+```{r}
+M<-apply(Raven(st1=cof(s_vertical.inv(), s_horizontal(), s_horizontal.inv()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+```
+
+
+### horizontal.eight(), vertical.eight(), s_horizontal.inv()- NO
+
+```{r eval = FALSE}
+M1<-apply(Raven(st1=cof(horizontal.eight(), vertical.eight(), s_horizontal.inv()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M1)
+```
+
+
+
 
 # Regole logiche 
 
