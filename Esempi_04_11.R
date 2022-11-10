@@ -81,3 +81,8 @@ draw(com(M1,M2))
 M1<-apply(Raven(lily(),"rotation","rotation"))
 draw(M1)
 
+
+### ESEMPIO 6
+
+M1<-apply(Raven(cof(square(),triangle(),circle()),"multifill"))
+draw(M1)
