@@ -9,3 +9,5 @@
 [Distrattori](Presentazioni/PresentazioneDistrattori/Distrattori.pdf)
 
 [Bugs](bugs.html)
+
+[News-10-11](news-10-11.html)
