@@ -3,7 +3,7 @@ setwd(dirname(current_path))
 cat("\014")
 rm(list = ls())
 
-source("Shapes_list-07-11-Ottavia.R")
+source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods.R")
 source("Class and Methods extension.R")
 
@@ -87,3 +87,10 @@ draw(M1)
 M1<-apply(Raven(bow.tie(),"multifill","multifill"))
 draw(M1)
 
+M1<-apply(Raven(bow.tie(),"multifill","multifill"))
+draw(M1)
+
+
+M1<-apply(Raven(pie.2.inv(),
+                "multifill","multifill"))
+draw(M1)
