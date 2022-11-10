@@ -84,5 +84,6 @@ draw(M1)
 
 ### ESEMPIO 6
 
-M1<-apply(Raven(cof(square(),triangle(),circle()),"multifill"))
+M1<-apply(Raven(bow.tie(),"multifill","multifill"))
 draw(M1)
+
