@@ -43,7 +43,57 @@ draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
 
 # facendo il vettore all'interno della funzione vengono righe più karghe
 
+# tenendoli invece separati vengono alla grande 
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = -unlist(square()$size.x)/2), 
+     canvas = F)
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = unlist(square()$size.x)/2), 
+     canvas = F)
+
+# provo a fare la stessa cosa ma tranciando a metà in verticale 
+# si può e si può anche cambiare inclinazione della riga e spessore
+# del tratteggio
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x =  -unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+draw(diagline(p.x =  unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 2))), 
+     canvas = F)
+
+
+
 ### NON ANDARE OLTRE, ANCORA WORK IN PROGRESS -----
+
+# clipping
+Canvas(bg="lightgrey", main="Yin ~ Yang")
+DrawCircle (r.out = 1, col="white")
+clip(0, 2, 2, -2)
+draw(diagline(p.x =  1,
+              p.y =  c(seq(-2, 2, by = .2))), 
+     canvas = F)
+DrawCircle(col="black")
+clip(-2, 2, 2, -2)
+DrawCircle (y = c(-0.5,0.5), r.out = 0.5, col=c("black", "white"), border=NA)
+DrawCircle (y = c(-0.5,0.5), r.out = 0.1, col=c("white", "black"), border=NA)
+DrawCircle ()
+
+
+
+
+Canvas(xlim=c(-5,5))
+DrawCircle (r.out=4:1, col=c("white", "steelblue2", 
+                             "white", "red"), lwd=3, nv=100)
 
 
 draw(square())
