@@ -39,19 +39,20 @@ fill.field<-function(obj,n,rule,...){
   index <- rep(c("white","grey","black"),3)
   if(grepl("multi",rule))
   {
-    obj$shade <-lapply(obj$shade, function(x,i,n,l)
+    set.seed(n)
+    new<-Map("c",obj$shade,sample(1:length(obj$shape),length(obj$shape)))
+    obj$shade <-lapply(new, function(x,i,n)
            {
-             pos <- index==x
+             pos <- index==x[1]
              
-             i<-sample(0:l,1)
              if(is.na(sum(pos)))
              {
-               return(index[n+i])
+               return(index[n+as.numeric(x[2])])
              }else{
                pos <- which(pos)
-               return(index[pos+n+i])
+               return(index[pos+n+as.numeric(x[2])])
              }
-           },i=index,n=n,l=length(obj$shade))
+           },i=index,n=n)
     
   }else{
     obj$shade <- lapply(obj$shade, function(x,i,n)
