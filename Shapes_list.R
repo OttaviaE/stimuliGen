@@ -759,8 +759,8 @@ cross.dice <- function() {
 vline <- function(p.x=0 ,p.y=0,vis = 1) {
   value <- list(
     shape = "vline",
-    size.x = sqrt(square()$ size.x[[1]]^2 /2),
-    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
+    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi + pi / 2),
@@ -787,8 +787,8 @@ vline <- function(p.x=0 ,p.y=0,vis = 1) {
 hline <- function(p.x=0 ,p.y=0, vis = 1) {
   value <- list(
     shape = "hline",
-    size.x = sqrt(square()$ size.x[[1]]^2 /2),
-    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
+    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi),
@@ -843,8 +843,8 @@ square4 <- function() {
 diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
   value <- list(
     shape = "diagline.inv",
-    size.x = sqrt(square()$ size.x[[1]]^2 /2),
-    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
+    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi + pi / 4),
@@ -871,8 +871,8 @@ diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
 diagline <- function(p.x=0 ,p.y=0,vis = 1) {
   value <- list(
     shape = "diagline.inv",
-    size.x = sqrt(square()$ size.x[[1]]^2 /2),
-    size.y = sqrt(square()$ size.y[[1]]^2 /2),
+    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
+    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi - pi / 4),

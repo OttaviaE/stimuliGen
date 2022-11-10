@@ -51,3 +51,26 @@ hide.field<-function(obj,index="Full")
     obj$visible[index]<-integer(length(index))
   return(obj)
 }
+
+
+shapes_list<-function(filename)
+{
+  rm(list = ls())
+  source(filename)
+  name <- ls()
+  
+  table<-data.frame(
+  num_shapes<-integer(length(name)),
+  small<-logical(length(name)),
+  fill<- logical(length(name)),
+  rotate<- logical(length(name))
+  )
+  for(r in 1:length(name))
+  {
+    f<-get(name[r])
+    obj<-f()
+    unlist(obj)
+  }
+}
+
+
