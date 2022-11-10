@@ -71,16 +71,61 @@ draw(diagline(p.x =  unlist(square()$size.x)/2,
                   p.y =  c(seq(-20, 20, by = 2))), 
      canvas = F)
 
+# sezioni del cerchio
 
+Canvas(bg = "white")
+# questa è la prima slice, le altre ruotano.
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = pi/4,
+           theta.2 = 3*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 3*pi/4,
+           theta.2 = 5*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 5*pi/4,
+           theta.2 = 7*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 7*pi/4,
+           theta.2 = 9*pi/4)
+
+# semi cerchi
+Canvas(bg = "white")
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = pi/4,
+           theta.2 = 5*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 5*pi/4,
+           theta.2 = pi/4)
+
+Canvas(bg = "white")
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 7*pi/4,
+           theta.2 = 3*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 3*pi/4,
+           theta.2 = 7*pi/4)
+
+
+
+
+
+DrawCircle(x = -0.2, y =0.5, r.out = 0.1, r.in =0.1, 
+           col = "black")
+DrawCircle(col = "black",x = -0.2, y =0.5, r.out = 0.1, r.in =0.1)
 
 ### NON ANDARE OLTRE, ANCORA WORK IN PROGRESS -----
 
 # clipping
 Canvas(bg="lightgrey", main="Yin ~ Yang")
 DrawCircle (r.out = 1, col="white")
-clip(0, 2, 2, -2)
-draw(diagline(p.x =  1,
-              p.y =  c(seq(-2, 2, by = .2))), 
+clip(0, 0.7, 0.7, -0.7)
+draw(diagline(p.x =  c(seq(-1, 1, by = .2),
+              p.y = 1)), 
      canvas = F)
 DrawCircle(col="black")
 clip(-2, 2, 2, -2)

@@ -130,6 +130,144 @@ draw(M1)
 Lui è l'unione di due triangoli. Esiste sia come due forme separate (`bow.tie`) sia come forma unica (`u.bow.tie()`)
 
 
+```{r}
+M1<-apply(Raven(cof(u.bow.tie(), u.pie.2(), 
+                    u.pie.4()),
+                "diff_shapes","diff_shapes"))
+draw(M1)
+```
+
+
 # Forme da implementare nel codice
 
 Mi riferisco nello specifico ai quadrati pieni
+
+Ho modificato un po' la funzione draw() in modo che non mettesse per froza un nuovo canvas e mi permettesse di usare le righe che ci sono già: 
+
+Per diesgnare il riempimento va usata la funzione crop, con cui si disegna un quadrilatero che è dove verranno poi disegnate le righe: 
+
+```{r eval = FALSE}
+crop(x1, x2, y1, y2)
+```
+
+
+Esempio: 
+
+```{r}
+Canvas(bg = "white")
+DrawCircle (r.out = 1, col="white")
+clip(0, 0.7, 0.7, -0.7)
+draw(diagline(p.x =  c(seq(-1, 1, by = .2),
+              p.y = 1)), 
+     canvas = F)
+
+```
+
+
+Sul cerchio non ha senso. Sul quadrato si. 
+
+Modifcando le x e le y quando si disegnano le righe si ottiene il riempimento desiderato
+
+Modificando l'argomento by all'interno del seq si modifica la densità del rimepimento
+
+
+
+
+### Metà superiore con righe diagonali a 45 gradi: 
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), # prepara il quadrilatero  
+     unlist(square()$size.x)/sqrt(2),  # entro cui fare le righe
+     unlist(square()$size.x)/sqrt(2), # in questo grado ha la stessa dimensione del quadrato
+     -unlist(square()$size.x)/sqrt(2))
+
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = unlist(square()$size.x)/2),  
+     canvas = F)
+```
+
+
+
+### Metà inferiore con righe diagonali a 45 gradi: 
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = -unlist(square()$size.x)/2), canvas = F)
+```
+
+
+
+### Pieno: 
+
+Per disegnarlo pieno conviene mettere le righe sotto e le roghe sorpa come due cose separate per motivi che boh
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), # prepara il quadrilatero  
+     unlist(square()$size.x)/sqrt(2),  # entro cui fare le righe
+     unlist(square()$size.x)/sqrt(2), # in questo grado ha la stessa dimensione del quadrato
+     -unlist(square()$size.x)/sqrt(2))
+
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = unlist(square()$size.x)/2),  
+     canvas = F)
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = -unlist(square()$size.x)/2), canvas = F)
+```
+
+
+## In verticale 
+
+Ovviamente, modifcando la x si può fare la stessa cosa in verticale: 
+
+### SInistra, 45 gradi
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x =  -unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+
+```
+
+
+### Destra, 135 gradi
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline(p.x =  unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+```
+
+
+### Messi insieme 
+
+
+```{r}
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x =  -unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+draw(diagline(p.x =  unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+```
+
