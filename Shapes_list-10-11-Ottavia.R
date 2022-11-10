@@ -306,6 +306,25 @@ bow.tie <- function() {
   value
 }
 
+
+#' Union bow tie
+#'
+#' @return Return the default cross object
+#' @examples
+#' u.bow.tie()
+#' @export
+u.bow.tie <- function() {
+  value <-cof(triangle(pos.x = 0, pos.y = 10, rot=pi/6, 
+                       s.x = 10, s.y=10), 
+              triangle(pos.x = 0, pos.y = -10, rot=pi/2, 
+                       s.x = 10, s.y=10), single = T, 
+              name = "u.bow.tie")
+  value$tag <- list("simple","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
+
 #################################################################
 #### ARCHI DI CERCHIO -----
 ###############################################################

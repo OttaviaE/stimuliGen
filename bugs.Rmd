@@ -293,7 +293,7 @@ draw(M)
 
 ```{r}
 #Vertical
-M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("identity"),vrule=c("diff_shapes")))
+M<-apply(Raven(st1=cof(u.bow.tie(),square(),pentagon()),hrule=c("identity"),vrule=c("diff_shapes")))
 draw(M)
 
 
