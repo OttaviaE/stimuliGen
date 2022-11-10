@@ -945,6 +945,9 @@ diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
   value
 }
 
+
+
+
 #' Default main diagonal line
 #'
 #' @return Return the default diagonal line object

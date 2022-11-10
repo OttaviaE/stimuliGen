@@ -1,26 +1,46 @@
-draw.field<- function(obj, main = NULL) {
+draw.field<- function(obj, main = NULL, canvas = T) {
   library(DescTools)
 #  par(mfrow = c(1, 1))
 #  plot.new()
-
-    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
-    for(j in 1:length(obj$shape))
+if (canvas == T) {
+  Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+  for(j in 1:length(obj$shape))
+  {
+    if(obj$visible[[j]]==1)
     {
-      if(obj$visible[[j]]==1)
-      {
-        if(obj$num[[j]][1]==1){
-          DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
-                         radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
-                         lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
-        }else{
-          DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
-                     r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
-                     theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
-                     lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
-          
-        }
+      if(obj$num[[j]][1]==1){
+        DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
+                       radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                       lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+      }else{
+        DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
+                   r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+                   theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+                   lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+        
       }
     }
+  }
+} else {
+  for(j in 1:length(obj$shape))
+  {
+    if(obj$visible[[j]]==1)
+    {
+      if(obj$num[[j]][1]==1){
+        DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
+                       radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                       lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+      }else{
+        DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
+                   r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+                   theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+                   lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+        
+      }
+    }
+  }
+}
+    
     
   }
 
