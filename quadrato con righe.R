@@ -1,14 +1,108 @@
 # nuove forme 20/10/2022
 # CODICE PER RIEMPIRE IL QUADRATO -----
 library(DescTools) 
+# riempo la metà superiore con righe diag 45 gradi
+# modifictao draw per farlo
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+# usando diagline non viene preché in primis riprende il canvas vuoto
+# in secundis è gigantesca
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = unlist(square()$size.x)/2), # variando y, cambia la quantità di riempimento
+     canvas = F)
 
-q = DrawRegPolygon(x = 0, y = 0, radius.x = 1, radius.y = 1,
-                   nv = 4, plot = F, rot = pi/4) # crea le coordinate del quadrato
+# metà inferiore
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = -unlist(square()$size.x)/2), canvas = F)
+
+# solo in alto/solo in basso
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = c(unlist(square()$size.x), 
+                          -unlist(square()$size.x))), 
+     canvas = F)
+
+# tutto
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = c(unlist(square()$size.x)/2, 
+                          -unlist(square()$size.x)/2)), 
+     canvas = F)
+
+# facendo il vettore all'interno della funzione vengono righe più karghe
+
+### NON ANDARE OLTRE, ANCORA WORK IN PROGRESS -----
+
+
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2)) # definisce l'area entro cui disegnare il riempimento
+# nota bene che è esattamente il lato del quadrato
+# disegna il rimepimento (linea 45 gradi)
+DrawRegPolygon(x = c(seq(-20, 20, by = 1)), 
+               y = 0, # variando y, cambia la quantità di riempimento
+               nv = 2, rot=pi/4, 
+               radius.x = 15, 
+               radius.y = 15) 
+# con y = 0 riempie tutto il quadrato 
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+DrawRegPolygon(x = c(seq(-20, 20, by = 1)), 
+               y = -10, # variando y, cambia la quantità di riempimento
+               nv = 2, rot=pi/4, 
+               radius.x = 15, 
+               radius.y = 15) 
+# -10 riempie la metà inferiore
+
+
+
+DrawRegPolygon(x = c(seq(-20, 20, by = 1)), 
+               y = +10, # variando y, cambia la quantità di riempimento
+               nv = 2, rot=pi/4, 
+               radius.x = 15, 
+               radius.y = 15) 
+# 10 riempie la metà inferiore
+# si può variare la quantita di quadrato riempito variando la y 
+
+
+
+
+
 Canvas()
 polygon(q) # disegna il quadrato
 clip(-0.70, .70, .70, -.70) # definisce l'area entro cui disegnare il riempimento
+# nota bene che è esattamente il lato del quadrato
+
+# disegna il rimepimento (linea 135 gradi)
 DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
-               nv = 2, rot=pi/4, radius.x = 15, radius.y = 15) # disegna il rimepimento
+               nv = 2, rot=3*pi/4, radius.x = 15, radius.y = 15) 
+
+Canvas()
+polygon(q) # disegna il quadrato
+clip(-0.70, .70, .70, -.70) # definisce l'area entro cui disegnare il riempimento
+# nota bene che è esattamente il lato del quadrato
+
+# disegna il rimepimento (90 gradi)
+DrawRegPolygon(x = c(seq(-12, 12, by = .10)), y = 1, 
+               nv = 2, rot=pi/2, radius.x = 15, radius.y = 15)
+
+
+
 # disegna un cerchio
 p = DrawRegPolygon(x = 0, y = 0, radius.x = .70, radius.y = .70,
                    nv = 100, plot = F, rot = pi/4, 
