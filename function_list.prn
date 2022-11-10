@@ -13,3 +13,4 @@ OR	logic
 XOR	logic
 identity	identity
 fill	fill
+multifill	fill

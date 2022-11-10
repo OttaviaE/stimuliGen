@@ -35,19 +35,38 @@ fill <- function(obj,n,...) {
 
 ##Rules
 
-fill.field<-function(obj,n,...){
+fill.field<-function(obj,n,rule,...){
   index <- rep(c("white","grey","black"),3)
-  obj$shade <- lapply(obj$shade, function(x,i)
+  if(grepl("multi",rule))
   {
-    pos <- pos <- index==x
-    if(is.na(sum(pos)))
+    obj$shade <-lapply(obj$shade, function(x,i,n,l)
+           {
+             pos <- index==x
+             
+             i<-sample(0:l,1)
+             if(is.na(sum(pos)))
+             {
+               return(index[n+i])
+             }else{
+               pos <- which(pos)
+               return(index[pos+n+i])
+             }
+           },i=index,n=n,l=length(obj$shade))
+    
+  }else{
+    obj$shade <- lapply(obj$shade, function(x,i,n)
     {
-      return(index[n])
-    }else{
-      pos <- which(pos)
-      return(index[pos+n])
-    }
-  },index)
+      pos <- index==x
+      if(is.na(sum(pos)))
+      {
+        return(index[n])
+      }else{
+        pos <- which(pos)
+        return(index[pos+n])
+      }
+    },index,n)
+  }
+  
   return(obj)
 }
 
