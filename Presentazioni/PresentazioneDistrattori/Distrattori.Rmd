@@ -39,7 +39,6 @@ header-includes:
              \frametitle{Table of Contents}
              \tableofcontents[currentsection]
              \end{frame}
-          }
 editor_options: 
   chunk_output_type: console
 ---

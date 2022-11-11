@@ -954,11 +954,12 @@ diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
 #' @examples
 #' diagline()
 #' @export
-diagline <- function(p.x=0 ,p.y=0,vis = 1) {
+diagline <- function(p.x=0 ,p.y=0,s.x=list(sqrt(square()$ size.x[[1]]^2 /2))
+                     ,s.y=list(sqrt(square()$ size.x[[1]]^2 /2)),vis = 1) {
   value <- list(
     shape = "diagline.inv",
-    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
-    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
+    size.x = s.x,
+    size.y = s.y,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi - pi / 4),

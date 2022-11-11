@@ -4,9 +4,7 @@ cat("\014")
 rm(list = ls())
 
 source("Shapes_list-10-11-Ottavia.R")
-source("Class and Methods.R")
-source("Class and Methods extension.R")
-
+source("Class and Methods v02.R")
 source("Rules_27102022.R")
 
 lilth<-lily()
