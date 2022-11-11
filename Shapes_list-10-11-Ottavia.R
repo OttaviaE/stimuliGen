@@ -903,14 +903,15 @@ cross <- function() {
   value
 }
 
-#' Default square 
+#' Default square4 
 #'
-#' @return Return the default cross object
+#' @return Return the default square4
 #' @examples
-#' cross()
+#' square4()
 #' @export
 square4 <- function() {
-  value <-cof(vline(p.x=-8,),vline(p.x=8),hline(p.y=-8,),hline(p.y=8))
+  value <-cof(vline(p.x=-8,),vline(p.x=8),hline(p.y=-8,),
+              hline(p.y=8))
   value$tag <- list("compose4")
   attr(value, "class") <- "field"
   value
@@ -990,3 +991,273 @@ X <- function() {
   attr(value, "class") <- "field"
   value
 }
+
+
+# spicchi ----
+
+#' Default slice
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' slice()
+#' @export
+slice <- function(p.x=0 ,p.y=0,
+                  theta1 = pi/4, 
+                  theta2 = 3*pi/4,
+                  size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                  size.y = 0,
+                  vis = 1) {
+  value <- list(
+    shape = "slice",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+
+
+#' Default pie 4
+#'
+#' @return Return the default pies in 4 slices
+#' @examples
+#' pie.4()
+#' @export
+pie.4 <- function() {
+  value <-cof(slice(), 
+              slice(theta1 = 3*pi/4, theta2 = 5*pi/4), 
+              slice(theta1 = 5*pi/4, theta2 = 7*pi/4), 
+              slice(theta1 = 7*pi/4, theta2 = 9*pi/4))
+  value$tag <- list("compose4","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+
+#' Default pie 4 union
+#'
+#' @return Return the default pies in 4 slices
+#' @examples
+#' pie.4()
+#' @export
+u.pie.4 <- function() {
+  value <-cof(slice(), 
+              slice(theta1 = 3*pi/4, theta2 = 5*pi/4), 
+              slice(theta1 = 5*pi/4, theta2 = 7*pi/4), 
+              slice(theta1 = 7*pi/4, theta2 = 9*pi/4), 
+              single = TRUE, 
+              name = "u.pie.4")
+  value$tag <- list("simple","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+
+
+#' Default semi circle
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' semi.circle()
+#' @export
+semi.circle <- function(p.x=0 ,p.y=0,
+                  theta1 = pi/4, 
+                  theta2 = 5*pi/4,
+                  size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                  size.y = 0,
+                  vis = 1) {
+  value <- list(
+    shape = "semi.circle",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default semi circle inv
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' semi.circle.inv()
+#' @export
+semi.circle.inv <- function(p.x=0 ,p.y=0,
+                        theta1 = 5*pi/4, 
+                        theta2 = pi/4,
+                        size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                        size.y = 0,
+                        vis = 1) {
+  value <- list(
+    shape = "semi.circle.inv",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default pie 2
+#'
+#' @return Return the default pies in 2 slices
+#' @examples
+#' pie.2()
+#' @export
+pie.2 <- function() {
+  value <-cof(semi.circle(), semi.circle.inv())
+  value$tag <- list("compose2","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default pie 2  (Union)
+#'
+#' @return Return the default pies in 2 slices 
+#' @examples
+#' u.pie.2()
+#' @export
+u.pie.2 <- function() {
+  value <-cof(semi.circle(), semi.circle.inv(), single = T, 
+              name = "u.pie.2")
+  value$tag <- list("simple","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default semi circle 1
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' semi.circle1()
+#' @export
+semi.circle1 <- function(p.x=0 ,p.y=0,
+                        theta1 = 7*pi/4, 
+                        theta2 = 3*pi/4,
+                        size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                        size.y = 0,
+                        vis = 1) {
+  value <- list(
+    shape = "semi.circle1",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default semi circle inv 1
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' semi.circle.inv()
+#' @export
+semi.circle.inv1 <- function(p.x=0 ,p.y=0,
+                            theta1 = 3*pi/4, 
+                            theta2 = 7*pi/4,
+                            size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                            size.y = 0,
+                            vis = 1) {
+  value <- list(
+    shape = "semi.circle.inv1",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(p.x),
+    pos.y = list(p.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
+#' Default pie 2 inv
+#'
+#' @return Return the default pies in 2 slices (inv)
+#' @examples
+#' pie.2.inv()
+#' @export
+pie.2.inv <- function() {
+  value <-cof(semi.circle1(), semi.circle.inv1())
+  value$tag <- list("compose2","fill")
+  attr(value, "class") <- "field"
+  value
+}
+
+#' Default pie 2 inv (Union)
+#'
+#' @return Return the default pies in 2 slices (inv)
+#' @examples
+#' u.pie.2.inv()
+#' @export
+u.pie.2.inv <- function() {
+  value <-cof(semi.circle1(), semi.circle.inv1(), single = T, 
+              name = "u.pie.2.inv")
+  value$tag <- list("simple","fill")
+  attr(value, "class") <- "field"
+  value
+}
+

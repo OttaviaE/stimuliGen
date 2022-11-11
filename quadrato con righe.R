@@ -43,7 +43,102 @@ draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
 
 # facendo il vettore all'interno della funzione vengono righe più karghe
 
+# tenendoli invece separati vengono alla grande 
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = -unlist(square()$size.x)/2), 
+     canvas = F)
+draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
+                  p.y = unlist(square()$size.x)/2), 
+     canvas = F)
+
+# provo a fare la stessa cosa ma tranciando a metà in verticale 
+# si può e si può anche cambiare inclinazione della riga e spessore
+# del tratteggio
+draw(square())
+clip(-unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2), 
+     unlist(square()$size.x)/sqrt(2),
+     -unlist(square()$size.x)/sqrt(2))
+draw(diagline.inv(p.x =  -unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 1))), 
+     canvas = F)
+draw(diagline(p.x =  unlist(square()$size.x)/2,
+                  p.y =  c(seq(-20, 20, by = 2))), 
+     canvas = F)
+
+# sezioni del cerchio
+
+Canvas(bg = "white")
+# questa è la prima slice, le altre ruotano.
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = pi/4,
+           theta.2 = 3*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 3*pi/4,
+           theta.2 = 5*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 5*pi/4,
+           theta.2 = 7*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 7*pi/4,
+           theta.2 = 9*pi/4)
+
+# semi cerchi
+Canvas(bg = "white")
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = pi/4,
+           theta.2 = 5*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 5*pi/4,
+           theta.2 = pi/4)
+
+Canvas(bg = "white")
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 7*pi/4,
+           theta.2 = 3*pi/4)
+
+DrawCircle(r.out=1, r.in = 0, 
+           theta.1 = 3*pi/4,
+           theta.2 = 7*pi/4)
+
+
+
+
+
+DrawCircle(x = -0.2, y =0.5, r.out = 0.1, r.in =0.1, 
+           col = "black")
+DrawCircle(col = "black",x = -0.2, y =0.5, r.out = 0.1, r.in =0.1)
+
 ### NON ANDARE OLTRE, ANCORA WORK IN PROGRESS -----
+
+# clipping
+Canvas(bg="lightgrey", main="Yin ~ Yang")
+DrawCircle (r.out = 1, col="white")
+clip(0, 0.7, 0.7, -0.7)
+draw(diagline(p.x =  c(seq(-1, 1, by = .2),
+              p.y = 1)), 
+     canvas = F)
+DrawCircle(col="black")
+clip(-2, 2, 2, -2)
+DrawCircle (y = c(-0.5,0.5), r.out = 0.5, col=c("black", "white"), border=NA)
+DrawCircle (y = c(-0.5,0.5), r.out = 0.1, col=c("white", "black"), border=NA)
+DrawCircle ()
+
+
+
+
+Canvas(xlim=c(-5,5))
+DrawCircle (r.out=4:1, col=c("white", "steelblue2", 
+                             "white", "red"), lwd=3, nv=100)
 
 
 draw(square())

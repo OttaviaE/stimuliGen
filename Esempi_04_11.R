@@ -165,3 +165,10 @@ draw(M1)
 M1<-apply(Raven(bow.tie(),"multifill","multifill"))
 draw(M1)
 
+M1<-apply(Raven(bow.tie(),"multifill","multifill"))
+draw(M1)
+
+
+M1<-apply(Raven(pie.2.inv(),
+                "multifill","multifill"))
+draw(M1)
