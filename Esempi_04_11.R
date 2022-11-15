@@ -94,3 +94,9 @@ draw(M1)
 M1<-apply(Raven(pie.2.inv(),
                 "multifill","multifill"))
 draw(M1)
+
+# così la slice non ruota, ha bisgono delle sue rotazioni specifiche 
+
+M1<-apply(Raven(slice(),
+                "rotation","identity"))
+draw(M1)
