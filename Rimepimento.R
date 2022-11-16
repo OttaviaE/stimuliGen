@@ -3,10 +3,10 @@ q=seq(0, square()$ size.x[[1]], by = 1)
 ray=square()$ size.x[[1]]-q
 
 #ray<- 
-  
+
 draw(diagline(p.x = q,
               p.y = q,
-                  s.x = list(sqrt(2*(ray^2))),
+              s.x = list(sqrt(2*(ray^2))),
               s.y = list(sqrt(2*(ray^2)))))
 
 
@@ -15,7 +15,7 @@ draw(diagline(p.x = q,
 draw(circle())
 for(i in seq(1,length(da$x),by=4))
 {
- 
+  
   polygon(c(x,-x),c(y,-y))
 }
 ###
@@ -25,13 +25,13 @@ coords<-prova(circle())
 prova<-function(obj){
   j=1
   x<-DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
-               radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
-               lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]],plot = F)
+                    radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                    lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]],plot = F)
   return(x)
 }
 
 found_points<-function(x1,x2,y1,y2,m1,q1){
-
+  
   delta_y<- (y2 - y1)
   delta_x<- (x2 - x1)
   if(round(x2,3)==round(x1,3)){
@@ -52,16 +52,16 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
 
 filling<-function(q,m,coords)
 {
-
+  
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
   index<-c(1:length(coords$x),1)
   for(i in 2:length(index))
   {
-     solution<-found_points(coords$x[index[i-1]],coords$x[index[i]],
-                            coords$y[index[i-1]],coords$y[index[i]],
-                            m,q)
-     
+    solution<-found_points(coords$x[index[i-1]],coords$x[index[i]],
+                           coords$y[index[i-1]],coords$y[index[i]],
+                           m,q)
+    
     control_x<-min(coords$x[index[i-1]],coords$x[index[i]])<=solution[1] &
       max(coords$x[index[i-1]],coords$x[index[i]])>=solution[1]
     control_y<-min(coords$y[index[i-1]],coords$y[index[i]])<=solution[2] &
@@ -69,7 +69,7 @@ filling<-function(q,m,coords)
     
     if(control_x && control_y && n_solu<=2)
     {
-
+      
       pt[n_solu,]<-solution
       n_solu<-n_solu+1
     }
@@ -79,9 +79,9 @@ filling<-function(q,m,coords)
 }
 
 coords$x[coords$x<0]<-0
-for(i in seq(-20 ,20)){
+coords$y[coords$y<0]<-0
+for(i in seq(-500 ,+500)){
   
-  filling(i,coords=coords,m=0)
+  filling(i,coords=coords,m=1)
 }
 
-       
