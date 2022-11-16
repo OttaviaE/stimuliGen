@@ -628,7 +628,7 @@ s.horizontal.inv <- function() {
 #' @export
 s_vertical <- function() {
   value <-cof( v.arc.left.up(), v.arc.right.down(),single=TRUE,name="s.vertical")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -642,7 +642,7 @@ s_vertical <- function() {
 s_vertical.inv <- function() {
   value <-cof( v.arc.right.up(), v.arc.left.down(),single=TRUE,
                name="s.vertical.inv")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -657,7 +657,7 @@ s_vertical.inv <- function() {
 s_horizontal <- function() {
   value <-cof(h.arc.left.up(), h.arc.right.down(),single=TRUE,
               name="s.horizontal")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -671,7 +671,7 @@ s_horizontal <- function() {
 s_horizontal.inv <- function() {
   value <-cof( h.arc.left.down(), h.arc.right.up(),single=TRUE,
                name="s.horizontal.inv")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -734,7 +734,7 @@ lily <- function() {
 #' @export
 vertical_eight <- function() {
   value <-cof(  s_vertical(), s_vertical.inv(),single=TRUE,name="v.eigth")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -747,7 +747,7 @@ vertical_eight <- function() {
 #' @export
 horizontal_eight <- function() {
   value <-cof(s_horizontal(), s_horizontal.inv(),single=TRUE,name="h.eigth")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -761,7 +761,7 @@ horizontal_eight <- function() {
 #' @export
 s.lily <- function() {
   value <-cof( horizontal_eight(), vertical_eight(),single=TRUE,name="single_lily")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
 }
@@ -810,7 +810,7 @@ dot <- function(x=0,y=0,
 dice <- function() {
   value <-cof(dot(13,13),dot(-13,13),dot(13,-13),dot(-13,-13),
               single = TRUE,name = "dice")
-  value$tag <- list("single")
+  value$tag <- list("simple")
   attr(value, "class") <- "field"
   value
 }
@@ -824,7 +824,7 @@ dice <- function() {
 cross.dice <- function() {
   value <-cof(dot(13,0),dot(-13,0),dot(0,-13),dot(0,13),
               single = TRUE,name = "cross.dice")
-  value$tag <- list("single")
+  value$tag <- list("simple")
   attr(value, "class") <- "field"
   value
 }
@@ -897,7 +897,7 @@ hline <- function(p.x=0 ,p.y=0, vis = 1) {
 #' @export
 cross <- function() {
   value <-cof(vline(),hline(),single = TRUE,name = "cross")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   value$visible<-1
   attr(value, "class") <- "field"
   value
@@ -986,7 +986,7 @@ diagline <- function(p.x=0 ,p.y=0,s.x=list(sqrt(square()$ size.x[[1]]^2 /2))
 #' @export
 X <- function() {
   value <-cof(diagline(),diagline.inv(),single = TRUE,name = "X")
-  value$tag <- list("single","fill")
+  value$tag <- list("simple","fill")
   value$visible<-1
   attr(value, "class") <- "field"
   value

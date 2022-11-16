@@ -73,12 +73,14 @@ Correct<-M$Sq9
 risposte<-list()
 
 M$Sq9<-hide(M$Sq9)
+# wp - 
 risposte[[1]] = (M[[4]])
 risposte[[2]] = cof(rotation(Correct,2))
 
 # d union
 d.union = hide(Correct, c(1, 2))
-risposte[[3]] = cof(d.union, Correct, square(s.x=3,s.y=3, shd="black"), X())
+risposte[[3]] = cof(d.union, Correct, 
+                    square(s.x=3,s.y=3, shd="black"), X())
 
 risposte[[4]] = M$Sq8
 risposte[[5]] = hide(Correct, c(4))
