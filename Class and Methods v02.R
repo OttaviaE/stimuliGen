@@ -246,19 +246,10 @@ draw.field<- function(obj, main = NULL, canvas = TRUE) {
     if(obj$visible[[j]]==1)
     {
       if(obj$num[[j]][1]==1){
-        if(obj$shape[j]=="square"&& grepl("line",obj$shades[[j]])){
-          DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
-                         radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
-                         lty=obj$lty[[j]],lwd=obj$lwd[[j]], col=NA)
-          
-
-          }else{
             DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
                            radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
                            lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
-          }
-       
-     
+
       }else{
         DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
                    r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
