@@ -17,7 +17,7 @@ library(DescTools)
 source("Class and Methods.R")
 source("Class and Methods extension.R")
 source("Rules_27102022.R")
-source("Shapes_list-07-11-Ottavia.R")
+source("Shapes_list-10-11-Ottavia.R")
 knitr::opts_chunk$set(fig.align = "center")
 ```
 

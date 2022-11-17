@@ -172,7 +172,7 @@ pentagon <- function(s.x=15,
 e.hexagon <- function(s.x=15,
                       s.y=15,
                       rot=0,
-                      shd="black",
+                      shd=NA,
                       vis = 1) {
   value <- list(
     shape = "e.hexagon",
