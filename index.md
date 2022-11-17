@@ -1,6 +1,6 @@
 [update generazione stimoli](appunti.html)
 
-[update codice - Andrea](Documento.html)
+[update codice - Andrea](Documento_02112022.html)
 
 [Documentazione "ufficiale"](Details.html)
 
