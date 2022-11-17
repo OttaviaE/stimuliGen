@@ -157,7 +157,7 @@ apply <- function(obj,rules) {
   UseMethod("apply")
 }
 
-draw <- function(obj, main = NULL, canvas = TRUE) {
+draw <- function(obj, main = NULL, canvas = TRUE, hide = FALSE) {
   UseMethod("draw")
 }
 
@@ -235,30 +235,58 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   return(obj)
 }
 
-draw.field<- function(obj, main = NULL, canvas = TRUE) {
+draw.field<- function(obj, main = NULL, canvas = TRUE, hide = FALSE) {
   library(DescTools)
-  if (canvas == TRUE) 
-  {
-    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
-  }
-  for(j in 1:length(obj$shape))
-  {
-    if(obj$visible[[j]]==1)
+  if (hide == FALSE) {
+    if (canvas == TRUE) 
     {
-      if(obj$num[[j]][1]==1){
-            DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
-                           radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
-                           lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
-
-      }else{
-        DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
-                   r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
-                   theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
-                   lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
-        
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+    }
+    for(j in 1:length(obj$shape))
+    {
+      if(obj$visible[[j]]==1)
+      {
+        if(obj$num[[j]][1]==1){
+          DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
+                         radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                         lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+          
+        }else{
+          DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
+                     r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+                     theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+                     lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+          
+        }
+      }
+    }
+  } else {
+    if (canvas == TRUE) 
+    {
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+    }
+    for(j in 1:length(obj$shape))
+    {
+      if(obj$visible[[j]]==1)
+      {
+        if(obj$num[[j]][1]==1){
+          obj$Sq9 = hide(obj$Sq9)
+          DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]], 
+                         radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                         lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+          
+        }else{
+          obj$Sq9 = hide(obj$Sq9)
+          DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]], 
+                     r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+                     theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+                     lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+          
+        }
       }
     }
   }
+  
   
   
 }
@@ -335,18 +363,30 @@ shapes_list<-function(filename)
   return(table)
 }
 
-draw.Raven_matrix<- function(obj, main = NULL) { ###Definito Draw per i field si può semplificare questa
+draw.Raven_matrix<- function(obj, main = NULL, hide = FALSE) { ###Definito Draw per i field si può semplificare questa
   
   library(DescTools)
   par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + .1, mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
   
   squares <- paste0("Sq", 1:9)
-  for (i in 1:length(squares))
-  {
-    #Fixing the plot area for each cells
-    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
-    #Canvas(16,16)
-    draw(obj[[squares[[i]]]],canvas = FALSE)
-    
+  if (hide == FALSE) {
+    for (i in 1:length(squares))
+    {
+      #Fixing the plot area for each cells
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+      #Canvas(16,16)
+      draw(obj[[squares[[i]]]],canvas = FALSE)
+      
+    }
+  } else {
+    for (i in 1:(length(squares)-1))
+    {
+      #Fixing the plot area for each cells
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+      #Canvas(16,16)
+      draw(obj[[squares[[i]]]],canvas = FALSE)
+      
+    }
   }
+ 
 }
