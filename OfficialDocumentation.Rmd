@@ -1,0 +1,184 @@
+---
+title: "An R package for the uaomtaic generaztion of Raven-like matrices according to rules"
+author: ""
+date: "Last updated `r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: vignette
+    toc: yes
+    toc-float: yes
+editor_options: 
+  chunk_output_type: console
+---
+```{r include  = FALSE}
+source("Shapes_list-10-11-Ottavia.R")
+source("Class and Methods.R")
+source("Class and Methods v02.R")
+source("Class and Methods extension.R")
+source("Rules_27102022.R")
+library(DescTools)
+shapes = shapes_list("Shapes_list-10-11-Ottavia.R")
+```
+
+# Files 
+
+- *Class and Methods.R* e *Class and Methods extension.R* e *Class and Methods extension.R* contengono le definizioni delle classi e dei metodi presentati in seguito. (VANNO MESSE IN ORDINE E BISOGNA RIDURRE A UN UNICO FILE)
+
+- *Shapes_list.R* contiene le forme sviluppate di default.
+
+- *Rules_27102022.R* contiene le regole per la creazone delle matrici.
+
+# Classe campo
+
+La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
+
+```{r}
+field <- list(
+  shape = NULL,
+  size.x = list(),
+  size.y = list(),
+  rotation = list(),
+  pos.x = list(),
+  pos.y = list(),
+  lty =list(),
+  lwd = list(),
+  num = list(),
+  nv = list(),
+  shade =list(),  
+  visible = NULL, 
+  tag = list()
+)
+```
+
+-   `shape` è un vettore contente stringhe di caratteri, ogni elemento della stringa indica la forma che si vuole sviluppare, per esempio `c('circle','square')`
+
+-   `size.x` e `size.y` un vettore o un scalare che danno informazione per il semi-asse maggiore e minore del elisse entro il quale è inscritto il poligono (corrispondono a `radius.x` e `radius.y` del pacchetto `DescTools`)
+
+```{r}
+library(DescTools)
+Canvas(c(-5,5),c(-5,5)) # non è necessario il secondo c(-5,5) basta Canvas(c(-5,5))
+DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 100)
+DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 3)
+
+```
+
+-   `rotation` angolo di rotazione in radianti (corrisponde a `rot` del pacchetto `DescTools`)
+
+-   `x` e `y` un vettore delle coordinate xy del centro del polygono (corrispondono a `x` e `y` del pacchetto `DescTools`)
+
+-   `lty` e `lwd` rispettivamente il tipo di linea per il perimetro e lo spessore della stessa.
+    Le figure di default hanno `lty=1` e `lwd=2` (corrispondono a `lty` e `lwd` del pacchetto `DescTools`)
+
+-   `num` il numero di volte che un oggetto è ripetuto sulla cella (più un desiderata che altro al momento)
+
+-   `nv` il numero di vertici del poligono (per cerchi/elipsi `nv = 100`)
+
+-   `shade` è il riempimento monocromatico di una forma
+
+-   `visible` un vettore binario che contiene un 1 se la forma nella posizione relativa deve venire disegnata, uno 0 se non deve venire disegnata.
+    Per esempio `list(shapes=c('circle','square'), visible = c(0,1))` plottera solo il quadrato e non il cerchio.
+
+# Classe matrice
+
+La classe `Raven_matrix` contiene tutte le informazioni neccessarie per classificare la creazione della matrice.
+
+```{r}
+Raven<-list(
+    Sq1 = list(),
+    Sq2 = list(),
+    Sq3 = list(),
+    
+    Sq4 = list(),
+    Sq5 = list(),
+    Sq6 = list(),
+    
+    Sq7 = list(),
+    Sq8 = list(),
+    Sq9 = list(),
+    hrule = list(),
+    vrule = list()
+  )
+```
+
+I campi da `Sq1` a `Sq9` corrispondono alle celle della matrice.
+
+```{r,echo=FALSE}
+matrix(paste0("Sq", 1:9),byrow=TRUE,ncol=3)
+```
+
+Ogni cella della matrice andrà a contenere un oggetto di classe `field` contenente tutte le possibili forme al suo interno.
+
+I campi `hrule` e `vrule` sono due vettori contententi le regole.
+
+-   `hrule` contiene le regole che verranno applicate secondo la logica orizzontale. L'ordine delle regole nel vettore corrisponde al ordine di applicazione.
+-   `vrule` contiene le regole che verranno applicate secondo la logica verticale. L'ordine delle regole nel vettore corrisponde al ordine di applicazione.
+
+Logiche più complesse vengono ottenute tramite composizioni di orizzontale e verticale.
+
+Nella seuente tabella è presente una lista delle forme al momento implementate nel pacchetto. Nella colonna `name` è presente il nome della forma, nella colonna `num_shapes` il numero di forme di cui è composta la figura. Il resto delle colonne (i.e., `small`, `fill` , `rotate`) i tag che specificano diverse caratteristiche della figura, nello specifico se la figura può essere rimpicciolita, se può essere usata come riempimento e se può essere ruotata. 
+
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(shapes)
+```
+
+# Forme di Default
+
+## Forme Geometriche
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(circle(), main = "circle()")
+```
+
+
+```{r,echo=FALSE}
+draw(square(), main = "square()")
+```
+
+
+```{r,echo=FALSE}
+draw(rot.hexagon(), "rot.hexagon()")
+```
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(ellipse(), "ellipse()")
+```
+
+
+```{r,echo=FALSE}
+draw(pentagon(), "pentagon()")
+```
+
+```{r,echo=FALSE}
+draw(star(), "star()")
+```
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(triangle(), "traingle()")
+```
+
+
+```{r,echo=FALSE}
+draw(hexagon(), "hexagon()")
+```
+
+```{r,echo=FALSE}
+draw(e.hexagon(), "e.hexagon()")
+```
+
+
+:::
+
+
+::::
