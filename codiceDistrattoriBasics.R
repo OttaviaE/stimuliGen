@@ -16,6 +16,13 @@ m2 = apply(Raven(st1=pentagon(),
                  vrule=c("identity")))
 draw(m2)
 mix = (com(m2, m1))
+
+m3 = apply(Raven(st1=cof(pentagon(), e.hexagon(), triangle()),
+                 hrule=c("diff_shapes"),
+                 vrule=c("lty")))
+draw(m3)
+unlist(m3[[1:9]])
+
 # funcione risposta corretta matrice 
 correct = function(m) {
   correct = m$Sq9 
@@ -24,37 +31,93 @@ correct = function(m) {
 
 resp.correct = correct(mix)
 draw(mix, hide = T)
-
+draw(resp.correct)
 
 # repetion ----
 # selezione casuale del distrattore. volendo si può anche fare che si sceglie 
 # quale distrattore prendere 
 # questo codice controlla anche che nessuna cella sia uguale alla risposta corretta
-repetition = function(m) {
+repetition = function(m,which = c("all", "top", "diag", "left")) {
   m.correct = correct(m)
   distr.repetition = list(  r.top = m$Sq6,
                             r.diag = m$Sq5,
                             r.left = m$Sq8)
-  if (any(unlist(distr.repetition$r.top) != unlist(m.correct), na.rm = T) == F) {
-    sample.index = c(2:3)
-  } else if (any(unlist(distr.repetition$r.left) != unlist(m.correct), na.rm = T) == F) {
-    sample.index = c(1:2)
-  } else if (any(unlist(distr.repetition$r.diag) != unlist(m.correct), na.rm = T) == F) {
-    sample.index = c(1,3)
-  } else {
-    sample.index = c(1:3)
+  if (which == "all") {
+    if (any(unlist(distr.repetition$r.top) != unlist(m.correct), na.rm = T) == F) {
+      sample.index = c(2:3)
+    } else if (any(unlist(distr.repetition$r.left) != unlist(m.correct), na.rm = T) == F) {
+      sample.index = c(1:2)
+    } else if (any(unlist(distr.repetition$r.diag) != unlist(m.correct), na.rm = T) == F) {
+      sample.index = c(1,3)
+    } else {
+      sample.index = c(1:3)
+    }
+    sample.index = sample(sample.index)[1]
+   # distr.repetition = distr.repetition[[sample.index]]
+    
+  } else if (which == "top") {
+    distr.repetition = distr.repetition$r.top
+  } else if (which == "left") {
+    distr.repetition = distr.repetition$r.left
+  } else if (which == "diag") {
+    distr.repetition = distr.repetition$r.diag
   }
-  sample.index = sample(sample.index)[1]
-  distr.repetition = distr.repetition[[sample.index]]
   return(distr.repetition)
 }
 
-d.r = repetition(mix)
+d.r = repetition(mix, which = "all")
 draw(d.r)
 
+# wp ----
+# partiamo dal copy che è il più facile 
+wp = function(m, which = c("all", "copy", "matrix")) {
+  sample.index = sample(c(1:4, 7))[1] # non è random
+  distr.wp.copy = m[[sample.index]]
+  distr.wp.matrix = m$Sq1
+  for (i in 2:8) {
+    distr.wp.matrix = cof(distr.wp.matrix, m[[i]])
+  }
+  if (which == "all") {
+    distr.wp = list(wp.copy = distr.wp.copy, 
+                    wp.matrix = distr.wp.matrix)
+  } else if (which == "copy") {
+    distr.wp = distr.wp.copy
+  } else if (which == "matrix") {
+    distr.wp = distr.wp.matrix
+  }
+  
+}
+
+d.wp = wp(mix, which = "all")
+draw(d.wp$wp.copy)
+draw(d.wp$wp.matrix)
+
+# difference -----
+d.union = function(m, n = 1) {
+  n = n
+  d.union = m$Sq1
+  for (i in 2:8) {
+    d.union = cof(d.union, m$Sq1)
+  }
+  shapes = shapes_list("Shapes_list-10-11-Ottavia.R")
+  shapes = shapes[-grep("arc", shapes$name), ]
+  exclusion = shapes[!shapes$name %in% unlist(d.union$shape), ]
+  random<-sample(1:length(exclusion$name),n)
+  for(i in 1:length(random)) {
+    f<-get(exclusion$name[random[i]])
+    if(i==1){
+      obj<-f()
+    }else{
+      obj<-cof(obj,f())
+    }
+  }
+  d.union = cof(d.union, obj)
+  return(d.union)
+}
+draw(d.union(mix,  n = 3))
+
+# gli archetti si possono togliere 
 
 
-
-
-draw(repetition(mix, which = "diag"))
-distr.repetition
+draw(obj)
+d.union = cof(d.union, obj)
