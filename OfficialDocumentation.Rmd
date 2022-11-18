@@ -1,5 +1,5 @@
 ---
-title: "An R package for the uaomtaic generaztion of Raven-like matrices according to rules"
+title: "An R package for the automatic generation of Raven-like matrices according to rules"
 author: ""
 date: "Last updated `r Sys.Date()`"
 output:
