@@ -1,8 +1,8 @@
-[update generazione stimoli](appunti.html)
+[Official Documentation](OfficialDocumentation.html)
+
 
 [update codice - Andrea](Documento_02112022.html)
 
-[Documentazione "ufficiale"](Details.html)
 
 [Presentazione04-11](Presentazioni/Presentazione04.html)
 
