@@ -33,6 +33,7 @@ shapes = shapes_list("Shapes_list-10-11-Ottavia.R")
 
 La classe `field` contiene le informazioni neccessarie per plottare il contenuto di una cella della matrice.
 
+<details><summary>Vedi codice</summary>
 ```{r}
 field <- list(
   shape = NULL,
@@ -50,6 +51,7 @@ field <- list(
   tag = list()
 )
 ```
+</details>
 
 -   `shape` è un vettore contente stringhe di caratteri, ogni elemento della stringa indica la forma che si vuole sviluppare, per esempio `c('circle','square')`
 
@@ -83,6 +85,7 @@ DrawRegPolygon(x = 0, y = 0, radius.x=9,radius.y = 5, nv = 3)
 
 La classe `Raven_matrix` contiene tutte le informazioni neccessarie per classificare la creazione della matrice.
 
+<details><summary>Vedi codice</summary>
 ```{r}
 Raven<-list(
     Sq1 = list(),
@@ -100,6 +103,7 @@ Raven<-list(
     vrule = list()
   )
 ```
+</details>
 
 I campi da `Sq1` a `Sq9` corrispondono alle celle della matrice.
 
@@ -118,10 +122,11 @@ Logiche più complesse vengono ottenute tramite composizioni di orizzontale e ve
 
 Nella seuente tabella è presente una lista delle forme al momento implementate nel pacchetto. Nella colonna `name` è presente il nome della forma, nella colonna `num_shapes` il numero di forme di cui è composta la figura. Il resto delle colonne (i.e., `small`, `fill` , `rotate`) i tag che specificano diverse caratteristiche della figura, nello specifico se la figura può essere rimpicciolita, se può essere usata come riempimento e se può essere ruotata. 
 
-
+<details><summary>Vedi tabella delle forme</summary>
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(shapes)
 ```
+</details>
 
 # Forme di Default
 
@@ -144,6 +149,20 @@ draw(square(), main = "square()")
 ```{r,echo=FALSE}
 draw(rot.hexagon(), "rot.hexagon()")
 ```
+
+```{r, echo = FALSE}
+draw(slice(), "slice()")
+```
+
+
+```{r, echo = FALSE}
+draw(semi.circle1(), "semi.circle1()")
+```
+
+```{r, echo = FALSE}
+draw(bow.tie(), "bow.tie()")
+```
+
 :::
 
 :::{}
@@ -160,6 +179,17 @@ draw(pentagon(), "pentagon()")
 ```{r,echo=FALSE}
 draw(star(), "star()")
 ```
+
+```{r, echo = FALSE}
+draw(pie.4(), "pie.4")
+```
+
+```{r, echo=FALSE}
+draw(pie.2(), "pie.2()")
+```
+
+
+
 :::
 
 :::{}
@@ -177,8 +207,489 @@ draw(hexagon(), "hexagon()")
 draw(e.hexagon(), "e.hexagon()")
 ```
 
+```{r, echo = FALSE}
+draw(semi.circle(), "semi.circle()")
+```
+
+```{r, echo=FALSE}
+draw(pie.2.inv(), "pie.2.inv()")
+```
+:::
+
+
+::::
+
+## Segmenti
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(vline(), main = "vline()")
+```
+
+```{r,echo=FALSE}
+draw(diagline(), main = "diagline()")
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(hline(), main = "hline()")
+```
+
+```{r,echo=FALSE}
+draw(diagline.inv(), main = "diagline.inv()")
+```
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(cross(), main = "cross()")
+```
+
+```{r,echo=FALSE}
+draw(X(), main = "X()")
+```
+:::
+
+
+::::
+
+## Archi 
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_vertical(), main = "s_vertical()")
+```
+
+
+```{r,echo=FALSE}
+draw(s_horizontal.inv(), main = "s_horizontal.inv()")
+```
+
+```{r,echo=FALSE}
+draw(lily(), main = "lily()")
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_vertical.inv(), main = "s_vertical.inv()")
+```
+
+
+```{r,echo=FALSE}
+draw(vertical.eight(), main = "vertical.eight()" )
+```
+
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(s_horizontal(), main = "s_horizontal()")
+```
+
+
+```{r,echo=FALSE}
+draw(horizontal.eight(), main = "horizontal()")
+```
 
 :::
 
 
 ::::
+
+
+## Forme puntinate
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r,echo=FALSE}
+draw(dot(), "dot()")
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(cross.dice(), "cross.dice()")
+```
+
+:::
+
+:::{}
+
+```{r,echo=FALSE}
+draw(dice(), "dice()")
+```
+
+:::
+
+
+::::
+
+# Concatenazione di Forme
+
+La funzione `cof` concatena diversi campi esattamente secondo la stessa logica di `c()`
+
+<details><summary>Mostra codice</summary>
+```{r}
+source("Class and Methods.R")
+cof(square(),circle(),pentagon())
+```
+</details>
+
+# Creazione di una matrice
+
+La funzione `Raven` crea una matrice di Raven in cui tutte le celle della matrice vengono inizializzate identiche alla cella `Sq1`, e vengono inizializzate le regole.
+
+-   `St1` classe field che contiene i campi di partenza per tutte le celle
+-   `hrule` vettore delle regole applicabili con logica orizzontale
+-   `vrule` vettore delle regole applicabili con logica verticale
+
+```{r}
+M<-Raven(st1=square(),hrule=c("size"),vrule=c("identity"))
+draw(M)
+```
+
+Nella matrice `M` le regole non sono ancora state applicate, infatti nel plot d'esempio i quadrati hanno tutti le stesse dimensioni.
+
+L'estensione del metodo `apply` applica le regole presenti nella matrice a tutte le celle.
+Al momento applica le regole prima in riga e poi in colonna.
+
+```{r}
+M<-apply(M)
+draw(M)
+```
+
+# Regole (Field)
+
+## Rotazione
+
+Il metodo rotazione cambia il valore `field$rotation` di rotazioni fisse con un angolo di $\frac{\pi}{4}$
+
+-   `obj` il contenuto di una cella della matrice
+-   `n` rappresenta l'ennesimo elemento a cui viene applicata la regola. Per esempio se la regola viene applicata orizzontalmente `n =1` per `Sq1`,`Sq4` e `Sq7`, `n =2` per `Sq2`,`Sq5` e `Sq8` e per finire `n =3` per `Sq3`,`Sq6` e `Sq9`.
+
+<details><summary>Vedi codice</summary>
+```{r}
+rotation.field<-function(obj,n,...) {
+  obj$rotation[[1]]<-obj$rotation[[1]]+(n-1)*pi/4
+  return(obj)
+}
+```
+</details>
+
+La rotazione può essere applicata con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("rotation"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("rotation")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("rotation"),vrule=c("rotation")))
+draw(M)
+
+
+```
+
+## Dimensione
+
+Il metodo di cambio di dimensioni, riduce i valori di `field$size.x` e `field$size.y` di un valore costante pari a numero di riga (o colonna) della matrice per $k=.9$.
+Se per esempio la regola è applicata orizzontalmente, gli elementi nelle celle `Sq1,Sq4,sq7`della prima colonna hanno dimensioni $(\frac{x}{k},\frac{y}{k})$, gli elementi nelle celle `Sq2,Sq5,sq8` hanno dimensioni $(\frac{x}{2k},\frac{y}{2k})$ e quelli nella terza colonna $(\frac{x}{3k},\frac{y}{3k})$.
+
+<details><summary>Vedi codice</summary>
+```{r}
+size.field<-function(obj,n,...) {
+  obj$size.x[[1]]<-obj$size.x[[1]]/(n*.9)
+  obj$size.y[[1]]<-obj$size.y[[1]]/(n*.9)
+  return(obj)
+}
+```
+</details>
+
+La cambio di dimensione può essere applicata con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=circle(),hrule=c("size"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=circle(),hrule=c("identity"),vrule=c("size")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=circle(),hrule=c("size"),vrule=c("size")))
+draw(M)
+
+
+```
+
+## Cambio delle forme
+
+Il metodo di cambio di forma manipola il campo `field$visible` in modo di alternare tre diverse forme.
+L'ordine di applicazione va dalla terza alla prima forma.
+Per ogni cella individua quali forme sono visibili - Se più di una forma è visibile le rende tutte invisibili e seleziona solo quella in posizione $n$.
+Dove $n$ è l'indice di riga (o di colonna) - Se una sola forma è visibile la regola la mette invisibile e seleziona quella a distante $n$ nel vettore `index`
+
+<details><summary>Vedi codice</summary>
+```{r}
+diff_shapes.field<-function(obj,n,...) {
+  if(length(obj$visible)!=3)
+  {
+    stop("You must have at least three forms to change shapes!")
+  }
+  #index<-c(3:1,3:1,3:1) TL-LR
+  index<-c(1:3,1:3,1:3) #TR-LL
+  pos<-which(obj$visible==1)
+  if(length(pos)>1){
+    obj$visible[pos]<-0
+    obj$visible[index[n]]<-1
+  }else {
+    obj$visible[pos]<-0
+    obj$visible[index[pos+n]]<-1
+  }
+  return(obj)
+}
+```
+</details>
+
+Il cambio di forma può essere applicato con le regole orizzontali, verticali e diagonalmente da basso a sinistra a alto-destra (TL-LR) applicando prima in orizzontale poi verticale.
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("identity"),vrule=c("diff_shapes")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=cof(circle(),square(),pentagon()),hrule=c("diff_shapes"),vrule=c("diff_shapes")))
+draw(M)
+
+
+```
+
+## Contorno
+
+La regola per il cambiamento del contorno può cambiare sia lo spessore che il tipo di contorno utilizzando i parametri standard di R `lwd` e `lty`.
+Tre diversi spessori vengono utilizzati dipendenti dal indice di riga (o di colonna) $n$.
+Le forme di default hanno come spessore di partenza $2$.
+Il tipo di contorno cambia allo stesso modo in funzione del indice di riga (o di colonna) $n$.
+
+```{r}
+margin.field<-function(obj,n,rules,...){
+  index<-c(3:1,3:1,3:1)
+  if(grepl("lwd",rules)){
+    obj$lwd[[1]]<- index[obj$lwd[[1]]+n]+1
+  }else if(grepl("lty",rules)){
+    obj$lty[[1]]<-index[obj$lty[[1]]+n]
+    }
+  return(obj)
+}
+```
+
+### Spessore del contorno
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("lwd"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("lwd")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("lwd"),vrule=c("lwd")))
+draw(M)
+
+```
+
+### Tipo del contorno
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("lty"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("lty")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("lty"),vrule=c("lty")))
+draw(M)
+
+```
+
+## Riempimento
+
+Il riempimento monocromatico viene applicato campo per campo.
+
+### Riempimento monocromatico
+
+La regola per il rimepimento monocromatico cambia il campo `field$shade` tra i valori `white`, `black` e `grey`.
+I tre diversi riempimenti vengono assegnati tramite l'indice di riga (o di colonna) $n$.
+Il solo perimentro si ottiene con `field$shade="none"`
+
+```{r}
+fill.field<-function(obj,n,...){
+  index <- rep(c("white","grey","black"),3)
+   pos <- index==obj$shade[[1]]
+  if(is.na(sum(pos)))
+  {
+    obj$shade[[1]]<-index[n] 
+  }else{
+    pos <- which(pos)
+    obj$shade[[1]]<-index[pos+n]
+  }
+  return(obj)
+}
+```
+
+```{r}
+#Horizontal
+M<-apply(Raven(st1=pentagon(),hrule=c("fill"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=pentagon(),hrule=c("identity"),vrule=c("fill")))
+draw(M)
+
+# Top Left Low Right
+M<-apply(Raven(st1=pentagon(),hrule=c("fill"),vrule=c("fill")))
+draw(M)
+
+```
+
+### Multifill
+
+### Riempimento con le righe
+
+```{r}
+M1<-apply(Raven(bow.tie(),
+                hrule= "multifill", vrule = "multifill"))
+draw(M1)
+```
+
+
+### Riempimento con altre forme ?????
+
+```{r}
+m1 = apply(Raven(st1 = cof(dot(), 
+                            s.lily(), 
+                            square(s.x = 5, s.y = 5, 
+                                   shd = "black", rot = pi/2)), 
+                 hrule = "diff_shapes"))
+m2 = apply(Raven(st1=pentagon(),
+                 hrule=c("identity"),
+                 vrule=c("identity")))
+draw(com(m1, m2))
+```
+
+
+## Logica
+
+Le regole logiche vengono applicate per riga e per colonna con 3 o più forme.
+Presento gli elementi basi per applicare la logica in termini insiemistici.
+
+```{r}
+logic.field<-function(obj,n,rule,seed,...) {
+    if(length(obj$shape)<3)
+    {
+      stop("You must have three forms to apply a logical AND !")
+    }
+  ##gestione di più immagini
+  domain<-1:length(obj$shape)
+  obj$visible[domain]<-1
+  set.seed(seed)
+  fixed<-sample(domain,round(length(obj$shape)/5))
+  domain<-setdiff(domain,fixed)
+  half<-length(domain)%/%2
+  index<-list()
+  index[[1]]<-sample(domain,half)
+  index[[2]]<-sample(setdiff(domain,index[[1]]),half)
+  
+  if(rule=="AND"){
+    index[[3]]<-union(index[[1]],index[[2]])
+    obj$visible[index[[n]]]<-0
+  }else if(rule=="OR"){
+    if(n<3){
+      obj$visible[index[[n]]]<-0
+    }
+  }else if(rule=="XOR"){
+    index[[3]]<-union(setdiff(domain,union(index[[1]],index[[2]])),fixed)
+    obj$visible[index[[n]]]<-0
+  }
+  return(obj)
+}
+
+```
+
+-   `domain`è l'insieme delle forme $D$
+-   `fixed` è l'intersezione tra la prima e la seconda cella $C_1 \cap C_2$
+-   `index[[1]]` è l'insieme delle forme nella prima cella meno l'intersezione $C_1 / \{ C_1 \cap C_2\}$
+-   `index[[2]]` è l'insieme delle forme nella seconda cella meno l'intersezione $C_2 / \{ C_1 \cap C_2\}$
+
+Questi insiemi vengono mantenuti costanti per riga (o per colonna) tramite dei differenti semi.
+
+### AND
+```{r}
+#Horizontal
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),hrule=c("AND"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),vrule=c("AND"),hrule=c("identity")))
+draw(M)
+```
+
+### OR
+```{r}
+
+#Horizontal
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),hrule=c("OR"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),vrule=c("OR"),hrule=c("identity")))
+draw(M)
+```
+
+### Xor
+```{r}
+#Horizontal
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),hrule=c("XOR"),vrule=c("identity")))
+draw(M)
+
+#Vertical
+M<-apply(Raven(st1=cof(pentagon(),vertical.eight(),horizontal.eight()),vrule=c("XOR"),hrule=c("identity")))
+draw(M)
+
+```
+
+
