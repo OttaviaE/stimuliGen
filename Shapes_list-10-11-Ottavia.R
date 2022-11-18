@@ -9,21 +9,23 @@
 #' @examples
 #' circle()
 #' @export
-circle <- function(vis = 1) {
+circle <- function(s.x = 10, s.y = 10, 
+                   pos.x = 0, pos.y = 0, shd = NA,  
+                   vis = 1) {
   value <- list(
     shape = "circle",
-    size.x = list(10),
-    size.y = list(10),
+    size.x = list(s.x),
+    size.y = list(s.y),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(0),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(2),
     num = list(1),
     nv = list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag=list(c('simple', 'small'))
   )
@@ -40,7 +42,7 @@ circle <- function(vis = 1) {
 ellipse <- function(s.x=10,
                     s.y=7,
                     rot=0,
-                    shd=NA,
+                    shd=NA, pos.x = 0, pos.y = 0,
                     vis = 1) {
   value <- list(
     shape = "ellipse",
@@ -49,8 +51,8 @@ ellipse <- function(s.x=10,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -106,7 +108,7 @@ triangle <- function(s.x=15,
 #' @export
 square <- function(    s.x=15,
                        s.y=15,
-                       rot=pi / 4,
+                       rot=pi / 4, pos.x = 0, pos.y = 0,
                        shd=NA,
                        vis = 1) {
   value <- list(
@@ -116,8 +118,8 @@ square <- function(    s.x=15,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -139,6 +141,7 @@ square <- function(    s.x=15,
 pentagon <- function(s.x=15,
                      s.y=15,
                      rot=pi / 2,
+                     pos.x = 0, pos.y = 0,
                      shd=NA,
                      vis = 1) {
   value <- list(
@@ -148,8 +151,8 @@ pentagon <- function(s.x=15,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -172,6 +175,7 @@ pentagon <- function(s.x=15,
 e.hexagon <- function(s.x=15,
                       s.y=15,
                       rot=0,
+                      pos.x = 0, pos.y = 0,
                       shd=NA,
                       vis = 1) {
   value <- list(
@@ -181,8 +185,8 @@ e.hexagon <- function(s.x=15,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -205,6 +209,7 @@ hexagon <- function(s.x=15,
                     s.y=15,
                     rot=0,
                     shd="black",
+                    pos.x = 0, pos.y = 0,
                     vis = 1) {
   value <- list(
     shape = "hexagon",
@@ -213,8 +218,8 @@ hexagon <- function(s.x=15,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -238,6 +243,7 @@ rot.hexagon <- function(s.x=15,
                         s.y=15,
                         rot=3*pi/2,
                         shd="black",
+                        pos.x = 0, pos.y = 0,
                         vis = 1) {
   value <- list(
     shape = "rot.hexagon",
@@ -246,8 +252,8 @@ rot.hexagon <- function(s.x=15,
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(rot),
-    pos.x = list(0),
-    pos.y = list(0),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(3),
     num = list(1),
@@ -296,10 +302,10 @@ u.star <- function() {
 #' @examples
 #' bow.tie()
 #' @export
-bow.tie <- function() {
-  value <-cof(triangle(pos.x = 0, pos.y = 10, rot=pi/6, 
+bow.tie <- function(pos.x = 0) {
+  value <-cof(triangle(pos.x = pos.x, pos.y = pos.x+10, rot=pi/6, 
                        s.x = 10, s.y=10), 
-              triangle(pos.x = 0, pos.y = -10, rot=pi/2, 
+              triangle(pos.x = pos.x, pos.y = pos.x-10, rot=pi/2, 
                        s.x = 10, s.y=10))
   value$tag <- list("compose2","fill", "rotate")
   attr(value, "class") <- "field"
@@ -313,10 +319,10 @@ bow.tie <- function() {
 #' @examples
 #' u.bow.tie()
 #' @export
-u.bow.tie <- function() {
-  value <-cof(triangle(pos.x = 0, pos.y = 10, rot=pi/6, 
+u.bow.tie <- function(pos.x = 0) {
+  value <-cof(triangle(pos.x = pos.x, pos.y = pos.x+10, rot=pi/6, 
                        s.x = 10, s.y=10), 
-              triangle(pos.x = 0, pos.y = -10, rot=pi/2, 
+              triangle(pos.x = pos.x, pos.y = pos.x-10, rot=pi/2, 
                        s.x = 10, s.y=10), single = T, 
               name = "u.bow.tie")
   value$tag <- list("simple","fill", "rotate")
@@ -336,7 +342,7 @@ u.bow.tie <- function() {
 #' @examples
 #' v.arc.left.up()
 #' @export
-v.arc.left.up <- function(vis = 1) {
+v.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
   value <- list(
     shape = "v.arc.left.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -346,8 +352,8 @@ v.arc.left.up <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(5),
     pos.y  = list(5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -364,7 +370,7 @@ v.arc.left.up <- function(vis = 1) {
 #' @examples
 #' v.arc.right.up()
 #' @export
-v.arc.right.up <- function(vis = 1) {
+v.arc.right.up <- function(lty =1, lwd = 3, vis = 1) {
   value <- list(
     shape = "v.arc.right.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -374,8 +380,8 @@ v.arc.right.up <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(-5.5),
     pos.y  = list(5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -393,7 +399,7 @@ v.arc.right.up <- function(vis = 1) {
 #' @examples
 #' v.arc.left.down()
 #' @export
-v.arc.left.down <- function(vis  = 1) {
+v.arc.left.down <- function(lty =1, lwd = 3, vis  = 1) {
   value <- list(
     shape  = "v.arc.left.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -403,8 +409,8 @@ v.arc.left.down <- function(vis  = 1) {
     rotation = list(pi),
     pos.x  = list(5.1),
     pos.y  = list(-5.5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -422,7 +428,7 @@ v.arc.left.down <- function(vis  = 1) {
 #' @examples
 #' v.arc.right.down()
 #' @export
-v.arc.right.down <- function(vis = 1) {
+v.arc.right.down <- function(lty =1, lwd = 3,vis = 1) {
   value <- list(
     shape = "v.arc.right.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -432,8 +438,8 @@ v.arc.right.down <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(-5.5),
     pos.y  = list(-5.5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -451,7 +457,7 @@ v.arc.right.down <- function(vis = 1) {
 #' @examples
 #' h.arc.left.up()
 #' @export
-h.arc.left.up <- function(vis = 1) {
+h.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
   value <- list(
     shape  = "h.arc.left.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -461,8 +467,8 @@ h.arc.left.up <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(-5.5),
     pos.y  = list(-5.5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), 
     shade  = list(NA),
@@ -479,7 +485,7 @@ h.arc.left.up <- function(vis = 1) {
 #' @examples
 #' h.arc.right.up()
 #' @export
-h.arc.right.up <- function(vis = 1) {
+h.arc.right.up <- function(lty =1, lwd = 3,vis = 1) {
   value <- list(
     shape  = "h.arc.right.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -489,8 +495,8 @@ h.arc.right.up <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(5.1),
     pos.y  = list(-5.5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), 
     shade  = list(NA),
@@ -508,7 +514,7 @@ h.arc.right.up <- function(vis = 1) {
 #' @examples
 #' h.arc.left.down()
 #' @export
-h.arc.left.down <- function(vis = 1) {
+h.arc.left.down <- function(lty =1, lwd = 3, vis = 1) {
   value <- list(
     shape = "h.arc.left.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -518,8 +524,8 @@ h.arc.left.down <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(-5.5),
     pos.y  = list(5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -536,7 +542,7 @@ h.arc.left.down <- function(vis = 1) {
 #' @examples
 #' h.arc.right.down()
 #' @export
-h.arc.right.down <- function(vis = 1) {
+h.arc.right.down <- function(lty =1, lwd = 3, vis = 1) {
   value <- list(
     shape = "h.arc.right.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -546,8 +552,8 @@ h.arc.right.down <- function(vis = 1) {
     rotation = list(pi),
     pos.x  = list(5),
     pos.y  = list(5),
-    lty  = list(1),
-    lwd  = list(3),
+    lty  = list(lty),
+    lwd  = list(lwd),
     num  = list(2),
     nv  = list(100), # non cambia nulla che sia indicato o meno
     shade  = list(NA),
@@ -627,7 +633,8 @@ s.horizontal.inv <- function() {
 #' s.vertical()
 #' @export
 s_vertical <- function() {
-  value <-cof( v.arc.left.up(), v.arc.right.down(),single=TRUE,name="s.vertical")
+  value <-cof( v.arc.left.up(), v.arc.right.down(),
+               single=TRUE, name="s.vertical")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
@@ -776,9 +783,9 @@ s.lily <- function() {
 #' @examples
 #' dot()
 #' @export
-dot <- function(x=0,y=0,
-                size.x = 2, 
+dot <- function(size.x = 2, 
                 size.y =2, 
+                pos.x = 0, pos.y = 0, shd = "black",
                 vis = 1) {
   value <- list(
     shape = "dot",
@@ -787,13 +794,13 @@ dot <- function(x=0,y=0,
     theta.1  = list(5*pi/4),
     theta.2  = list(7*pi/4),
     rotation = list(pi),
-    pos.x = list(x),
-    pos.y = list(y),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
     lty = list(1),
     lwd = list(1),
     num = list(1),
     nv = list(100),
-    shade = list("black"),
+    shade = list(shd),
     visible = vis,
     tag = list('single','fill')
   )
@@ -808,7 +815,10 @@ dot <- function(x=0,y=0,
 #' dice()
 #' @export
 dice <- function() {
-  value <-cof(dot(13,13),dot(-13,13),dot(13,-13),dot(-13,-13),
+  value <-cof(dot(pos.x = 13, pos.y = 13),
+              dot(pos.x = -13, pos.y = 13),
+              dot(pos.x = 13,pos.y = -13),
+              dot(pos.x = -13, pos.y = -13),
               single = TRUE,name = "dice")
   value$tag <- list("simple")
   attr(value, "class") <- "field"
@@ -822,7 +832,12 @@ dice <- function() {
 #' dice()
 #' @export
 cross.dice <- function() {
-  value <-cof(dot(13,0),dot(-13,0),dot(0,-13),dot(0,13),
+  value <-cof(dot(pos.x=13,
+                  pos.y=0),
+              dot(pos.x=-13, pos.y= 0),
+              dot(pos.x= 0,pos.y=-13),
+              dot(pos.x = 0,
+                  pos.y =13),
               single = TRUE,name = "cross.dice")
   value$tag <- list("simple")
   attr(value, "class") <- "field"
@@ -839,18 +854,22 @@ cross.dice <- function() {
 #' @examples
 #' vline()
 #' @export
-vline <- function(p.x=0 ,p.y=0,vis = 1) {
+vline <- function(pos.x=0 ,pos.y=0, 
+                  s.x = sqrt(square()$ size.x[[1]]^2 /2), 
+                  s.y = sqrt(square()$ size.y[[1]]^2 /2), 
+                  lty = 1, lwd =3,
+                  vis = 1) {
   value <- list(
     shape = "vline",
-    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
-    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
+    size.x = list(s.x),
+    size.y = list(s.y),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi + pi / 2),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv =  list(2),
     shade = list(NA),
@@ -867,18 +886,22 @@ vline <- function(p.x=0 ,p.y=0,vis = 1) {
 #' @examples
 #' hline()
 #' @export
-hline <- function(p.x=0 ,p.y=0, vis = 1) {
+hline <- function(pos.x=0 ,pos.y=0, 
+                  s.x = sqrt(square()$ size.x[[1]]^2 /2), 
+                  s.y = sqrt(square()$ size.y[[1]]^2 /2),
+                  lty = 1, lwd =3,
+                  vis = 1) {
   value <- list(
     shape = "hline",
-    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
-    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
+    size.x = list(s.x),
+    size.y = list(s.y),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv =  list(2),
     shade = list(NA),
@@ -910,8 +933,8 @@ cross <- function() {
 #' square4()
 #' @export
 square4 <- function() {
-  value <-cof(vline(p.x=-8,),vline(p.x=8),hline(p.y=-8,),
-              hline(p.y=8))
+  value <-cof(vline(pos.x=-8,),vline(pos.x=8),hline(pos.y=-8,),
+              hline(pos.y=8))
   value$tag <- list("compose4")
   attr(value, "class") <- "field"
   value
@@ -924,18 +947,22 @@ square4 <- function() {
 #' @examples
 #' diagline.inv()
 #' @export
-diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
+diagline.inv <- function(pos.x=0 ,pos.y=0,
+                         s.x = sqrt(square()$ size.x[[1]]^2 /2), 
+                         s.y = sqrt(square()$ size.y[[1]]^2 /2),
+                         lty = 1, lwd =3,
+                         vis = 1) {
   value <- list(
     shape = "diagline.inv",
-    size.x = list(sqrt(square()$ size.x[[1]]^2 /2)),
-    size.y = list(sqrt(square()$ size.y[[1]]^2 /2)),
+    size.x = list(s.x),
+    size.y = list(s.y),
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi + pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv =  list(2),
     shade = list(NA),
@@ -955,8 +982,11 @@ diagline.inv <- function(p.x=0 ,p.y=0,vis = 1) {
 #' @examples
 #' diagline()
 #' @export
-diagline <- function(p.x=0 ,p.y=0,s.x=list(sqrt(square()$ size.x[[1]]^2 /2))
-                     ,s.y=list(sqrt(square()$ size.x[[1]]^2 /2)),vis = 1) {
+diagline <- function(pos.x=0 ,pos.y=0,
+                     s.x=list(sqrt(square()$ size.x[[1]]^2 /2)),
+                     s.y=list(sqrt(square()$ size.x[[1]]^2 /2)),
+                     lty = 1, lwd =3,
+                     vis = 1) {
   value <- list(
     shape = "diagline.inv",
     size.x = s.x,
@@ -964,10 +994,10 @@ diagline <- function(p.x=0 ,p.y=0,s.x=list(sqrt(square()$ size.x[[1]]^2 /2))
     theta.1  = list(0),
     theta.2  = list(0),
     rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv =  list(2),
     shade = list(NA),
@@ -1001,11 +1031,12 @@ X <- function() {
 #' @examples
 #' slice()
 #' @export
-slice <- function(p.x=0 ,p.y=0,
+slice <- function(pos.x=0 ,pos.y=0,
                   theta1 = pi/4, 
                   theta2 = 3*pi/4,
                   size.x =sqrt(square()$ size.x[[1]]^2 /2),
                   size.y = 0,
+                  lty = 1, lwd =3,
                   vis = 1) {
   value <- list(
     shape = "slice",
@@ -1014,10 +1045,10 @@ slice <- function(p.x=0 ,p.y=0,
     theta.1  = list(theta1),
     theta.2  = list(theta2),
     rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(2),
     nv =  list(100),
     shade = list(NA),
@@ -1076,11 +1107,13 @@ u.pie.4 <- function() {
 #' @examples
 #' semi.circle()
 #' @export
-semi.circle <- function(p.x=0 ,p.y=0,
+semi.circle <- function(pos.x=0 ,pos.y=0,
                   theta1 = pi/4, 
                   theta2 = 5*pi/4,
                   size.x =sqrt(square()$ size.x[[1]]^2 /2),
                   size.y = 0,
+                  rotation = pi - pi / 4,
+                    lty = 1, lwd =3,
                   vis = 1) {
   value <- list(
     shape = "semi.circle",
@@ -1088,11 +1121,11 @@ semi.circle <- function(p.x=0 ,p.y=0,
     size.y = list(size.y),
     theta.1  = list(theta1),
     theta.2  = list(theta2),
-    rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    rotation = list(rotation),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(2),
     nv =  list(100),
     shade = list(NA),
@@ -1110,11 +1143,13 @@ semi.circle <- function(p.x=0 ,p.y=0,
 #' @examples
 #' semi.circle.inv()
 #' @export
-semi.circle.inv <- function(p.x=0 ,p.y=0,
+semi.circle.inv <- function(pos.x=0 ,pos.y=0,
                         theta1 = 5*pi/4, 
                         theta2 = pi/4,
                         size.x =sqrt(square()$ size.x[[1]]^2 /2),
                         size.y = 0,
+                        rotation = pi - pi / 4,
+                        lty = 1, lwd =3,
                         vis = 1) {
   value <- list(
     shape = "semi.circle.inv",
@@ -1122,11 +1157,11 @@ semi.circle.inv <- function(p.x=0 ,p.y=0,
     size.y = list(size.y),
     theta.1  = list(theta1),
     theta.2  = list(theta2),
-    rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    rotation = list(rotation),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(2),
     nv =  list(100),
     shade = list(NA),
@@ -1172,11 +1207,12 @@ u.pie.2 <- function() {
 #' @examples
 #' semi.circle1()
 #' @export
-semi.circle1 <- function(p.x=0 ,p.y=0,
+semi.circle1 <- function(pos.x=0 ,pos.y=0,
                         theta1 = 7*pi/4, 
                         theta2 = 3*pi/4,
                         size.x =sqrt(square()$ size.x[[1]]^2 /2),
                         size.y = 0,
+                        lty = 1, lwd =3,
                         vis = 1) {
   value <- list(
     shape = "semi.circle1",
@@ -1185,10 +1221,10 @@ semi.circle1 <- function(p.x=0 ,p.y=0,
     theta.1  = list(theta1),
     theta.2  = list(theta2),
     rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(2),
     nv =  list(100),
     shade = list(NA),
@@ -1206,11 +1242,12 @@ semi.circle1 <- function(p.x=0 ,p.y=0,
 #' @examples
 #' semi.circle.inv()
 #' @export
-semi.circle.inv1 <- function(p.x=0 ,p.y=0,
+semi.circle.inv1 <- function(pos.x=0, pos.y=0,
                             theta1 = 3*pi/4, 
                             theta2 = 7*pi/4,
                             size.x =sqrt(square()$ size.x[[1]]^2 /2),
                             size.y = 0,
+                            lty = 1, lwd =3,
                             vis = 1) {
   value <- list(
     shape = "semi.circle.inv1",
@@ -1219,10 +1256,10 @@ semi.circle.inv1 <- function(p.x=0 ,p.y=0,
     theta.1  = list(theta1),
     theta.2  = list(theta2),
     rotation = list(pi - pi / 4),
-    pos.x = list(p.x),
-    pos.y = list(p.y),
-    lty = list(1),
-    lwd = list(3),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(2),
     nv =  list(100),
     shade = list(NA),
