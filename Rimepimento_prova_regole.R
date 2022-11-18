@@ -14,56 +14,16 @@ line<-function(obj,rule)
   {
     m=0
   }
-  
-  
-  if(grepl("1",rule))
-  {
-    tr<-coords[1:2]
-    tr$x[!coords$x>obj$pos.x[[1]]]<-obj$pos.x[[1]]
-    tr$y[!coords$y>obj$pos.y[[1]]]<-obj$pos.y[[1]]
-    for(i in seq(-20 ,20)){
-      filling(i,coords=tr,m=m)
-      
-    }
+
+  for(i in seq(-20 ,20)){
+    filling(q=i,m=m,coords=coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
   }
-  if(grepl("2",rule))
-  {
-    tr<-coords[1:2]
-    tr$x[!coords$x>obj$pos.x[[1]]]<-obj$pos.x[[1]]
-    tr$y[!coords$y<obj$pos.y[[1]]]<-obj$pos.y[[1]]
-    for(i in seq(-20 ,20)){
-      filling(i,coords=tr,m=m)
-      
-    }
-  }
-  if(grepl("3",rule))
-  {
-    tr<-coords[1:2]
-    tr$x[!coords$x<obj$pos.x[[1]]]<-obj$pos.x[[1]]
-    tr$y[!coords$y<obj$pos.y[[1]]]<-obj$pos.y[[1]]
-    for(i in seq(-20 ,20)){
-      filling(i,coords=tr,m=m)
-      
-    }
-  }
-  if(grepl("4",rule))
-  {
-    tr<-coords[1:2]
-    tr$x[!coords$x<obj$pos.x[[1]]]<-obj$pos.x[[1]]
-    tr$y[!coords$y>obj$pos.y[[1]]]<-obj$pos.y[[1]]
-    for(i in seq(-20 ,20)){
-      filling(i,coords=tr,m=m)
-      
-    }
-  }
-  
-  
 }
+
 ###
 
 
 found_points<-function(x1,x2,y1,y2,m1,q1){
-  
   delta_y<- (y2 - y1)
   delta_x<- (x2 - x1)
   if(round(x2,3)==round(x1,3)){
@@ -71,18 +31,17 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
     x<-x1
   }else if(round(y1,3)==round(y2,3)){
     y<-y1
-    x<-(y1-q1)
+    x<-(y1-q1)/m1
   }else{
     m2 <-  delta_y / delta_x
     q2 <- y1-x1*m2
     x <- (q1 - q2) / (m2 - m1)
-    y <- x*m2+q2
+    y <- x*m1+q2
   }
   return(c(x,y))
 }
 
-
-filling<-function(q,m,coords)
+filling<-function(q,m,coords)#,p.x=0,p.y=0, rule="1,2,3,4")
 {
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
@@ -100,11 +59,11 @@ filling<-function(q,m,coords)
     
     if(control_x && control_y && n_solu<=2)
     {
-      
       pt[n_solu,]<-solution
       n_solu<-n_solu+1
     }
   }
+ 
   polygon(pt[,1],pt[,2])
   return(pt)
 }
@@ -150,5 +109,7 @@ draw.field<- function(obj, main = NULL, canvas = TRUE,filling=FALSE) {
   }
 }
 
-draw(square())
-line(square(),"123")
+draw(obj)
+line(pentagon(),"42inv")
+line(pentagon(),"3")
+
