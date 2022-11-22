@@ -33,10 +33,24 @@ fill <- function(obj,n,...) {
 }
 
 
+mental_transformation <- function(obj,n,rule,...) {
+  UseMethod("mental_transformation")
+}
+
+
 ##Rules
 
 fill.field<-function(obj,n,rule,...){
-  index <- rep(c("white","grey","black"),3)
+  if(grepl("par",rule))
+  {
+    index<-c("line1h","line2h","line12h","line1","line2","line12",
+             "line1inv","line2inv","line12inv")
+  }else if(grepl("line",rule)){
+    index <- rep(c("line12","line12h","line12inv"),3)
+  }else{
+    index <- rep(c("white","grey","black"),3)
+  }
+  
   if(grepl("multi",rule))
   {
     set.seed(n)
@@ -113,13 +127,18 @@ margin.field<-function(obj,n,rules,...){
   return(obj)
 }
 
-diff_shapes.field<-function(obj,n,...) {
+diff_shapes.field<-function(obj,n,rule,...) {
   if(length(obj$visible)!=3)
   {
     stop("You must have at least three forms to change shapes!")
   }
-  #index<-c(3:1,3:1,3:1) TL-LR
-  index<-c(1:3,1:3,1:3) #TR-LL
+  if(grepl("inv",rule))
+  {
+    index<-c(3:1,3:1,3:1) #TL-LR
+  }else{
+    index<-c(1:3,1:3,1:3) #TR-LL
+  }
+
   pos<-which(obj$visible==1)
   if(length(pos)>1){
     obj$visible[pos]<-0
@@ -162,6 +181,46 @@ logic.field<-function(obj,n,rule,seed,...) {
   }
   return(obj)
 }
+
+
+mental_transformation.field<-function(obj,n,rule,seed,...) {
+  if(length(obj$shape)<2)
+  {
+    stop("You must have two forms to apply a mental transformation!")
+  }
+  set.seed(seed)
+  if(grepl("line",rule))
+  {
+    index<-sample(c("line12","line12inv","line12both","line12both","line12both"),1)
+  }else{
+    index<-sample(c("white","grey","black","black","black"),1)
+  }
+  
+  if(grepl("fill",rule))
+  {
+    obj<-hide(obj)
+    if(n!=1){
+      pos<-c(1,2,1)
+      obj$visible[[pos[n]]]<-1
+      obj$shade<-lapply(obj$shade, function(x,i)
+      {
+        return(i)
+      },i=index)
+    }else{
+      obj$visible[[n]]<-1
+    }
+      
+  }else if(grepl("rotation",rule))
+  {
+    
+  }
+  return(obj)
+}
+
+
+
+
+
 
 logic_rules <- function(obj,n,...) {
   UseMethod("logic_rules")

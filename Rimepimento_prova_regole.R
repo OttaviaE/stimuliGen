@@ -41,32 +41,6 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
   return(c(x,y))
 }
 
-filling<-function(q,m,coords)#,p.x=0,p.y=0, rule="1,2,3,4")
-{
-  pt<-matrix(ncol=2,nrow = 2)
-  n_solu<-1
-  index<-c(1:length(coords$x),1)
-  for(i in 2:length(index))
-  {
-    solution<-found_points(coords$x[index[i-1]],coords$x[index[i]],
-                           coords$y[index[i-1]],coords$y[index[i]],
-                           m,q)
-    
-    control_x<-min(coords$x[index[i-1]],coords$x[index[i]])<=solution[1] &
-      max(coords$x[index[i-1]],coords$x[index[i]])>=solution[1]
-    control_y<-min(coords$y[index[i-1]],coords$y[index[i]])<=solution[2] &
-      max(coords$y[index[i-1]],coords$y[index[i]])>=solution[2]
-    
-    if(control_x && control_y && n_solu<=2)
-    {
-      pt[n_solu,]<-solution
-      n_solu<-n_solu+1
-    }
-  }
- 
-  polygon(pt[,1],pt[,2])
-  return(pt)
-}
 
 
 
@@ -77,8 +51,11 @@ filling<-function(q,m,coords)#,p.x=0,p.y=0, rule="1,2,3,4")
 #3) Funzione che si applica alle matrici
 #4) tipo di riempimento (provo questa opzione)
 
-draw.field<- function(obj, main = NULL, canvas = TRUE,filling=FALSE) {
+draw.field<- function(obj, main = NULL, canvas = TRUE, hide = FALSE) {
   library(DescTools)
+  if (hide == TRUE) {
+    obj$Sq9 = hide(obj$Sq9)
+  }
   if (canvas == TRUE)
   {
     Canvas(xlim=16,mar=c(1,1,1,1), main = main)
@@ -88,15 +65,16 @@ draw.field<- function(obj, main = NULL, canvas = TRUE,filling=FALSE) {
     if(obj$visible[[j]]==1)
     {
       if(obj$num[[j]][1]==1){
-        if(grepl("line", obj$shade[[j]] ))
-        {
-          rule<-obj$shade[[j]]
-          obj$shade[[j]]<-NA
-          
-        }
+        
+      if(grepl("line",obj$shade[[j]][1]))
+      {
+        line(obj,obj$shade[[j]][1])
+        obj$shade <- NA
+      }
         DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],
                        radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
                        lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+        
         
       }else{
         DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]],
@@ -109,7 +87,9 @@ draw.field<- function(obj, main = NULL, canvas = TRUE,filling=FALSE) {
   }
 }
 
-draw(obj)
+oggetto<-pentagon()
+oggetto$shade[[1]]<-"line1"
+draw(oggetto)
 line(pentagon(),"42inv")
-line(pentagon(),"3")
+line(pentagon(),"1.v")
 
