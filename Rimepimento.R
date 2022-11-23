@@ -39,7 +39,7 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
     x<-x1
   }else if(round(y1,3)==round(y2,3)){
     y<-y1
-    x<-(y1-q1)
+    x<-(y1-q1)/m1
   }else{
     m2 <-  delta_y / delta_x
     q2 <- y1-x1*m2

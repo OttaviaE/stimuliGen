@@ -163,3 +163,22 @@ draw(M1)
 M1<-apply(Raven(bow.tie(),"multifill","multifill"))
 draw(M1)
 
+### ESEMPIO 7
+M1<-apply(Raven(pentagon(),"parfill","parfill"))
+draw(M1)
+
+### ESEMPIO 8 item4, item10, item4, item10
+
+M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill"))
+M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+draw(M1)
+draw(M2)
+draw(com(M1,M2))
+
+###
+
+M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill.line"))
+M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+draw(M1)
+draw(M2)
+draw(com(M1,M2)) ## cambi la visibilità

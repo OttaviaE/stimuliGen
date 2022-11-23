@@ -14,3 +14,8 @@ XOR	logic
 identity	identity
 fill	fill
 multifill	fill
+filline fill
+parfill  fill
+trans.fill mental_transformation
+trans.fill.line mental_transformation
+diff_shapes.inv	diff_shapes
