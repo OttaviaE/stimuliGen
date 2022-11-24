@@ -1,0 +1,1120 @@
+---
+title: "Available Matrix"
+format: 
+    html:
+      toc: true
+      toc-location: right
+      toc-title: Contents
+      html-math-method: mathjax
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| echo: false
+#| eval: true
+
+knitr::opts_chunk$set(echo=FALSE, 
+                      eval=TRUE)
+
+rm(list = ls())
+
+source("Shapes_list-10-11-Ottavia.R")
+source("Class and Methods v02.R")
+source("Rules_27102022.R")
+
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+  lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+  
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+
+papillon = bow.tie()
+u.papillon = u.bow.tie()
+
+
+for(i in 1:length(papillon$shape)) {
+  papillon$size.x[[i]] <-papillon$size.x[[i]]/2
+  papillon$size.y[[i]] <-papillon$size.y[[i]]/2
+  papillon$pos.y[[i]] <-papillon$pos.y[[i]]/2
+  papillon$pos.x[[i]] <-papillon$pos.x[[i]]/2
+  
+}
+
+u.papillon$size.x[[1]] <-u.papillon$size.x[[1]]/2
+u.papillon$size.y[[1]] <-u.papillon$size.y[[1]]/2
+u.papillon$pos.y[[1]] <-u.papillon$pos.y[[1]]/2
+u.papillon$pos.x[[1]] <-u.papillon$pos.x[[1]]/2
+
+
+thepie = pie.4()
+u.thepie = u.pie.4()
+
+
+for(i in 1:length(thepie$shape)) {
+  thepie$size.x[[i]] <-thepie$size.x[[i]]/2
+  thepie$size.y[[i]] <-thepie$size.y[[i]]/2
+  thepie$pos.y[[i]] <-thepie$pos.y[[i]]/2
+  thepie$pos.x[[i]] <-thepie$pos.x[[i]]/2
+  
+}
+
+u.thepie$size.x[[1]] <-u.thepie$size.x[[1]]/2
+u.thepie$size.y[[1]] <-u.thepie$size.y[[1]]/2
+u.thepie$pos.y[[1]] <-u.thepie$pos.y[[1]]/2
+u.thepie$pos.x[[1]] <-u.thepie$pos.x[[1]]/2
+
+biscuit = star()
+u.biscuit = u.star()
+
+
+for(i in 1:length(biscuit$shape)) {
+  biscuit$size.x[[i]] <-biscuit$size.x[[i]]/2
+  biscuit$size.y[[i]] <-biscuit$size.y[[i]]/2
+  biscuit$pos.y[[i]] <-biscuit$pos.y[[i]]/2
+  biscuit$pos.x[[i]] <-biscuit$pos.x[[i]]/2
+  
+}
+
+u.biscuit$size.x[[1]] <-u.biscuit$size.x[[1]]/2
+u.biscuit$size.y[[1]] <-u.biscuit$size.y[[1]]/2
+u.biscuit$pos.y[[1]] <-u.biscuit$pos.y[[1]]/2
+u.biscuit$pos.x[[1]] <-u.biscuit$pos.x[[1]]/2
+```
+
+# Monotematiche
+
+## Righe semplici
+
+::: {.panel-tabset}
+
+## Vertical
+
+``` {r echo=FALSE}
+
+
+# vertical canvas
+draw(vline(pos.x=-30, s.x = 30, lwd = 5))
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+
+```
+
+## Horizontal
+
+``` {r echo=FALSE}
+draw(hline(pos.y=-17, s.x = 30))
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+## Insieme
+
+```{r}
+col = "#ffdab9"
+draw(vline(pos.x=-30, s.x = 30, lwd = 5))
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+## Con i colori
+
+```{r}
+draw(vline(pos.x=-30, s.x = 30, lwd = 5), bg = col)
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+
+:::
+
+## Righe "complesse" verticali
+
+::: {.panel-tabset}
+
+## Vertical Inner
+
+```{r}
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 1)) {
+  
+    draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i)/2), 
+         canvas = F,  bg = "white")
+}
+
+
+```
+
+
+## Vertical Outer
+
+```{.r}
+# vertical outer canvas
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+p = seq(-30, 30, by = 2)
+q = c(abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
+for(i in 1:length(p)) {
+  draw(vline(pos.x = p[i], s.x=40, lwd = q[i]), 
+       canvas = F,  bg = "white")
+}
+
+```
+
+
+## Vertical increasing
+
+```{r}
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 31 + i), 
+       canvas = F,  bg = "white")
+}
+```
+
+## Vertical decreasing
+
+
+```{r}
+
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i, s.x= 40, lwd = 31 - i), 
+       canvas = F,  bg = "white")
+}
+
+```
+
+
+:::
+
+
+# Matrici 2 $\times$ 2
+
+## Rotazione
+
+::: {.panel-tabset}
+
+## Diagonale
+
+```{r}
+m1 = apply(
+  Raven(
+    st1 = square(), 
+    vrule = "rotation", 
+    hrule = "rotation"
+  )
+)
+draw(m1, n.cell = 4)
+
+```
+
+## Verticale
+
+```{r}
+m2 = apply(
+  Raven(
+    st1 = square(), 
+    vrule = "rotation", 
+    hrule = "identity"
+  )
+)
+draw(m2, n.cell = 4)
+```
+
+:::
+
+## Forma e dimensione
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+m3 = apply(
+  Raven(
+    st1 = cof(pacman(), 
+              square(), 
+              ellipse()), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = "identity"
+  )
+)
+draw(m3, n.cell = 4)
+```
+
+## Verticale e Orizzontale
+
+```{r}
+m4 = apply(
+  Raven(
+    st1 = cof(pacman(), 
+              square(), 
+              ellipse()), 
+    vrule = c("diff_shapes"), 
+    hrule = "size"
+  )
+)
+draw(m4, n.cell = 4)
+```
+
+
+:::
+
+
+## Forma e riempimento
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+
+m5 = apply(
+  Raven(
+    st1 = cof(e.hexagon(), 
+              ellipse(), pacman()), 
+    vrule = c("diff_shapes", "filline"), 
+    hrule = "identity"
+  )
+)
+draw(m5, n.cell = 4)
+
+```
+
+
+
+## Verticale e orizzontale
+
+```{r}
+m6 = apply(
+  Raven(
+    st1 = cof(e.hexagon(), 
+              square(), pacman()), 
+    vrule = c("diff_shapes"), 
+    hrule =  "filline"
+  )
+)
+draw(m6, n.cell = 4)
+
+```
+
+:::
+
+## Forma e orientamento 
+
+::: {.panel-tabset}
+
+## Forma e orientamento 
+
+## Verticale
+
+```{r}
+m7 = apply(
+  Raven(
+    st1 = cof(slice(size.x = 15), 
+              square(), pacman()), 
+    vrule = c("diff_shapes", "rotation"), 
+    hrule =  "identity"
+  )
+)
+draw(m7, n.cell = 4)
+```
+
+## Verticale e orizzontale
+
+
+```{r}
+m8 = apply(
+  Raven(
+    st1 = cof(ellipse(), 
+              pentagon(), pacman()), 
+    vrule = c("diff_shapes"), 
+    hrule =  "rotation"
+  )
+)
+draw(m8, n.cell = 4)
+```
+
+
+:::
+
+## Forma e bordo 
+
+::: {.panel-tabset}
+
+## Verticale 
+
+```{r}
+m8 = apply(
+  Raven(
+    st1 = cof(circle(), 
+              square(), pacman()), 
+    vrule = c("diff_shapes", "lty"), 
+    hrule =  "identity"
+  )
+)
+draw(m8, n.cell = 4)
+
+```
+
+
+## Verticale e orizzontale
+
+```{r}
+m9 = apply(
+  Raven(
+    st1 = cof(pacman(), 
+              u.bow.tie(), pacman()), 
+    vrule = c("diff_shapes"), 
+    hrule =  "lty"
+  )
+)
+draw(m9, n.cell = 4)
+```
+
+
+:::
+
+# Matrici $3 \times 3$ 
+
+## Forma e dimensione
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+M1 = apply(
+  Raven(
+    st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = "identity"
+  )
+)
+
+draw(M1, n.cell = 9)
+
+
+```
+
+## Verticale e orizzontale
+
+```{r}
+M2 = apply(
+  Raven(
+    st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")), 
+    vrule = c("diff_shapes"), 
+    hrule = "size"
+  )
+)
+draw(M2, n.cell = 9)
+```
+
+:::
+
+## Forma e rimepimento 
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+M3a = apply(
+  Raven(
+    st1 = cof(square(), 
+              circle(s.x = 15, s.y = 15), pentagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "identity"
+  )
+)
+
+
+M3b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              luck(s.x = 5, s.y = 7), 
+              u.papillon), 
+    vrule = c("diff_shapes"), 
+    hrule = "identity"
+  )
+)
+draw(com(M3a, M3b))
+
+
+
+
+```
+
+
+
+## Verticale e orizzontale
+
+```{r}
+M4a = apply(
+  Raven(
+    st1 = cof(square(), 
+              circle(s.x=15, s.y=15), e.hexagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "identity"
+  )
+)
+
+M4b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              luck(s.x = 5, s.y = 7), 
+              u.papillon), 
+    vrule = c("identity"), 
+    hrule = "diff_shapes"
+  )
+)
+
+draw(com(M4a, M4b), n.cell=9)
+```
+
+
+## TL-LR per la prima regola, V per la seconda
+
+```{r}
+M5a = apply(
+  Raven(
+    st1 = cof(square(), 
+              ellipse(), e.hexagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+M5b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              luck(s.x = 5, s.y = 7), 
+              u.thepie), 
+    vrule = c("diff_shapes"), 
+    hrule = "identity"
+  )
+)
+
+draw(com(M5a, M5b), n.cell=9)
+```
+
+## TL-LR per la prima, TR-LL per la seconda 
+
+```{r}
+M6a = apply(
+  Raven(
+    st1 = cof(square(), 
+              circle(s.x = 15, s.y = 15), pentagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+M6b = apply(
+  Raven(
+    st1 = cof(u.biscuit, 
+              luck(s.x = 5, s.y = 7, shd = "black"), 
+              triangle(s.x = 8, s.y=8, rot = pi/2, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = "diff_shapes.inv"
+  )
+)
+
+draw(com(M6a, M6b), n.cell=9)
+```
+
+
+:::
+
+
+
+
+## Forma e orientamento 
+
+
+::: {.panel-tabset}
+
+## Verticale
+
+
+```{r}
+M7 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              ellipse(rot=pi/2), pentagon()), 
+    vrule = c("diff_shapes", "rotation"), 
+    hrule = "identity"
+  )
+)
+draw(M7, n.cell = 9)
+```
+
+
+## Verticale e orizzontale 
+
+
+```{r}
+
+M8 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              ellipse(rot=pi/2), pentagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "rotation"
+  )
+)
+draw(M8, n.cell = 9)
+```
+
+
+## TL-LR sulla prima, verticale sulla seconda
+
+```{r}
+M10 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              pacman(), pentagon()), 
+    vrule = c("diff_shapes", "rotation"), 
+    hrule = "diff_shapes"
+  )
+)
+draw(M10, n.cell = 9)
+```
+
+
+## TR-LL sulla prima, TL-LR sulla seconda
+
+```{r}
+M11 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              pacman(), e.hexagon()), 
+    vrule = c("diff_shapes.inv", "rotation"), 
+    hrule = c("diff_shapes.inv", "rotation")
+  )
+)
+draw(M11, n.cell = 9)
+```
+
+
+:::
+
+
+## Forma e bordo 
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+M11 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              pacman(), e.hexagon()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = "identity"
+  )
+)
+draw(M11, n.cell = 9)
+
+```
+
+## Verticale e orizzontale 
+
+```{r}
+M12 = apply(
+  Raven(
+    st1 = cof(s.lily(), 
+              u.bow.tie(), triangle()), 
+    vrule = c("diff_shapes"), 
+    hrule = c("lty", "lwd")
+  )
+)
+draw(M12, n.cell = 9)
+```
+
+
+## TL-LR sulla prima, V sulla seconda 
+
+```{r}
+M13 = apply(
+  Raven(
+    st1 = cof(s.lily(), 
+              u.bow.tie(), pacman()), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes", "lty", "lwd")
+  )
+)
+draw(M13, n.cell = 9)
+
+
+```
+
+## TL-LR sulla prima, TR-LL sulla seconda
+
+```{r}
+M14 = apply(
+  Raven(
+    st1 = cof(s.lily(), 
+              u.bow.tie(), pacman()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("diff_shapes", "lty", "lwd")
+  )
+)
+draw(M14, n.cell = 9)
+```
+
+
+:::
+
+## Rimepimento e orientamento 
+
+::: {.panel-tabset}
+
+## Verticale 
+
+```{r}
+M15a = apply(
+  Raven(
+    st1 = pentagon(), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
+  )
+)
+
+
+
+M15b = apply(
+  Raven(
+    st1 = cof(u.biscuit, 
+              luck(s.x = 5, s.y = 7, shd = "black"), 
+              triangle(s.x = 8, s.y=8, rot = pi/2, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = "identity"
+  )
+)
+draw(com(M15a, M15b), n.cell=9)
+```
+
+## Vertical e orizzontale
+
+```{r}
+M16a = apply(
+  Raven(
+    st1 = e.hexagon(), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
+  )
+)
+
+
+
+M16b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              u.thepie, 
+              u.papillon), 
+    vrule = c("identity"), 
+    hrule = "diff_shapes.inv"
+  )
+)
+
+
+draw(com(M16a, M16b), n.cell=9)
+```
+
+
+## TL-LR entrambe
+
+```{r}
+M17a = apply(
+  Raven(
+    st1 = pacman(), 
+    vrule = c("rotation"), 
+    hrule = c("rotation")
+  )
+)
+
+M17b = apply(
+  Raven(
+    st1 = circle(s.x = 2, s.y = 2), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+
+draw(com(M17a, M17b), n.cell=9)
+```
+
+
+::: 
+
+
+## Riempimento e bordo
+
+::: {.panel-tabset} 
+
+## Verticale
+
+```{r}
+M18a = apply(
+  Raven(
+    st1 = square(), 
+    vrule = c("identity"), 
+    hrule = c("identity")
+  )
+)
+
+
+
+M18b = apply(
+  Raven(
+    st1 = circle(s.x = 3, s.y = 3), 
+    vrule = c("fill"), 
+    hrule = "identity"
+  )
+)
+
+
+M18c = apply(
+  Raven(
+    st1 = square(s.x = 13, s.y = 13), 
+    vrule = c("lty", "lwd"), 
+    hrule = c("identity")
+  )
+)
+
+
+
+
+draw(com(M18b, M18c))
+```
+
+
+## Bonus 
+
+```{r}
+draw(com(M18a, M18b, M18c), n.cell=9)
+```
+
+
+## Verticale e orizzontale 
+
+```{r}
+M19a = apply(
+  Raven(
+    st1 = circle(s.x = 3, s.y = 3), 
+    vrule = c("fill"), 
+    hrule = "identity"
+  )
+)
+
+M19b = apply(
+  Raven(
+    st1 = triangle(s.x = 13, s.y = 13), 
+    vrule = c("identity"), 
+    hrule = c("lty", "lwd")
+  )
+)
+draw(com(M19a, M19b))
+```
+
+## TL-LR, Verticale 
+
+```{r}
+M20a = apply(
+  Raven(
+    st1 = pacman(), 
+    vrule = c("lty", "lwd"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+
+M20b = apply(
+  Raven(
+    st1 = square(s.x = 3, s.y = 3), 
+    vrule = c("fill"), 
+    hrule = c("identity")
+  )
+)
+
+draw(com(M20a, M20b))
+```
+
+
+## TL-LR 
+
+```{r}
+M21a = apply(
+  Raven(
+    st1 = e.hexagon(), 
+    vrule = c("lty", "lwd"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+M21b = apply(
+  Raven(
+    st1 = cof(u.biscuit, 
+              luck(s.x = 5, s.y = 7, shd = "black"), 
+              triangle(s.x = 8, s.y=8, rot = pi/2, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes")
+  )
+)
+draw(com(M21a, M21b))
+```
+
+
+:::
+
+
+## Forma riempimento bordo 
+
+
+::: {.panel-tabset}
+
+## Verticale
+
+```{r}
+
+M22a = apply(
+  Raven(
+    st1 = cof(square(), 
+              pentagon(), 
+              e.hexagon()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("identity")
+  )
+)
+M22b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              luck(s.x = 5, s.y = 7), 
+              u.thepie), 
+    vrule = c("diff_shapes"), 
+    hrule = c("identity")
+  )
+)
+draw(com(M22a, M22b))
+```
+
+## Verticale e orizzontale 
+
+```{r}
+M23a = apply(
+  Raven(
+    st1 = cof(square(), 
+              pentagon(), 
+              e.hexagon()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("identity")
+  )
+)
+
+M23b = apply(
+  Raven(
+    st1 = cof(s.lilth, 
+              u.papillon, 
+              u.thepie), 
+    vrule = c("identity"), 
+    hrule = c("diff_shapes")
+  )
+)
+draw(com(M23a, M23b))
+```
+
+## TL-LR, Verticale 
+
+```{r}
+M24a = apply(
+  Raven(
+    st1 = cof(triangle(), 
+              pacman(), 
+              u.bow.tie()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("diff_shapes")
+  )
+)
+
+M24b = apply(
+  Raven(
+    st1 = circle(s.x = 3, s.y = 3), 
+    vrule = c("identity"), 
+    hrule = "fill"
+  )
+)
+draw(com(M24a, M24b))
+```
+
+## TL-LR, TR-LL
+
+```{r}
+M25a = apply(
+  Raven(
+    st1 = cof(triangle(), 
+              e.hexagon(), 
+              luck()), 
+    vrule = c("diff_shapes.inv", "lty", "lwd"), 
+    hrule = c("diff_shapes.inv", "lty", "lwd")
+  )
+)
+
+
+u.biscuit1 = u.biscuit
+u.biscuit1$size.x[[1]] = u.biscuit1$size.x[[1]]-2
+u.biscuit1$size.y[[1]] = u.biscuit1$size.y[[1]]-2
+M25b = apply(
+  Raven(
+    st1 =  cof(u.biscuit1, 
+    luck(s.x = 4, s.y = 6, shd = "black"), 
+    circle(s.x = 3, s.y = 3, shd="black")), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+draw(com(M25b, M25a))
+```
+
+
+
+:::
+
+## Forma riempimento dimensione
+
+::: {.panel-tabset}
+
+## Verticale 
+
+```{r}
+M26 = apply(
+  Raven(
+    st1 = cof(square(), 
+              pentagon(), 
+              circle()), 
+    vrule = c("diff_shapes", "size", "parfill"), 
+    hrule = c("identity")
+  )
+)
+draw(M26, n.cell = 9)
+```
+
+
+## Verticale e orizzontale
+
+```{r}
+M27 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              triangle(), 
+              ellipse()), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = c("parfill")
+  )
+)
+draw(M27, n.cell = 9)
+
+```
+
+
+## TL-LR, Verticale 
+
+```{r}
+M28a = apply(
+  Raven(
+    st1 = cof(square(), 
+              pentagon(), 
+              luck(s.x=17, s.y = 14)), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes")
+  )
+)
+
+M28b = apply(
+  Raven(
+    st1 = cof(circle(s.x=8, s.y=8)), 
+    vrule = c("fill", "size"), 
+    hrule = c("identity")
+  )
+)
+draw(com(M28a, M28b))
+```
+
+
+## TR-LL, + altro 
+
+
+
+
+```{r}
+M29a = apply(
+  Raven(
+    st1 = cof(square(), 
+              pentagon(), 
+              e.hexagon(s.x = 15, s.y=15)), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = c("diff_shapes.inv")
+  )
+)
+draw(M29a)
+
+
+
+
+M29b = apply(
+  Raven(
+    st1 = cof(u.biscuit, 
+              circle(s.x=8, s.y=8, shd = "black"), 
+              luck(shd="black")), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = c("diff_shapes", "size")
+  )
+)
+draw(com(M29a, M29b))
+
+
+```
+
+
+## Bonus 
+
+```{r}
+M29c = apply(
+  Raven(
+    st1 = circle(s.x=8, s.y=8), 
+    vrule = c("fill", "size"), 
+    hrule = c("fill", "size")
+  )
+)
+draw(com(M29a, M29c))
+```
+
+
+:::

@@ -235,14 +235,11 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   return(obj)
 }
 
-draw.field<- function(obj, main = NULL, canvas = TRUE, hide = FALSE) {
+draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white") {
   library(DescTools)
-  if (hide == TRUE) {
-    obj$Sq9 = hide(obj$Sq9)
-  }
   if (canvas == TRUE)
   {
-    Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+    Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
   }
   for(j in 1:length(obj$shape))
   {

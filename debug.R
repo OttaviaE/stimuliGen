@@ -42,6 +42,16 @@ xcros$size.x[[1]]<-xcros$size.x[[1]]-4
 xcros$size.y[[1]]<-xcros$size.y[[1]]-4
 
 
+# nuovi problemi yay
+m1 = apply(Raven(st1 = cof(pacman(),  square(s.x = 5, s.y = 5, 
+                                             shd = "black", rot = pi/2),
+                           s.lily()
+), 
+hrule = "diff_shapes", 
+vrule = c("diff_shapes","size")))
+draw(m1, n.cell = 4, hide = F)      
+
+
 ###ESEMPIO 1
 M1<-apply(Raven(cof(s.lilth,square(s.x=3,s.y=3,rot = pi/2),xcros),
                 "diff_shapes"))
@@ -164,7 +174,9 @@ M1<-apply(Raven(bow.tie(),"multifill","multifill"))
 draw(M1)
 
 ### ESEMPIO 7
-M1<-apply(Raven(pentagon(),"parfill","parfill"))
+M1<-apply(Raven(cof(pentagon(), 
+                    square(), 
+                    circle()),"parfill","diff_shapes"))
 draw(M1)
 
 ### ESEMPIO 8 item4, item10, item4, item10
