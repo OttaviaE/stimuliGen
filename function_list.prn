@@ -21,3 +21,7 @@ trans.fill.line mental_transformation
 diff_shapes.inv	diff_shapes
 hquant  numeric_progression
 vquant  numeric_progression
+hquant.inv  numeric_progression
+vquant.inv  numeric_progression
+hquant.x2  numeric_progression
+vquant.x2  numeric_progression

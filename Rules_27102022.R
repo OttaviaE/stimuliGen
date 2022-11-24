@@ -239,8 +239,11 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
 
 create_dice.field<-function(object)
 {
-  warning(any(object$tag=="small"))
-  object<-movement(object,1,"pos",-20,12)
+  if(!any(unlist(object$tag)=="small"))
+  {
+    stop("The function need to be resizeable")
+  }
+  object<-movement(object,1,"pos",-18,12)
   object<-size(object,4)
   
   object2<-object
@@ -264,21 +267,26 @@ create_dice.field<-function(object)
 }
 
 numeric_progression.field<-function(obj,n,rules,...){
-  if(grepl("h",rules))
-  {
-    index<-matrix(1:9,ncol=3,byrow=TRUE)
-    visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
+  index<-matrix(1:9,ncol=3,byrow=TRUE)
+  visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
+  visibility[1,1]<-1
+  if(grepl("h",rules) & grepl("inv",rules)){
+    n<-4-n
     obj=show(obj,index[1:n,1])
-  }else{
-    index<-matrix(1:9,ncol=3,byrow=TRUE)
-    visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
+  }else if(grepl("v",rules) & grepl("inv",rules) ){
+    n<-4-n
+    obj=show(obj,index[1,1:n])
+  }else if(grepl("h",rules) & grepl("x2",rules)){
+    obj=show(obj,index[1:n,colSums(visibility)>=1])
+  }else if(grepl("v",rules) & grepl("x2",rules)){
+    obj=show(obj,index[rowSums(visibility)>=1,1:n])
+  }else if(grepl("h",rules)){
+    obj=show(obj,index[1:n,1])
+  }else if(grepl("v",rules)){
     obj=show(obj,index[1,1:n])
   }
   return(obj)
 }
-
-
-
 
 
 

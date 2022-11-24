@@ -250,7 +250,7 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white") {
         {
           elements<-decof(obj)
           
-          line(elements[[which(obj$visible==1)]],obj$shade[[j]][1])
+          line(elements[[which(obj$visible==1&grepl("line",unlist(obj$shade)))]],obj$shade[[j]][1])
           obj$shade[[j]][1] <- NA
         }
         DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],
@@ -411,8 +411,8 @@ draw.Raven_matrix<- function(obj, main = NULL,
    }
   
 
-  if (hide == FALSE) {
-    for (i in 1:length(squares))
+  if (hide == TRUE){n.cell<-n.cell-1}
+    for (i in 1:n.cell)
     {
       #Fixing the plot area for each cells
       Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
@@ -420,16 +420,16 @@ draw.Raven_matrix<- function(obj, main = NULL,
       draw(obj[[squares[[i]]]],canvas = FALSE)
       
     }
-  } else {
-    for (i in 1:(length(squares)-1))
-    {
-      #Fixing the plot area for each cells
-      Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
-      #Canvas(16,16)
-      draw(obj[[squares[[i]]]],canvas = FALSE)
-      
-    }
-  }
+  # } else {
+  #   for (i in 1:(length(squares)-1))
+  #   {
+  #     #Fixing the plot area for each cells
+  #     Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
+  #     #Canvas(16,16)
+  #     draw(obj[[squares[[i]]]],canvas = FALSE)
+  #     
+  #   }
+  #}
  
 }
 
@@ -505,7 +505,7 @@ line<-function(obj,rule)
     if(grepl("1",rule))
     {
       first_coords<-coords
-      first_coords$x[coords$x<obj$pos.x[[1]]]<-obj$pos.x[[1]]
+      first_coords$x[coords$x<=obj$pos.x[[1]]]<-obj$pos.x[[1]]
       for(i in seq(-20 ,20)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
@@ -513,7 +513,7 @@ line<-function(obj,rule)
     if(grepl("2",rule))
     {
       first_coords<-coords
-      first_coords$x[coords$x>obj$pos.x[[1]]]<-obj$pos.x[[1]]
+      first_coords$x[coords$x>=obj$pos.x[[1]]]<-obj$pos.x[[1]]
       for(i in seq(-20 ,20)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
