@@ -9,9 +9,15 @@ clip(-unlist(square()$size.x)/sqrt(2), unlist(square()$size.x)/sqrt(2),
      -unlist(square()$size.x)/sqrt(2))
 # usando diagline non viene preché in primis riprende il canvas vuoto
 # in secundis è gigantesca
-draw(diagline.inv(p.x = c(seq(-20, 20, by = 1)),
-                  p.y = unlist(square()$size.x)/2), # variando y, cambia la quantità di riempimento
+draw(diagline.inv(pos.x = c(seq(-20, 20, by = 1)),
+                  pos.y = unlist(square()$size.x)/2), # variando y, cambia la quantità di riempimento
      canvas = F)
+draw(diagline.inv(pos.x = c(seq(-20, 20, by = 1)),
+                  pos.y = -unlist(square()$size.x)/2), # variando y, cambia la quantità di riempimento
+     canvas = F)
+draw(ellipse(s.x=7, s.y=5, shd = "white", 
+            pos.x = 3, pos.y=3), canvas = F)
+
 
 # metà inferiore
 draw(square())
