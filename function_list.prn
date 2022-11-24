@@ -19,3 +19,5 @@ parfill  fill
 trans.fill mental_transformation
 trans.fill.line mental_transformation
 diff_shapes.inv	diff_shapes
+hquant  numeric_progression
+vquant  numeric_progression

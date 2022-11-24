@@ -303,6 +303,22 @@ hide.field<-function(obj,index="Full")
   return(obj)
 }
 
+show<- function(obj,index) {
+  UseMethod("show")
+}
+
+show.field<-function(obj,index="Full")
+{
+  if(any(index=="Full"))
+  {
+    index<-1:length(obj$shape)
+  }
+  obj$visible[index]<-rep(1,length(index))
+  return(obj)
+}
+
+
+
 
 decof<- function(obj) {
   UseMethod("decof")

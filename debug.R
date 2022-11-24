@@ -182,3 +182,8 @@ M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotati
 draw(M1)
 draw(M2)
 draw(com(M1,M2)) ## cambi la visibilità
+
+
+## ESEMPIO 9
+M1<-apply(Raven(create_dice(square()),"hquant","vquant"))
+draw(M1)
