@@ -94,7 +94,7 @@ ic.flip = function(m, rot = pi/4) {
 # generazione di matrici per lo studio dei distrattori ---- 
 # gruppo A 
 a5_sh_rot_size = apply(Raven(
-  st1 = cof(ellipse(), triangle(), square()), 
+  st1 = cof(ellipse(), triangle(), luck()), 
   vrule= c("diff_shapes",  "size"), 
   hrule = c( "rotation","diff_shapes")
 ))
@@ -107,7 +107,7 @@ m = apply(Raven(
 draw(m)
 m1 = m$Sq1
 
-draw(a5_sh_rot_size, hide = T)
+draw(a5_sh_rot_size, hide = F)
 
 dist_a5 = list(correct = correct(a5_sh_rot_size))
 rep_a5 = repetition(a5_sh_rot_size, 

@@ -1,16 +1,25 @@
 rm(list = ls())
 
 source("Shapes_list-10-11-Ottavia.R")
-source("Class and Methods.R")
-source("Class and Methods extension.R")
+source("Class and Methods v02.R")
 source("Rules_27102022.R")
 
-m1 = apply(Raven(st1 = cof(dot(), 
-                           s.lily(), 
-                           square(s.x = 5, s.y = 5, 
-                                  shd = "black", rot = pi/2)), 
-                 hrule = "diff_shapes"))
-draw(m1)           
+m1 = apply(Raven(st1 = cof(pacman(),  square(s.x = 5, s.y = 5, 
+                                             shd = "black", rot = pi/2),
+                           s.lily()
+                          ), 
+                 hrule = "identity", 
+                 vrule = c("diff_shapes","size")))
+draw(m1, n.cell = 4, hide = T)    
+
+
+mprova = apply(Raven(st1 = cof(pentagon(),  square(),
+                           e.hexagon()
+), 
+hrule = c("diff_shapes.inv"), 
+vrule = c("diff_shapes.inv","filline")))
+draw(mprova, n.cell = 9, hide = F)   
+
 m2 = apply(Raven(st1=pentagon(),
                  hrule=c("identity"),
                  vrule=c("identity")))
