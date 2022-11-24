@@ -23,7 +23,19 @@ M1<-apply(Raven(cof(s.lily(),square(s.x=3,s.y=3,rot = pi/2),
 draw(M1)
 
 M2<-apply(Raven(cof(square()),vrule = "lty"))   
-draw(M2)
+draw(M2, bg = "blue", n.cell = 4)
+
+par(mfrow=c(1,1))
+Canvas(xlim=16,mar=c(0.5,0.5,0.5,0.5))
+
+draw(vline(pos.x = -5, s.x=55, lwd = 15))
+draw(vline(pos.x =0, s.x=55, lwd = 15), canvas = F)
+
+
+par(mfrow=c(2,1))
+draw(hline(s.x=55, lwd = 15))
+draw(hline(s.x=55, lwd = 15))
+
 
 M <-com(M2,M1)
 draw(M)

@@ -132,6 +132,40 @@ square <- function(    s.x=15,
   value
 }
 
+
+#' Default luck
+#'
+#' @return Return the default luck object
+#' @examples
+#' luck()
+#' @export
+luck <- function(    s.x=10,
+                       s.y=15,
+                       rot=pi / 2, pos.x = 0, pos.y = 0,
+                       shd=NA,
+                       vis = 1) {
+  value <- list(
+    shape = "luck",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(1),
+    lwd = list(3),
+    num = list(1),
+    nv = list(4),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
 #' Default pentagon
 #'
 #' @return Return the default pentagon object

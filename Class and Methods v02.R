@@ -157,7 +157,8 @@ apply <- function(obj,rules) {
   UseMethod("apply")
 }
 
-draw <- function(obj, main = NULL, canvas = TRUE, hide = FALSE) {
+draw <- function(obj, main = NULL, canvas = TRUE, 
+                 hide = FALSE, n.cell = 9, bg = "white") {
   UseMethod("draw")
 }
 
@@ -379,17 +380,29 @@ shapes_list<-function(filename)
   return(table)
 }
 
-draw.Raven_matrix<- function(obj, main = NULL, hide = FALSE) { ###Definito Draw per i field si può semplificare questa
+draw.Raven_matrix<- function(obj, main = NULL, 
+                             hide = FALSE, 
+                             n.cell = 9, 
+                             bg = "white") { ###Definito Draw per i field si può semplificare questa
   
   library(DescTools)
-  par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + .1, mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+   if (n.cell == 9) {
+     par(mfrow = c(3, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+         mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+     squares <- paste0("Sq", 1:9)
+     
+   } else if (n.cell == 4) {
+     squares <- paste0("Sq", c(1,2, 4,5))
+     par(mfrow = c(2, 2), mar = c(0.5, 6, 0.5, 2) + .1, 
+         mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+   }
   
-  squares <- paste0("Sq", 1:9)
+
   if (hide == FALSE) {
     for (i in 1:length(squares))
     {
       #Fixing the plot area for each cells
-      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
       #Canvas(16,16)
       draw(obj[[squares[[i]]]],canvas = FALSE)
       
@@ -398,7 +411,7 @@ draw.Raven_matrix<- function(obj, main = NULL, hide = FALSE) { ###Definito Draw 
     for (i in 1:(length(squares)-1))
     {
       #Fixing the plot area for each cells
-      Canvas(xlim=16,mar=c(1,1,1,1), main = main)
+      Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
       #Canvas(16,16)
       draw(obj[[squares[[i]]]],canvas = FALSE)
       
