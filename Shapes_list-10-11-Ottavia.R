@@ -375,7 +375,7 @@ u.bow.tie <- function(pos.x = 0) {
 #' @examples
 #' v.arc.left.up()
 #' @export
-v.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
+v.arc.left.up <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.left.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -403,7 +403,7 @@ v.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
 #' @examples
 #' v.arc.right.up()
 #' @export
-v.arc.right.up <- function(lty =1, lwd = 3, vis = 1) {
+v.arc.right.up <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.right.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -432,7 +432,7 @@ v.arc.right.up <- function(lty =1, lwd = 3, vis = 1) {
 #' @examples
 #' v.arc.left.down()
 #' @export
-v.arc.left.down <- function(lty =1, lwd = 3, vis  = 1) {
+v.arc.left.down <- function(lty =1, lwd = 3, vis  = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape  = "v.arc.left.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -461,7 +461,7 @@ v.arc.left.down <- function(lty =1, lwd = 3, vis  = 1) {
 #' @examples
 #' v.arc.right.down()
 #' @export
-v.arc.right.down <- function(lty =1, lwd = 3,vis = 1) {
+v.arc.right.down <- function(lty =1, lwd = 3,vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.right.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -490,7 +490,7 @@ v.arc.right.down <- function(lty =1, lwd = 3,vis = 1) {
 #' @examples
 #' h.arc.left.up()
 #' @export
-h.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
+h.arc.left.up <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape  = "h.arc.left.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -518,7 +518,7 @@ h.arc.left.up <- function(lty =1, lwd = 3, vis = 1) {
 #' @examples
 #' h.arc.right.up()
 #' @export
-h.arc.right.up <- function(lty =1, lwd = 3,vis = 1) {
+h.arc.right.up <- function(lty =1, lwd = 3,vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape  = "h.arc.right.up",
     size.x  = list(square()$size.x[[1]]/2),
@@ -547,7 +547,7 @@ h.arc.right.up <- function(lty =1, lwd = 3,vis = 1) {
 #' @examples
 #' h.arc.left.down()
 #' @export
-h.arc.left.down <- function(lty =1, lwd = 3, vis = 1) {
+h.arc.left.down <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "h.arc.left.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -575,7 +575,7 @@ h.arc.left.down <- function(lty =1, lwd = 3, vis = 1) {
 #' @examples
 #' h.arc.right.down()
 #' @export
-h.arc.right.down <- function(lty =1, lwd = 3, vis = 1) {
+h.arc.right.down <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "h.arc.right.down",
     size.x  = list(square()$size.x[[1]]/2),
@@ -1092,6 +1092,42 @@ slice <- function(pos.x=0 ,pos.y=0,
   value
 }
 
+
+# spicchi ----
+
+#' Default slice
+#'
+#' @return Return the default diagonal line object
+#' @examples
+#' slice()
+#' @export
+pacman <- function(pos.x=0 ,pos.y=0,
+                  theta1 = pi/4, 
+                  theta2 = 7*pi/4,
+                  size.x =sqrt(square()$ size.x[[1]]^2 /2),
+                  size.y = 0,
+                  lty = 1, lwd =3,
+                  vis = 1) {
+  value <- list(
+    shape = "pacman",
+    size.x = list(size.x),
+    size.y = list(size.y),
+    theta.1  = list(theta1),
+    theta.2  = list(theta2),
+    rotation = list(pi - pi / 4),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
+    num = list(2),
+    nv =  list(100),
+    shade = list(NA),
+    visible = vis,
+    tag = list("simple","fill", "rotate" ) 
+  )
+  attr(value, "class") <- "field"
+  value
+}
 
 
 

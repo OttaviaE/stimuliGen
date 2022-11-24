@@ -90,24 +90,35 @@ identity.field <- function(obj,...) {
  return(obj)
 }
 
-
-movement.field<-function(obj,n,rule,...) {
-  if(rule=="mov_hrl"){
-    obj[[1]]$pos.x<-obj[[1]]$pos.x+18*(n-1)
-  }else if(rule=="mov_hlr"){
-    obj[[1]]$pos.x<-obj[[1]]$pos.x-18*(n-1)
-  }else if(rule=="mov_vud"){
-    obj[[1]]$pos.y<-obj[[1]]$pos.y-12*(n-1)
-  }else if(rule=="mov_vdu"){
-    obj[[1]]$pos.y<-obj[[1]]$pos.y+12*(n-1)
+movement.field<-function(obj,n,rule,x=0,y=0,...) {
+  
+  if(rule=="x"){
+    obj$pos.x[[1]]<-obj$pos.x[[1]]-20*(n-1)
+  }else if(rule=="y"){
+    obj$pos.y[[1]]<-obj$pos.y[[1]]-12*(n-1)
+  }else{
+    obj$pos.x[[1]]<-rep(x,length(obj$pos.x[[1]]-20*(n-1)))
+    obj$pos.y[[1]]<-rep(y,length(obj$pos.y[[1]]-20*(n-1)))
   }
   return(obj)
 }
+# movement.field<-function(obj,n,rule,...) {
+#   if(rule=="mov_hrl"){
+#     obj[[1]]$pos.x<-obj[[1]]$pos.x+18*(n-1)
+#   }else if(rule=="mov_hlr"){
+#     obj[[1]]$pos.x<-obj[[1]]$pos.x-18*(n-1)
+#   }else if(rule=="mov_vud"){
+#     obj[[1]]$pos.y<-obj[[1]]$pos.y-12*(n-1)
+#   }else if(rule=="mov_vdu"){
+#     obj[[1]]$pos.y<-obj[[1]]$pos.y+12*(n-1)
+#   }
+#   return(obj)
+# }
 
 rotation.field<-function(obj,n,...) {
   obj$rotation<-Map('+', obj$rotation,(n-1)*pi/4)
-  #obj$theta.1<-Map('+', obj$theta.1,(n-1)*pi/4)
-  #obj$theta.2<-Map('+', obj$theta.2,(n-1)*pi/4)
+  obj$theta.1<-Map('+', obj$theta.1,(n-1)*pi/4)
+  obj$theta.2<-Map('+', obj$theta.2,(n-1)*pi/4)
   return(obj)
 }
 
