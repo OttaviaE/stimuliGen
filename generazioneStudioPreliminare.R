@@ -95,9 +95,17 @@ ic.flip = function(m, rot = pi/4) {
 # gruppo A 
 a5_sh_rot_size = apply(Raven(
   st1 = cof(ellipse(), triangle(), square()), 
-  vrule= c("diff_shapes", "rotation", "size"), 
-  hrule = c("diff_shapes", "rotation")
+  vrule= c("diff_shapes",  "size"), 
+  hrule = c( "rotation","diff_shapes")
 ))
+# QUADRATO NO
+m = apply(Raven(
+  st1 = cof(triangle(),ellipse(rot = pi/2),  e.hexagon(rot=pi/3)), 
+  hrule= c("diff_shapes",   "size"), 
+  vrule = c("diff_shapes",  "rotation")
+))
+draw(m)
+m1 = m$Sq1
 
 draw(a5_sh_rot_size, hide = T)
 
@@ -137,7 +145,7 @@ for (i in 1:length(dist_a5)) {
 
 b5_sh_rot_size = apply(Raven(
   st1 = cof(square(), triangle(), e.hexagon()), 
-  vrule= c("diff_shapes", "rotation", "size"), 
+  vrule= c("diff_shapes",  "size"), 
   hrule = c("diff_shapes", "rotation")
 ))
 

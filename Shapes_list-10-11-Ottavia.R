@@ -318,7 +318,6 @@ bow.tie <- function(pos.x = 0) {
 #' @return Return the default cross object
 #' @examples
 #' u.bow.tie()
-#' @export
 u.bow.tie <- function(pos.x = 0) {
   value <-cof(triangle(pos.x = pos.x, pos.y = pos.x+10, rot=pi/6, 
                        s.x = 10, s.y=10), 

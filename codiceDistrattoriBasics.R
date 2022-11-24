@@ -67,7 +67,14 @@ repetition = function(m,which = c("all", "top", "diag", "left")) {
 
 d.r = repetition(mix, which = "all")
 draw(d.r)
+draw(repetition(M1, which = "top"))
 
+draw(repetition(M2, which = "top"), canvas = F)
+
+m3 = com(M1, M2)
+draw(repetition(m3, which = "top"))
+d3 = repetition(m3, which = "all")
+draw(d3$r.diag)
 # wp ----
 # partiamo dal copy che è il più facile 
 wp = function(m, which = c("all", "copy", "matrix")) {
@@ -114,7 +121,9 @@ d.union = function(m, n = 1) {
   d.union = cof(d.union, obj)
   return(d.union)
 }
-draw(d.union(mix,  n = 3))
+draw(d.union(m3,  n = 3))
+
+
 
 # gli archetti si possono togliere 
 
