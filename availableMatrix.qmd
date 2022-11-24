@@ -1,0 +1,219 @@
+---
+title: "Available Matrix"
+format: 
+    html:
+      toc: true
+      toc-location: right
+      toc-title: Contents
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| echo: false
+#| eval: true
+
+knitr::opts_chunk$set(echo=FALSE, 
+                      eval=TRUE)
+
+rm(list = ls())
+
+source("Shapes_list-10-11-Ottavia.R")
+source("Class and Methods v02.R")
+source("Rules_27102022.R")
+
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+  lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+  
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+
+papillon = bow.tie()
+u.papillon = u.bow.tie()
+
+
+for(i in 1:length(papillon$shape)) {
+  papillon$size.x[[i]] <-papillon$size.x[[i]]/2
+  papillon$size.y[[i]] <-papillon$size.y[[i]]/2
+  papillon$pos.y[[i]] <-papillon$pos.y[[i]]/2
+  papillon$pos.x[[i]] <-papillon$pos.x[[i]]/2
+  
+}
+
+u.papillon$size.x[[1]] <-u.papillon$size.x[[1]]/2
+u.papillon$size.y[[1]] <-u.papillon$size.y[[1]]/2
+u.papillon$pos.y[[1]] <-u.papillon$pos.y[[1]]/2
+u.papillon$pos.x[[1]] <-u.papillon$pos.x[[1]]/2
+
+
+thepie = pie.4()
+u.thepie = u.pie.4()
+
+
+for(i in 1:length(thepie$shape)) {
+  thepie$size.x[[i]] <-thepie$size.x[[i]]/2
+  thepie$size.y[[i]] <-thepie$size.y[[i]]/2
+  thepie$pos.y[[i]] <-thepie$pos.y[[i]]/2
+  thepie$pos.x[[i]] <-thepie$pos.x[[i]]/2
+  
+}
+
+u.thepie$size.x[[1]] <-u.thepie$size.x[[1]]/2
+u.thepie$size.y[[1]] <-u.thepie$size.y[[1]]/2
+u.thepie$pos.y[[1]] <-u.thepie$pos.y[[1]]/2
+u.thepie$pos.x[[1]] <-u.thepie$pos.x[[1]]/2
+
+biscuit = star()
+u.biscuit = u.star()
+
+
+for(i in 1:length(biscuit$shape)) {
+  biscuit$size.x[[i]] <-biscuit$size.x[[i]]/2
+  biscuit$size.y[[i]] <-biscuit$size.y[[i]]/2
+  biscuit$pos.y[[i]] <-biscuit$pos.y[[i]]/2
+  biscuit$pos.x[[i]] <-biscuit$pos.x[[i]]/2
+  
+}
+
+u.biscuit$size.x[[1]] <-u.biscuit$size.x[[1]]/2
+u.biscuit$size.y[[1]] <-u.biscuit$size.y[[1]]/2
+u.biscuit$pos.y[[1]] <-u.biscuit$pos.y[[1]]/2
+u.biscuit$pos.x[[1]] <-u.biscuit$pos.x[[1]]/2
+```
+
+# Monotematiche
+
+## Righe semplici
+
+::: {.panel-tabset}
+
+## Vertical
+
+``` {r echo=FALSE}
+
+
+# vertical canvas
+draw(vline(pos.x=-30, s.x = 30, lwd = 5))
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+
+```
+
+## Horizontal
+
+``` {r echo=FALSE}
+draw(hline(pos.y=-17, s.x = 30))
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+## Insieme
+
+```{r}
+col = "#ffdab9"
+draw(vline(pos.x=-30, s.x = 30, lwd = 5))
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+## Con i colori
+
+```{r}
+draw(vline(pos.x=-30, s.x = 30, lwd = 5), bg = col)
+for(i in seq(-30, 30, by = 1)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 5), 
+       canvas = F)
+}
+for(i in seq(-17, 17, by = 1)) {
+  draw(hline(pos.y = i, s.x=30, lwd = 5), 
+       canvas = F)
+}
+```
+
+
+:::
+
+## Righe "complesse" verticali
+
+::: {.panel-tabset}
+
+## Vertical Inner
+
+```{r}
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 1)) {
+  
+    draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i)/2), 
+         canvas = F,  bg = "white")
+}
+
+
+```
+
+
+## Vertical Outer
+
+```{.r}
+# vertical outer canvas
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+p = seq(-30, 30, by = 2)
+q = c(abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
+for(i in 1:length(p)) {
+  draw(vline(pos.x = p[i], s.x=40, lwd = q[i]), 
+       canvas = F,  bg = "white")
+}
+
+```
+
+
+## Vertical increasing
+
+```{r}
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i, s.x=40, lwd = 31 + i), 
+       canvas = F,  bg = "white")
+}
+```
+
+## Vertical decreasing
+
+
+```{r}
+
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i, s.x= 40, lwd = 31 - i), 
+       canvas = F,  bg = "white")
+}
+
+```
+
+
+:::
+
+
+## Righe complesse orizzontali
+
+::: {.panel-tabset}
+
+
