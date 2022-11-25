@@ -243,7 +243,7 @@ create_dice.field<-function(object)
   {
     stop("The function need to be resizeable")
   }
-  object<-movement(object,1,"pos",-18,12)
+  object<-movement(object,1,"pos",-18,8)
   object<-size(object,4)
   
   object2<-object
@@ -277,6 +277,7 @@ numeric_progression.field<-function(obj,n,rules,...){
     n<-4-n
     obj=show(obj,index[1,1:n])
   }else if(grepl("h",rules) & grepl("x2",rules)){
+    if(sum(visibility>1)){browser()}
     obj=show(obj,index[1:n,colSums(visibility)>=1])
   }else if(grepl("v",rules) & grepl("x2",rules)){
     obj=show(obj,index[rowSums(visibility)>=1,1:n])

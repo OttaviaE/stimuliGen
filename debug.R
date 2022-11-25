@@ -200,7 +200,7 @@ M1<-apply(Raven(create_dice(square()),"hquant.inv","vquant.inv"))
 draw(M1)
 
 ## ESEMPIO 10
-M5<-apply(Raven(create_dice(cof(ellipse(),square(),pacman())),
+M5<-apply(Raven(create_dice(ellipse()),
                 "hquant.x2","vquant.x2"))
 draw(M5)
 

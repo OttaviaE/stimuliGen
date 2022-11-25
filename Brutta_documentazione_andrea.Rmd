@@ -1,0 +1,108 @@
+---
+title: "Super_trashy_documentazione_solo_per_ mieI_occhie"
+author: "Andrea Brancaccio"
+date: "`r Sys.Date()`"
+output:
+    bookdown::html_document2:
+        toc: yes
+        toc_float: yes
+editor_options:
+  chunk_output_type: console
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+source("Shapes_list-10-11-Ottavia.R")
+source("Class and Methods v02.R")
+source("Rules_27102022.R")
+```
+
+# Methods applicable to field object
+- `cof()`
+- `decof()`
+- `hide()`
+- `show()`
+- `replace()`
+- `draw()`
+
+# COF (Guarda l'altra doumentazione)
+
+# DECOF 
+Function `decof()` want in input a single object field obtained by the concatenation of
+many *single* field (e.g., `square4()`, `lily()`). The outcome is a list containting 
+the basic elements that were used to compose the field. For instance, `decof(square4())` 
+return a list containing four field corresponding with the four lines `vline()`,`vline()`,
+`hline()` and `hline()`.
+
+Example 1!
+
+```{r echo=TRUE}
+example<-cof(square(),triangle(),luck())
+x<-decof(example)
+length(x)
+x[[1]]$shape
+x[[2]]$shape
+x[[3]]$shape
+```
+If there is not enough information for reconstruct the original `$shape` of the basic elements,
+the field will be filled by default with `token`.
+
+Example 2!
+
+```{r echo=TRUE}
+x<-decof(s.lily())
+length(x)
+x[[1]]$shape
+x[[2]]$shape ##etc
+```
+
+# HIDE \& SHOW
+
+Functions `hide()` and `show()` are two sides of the same coin. 
+They require in input a field `object` and a vector of `index`.
+`index` refers to the relative position of the basic elements that compose the matrix.
+
+Function `hide()` change the field `$visible` of all the indexed to a **0** 
+no matter what was initial value.
+
+```{r echo=TRUE}
+example<-cof(square(),triangle(),luck())
+example$visible 
+example<-hide(example,c(1,3))## hide the square and the luck
+example$visible
+example<-hide(example) ## hide everything
+example$visible
+```
+
+Function `show()` change the field `$visible` of all the indexed to a **1** 
+no matter what was initial value.
+
+```{r echo=TRUE}
+example<-hide(cof(square(),triangle(),luck()))
+example$visible 
+example<-show(example,c(2,3))## show the triangle and the luck
+example$visible
+example<-show(example) ## show everything
+example$visible
+```
+
+
+# REPLACE
+
+Functions `replace()` substitute a basic field in an object with another basic field.
+It require in input 
+
+1. `obj` a compose field (e.g.,`square4()`)
+
+2. `index` of the element in `obj` to replace
+
+3. `obj2` new object to substitute the previous one
+
+EXAMPLE !
+```{r echo=TRUE}
+example<-cof(square(),triangle(),luck())
+example$shape
+example<-replace(example,2,circle()) ##replacing the triangle with the circle
+example$shape
+```
