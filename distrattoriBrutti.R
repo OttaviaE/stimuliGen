@@ -1,37 +1,8 @@
+# distrattori ------
 
 source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
-
-
-rot_h <-apply(Raven(st1=cof(e.hexagon()),
-                    hrule=c("fill"),vrule=c("identity")))
-draw(rot_h, hide = TRUE)
-
-s_v = apply(Raven(st1=star(),
-                  hrule=c("identity"),
-                  vrule=c("size")))
-draw(s_v, hide = T)
-
-lwd_hv = apply(Raven(st1=lily(),
-                     hrule=c("lty"),
-                     vrule=c("identity")))
-draw(lwd_hv, hide = T)
-
-
-m1 = apply(Raven(st1 = cof(dot(), 
-                            s.lily(), 
-                            square(s.x = 5, s.y = 5, 
-                                   shd = "black", rot = pi/2)), 
-                 hrule = "diff_shapes"))
-draw(m1)           
-m2 = apply(Raven(st1=pentagon(),
-                 hrule=c("identity"),
-                 vrule=c("identity")))
-draw(m2)
-mix = (com(m2, m1))
-draw(mix, hide = T)
-
 
 # disttattori -----
 
@@ -45,21 +16,21 @@ repetition = function(m,which = "all") {
   distr.repetition = list(  r.top = m$Sq6,
                             r.diag = m$Sq5,
                             r.left = m$Sq8)
-    if (any(unlist(distr.repetition$r.top) != unlist(m.correct), 
-            na.rm = T) == F) {
-      warning("R-Top is equal to the correct response")
-      flag = "r.top"
-    } else if (any(unlist(distr.repetition$r.left) != unlist(m.correct), na.rm = T) == F) {
-      warning("R-left is equal to the correct response")
-      flag = "r.left"
-    } else if (any(unlist(distr.repetition$r.diag) != unlist(m.correct), 
-                   na.rm = T) == F) {
-      warning("R-diag is equal to the correct response")
+  if (any(unlist(distr.repetition$r.top) != unlist(m.correct), 
+          na.rm = T) == F) {
+    warning("R-Top is equal to the correct response")
+    flag = "r.top"
+  } else if (any(unlist(distr.repetition$r.left) != unlist(m.correct), na.rm = T) == F) {
+    warning("R-left is equal to the correct response")
+    flag = "r.left"
+  } else if (any(unlist(distr.repetition$r.diag) != unlist(m.correct), 
+                 na.rm = T) == F) {
+    warning("R-diag is equal to the correct response")
     # distr.repetition = distr.repetition[[sample.index]]
-      flag = "r.diag"
-    }
-  return(distr.repetition)
+    flag = "r.diag"
   }
+  return(distr.repetition)
+}
 
 
 wp = function(m, which = "all") {
@@ -71,13 +42,10 @@ wp = function(m, which = "all") {
     distr.wp.matrix = cof(distr.wp.matrix, 
                           m[[i]])
   }
-    distr.wp = list(wp.copy = distr.wp.copy, 
-                    wp.matrix = distr.wp.matrix)
+  distr.wp = list(wp.copy = distr.wp.copy, 
+                  wp.matrix = distr.wp.matrix)
   
 }
-
-draw(wp(mix)$wp.copy)
-draw(wp(mix)$wp.matrix)
 
 
 # difference -----
@@ -122,8 +90,3 @@ d.union = function(m, n = 1,
   d.union = cof(d.union, obj)
   return(d.union)
 }
-draw(d.union(mix, 
-             shapes.in = c( "dice", "X")))
-
-raven.responses = function(obj, 
-                           n.dist )
