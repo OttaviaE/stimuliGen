@@ -173,11 +173,11 @@ for(i in seq(-30, 30, by = 1)) {
 
 ## Vertical Outer
 
-```{.r}
+```{r}
 # vertical outer canvas
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
 p = seq(-30, 30, by = 2)
-q = c(abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
+q = c(1, abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
 for(i in 1:length(p)) {
   draw(vline(pos.x = p[i], s.x=40, lwd = q[i]), 
        canvas = F,  bg = "white")
