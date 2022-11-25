@@ -1118,3 +1118,63 @@ draw(com(M29a, M29c))
 
 
 :::
+
+## Progressione Quantitativa
+
+::: {.panel-tabset}
+
+## 	Crescente in H e decrescente in V
+
+```{r}
+M30<-apply(Raven(create_dice(square(shd="black")),"hquant","vquant.inv"))
+draw(M30)
+
+```
+
+## 	Crescente in orizzontale e verticale 
+
+```{r}
+
+M31<-apply(Raven(create_dice(ellipse(shd="grey")),"hquant.x2","vquant.x2"))
+draw(M31)
+
+```
+
+:::
+
+## Ragionamento induttivo simbolico/astratto
+
+::: {.panel-tabset}
+
+## 	AND orizzontale
+
+```{r}
+M32<-apply(Raven(cof(vline(),square(),hline(),s_vertical()),"AND"))
+draw(M32)
+
+```
+
+## 		AND orizzontale o verticale
+
+```{r}
+
+M33<-logic_rules(Raven(cof(semi.circle.inv(),
+                cof(vline(pos.x=11),vline(pos.x=-11),
+                    name="h.parallel",single = TRUE),
+                cof(hline(pos.y=11),hline(pos.y=-11),
+                    name="v.parallel",single = TRUE),
+                semi.circle())),"AND")
+draw(M33)
+
+```
+
+## 		OR orizzontale 
+
+```{r}
+
+M33<-apply(Raven(cof(square(),lily()),"OR"))
+draw(M33)
+
+```
+
+:::

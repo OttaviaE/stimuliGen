@@ -311,7 +311,7 @@ logic_rules.Raven_matrix<-function(obj,rule) {
     
   }else if(rule=="AND"){
     ele<-list(Sq1=c(1,2,4),Sq2=c(1,2,3),Sq3=c(1,2),
-              Sq4=c(1,3,4),Sq5=c(1,2,4),Sq6=c(1,3),
+              Sq4=c(1,3,4),Sq5=c(1,2,4),Sq6=c(1,4),
               Sq7=c(1,4),Sq8=c(1,2),Sq9=1)
     
   }else if(rule=="XOR"){
