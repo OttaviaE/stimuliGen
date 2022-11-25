@@ -15,6 +15,7 @@ field <- list(
   visible = NULL, 
   tag = list()
 )
+class(field) <- "field"
 
 Raven <- list(
   Sq1 = list(),
@@ -32,7 +33,7 @@ Raven <- list(
   vrule = list()
 )
 
-class(field) <- "field"
+
 class(Raven) <- "Raven_matrix"
 
 
@@ -271,8 +272,6 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white") {
 
 
 
-
-
 replace <- function(obj,index,obj2) {
   UseMethod("replace")
 }
@@ -315,15 +314,18 @@ show.field<-function(obj,index="Full")
 }
 
 
-
-
 decof<- function(obj) {
   UseMethod("decof")
 }
 
 decof.field<-function(obj)
 {
-  nobj<-max(lengths(obj))
+  if(length(obj$shape)==1){
+    nobj<-length(obj$nv[[1]])
+  }else{
+    nobj<-length(obj$nv)
+  }
+  
   if(nobj!=length(obj$shape)){
     name<-rep("token",nobj)
   }else{
