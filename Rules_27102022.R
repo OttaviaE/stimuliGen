@@ -32,9 +32,16 @@ fill <- function(obj,n,...) {
   UseMethod("fill")
 }
 
+numeric_progression <- function(obj,n,rules,...) {
+  UseMethod("numeric_progression")
+}
 
 mental_transformation <- function(obj,n,rule,...) {
   UseMethod("mental_transformation")
+}
+
+create_dice <- function(obj,...) {
+  UseMethod("create_dice")
 }
 
 
@@ -93,7 +100,7 @@ identity.field <- function(obj,...) {
 movement.field<-function(obj,n,rule,x=0,y=0,...) {
   
   if(rule=="x"){
-    obj$pos.x[[1]]<-obj$pos.x[[1]]-20*(n-1)
+    obj$pos.x[[1]]<-obj$pos.x[[1]]+20*(n-1)
   }else if(rule=="y"){
     obj$pos.y[[1]]<-obj$pos.y[[1]]-12*(n-1)
   }else{
@@ -228,8 +235,58 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
   return(obj)
 }
 
+### Progressione numerica
 
+create_dice.field<-function(object)
+{
+  if(!any(unlist(object$tag)=="small"))
+  {
+    stop("The function need to be resizeable")
+  }
+  object<-movement(object,1,"pos",-18,12)
+  object<-size(object,4)
+  
+  object2<-object
+  for(row in 1:3)
+  {
+    obj<-movement(object,row,"y")
+    if(row>1)
+    {
+      object2<-cof(object2,obj)
+    }
+    
+    for( col in 2:3 )
+    {
+      obj<-movement(obj,2,"x")
+      object2<-cof(object2,obj)
+      
+    }
+  }
+  object2<-hide(object2)
+  return(object2)
+}
 
+numeric_progression.field<-function(obj,n,rules,...){
+  index<-matrix(1:9,ncol=3,byrow=TRUE)
+  visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
+  visibility[1,1]<-1
+  if(grepl("h",rules) & grepl("inv",rules)){
+    n<-4-n
+    obj=show(obj,index[1:n,1])
+  }else if(grepl("v",rules) & grepl("inv",rules) ){
+    n<-4-n
+    obj=show(obj,index[1,1:n])
+  }else if(grepl("h",rules) & grepl("x2",rules)){
+    obj=show(obj,index[1:n,colSums(visibility)>=1])
+  }else if(grepl("v",rules) & grepl("x2",rules)){
+    obj=show(obj,index[rowSums(visibility)>=1,1:n])
+  }else if(grepl("h",rules)){
+    obj=show(obj,index[1:n,1])
+  }else if(grepl("v",rules)){
+    obj=show(obj,index[1,1:n])
+  }
+  return(obj)
+}
 
 
 
@@ -254,7 +311,7 @@ logic_rules.Raven_matrix<-function(obj,rule) {
     
   }else if(rule=="AND"){
     ele<-list(Sq1=c(1,2,4),Sq2=c(1,2,3),Sq3=c(1,2),
-              Sq4=c(1,3,4),Sq5=c(1,2,4),Sq6=c(1,3),
+              Sq4=c(1,3,4),Sq5=c(1,2,4),Sq6=c(1,4),
               Sq7=c(1,4),Sq8=c(1,2),Sq9=1)
     
   }else if(rule=="XOR"){
@@ -273,3 +330,6 @@ logic_rules.Raven_matrix<-function(obj,rule) {
   attr(obj, "class") <- "Raven_matrix"
   return(obj)
 }
+
+
+

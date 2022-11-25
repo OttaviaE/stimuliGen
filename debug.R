@@ -193,4 +193,16 @@ M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill
 M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
 draw(M1)
 draw(M2)
-draw(com(M1,M2)) ## cambi la visibilità
+draw(com(M1,M2)) 
+
+## ESEMPIO 9
+M1<-apply(Raven(create_dice(square()),"hquant.inv","vquant.inv"))
+draw(M1)
+
+## ESEMPIO 10
+M5<-apply(Raven(create_dice(cof(ellipse(),square(),pacman())),
+                "hquant.x2","vquant.x2"))
+draw(M5)
+
+
+
