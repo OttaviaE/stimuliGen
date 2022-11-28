@@ -195,14 +195,24 @@ draw(M1)
 draw(M2)
 draw(com(M1,M2)) 
 
-## ESEMPIO 9
-M1<-apply(Raven(create_dice(square()),"hquant.inv","vquant.inv"))
-draw(M1)
+## ESEMPIO 9 #Gallifrey fall
+#M1<-apply(Raven(create_dice(square()),"hquant.inv","vquant.inv"))
+#draw(M1)
 
-## ESEMPIO 10
-M5<-apply(Raven(create_dice(ellipse()),
-                "hquant.x2","vquant.x2"))
-draw(M5)
+## ESEMPIO 10 #NO MORE
+#M5<-apply(Raven(create_dice(ellipse()),
+#                "hquant.x2","vquant.x2"))
+#draw(M5)
 
+M1<-apply(Raven(cof(ellipse(),square(),triangle()),"diff_shapes"))
+m1<-numeric_progression(M1,"TL-LR-increasing")
+draw(m1)
 
+m2<-numeric_progression(M1,"LL-TR")
+draw(m2)
 
+m3<-numeric_progression(M1,"v.increasing")
+draw(m3)
+
+m4<-numeric_progression(M1,"h.increasing")
+draw(m4)
