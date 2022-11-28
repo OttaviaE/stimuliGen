@@ -2,7 +2,6 @@
 source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
-source("distrattoriBrutti.R")
 
 
 rot_h <-apply(Raven(st1=cof(e.hexagon()),
@@ -34,7 +33,7 @@ resp_sv_v = list(
 
 draw.distr(resp_sv_v)
 
-lwd_hv = apply(Raven(st1=lily(),
+lwd_hv = apply(Raven(st1=pie.4(),
                      hrule=c("lty"),
                      vrule=c("identity")))
 draw(lwd_hv, hide = T)

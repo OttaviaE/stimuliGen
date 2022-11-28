@@ -180,7 +180,7 @@ responses = function(m, n.rule = 1,
 
 
 # funzione per disegnare i distrattori under cunstruction ---- 
-
+# ma proprio non guardarla che non sta bene 
 draw.distr = function(obj.list, 
                       n.dist = 4, 
                       n.rule = 1, 

@@ -3,6 +3,7 @@
 source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
+source("provaDIstrattori.R")
 
 simple_m <-apply(Raven(st1=cof(e.hexagon()),
                     hrule=c("fill"),vrule=c("identity")))
