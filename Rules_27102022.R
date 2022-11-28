@@ -32,7 +32,7 @@ fill <- function(obj,n,...) {
   UseMethod("fill")
 }
 
-numeric_progression <- function(obj,n,rules,...) {
+numeric_progression <- function(obj,rules,n,...) {
   UseMethod("numeric_progression")
 }
 
@@ -100,7 +100,7 @@ identity.field <- function(obj,...) {
 movement.field<-function(obj,n,rule,x=0,y=0,...) {
   
   if(rule=="x"){
-    obj$pos.x[[1]]<-obj$pos.x[[1]]+20*(n-1)
+    obj$pos.x[[1]]<-obj$pos.x[[1]]+18*(n-1)
   }else if(rule=="y"){
     obj$pos.y[[1]]<-obj$pos.y[[1]]-12*(n-1)
   }else{
@@ -239,13 +239,12 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
 
 create_dice.field<-function(object)
 {
-  if(!any(unlist(object$tag)=="small"))
-  {
-    stop("The function need to be resizeable")
-  }
-  object<-movement(object,1,"pos",-18,8)
+  #if(!any(unlist(object$tag)=="small")) ##idealmente risolvi
+  #{
+  #  stop("The function need to be resizeable")
+  #}
+  object<-movement(object,1,"pos",-20,13)
   object<-size(object,4)
-  
   object2<-object
   for(row in 1:3)
   {
@@ -266,28 +265,28 @@ create_dice.field<-function(object)
   return(object2)
 }
 
-numeric_progression.field<-function(obj,n,rules,...){
-  index<-matrix(1:9,ncol=3,byrow=TRUE)
-  visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
-  visibility[1,1]<-1
-  if(grepl("h",rules) & grepl("inv",rules)){
-    n<-4-n
-    obj=show(obj,index[1:n,1])
-  }else if(grepl("v",rules) & grepl("inv",rules) ){
-    n<-4-n
-    obj=show(obj,index[1,1:n])
-  }else if(grepl("h",rules) & grepl("x2",rules)){
-    if(sum(visibility>1)){browser()}
-    obj=show(obj,index[1:n,colSums(visibility)>=1])
-  }else if(grepl("v",rules) & grepl("x2",rules)){
-    obj=show(obj,index[rowSums(visibility)>=1,1:n])
-  }else if(grepl("h",rules)){
-    obj=show(obj,index[1:n,1])
-  }else if(grepl("v",rules)){
-    obj=show(obj,index[1,1:n])
-  }
-  return(obj)
-}
+# numeric_progression.field<-function(obj,n,rules,...){
+#   index<-matrix(1:9,ncol=3,byrow=TRUE)
+#   visibility<-matrix(obj$visible,ncol=3,byrow=TRUE)
+#   visibility[1,1]<-1
+#   if(grepl("h",rules) & grepl("inv",rules)){
+#     n<-4-n
+#     obj=show(obj,index[1:n,1])
+#   }else if(grepl("v",rules) & grepl("inv",rules) ){
+#     n<-4-n
+#     obj=show(obj,index[1,1:n])
+#   }else if(grepl("h",rules) & grepl("x2",rules)){
+#     if(sum(visibility>1)){browser()}
+#     obj=show(obj,index[1:n,colSums(visibility)>=1])
+#   }else if(grepl("v",rules) & grepl("x2",rules)){
+#     obj=show(obj,index[rowSums(visibility)>=1,1:n])
+#   }else if(grepl("h",rules)){
+#     obj=show(obj,index[1:n,1])
+#   }else if(grepl("v",rules)){
+#     obj=show(obj,index[1,1:n])
+#   }
+#   return(obj)
+# }
 
 
 
@@ -331,6 +330,66 @@ logic_rules.Raven_matrix<-function(obj,rule) {
   attr(obj, "class") <- "Raven_matrix"
   return(obj)
 }
+
+numeric_progression.Raven_matrix<-function(obj,rules,n=1,...){
+  squares<-paste0("Sq",1:9)
+  for(i in 1:length(squares))
+  {
+    if(sum(obj[[squares[i]]]$visible)>1)
+    {
+      stop("You need just one shape for square")
+    }
+
+    elements<-decof(obj[[squares[i]]])
+    f<-elements[obj[[squares[i]]]$visible==1][[1]]
+   
+    obj[[squares[i]]]<-create_dice(f)
+    ind<-  c(1,2,4,5,7,3,8,6,9)
+    if(rules=="TL-LR-increasing")
+    {
+      if(i<=3){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:i])
+      }else if(i<=6){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i-2)])
+      }else{
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i-4)])
+      }
+    }else if(rules=="LL-TR")
+    {
+      if(i<=3){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i+2)])
+      }else if(i<=6){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i-2)])
+      }else{
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i-6)])
+      }
+    }
+    else if("v.increasing"==rules)
+    {
+      if(i<=3){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(1*n)])
+      }else if(i<=6){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(2*n)])
+      }else{
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(3*n)])
+      }
+    }
+    else if("h.increasing"==rules)
+    {
+      if(i<=3){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:(i*n)])
+      }else if(i<=6){
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:((i-3)*n)])
+      }else{
+        obj[[squares[i]]] <- show(obj[[squares[i]]],ind[1:((i-6)*n)])
+      }
+    }
+  }
+  return(obj)
+}
+  
+  
+  
 
 
 

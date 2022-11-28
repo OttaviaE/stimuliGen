@@ -10,21 +10,41 @@ shapes_riducible<-shapes[shapes$small&shapes$num_shapes==1,]
 shapes_compose<-shapes[shapes$num_shapes>=2,]
 shapes_single<-shapes[shapes$num_shapes==1,]
 ##Progressione Quantitaiva	Crescente in H e decrescente in V
-
-M1<-apply(Raven(create_dice(square(shd="black")),"hquant","vquant.inv"))
+M1<-apply(Raven(square(shd="black")))
+M1<-numeric_progression(M1,"LL-TR")
 draw(M1)
 
-M2<-apply(Raven(create_dice(luck()),"hquant","vquant.inv"))
+M2<-apply(Raven(luck()))
+M2<-numeric_progression(M2,"LL-TR")
 draw(M2)
-
 
 ##Progressione Quantitaiva	Crescente in H e in V
 
-M3<-apply(Raven(create_dice(hexagon()),"hquant","vquant"))
+M3<-apply(Raven(hexagon()))
+M3<-numeric_progression(M3,"TL-LR-increasing")
 draw(M3)
 
-M4<-apply(Raven(create_dice(ellipse(shd="grey")),"hquant.x2","vquant.x2"))
+##Forma, Progressione Quantitaiva	V su entrambe le regole 
+M4 <- apply(Raven(cof(pentagon(),triangle(),e.hexagon()),"identity","diff_shapes"))
+M4<-numeric_progression(M4,"v.increasing")
 draw(M4)
+
+##Forma, Progressione Quantitaiva	V per una regola e H per l'altra
+M5 <- apply(Raven(cof(pentagon(),luck(),e.hexagon()),"diff_shapes"))
+M5<-numeric_progression(M5,"h.increasing",n=2)
+draw(M5)
+
+M6 <- apply(Raven(cof(square(),luck(),triangle()),"identity","diff_shapes"))
+M6<-numeric_progression(M6,"v.increasing",n=1.7)
+draw(M6)
+
+##Progressione Quantitaiva, Orientamento	V su entrambe le regole
+M7 <- apply(Raven(luck(),
+                  "identity","rotation"))
+M7<-numeric_progression(M7,"v.increasing",n=1)
+draw(M7)
+##NON SI PUO FARE COM MI VIENE DA PIANGERE
+
 
 ##AND	H
 M5<-apply(Raven(pie.4(),"AND"))
