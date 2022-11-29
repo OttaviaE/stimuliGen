@@ -338,6 +338,8 @@ decof.field<-function(obj)
       shape = name[i],
       size.x = obj$size.x[i],
       size.y = obj$size.y[i],
+      theta.1 =obj$theta.1[i],
+      theta.2 =obj$theta.2[i],
       rotation = obj$rotation[i],
       pos.x = obj$pos.x[i],
       pos.y = obj$pos.y[i],

@@ -1123,24 +1123,61 @@ draw(com(M29a, M29c))
 
 ::: {.panel-tabset}
 
-## 	Crescente in H e decrescente in V
+
+## 	LL-TR (crescente orizontale e decrescente verticale)
 
 ```{r}
-M30<-apply(Raven(create_dice(square(shd="black")),"hquant","vquant.inv"))
-draw(M30)
+M1<-apply(Raven(square(shd="black")))
+M1<-numeric_progression(M1,"LL-TR")
+draw(M1)
 
 ```
 
-## 	Crescente in orizzontale e verticale 
+## 	TL-LR 
 
 ```{r}
-
-M31<-apply(Raven(create_dice(ellipse(shd="grey")),"hquant.x2","vquant.x2"))
-draw(M31)
+M3<-apply(Raven(hexagon()))
+M3<-numeric_progression(M3,"TL-LR-increasing")
+draw(M3)
 
 ```
 
 :::
+
+## Forma, Progressione Quantitaiva
+
+::: {.panel-tabset}
+
+
+## 	V su entrambe le regole 
+
+```{r}
+M4 <- apply(Raven(cof(pentagon(),triangle(),e.hexagon()),"identity","diff_shapes"))
+M4<-numeric_progression(M4,"v.increasing")
+draw(M4)
+```
+
+## 	V per una regola e H per l'altra
+
+```{r}
+M5 <- apply(Raven(cof(pentagon(),luck(),e.hexagon()),"diff_shapes"))
+M5<-numeric_progression(M5,"h.increasing",n=2)
+draw(M5)
+
+```
+
+## 	H per una regola e V per l'altra
+
+```{r}
+M6 <- apply(Raven(cof(square(),luck(),triangle()),"identity","diff_shapes"))
+M6<-numeric_progression(M6,"v.increasing",n=1.7)
+draw(M6)
+
+```
+
+:::
+
+
 
 ## Ragionamento induttivo simbolico/astratto
 
