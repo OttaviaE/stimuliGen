@@ -47,30 +47,47 @@ draw.dist = function(resp.list,
 }
 # comincia a disegnare daje ----
 
-dist_m1 = responses(rot_h)
+dist_m1 = responses(m_pratica1)
 
+
+svg(paste0(getwd(), "/StudioPreliminare/distrattori/", 
+           "dist_pratica1.svg"), width=14, height=8.5)
 change.marg(select.diag)
 draw.dist(dist_m1, select.diag)
+
+dev.off()
+
+
 
 # in questo caso, rep top and rep diag sono uguali
 # no qui non vnno quelle fatte in automatico perché il biscotto è nero 
 # siccome questo è fastidioso, è il prescelto per avere solo la rispsta corretta 
 # ma io non so fare i rettangoli dio pivero
-draw(s_v)
+# QUI VANNO I DISTRATTORI CON LE CELLE BIANCHE E BASTA------
+draw(m_pratica2, hide = TRUE) 
 
 
 # altra matrice
-draw(lwd_hv, hide = T)
+draw(m_pratica3, hide = T)
 
-dist_m3 = responses(lwd_hv)
+dist_m3 = responses(m_pratica3)
 
+
+svg(paste0(getwd(), "/StudioPreliminare/distrattori/", 
+           "dist_pratica3.svg"), width=14, height=8.5)
 change.marg(select.diag)
 draw.dist(dist_m3, select.diag)
-
+dev.off()
 
 # la quarta matrice dei distrattori --- 
-draw(mix)
-dist_m4 = responses(mix)
+draw(m_pratica4)
+dist_m4 = responses(m_pratica4)
+
+
+svg(paste0(getwd(), "/StudioPreliminare/distrattori/", 
+           "dist_pratica4.svg"), width=14, height=8.5)
 
 change.marg(select.diag)
 draw.dist(dist_m4, select.diag)
+dev.off()
+
