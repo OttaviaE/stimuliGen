@@ -52,17 +52,29 @@ repetition = function(m) {
 }
 
 
-wp = function(m, which = "all") {
+wp = function(m, all = NULL) {
   m.correct = correct(m)
   check.rep = repetition(m)
   sample.index = sample(c(1:4, 7)) # non è random
   s = sample.index[1]
   distr.wp.copy = m[[s]]
   distr.wp.matrix = m$Sq1
-  for (i in 2:8) {
-    distr.wp.matrix = cof(distr.wp.matrix,
-                          m[[i]])
+  
+  if(is.null(all) == FALSE) {
+    seq_dist = all 
+    for (i in all) {
+      distr.wp.matrix = cof(distr.wp.matrix,
+                            m[[i]])
+    }
+  } else {
+    for (i in 2:8) {
+      distr.wp.matrix = cof(distr.wp.matrix,
+                            m[[i]])
+    }
   }
+  
+
+  
   if (any(unlist(distr.wp.copy) != unlist(m.correct),
           na.rm = T) == F) {
     warning("WP-Copy is equal to the correct response!")
@@ -79,9 +91,10 @@ d.union = function(m, n = 1,
                    shapes.in = NULL) {
   n = n
   d.union = m$Sq1
-  for (i in 2:8) {
-    d.union = cof(d.union, m[[i]])
-  }
+  # poi ci penso 
+  # for (i in 2:8) {
+  #   d.union = cof(d.union, m[[i]])
+  # }
   shapes.l = shapes_list("Shapes_list-10-11-Ottavia.R")
   shapes.l = shapes.l[-grep("arc", shapes.l$name), ]
   if (is.null(shapes.out) == F) {
@@ -111,9 +124,8 @@ d.union = function(m, n = 1,
       }
     }
   }
-  
-  d.union = cof(d.union, obj)
-  return(d.union)
+  obj = cof(d.union, obj)
+  return(obj)
 }
 
 
@@ -125,7 +137,7 @@ ic = function(m,
   ic.scale = size(m.correct, 3)
   ic.flip = rotation(correct(m), 3) # il numero sulla rotazione dipende dalla figura
   if (n.rule != 1) {
-    ic.inc = hide(m.correct, 2)
+    ic.inc = hide(m.correct, 3) # questo sarebbe da riscrivere sulla base di chi è effettivamente visibile in quella cella
   } else {
     ic.inc = m.correct
     ic.inc$attention = "I need more stuff to make IC-INC"
@@ -142,14 +154,15 @@ ic = function(m,
 responses = function(m, n.rule = 1, 
                      shapes.out = NULL, 
                      shapes.in = NULL, 
-                     n.shapes = 1) {
+                     n.shapes = 1, 
+                     all = NULL) {
   m.correct = correct(m)
   resp = list(correct = m.correct, 
               r.top = m$Sq6,
               r.diag = m$Sq5,
               r.left = m$Sq8, 
               wp.copy = wp(m)$wp.copy, 
-              wp.matrix = wp(m)$wp.matrix, 
+              wp.matrix = wp(m, all = all)$wp.matrix, 
               d.union = d.union(m, shapes.out = shapes.out, 
                                 shapes.in = shapes.in, 
                                 n = n.shapes), 
@@ -181,27 +194,27 @@ responses = function(m, n.rule = 1,
 
 # funzione per disegnare i distrattori under cunstruction ---- 
 # ma proprio non guardarla che non sta bene 
-draw.distr = function(obj.list, 
-                      n.dist = 4, 
-                      n.rule = 1, 
-                      main = FALSE) {
-# come prima cosa toglie i distrattori con problemi 
-  p = obj.list
-  for (i in 1:length(p)) {
-    if (any(names(p[[i]]) == "attention") == T) {
-      p[[i]] = NULL
-    } 
-  }
-
-  n.p = names(p)
-  
-  if (length(obj.list) == 5) {
-    par(mfrow = c(1, 5))
-  } else {
-    par(mfrow=c(2, 4))
-  }
-  
-  for (i in 1:length(obj.list)) {
-    draw(obj.list[[i]])
-  }
-}
+# draw.distr = function(obj.list, 
+#                       n.dist = 4, 
+#                       n.rule = 1, 
+#                       main = FALSE) {
+# # come prima cosa toglie i distrattori con problemi 
+#   p = obj.list
+#   for (i in 1:length(p)) {
+#     if (any(names(p[[i]]) == "attention") == T) {
+#       p[[i]] = NULL
+#     } 
+#   }
+# 
+#   n.p = names(p)
+#   
+#   if (length(obj.list) == 5) {
+#     par(mfrow = c(1, 5))
+#   } else {
+#     par(mfrow=c(2, 4))
+#   }
+#   
+#   for (i in 1:length(obj.list)) {
+#     draw(obj.list[[i]])
+#   }
+# }
