@@ -375,11 +375,12 @@ u.bow.tie <- function(pos.x = 0) {
 #' @examples
 #' v.arc.left.up()
 #' @export
-v.arc.left.up <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
+v.arc.left.up <- function(s.x=square()$size.x[[1]]/2,s.y=square()$size.y[[1]]/2,
+                          lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.left.up",
-    size.x  = list(square()$size.x[[1]]/2),
-    size.y  = list(square()$size.y[[1]]/2),
+    size.x  = list(s.x),
+    size.y  = list(s.y),
     theta.1  = list(3*pi/4),
     theta.2  = list(5*pi/4),
     rotation = list(pi),

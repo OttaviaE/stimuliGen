@@ -194,6 +194,7 @@ logic.field<-function(obj,n,rule,seed,...) {
       obj$visible[index[[n]]]<-0
     }
   }else if(rule=="XOR"){
+
     index[[3]]<-union(setdiff(domain,union(index[[1]],index[[2]])),fixed)
     obj$visible[index[[n]]]<-0
   }
@@ -243,7 +244,7 @@ create_dice.field<-function(object)
   #{
   #  stop("The function need to be resizeable")
   #}
-  object<-movement(object,1,"pos",-20,13)
+  object<-movement(object,1,"pos",-10,11)
   object<-size(object,4)
   object2<-object
   for(row in 1:3)
@@ -339,7 +340,6 @@ numeric_progression.Raven_matrix<-function(obj,rules,n=1,...){
     {
       stop("You need just one shape for square")
     }
-
     elements<-decof(obj[[squares[i]]])
     f<-elements[obj[[squares[i]]]$visible==1][[1]]
    
