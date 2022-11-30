@@ -249,9 +249,13 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white") {
       if(obj$num[[j]][1]==1){
         if(grepl("line",obj$shade[[j]][1]))
         {
+
           elements<-decof(obj)
-          
-          line(elements[[which(obj$visible==1&grepl("line",unlist(obj$shade)))]],obj$shade[[j]][1])
+          plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
+          for(ll in 1:length(plotting_lines)){
+            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1])
+            
+          }
           obj$shade[[j]][1] <- NA
         }
         DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],

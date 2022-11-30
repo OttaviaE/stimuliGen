@@ -72,7 +72,7 @@ draw(M12)
 ##AND	H o V
 
 M13<-logic_rules(Raven(cof(diagline(),hline(),vline(),diagline.inv())),"AND")
-draw(M7)
+draw(M13)
 
 M13<-logic_rules(Raven(cof(semi.circle.inv(),
                 cof(vline(pos.x=11),vline(pos.x=-11),name="h.parallel",single = TRUE),
