@@ -76,7 +76,7 @@ b2 = apply(Raven(st1 = cof(semi.circle(), pacman(),
                  hrule = c("diff_shapes", "rotation", "size"), 
                  vrule = c("diff_shapes", "rotation")))
 
-svg(paste0(getwd(), "/StudioPreliminare/GruppoA/", 
+svg(paste0(getwd(), "/StudioPreliminare/GruppoB/", 
            "b_2.svg"), width=14, height=8.5)
 
 draw(b2, hide = T)
@@ -88,7 +88,7 @@ b1_2 = apply(Raven(st1 = cof(pentagon(), triangle(rot = pi/2),
                              ellipse()), 
                    hrule = c("diff_shapes", "rotation", "size"), 
                    vrule = c("diff_shapes", "rotation")))
-svg(paste0(getwd(), "/StudioPreliminare/GruppoA/", 
+svg(paste0(getwd(), "/StudioPreliminare/GruppoB/", 
            "b1_2.svg"), width=14, height=8.5)
 
 draw(b1_2, hide = T)
