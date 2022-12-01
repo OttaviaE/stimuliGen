@@ -58,7 +58,7 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL) {
   m.correct = correct(m)
   check.rep = repetition(m)
   if (is.null(choose.copy) == F) {
-    distr.wp.copy = choose.copy
+    distr.wp.copy = m[[choose.copy]]
   } else {
     sample.index = sample(c(1:4, 7)) # non è random
     s = sample.index[1]
@@ -79,13 +79,13 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL) {
   if (any(unlist(distr.wp.copy) != unlist(m.correct),
           na.rm = T) == F) {
     warning("WP-Copy is equal to the correct response!")
-     if (s < 3) {
-       distr.wp.copy = m[[s + 1]]
-     } else if ( s == 4) {
-       distr.wp.copy = m[[s - 1]]
-     } else {
-       distr.wp.copy = m[[s - 3]]
-     }
+     # if (s < 3) {
+     #   distr.wp.copy = m[[s + 1]]
+     # } else if ( s == 4) {
+     #   distr.wp.copy = m[[s - 1]]
+     # } else {
+     #   distr.wp.copy = m[[s - 3]]
+     # }
   }
   
   if (any(unlist(distr.wp.copy) != unlist(check.rep$r.top), 
@@ -119,7 +119,7 @@ d.union = function(m,
                          grep("pacman", shapes.l$name), 
                          grep("semi.circle", shapes.l$name)), ]
   
-  if (any(grep("semi.circle", (union$shape))) == T) {
+  if (any(grep("semi.circle", (d.union$shape))) == T) {
     shapes.in = "pie.2"
   } else if (any(grep("pie.4", (d.union$shape))) == T) {
     shapes.in = "pacman"
@@ -174,7 +174,7 @@ responses = function(m, n.rule = 1,
               d.union = d.union(m, choose.start = choose.start), 
               ic.scale = ic(m, n.rule = n.rule)$ic.scale, 
               ic.flip = ic(m, n.rule = n.rule)$ic.flip, 
-              ic.inc = ic(m, n.ruleòkàù = n.rule)$ic.inc)
+              ic.inc = ic(m, n.rule = n.rule)$ic.inc)
   
   # if (any(unlist(resp$r.top) != unlist(m.correct), 
   #         na.rm = T) == F) {
