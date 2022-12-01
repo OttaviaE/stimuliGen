@@ -59,7 +59,7 @@ ellipse <- function(s.x=10,
     nv = list(100),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -93,7 +93,7 @@ triangle <- function(s.x=15,
     nv = list(3),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -126,7 +126,7 @@ square <- function(    s.x=15,
     nv = list(4),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -159,7 +159,7 @@ luck <- function(    s.x=10,
     nv = list(4),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -193,7 +193,7 @@ pentagon <- function(s.x=15,
     nv = list(5),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -260,7 +260,7 @@ hexagon <- function(s.x=15,
     nv = list(6),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small', 'fill'))
+    tag=list(c('simple', 'small', 'fill','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -294,7 +294,7 @@ rot.hexagon <- function(s.x=15,
     nv = list(6),
     shade = list(shd),
     visible = vis,
-    tag=list(c('simple', 'small'))
+    tag=list(c('simple', 'small','rotate'))
   )
   attr(value, "class") <- "field"
   value
@@ -908,7 +908,7 @@ vline <- function(pos.x=0 ,pos.y=0,
     nv =  list(2),
     shade = list(NA),
     visible = vis,
-    tag = list("simple","fill" ) 
+    tag = list("simple","fill",'rotate') 
   )
   attr(value, "class") <- "field"
   value
@@ -940,7 +940,7 @@ hline <- function(pos.x=0 ,pos.y=0,
     nv =  list(2),
     shade = list(NA),
     visible = vis,
-    tag = list("simple","fill" ) 
+    tag = list("simple","fill",'rotate' ) 
   )
   attr(value, "class") <- "field"
   value
@@ -954,7 +954,7 @@ hline <- function(pos.x=0 ,pos.y=0,
 #' @export
 cross <- function() {
   value <-cof(vline(),hline(),single = TRUE,name = "cross")
-  value$tag <- list("simple","fill")
+  value$tag <- list("simple","fill",'rotate')
   value$visible<-1
   attr(value, "class") <- "field"
   value
@@ -969,7 +969,7 @@ cross <- function() {
 square4 <- function() {
   value <-cof(vline(pos.x=-8,),vline(pos.x=8),hline(pos.y=-8,),
               hline(pos.y=8))
-  value$tag <- list("compose4")
+  value$tag <- list("compose4",'rotate')
   attr(value, "class") <- "field"
   value
 }
@@ -1002,7 +1002,7 @@ diagline.inv <- function(pos.x=0 ,pos.y=0,
     nv =  list(2),
     shade = list(NA),
     visible = vis,
-    tag = list("simple","fill" ) 
+    tag = list("simple","fill",'rotate' ) 
   )
   attr(value, "class") <- "field"
   value
@@ -1037,7 +1037,7 @@ diagline <- function(pos.x=0 ,pos.y=0,
     nv =  list(2),
     shade = list(NA),
     visible = vis,
-    tag = list("simple","fill" ) 
+    tag = list("simple","fill",'rotate' ) 
   )
   attr(value, "class") <- "field"
   value
@@ -1051,7 +1051,7 @@ diagline <- function(pos.x=0 ,pos.y=0,
 #' @export
 X <- function() {
   value <-cof(diagline(),diagline.inv(),single = TRUE,name = "X")
-  value$tag <- list("simple","fill")
+  value$tag <- list("simple","fill",'rotate')
   value$visible<-1
   attr(value, "class") <- "field"
   value
