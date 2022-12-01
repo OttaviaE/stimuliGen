@@ -18,34 +18,51 @@ bow.tie.inv <- function(pos.x = 0) {
 }
 
 ## a_logic3 
-M1<-logic_rules(Raven(square4()),"OR")
+M1a<-logic_rules(Raven(square4()),"OR")
 
-M2<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"XOR")
+M1b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"XOR")
 
-draw(com(M1,M2),hide=TRUE)
+draw(com(M1a,M1b),hide=TRUE)
 
 ## a1_logic3
 
-M3<-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
+M2a<-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
                            square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))
 ),"XOR")
-M4 <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+M2b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
                              vline(pos.x = -28, s.x = 15 ),
                              hline(pos.y = 15, s.x=30),
                              hline(pos.y = -15, s.x=30))),"OR")
-draw(com(M3,M4),hide=TRUE)
+draw(com(M2a,M2b),hide=TRUE)
 
 ## b_logic3 
-M1<-logic_rules(Raven(cof(bow.tie(),
+M3a<-logic_rules(Raven(cof(bow.tie(),
                           bow.tie.inv())),"XOR")
-draw(M2)
 
-M2<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
+M3b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
                           ,cross.dice(),
                           hline(),vline())),"OR")
 
-draw(com(M1,M2))
-     
+draw(com(M3a,M3b),hide=TRUE)
+
+
+## b1_logic3 
+M4a<-logic_rules(Raven(cof(square(s.x = 20,s.y = 20),
+                           margin(square(s.x = 17,s.y = 17,shd = "line12"),3,"lty"),
+                           dice(),
+                           margin(square(s.x = 17,s.y = 17),3,"lty")
+                           )),"XOR")
+
+#M4b<-logic_rules(Raven(cof(horizontal_eight(),vertical_eight(),
+#                           diagline(),diagline.inv())),"OR")
+
+M4b<-logic_rules(Raven(cof(diagline(),horizontal_eight(),
+                           vertical_eight(),
+                           diagline.inv())),"OR")
+                           
+draw(com(M4a,M4b),hide=TRUE)
+
+
 ################################################################################
 #####                      LOGICHE AND e XOR                               #####
 ################################################################################
@@ -59,19 +76,126 @@ square4bis <- function() {
 ###############################
 
 ## a_logic2 
-M5<-logic_rules(Raven(square4bis()),"OR")
+M5a<-logic_rules(Raven(square4bis()),"OR")
 
-M6<-logic_rules(Raven(cof(pie.4())),"AND")
-draw(com(M5,M6),hide=TRUE)
+M5b<-logic_rules(Raven(cof(pie.4())),"AND")
+draw(com(M5a,M5b),hide=TRUE)
 
 
 ## a1_logic2 
-M7<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
+M6a<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
                             pentagon(shd="line12.h"), hexagon(s.x=3,s.y=3)) ),"OR")
 
-M8 <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+M6b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
                              vline(pos.x = -28, s.x = 15 ),
                              hline(pos.y = 15, s.x=30),
                              hline(pos.y = -15, s.x=30))),"AND")
-draw(com(M7,M8),hide=TRUE)
+draw(com(M6a,M6b),hide=TRUE)
 
+## b_logic2 
+M7a<-logic_rules(Raven(cof(hexagon(shd="line1"),
+                           hexagon(shd="line2"),dot(),
+                           e.hexagon())),"OR")
+
+M7b<-logic_rules(Raven(cof(bow.tie(),
+                           bow.tie.inv())),"AND")
+draw(com(M7a,M7b),hide=TRUE)
+
+## b1_logic2 
+M8a<-logic_rules(Raven(cof(pentagon(),
+                           margin(pentagon(s.x=13,s.y =13),3,"lty"),
+                           margin(pentagon(s.x=17,s.y =17),2,"lty"),
+                           dice()
+                           )),"OR")
+
+M8b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x=5),1,"lty"),
+                           margin(hline(pos.y=-5,s.x=5),1,"lty"),
+                           margin(vline(pos.x=5,s.x=5),1,"lty"),
+                           margin(vline(pos.x=-5,s.x=5),1,"lty"))),"AND")
+draw(com(M8a,M8b),hide=TRUE)
+
+################################################################################
+#####                      LOGICHE AND e OR                                #####
+################################################################################
+
+## a_logic1 
+M9a<- logic_rules(Raven(square4bis()),"OR")
+
+M9b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"AND")
+
+draw(com(M9a,M9b),hide=TRUE)
+
+## a1_logic1 
+M10a<- logic_rules(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
+                         circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
+                         cof(diagline(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                             diagline.inv(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                             single = TRUE,name = "smallcross"),
+                         cof(diagline(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                             diagline.inv(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                             single = TRUE,name = "smallcross")
+                         )),"AND")
+
+M10b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
+                            margin(hline(pos.y=-5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=-5,s.x = 18),1,"lty"))),"OR")
+
+draw(com(M10b,M10a),hide=TRUE)
+
+
+## b_logic1 
+M11a<- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+                            vline(pos.x = -28, s.x = 15 ),
+                            hline(pos.y = 15, s.x=28),
+                            hline(pos.y = -15, s.x=28))),"OR")
+
+M11b<-logic_rules(Raven(lily()),"AND")
+draw(com(M11a,M11b),hide=TRUE)
+
+## b1_logic1 
+
+smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
+  value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.y, rot=pi/3, 
+                       s.x = 5, s.y=5,shd = shd), 
+              triangle(pos.x = pos.x-5, pos.y = pos.y, rot=-pi, 
+                       s.x = 5, s.y=5,shd = shd))
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
+M12a<-logic_rules(Raven(cof(smallbow.tie.inv(pos.y=-7),
+                            smallbow.tie.inv(pos.y=7)
+                            )),"XOR")
+
+M12b<-logic_rules(Raven(cof(margin(smallbow.tie.inv(pos.y=-7,shd ="grey"),1,"lty"),
+                            margin(smallbow.tie.inv(pos.y=7,shd ="grey"),1,"lty"))
+                        ),"AND")
+draw(com(M12b,M12a),hide=TRUE)
+
+
+##########
+# BONUS  #
+##########
+smallbow.tie.inv <- function(pos.x = 0) {
+  value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.x-7, rot=pi/3, 
+                       s.x = 5, s.y=5), 
+              triangle(pos.x = pos.x-5, pos.y = pos.x-7, rot=-pi, 
+                       s.x = 5, s.y=5))
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
+#draw(cof(pacman(pos.y = 5),fill(smallbow.tie.inv(),3,"defualt"),dot(pos.y = 9)))
+###
+
+M12c<-logic_rules(Raven(cof(pacman(pos.y = 3),fill(smallbow.tie.inv(),3,"defualt"),dot(pos.y = 7))),"XOR")
+
+M12d<-logic_rules(Raven(cof(square(s.x=21,s.y=21),
+                            square(s.x=22,s.y=22),
+                            square(s.x=24,s.y=24),
+                            square(s.x=21,s.y=21,shd="line12.h"))
+                            ),"AND")
+draw(com(M12c,M12d),hide=TRUE)
