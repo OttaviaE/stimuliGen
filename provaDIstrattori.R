@@ -162,41 +162,37 @@ ic = function(m,
 # mette insieme i distrattori e comincia a fare un check rudimentale 
 
 responses = function(m, n.rule = 1, 
-                     shapes.out = NULL, 
-                     shapes.in = NULL, 
-                     n.shapes = 1, 
-                     all = NULL) {
+                     choose.matrix = 1, choose.copy = 1, 
+                     choose.start = 1) {
   m.correct = correct(m)
   resp = list(correct = m.correct, 
               r.top = m$Sq6,
               r.diag = m$Sq5,
               r.left = m$Sq8, 
-              wp.copy = wp(m)$wp.copy, 
-              wp.matrix = wp(m, all = all)$wp.matrix, 
-              d.union = d.union(m, shapes.out = shapes.out, 
-                                shapes.in = shapes.in, 
-                                n = n.shapes), 
+              wp.copy = wp(m, choose.copy = choose.copy)$wp.copy, 
+              wp.matrix = wp(m, choose.matrix = choose.matrix)$wp.matrix, 
+              d.union = d.union(m, choose.start = choose.start), 
               ic.scale = ic(m, n.rule = n.rule)$ic.scale, 
               ic.flip = ic(m, n.rule = n.rule)$ic.flip, 
               ic.inc = ic(m, n.ruleòkàù = n.rule)$ic.inc)
   
-  if (any(unlist(resp$r.top) != unlist(m.correct), 
-          na.rm = T) == F) {
-    resp$r.top$attention = "R-top equal correct"
-  } else if (any(unlist(resp$r.left) != unlist(m.correct), 
-                 na.rm = T) == F) {
-    resp$r.left$attention = "R-left equal correct"
-  } else if (any(unlist(resp$r.diag) != unlist(m.correct), 
-                 na.rm = T) == F) {
-    resp$r.diag$attention = "R-diag equal correct"
-  }
-  
-  
-  if (any(unlist(resp$wp.copy) != unlist(m.correct), 
-          na.rm = T) == F) {
-    resp$wp.copy$attention = "WP-Copy equal correct"
-  }
-  
+  # if (any(unlist(resp$r.top) != unlist(m.correct), 
+  #         na.rm = T) == F) {
+  #   resp$r.top$attention = "R-top equal correct"
+  # } if (any(unlist(resp$r.left) != unlist(m.correct), 
+  #                na.rm = T) == F) {
+  #   resp$r.left$attention = "R-left equal correct"
+  # } else if (any(unlist(resp$r.diag) != unlist(m.correct), 
+  #                na.rm = T) == F) {
+  #   resp$r.diag$attention = "R-diag equal correct"
+  # }
+  # 
+  # 
+  # if (any(unlist(resp$wp.copy) != unlist(m.correct), 
+  #         na.rm = T) == F) {
+  #   resp$wp.copy$attention = "WP-Copy equal correct"
+  # }
+  # 
   return(resp)
 } 
 
