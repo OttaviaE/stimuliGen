@@ -38,11 +38,13 @@ repetition = function(m) {
           na.rm = T) == F) {
     warning("R-Top is equal to the correct response")
     flag = "r.top"
-  } else if (any(unlist(distr.repetition$r.left) != unlist(m.correct),
+  } 
+  if (any(unlist(distr.repetition$r.left) != unlist(m.correct),
                  na.rm = T) == F) {
     warning("R-left is equal to the correct response")
     flag = "r.left"
-  } else if (any(unlist(distr.repetition$r.diag) != unlist(m.correct),
+  }
+  if (any(unlist(distr.repetition$r.diag) != unlist(m.correct),
                  na.rm = T) == F) {
     warning("R-diag is equal to the correct response")
     # distr.repetition = distr.repetition[[sample.index]]
@@ -52,32 +54,53 @@ repetition = function(m) {
 }
 
 
-wp = function(m, all = NULL) {
+wp = function(m, choose.matrix = 1, choose.copy = NULL) {
   m.correct = correct(m)
   check.rep = repetition(m)
-  sample.index = sample(c(1:4, 7)) # non è random
-  s = sample.index[1]
-  distr.wp.copy = m[[s]]
-  distr.wp.matrix = m$Sq1
-  
-  if(is.null(all) == FALSE) {
-    seq_dist = all 
-    for (i in all) {
-      distr.wp.matrix = cof(distr.wp.matrix,
-                            m[[i]])
-    }
+  if (is.null(choose.copy) == F) {
+    distr.wp.copy = choose.copy
   } else {
-    for (i in 2:8) {
-      distr.wp.matrix = cof(distr.wp.matrix,
-                            m[[i]])
-    }
+    sample.index = sample(c(1:4, 7)) # non è random
+    s = sample.index[1]
+    distr.wp.copy = m[[s]]
   }
   
-
+  if (is.null(choose.matrix) == F) {
+    distr.wp.matrix = m[[choose.matrix]]
+  } else {
+    distr.wp.matrix = m[[1]]
+  }
+  which.vis = unlist(distr.wp.matrix$visible)
+  p = which(which.vis == 0)
+  
+  distr.wp.matrix = show(distr.wp.matrix, p[1])
+  
   
   if (any(unlist(distr.wp.copy) != unlist(m.correct),
           na.rm = T) == F) {
     warning("WP-Copy is equal to the correct response!")
+     if (s < 3) {
+       distr.wp.copy = m[[s + 1]]
+     } else if ( s == 4) {
+       distr.wp.copy = m[[s - 1]]
+     } else {
+       distr.wp.copy = m[[s - 3]]
+     }
+  }
+  
+  if (any(unlist(distr.wp.copy) != unlist(check.rep$r.top), 
+          na.rm = T) == F) {
+    warning("WP-Copy equal to r-top")
+  }
+  
+  if (any(unlist(distr.wp.copy) != unlist(check.rep$r.diag), 
+          na.rm = T) == F) {
+    warning("WP-Copy equal to r-diag")
+  }
+  
+  if (any(unlist(distr.wp.copy) != unlist(check.rep$r.left), 
+          na.rm = T) == F) {
+    warning("WP-Copy equal to r-left")
   }
   distr.wp = list(wp.copy = distr.wp.copy,
                   wp.matrix = distr.wp.matrix)
@@ -86,47 +109,34 @@ wp = function(m, all = NULL) {
 
 
 # difference -----
-d.union = function(m, n = 1, 
-                   shapes.out = NULL, 
-                   shapes.in = NULL) {
-  n = n
-  d.union = m$Sq1
-  # poi ci penso 
-  # for (i in 2:8) {
-  #   d.union = cof(d.union, m[[i]])
-  # }
+d.union = function(m,
+                   choose.start = 1) {
+  d.union = m[[choose.start]]
+
   shapes.l = shapes_list("Shapes_list-10-11-Ottavia.R")
-  shapes.l = shapes.l[-grep("arc", shapes.l$name), ]
-  if (is.null(shapes.out) == F) {
-    exclusion = shapes.l[!shapes.l$name %in% c(unlist(d.union$shape), 
-                                               shapes.out), ]  
+  shapes.l = shapes.l[-c(grep("arc", shapes.l$name), 
+                         grep("pie", shapes.l$name), 
+                         grep("pacman", shapes.l$name), 
+                         grep("semi.circle", shapes.l$name)), ]
+  
+  if (any(grep("semi.circle", (union$shape))) == T) {
+    shapes.in = "pie.2"
+  } else if (any(grep("pie.4", (d.union$shape))) == T) {
+    shapes.in = "pacman"
+  } else if (any(grep("pie.2", (d.union$shape))) == T | 
+             any(grep("slice", (d.union$shape))) == T | 
+             any(grep("pacman", (d.union$shape))) == T) {
+    shapes.in = "pie.4"
   } else {
-    exclusion = shapes.l[!shapes.l$name %in% unlist(d.union$shape), ]  
-  } 
-  if (is.null(shapes.in) == F) {
-    selection = exclusion[exclusion$name %in% shapes.in, ]
-    for (i in 1:nrow(selection)) {
-      f = get(selection$name[i])
-      if (i==1) {
-        obj = f()
-      } else {
-        obj = cof(obj, f())
-      }
-    }
-  } else {
-    random<-sample(1:length(exclusion$name),n)
-    for(i in 1:length(random)) {
-      f<-get(exclusion$name[random[i]])
-      if(i==1){
-        obj<-f()
-      }else{
-        obj<-cof(obj,f())
-      }
-    }
+    random<-sample(1:length(shapes.l$name),1)
+    shapes.in = shapes.l$name[random]
   }
-  obj = cof(d.union, obj)
-  return(obj)
+  f = get(shapes.in)
+  d.un = cof(d.union, f())
+  return(d.un)
+  
 }
+
 
 
 
@@ -168,7 +178,7 @@ responses = function(m, n.rule = 1,
                                 n = n.shapes), 
               ic.scale = ic(m, n.rule = n.rule)$ic.scale, 
               ic.flip = ic(m, n.rule = n.rule)$ic.flip, 
-              ic.inc = ic(m, n.rule = n.rule)$ic.inc)
+              ic.inc = ic(m, n.ruleòkàù = n.rule)$ic.inc)
   
   if (any(unlist(resp$r.top) != unlist(m.correct), 
           na.rm = T) == F) {
