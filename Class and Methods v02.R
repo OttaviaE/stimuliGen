@@ -94,8 +94,6 @@ cof.field <- function( ...,name=NULL, single=FALSE) {
   }else{
     obj <- Map("c", ...)  
   }
-  
-  
   attr(obj, "class") <- "field"
   obj
 }
