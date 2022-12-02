@@ -6,6 +6,11 @@ source("Rules_27102022.R")
 source("provaDIstrattori.R")
 source("bloccoPratica.R")
 
+# ic scale solo per le mainpolazioni della dimensiuone
+# negativo solo pre quando ci sono i rimepimenti 
+# d union percentuale di forme che vengono usate 
+# d matrix non prenderre tutte le entrate della matrice
+
 lilth<-lily()
 s.lilth<-s.lily()
 for(i in 1:length(lilth$shape)) {
@@ -98,9 +103,9 @@ dev.off()
 # a_3 ------
 a_3a = apply(
   Raven(
-    st1 = cof(square(s.x = 18, s.y = 18), 
+    st1 = cof(circle(s.x = 17, s.y = 17), 
               pentagon(s.x = 16, s.y = 16), 
-              e.hexagon(s.x = 18, s.y = 18)), 
+              e.hexagon(s.x = 17, s.y = 17)), 
     vrule = c("diff_shapes"), 
     hrule = "diff_shapes"
   )
@@ -114,7 +119,7 @@ a_3b = apply(
     hrule = "rotation"
   )
 )
-
+draw(a_3b)
 
 a_3c = apply(
   Raven(
@@ -123,7 +128,7 @@ a_3c = apply(
     hrule = "fill"
   )
 )
-
+draw(a_3c)
 
 svg(paste0(getwd(), "/StudioPreliminare/GruppoA/", 
            "a_3.svg"), width=14, height=8.5)

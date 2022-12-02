@@ -55,6 +55,13 @@ dist7a = c("correct", "r.top", "d.union",
           "wp.copy", "r.diag")
 # a2 ----
 draw(a2)
+
+
+
+p = apply(Raven(st1= square(s.x = 18, s.y = 18), 
+                vrule="identity", 
+                hrule="identity"))
+draw(com(p, a2))
 dist_a2 = responses(a2, 
                     shapes.out = c("ellipse"), 
                     shapes.in = c("lily"), 
@@ -63,7 +70,7 @@ draw(d1)
 svg(paste0(getwd(), "/StudioPreliminare/distrattori/gruppoA/", 
            "dist_a2.svg"), width=14, height=8.5)
 change.marg(dist7)
-draw.dist(dist_a2, sample(dist7))
+draw.dist(dist_a2, sample(dist7), main = T)
 dev.off()
 
 # a1_2 ---- 
@@ -74,29 +81,35 @@ dist_a1_2 = responses(a1_2,
                                      "hexagon"), 
                       shapes.in = c("bow.tie", "ellipse"), 
                       all = c(3, 4,6))
+draw(a1_2, hide = T)
 change.marg(dist7)
 svg(paste0(getwd(), "/StudioPreliminare/distrattori/gruppoA/", 
            "dist_a1_2.svg"), width=14, height=8.5)
-draw.dist(dist_a1_2, dist7)
+draw.dist(dist_a1_2, dist7, main = T)
 dev.off()
 
 # a3 ---- 
 
 draw(a_3)
 
+par(mfrow = c(2,5)) 
+for ( i in 1:length(dist_a3)) {
+  draw(dist_a3[[i]], main = names(dist_a3)[i])
+}
+
 # non riesco più a salvarlo in svg 
 
-dist_a3 = responses(a_3, n.rule = 3, 
+dist_a3 = responses(a_3, n.rule = 3, n.shapes = 1, 
                     shapes.out = c("star", "u.star", 
-                                   "hexagon"), 
-                    shapes.in = c("luck", "ellipse"), 
-                    all = c(1, 2))
+                                   "hexagon", "pentagon"), 
+                    all = c(2,4))
 change.marg(dist7)
 svg(paste0(getwd(), "/StudioPreliminare/distrattori/gruppoA/", 
            "dist_a3.svg"), width=14, height=8.5)
-draw.dist(dist_a3, dist7a)
+draw.dist(dist_a3, dist7a, main = T)
 dev.off()
 
+draw(a_3)
 # a1_3 -----
 draw(a1_3)
 
