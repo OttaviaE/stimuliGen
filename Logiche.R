@@ -4,6 +4,8 @@ source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
 source("IC_multiforme.R")
+
+stamapa_su_file=TRUE
 ################################################################################
 #####                      LOGICHE OR e XOR                                #####
 ################################################################################
@@ -22,7 +24,9 @@ M1a<-logic_rules(Raven(square4()),"OR")
 
 M1b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"XOR")
 
+if(stamapa_su_file==TRUE){svg("a_logic3.svg")}
 draw(com(M1a,M1b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## a1_logic3
 
@@ -33,7 +37,9 @@ M2b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
                              vline(pos.x = -28, s.x = 15 ),
                              hline(pos.y = 15, s.x=30),
                              hline(pos.y = -15, s.x=30))),"OR")
+if(stamapa_su_file==TRUE){svg("a1_logic3.svg")}
 draw(com(M2a,M2b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## b_logic3 
 M3a<-logic_rules(Raven(cof(bow.tie(),
@@ -42,9 +48,9 @@ M3a<-logic_rules(Raven(cof(bow.tie(),
 M3b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
                           ,cross.dice(),
                           hline(),vline())),"OR")
-
+if(stamapa_su_file==TRUE){svg("b_logic3.svg")}
 draw(com(M3a,M3b),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## b1_logic3 
 M4a<-logic_rules(Raven(cof(square(s.x = 20,s.y = 20),
@@ -59,9 +65,10 @@ M4a<-logic_rules(Raven(cof(square(s.x = 20,s.y = 20),
 M4b<-logic_rules(Raven(cof(diagline(),horizontal_eight(),
                            vertical_eight(),
                            diagline.inv())),"OR")
-                           
-draw(com(M4a,M4b),hide=TRUE)
 
+if(stamapa_su_file==TRUE){svg("b1_logic3.svg")}                           
+draw(com(M4a,M4b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ################################################################################
 #####                      LOGICHE AND e XOR                               #####
@@ -79,8 +86,9 @@ square4bis <- function() {
 M5a<-logic_rules(Raven(square4bis()),"OR")
 
 M5b<-logic_rules(Raven(cof(pie.4())),"AND")
+if(stamapa_su_file==TRUE){svg("a_logic2.svg")}
 draw(com(M5a,M5b),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## a1_logic2 
 M6a<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
@@ -90,8 +98,9 @@ M6b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
                              vline(pos.x = -28, s.x = 15 ),
                              hline(pos.y = 15, s.x=30),
                              hline(pos.y = -15, s.x=30))),"AND")
+if(stamapa_su_file==TRUE){svg("a1_logic2.svg")}
 draw(com(M6a,M6b),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 ## b_logic2 
 M7a<-logic_rules(Raven(cof(hexagon(shd="line1"),
                            hexagon(shd="line2"),dot(),
@@ -99,7 +108,9 @@ M7a<-logic_rules(Raven(cof(hexagon(shd="line1"),
 
 M7b<-logic_rules(Raven(cof(bow.tie(),
                            bow.tie.inv())),"AND")
+if(stamapa_su_file==TRUE){svg("b_logic2.svg")}
 draw(com(M7a,M7b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## b1_logic2 
 M8a<-logic_rules(Raven(cof(pentagon(),
@@ -112,8 +123,9 @@ M8b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x=5),1,"lty"),
                            margin(hline(pos.y=-5,s.x=5),1,"lty"),
                            margin(vline(pos.x=5,s.x=5),1,"lty"),
                            margin(vline(pos.x=-5,s.x=5),1,"lty"))),"AND")
+if(stamapa_su_file==TRUE){svg("b1_logic2.svg")}
 draw(com(M8a,M8b),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 ################################################################################
 #####                      LOGICHE AND e OR                                #####
 ################################################################################
@@ -123,7 +135,9 @@ M9a<- logic_rules(Raven(square4bis()),"OR")
 
 M9b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"AND")
 
+if(stamapa_su_file==TRUE){svg("a_logic1.svg")}
 draw(com(M9a,M9b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## a1_logic1 
 M10a<- logic_rules(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
@@ -141,8 +155,9 @@ M10b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
                             margin(vline(pos.x=5,s.x = 18),1,"lty"),
                             margin(vline(pos.x=-5,s.x = 18),1,"lty"))),"OR")
 
+if(stamapa_su_file==TRUE){svg("a1_logic1.svg")}
 draw(com(M10b,M10a),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 
 ## b_logic1 
 M11a<- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
@@ -151,8 +166,10 @@ M11a<- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
                             hline(pos.y = -15, s.x=28))),"OR")
 
 M11b<-logic_rules(Raven(lily()),"AND")
-draw(com(M11a,M11b),hide=TRUE)
 
+if(stamapa_su_file==TRUE){svg("b_logic1.svg")}
+draw(com(M11a,M11b),hide=TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 ## b1_logic1 
 
 smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
@@ -172,8 +189,9 @@ M12a<-logic_rules(Raven(cof(smallbow.tie.inv(pos.y=-7),
 M12b<-logic_rules(Raven(cof(margin(smallbow.tie.inv(pos.y=-7,shd ="grey"),1,"lty"),
                             margin(smallbow.tie.inv(pos.y=7,shd ="grey"),1,"lty"))
                         ),"AND")
+if(stamapa_su_file==TRUE){svg("b1_logic1.svg")}
 draw(com(M12b,M12a),hide=TRUE)
-
+if(stamapa_su_file==TRUE){dev.off()}
 
 ##########
 # BONUS  #
@@ -199,3 +217,23 @@ M12d<-logic_rules(Raven(cof(square(s.x=21,s.y=21),
                             square(s.x=21,s.y=21,shd="line12.h"))
                             ),"AND")
 draw(com(M12c,M12d),hide=TRUE)
+
+
+################################################################################
+#####                      TRANSFORMAZIONE MENTALE                         #####
+################################################################################
+
+
+M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill"))
+M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+draw(M1)
+draw(M2)
+draw(com(M1,M2))
+
+###
+
+M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill.line"))
+M2<-apply(Raven(cof(e.hexagon(),luck(s.x=15,s.y=17),triangle(s.x=18,s.y=18)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+draw(M1)
+draw(M2)
+draw(com(M1,M2)) 
