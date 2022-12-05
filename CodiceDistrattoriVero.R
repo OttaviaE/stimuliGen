@@ -26,6 +26,67 @@ correct = function(m) {
   return(correct)
 }
 
+# incomplete correlate -----
+
+ic = function(m, 
+              n.rule = 1, 
+              which.element = NULL) {
+  m.correct = correct(m)
+  
+  ##Inizio aggiunta brutta
+  elements<-decof(m.correct)##il controllo con i tag è sbagliato $EVVIVA$!
+  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  #unlist(lapply(m.correct$tag,function(x) any(x== "rotate"))) )
+  
+  if (length(elements) == 1) {
+    ic.scale = size(m.correct, 3)
+    ic.flip = rotation(m.correct, 3)
+  } else {
+    split.m = split.mat(m)
+    
+    if (is.null(which.element) == T) {
+      ic.flip = rotation(split.m[[1]], 2)
+      
+      ic.scale = size(split.m[[1]], 2)
+      
+      new_index = sample(index_elements,1)
+      ic.inc = hide(m.correct, new_index)
+      for (i in 2:length(split.m)) {
+        ic.flip = cof(ic.flip, split.m[[i]])
+        ic.scale = cof(ic.scale, split.m[[i]])
+      }
+    } else {
+      ic.flip = rotation(split.m[[which.element]], 2) 
+      ic.scale = size(split.m[[which.element]], 2) 
+      for (i in 1:length(which(names(split.m) != which.element))) {
+        ic.flip = cof(split.m[[which(names(split.m) != which.element)[i]]], 
+                      ic.flip)
+        ic.scale = cof(split.m[[which(names(split.m) != which.element)[i]]], 
+                       ic.scale)
+      }
+      
+      ic.inc = hide(m.correct, 
+                    index_elements[which(names(split.m) == which.element)])
+    } 
+    
+  }
+  # if(length(index_elements)==0)
+  # {
+  #   ic.inc$attention = "No object can rotate here!"
+  # }else{
+  #   new_index <-sample(index_elements,1)
+  #   # new_obj <- rotation( elements[[new_index]], 2) # il numero sulla rotazione dipende dalla figura
+  #   # ic.flip <- replace(ic.flip,new_index,new_obj)
+  #   
+  #}
+  ##Fine aggiunta brutta
+  
+  ic.dist = list(ic.scale = ic.scale, 
+                 ic.flip = ic.flip, 
+                 ic.inc = ic.inc)
+  return(ic.dist)
+}
+
 # Repeteion -----
 
 repetition = function(m) {
