@@ -9,13 +9,14 @@ draw.dist = function(dist.list, main = NULL) {
   if (is.null(main) == F) {
     for (i in 1:length(dist.list)) {
       draw(dist.list[[i]], main = names(dist.list)[i])
+    }
     } else {
       for (i in 1:length(dist.list)) {
         draw(dist.list[[i]])
       }
     }
   }
-}
+
 
 # matrici lofiche ----- 
 M1<-logic_rules(Raven(square4()),"OR")

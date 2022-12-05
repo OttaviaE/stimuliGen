@@ -7,15 +7,21 @@ split.mat = function(m) {
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1))) 
   split.m <- vector("list", length(index_elements))
   
-  for (i in 1:length(split.m)) {
-    split.m[[i]] <- vector("list", length(m.correct))
-    for (j in 1:length(split.m[[i]])) {
-      names(split.m)[i] = m.correct$shape[index_elements[i]]
-      attr(split.m[[i]], "class") = "field"
-      split.m[[i]][[j]] = m.correct[[j]][index_elements[i]]
-      names(split.m[[i]])[j] = names(m.correct)[j]
+  if (length(elements) == 1) {
+    split.m = m.correct
+  } else {
+    for (i in 1:length(split.m)) {
+      split.m[[i]] <- vector("list", length(m.correct))
+      for (j in 1:length(split.m[[i]])) {
+        names(split.m)[i] = m.correct$shape[index_elements[i]]
+        attr(split.m[[i]], "class") = "field"
+        split.m[[i]][[j]] = m.correct[[j]][index_elements[i]]
+        names(split.m[[i]])[j] = names(m.correct)[j]
+      }
     }
   }
+  
+  
   return(split.m)
 }
 
