@@ -1069,14 +1069,15 @@ X <- function() {
 slice <- function(pos.x=0 ,pos.y=0,
                   theta1 = pi/4, 
                   theta2 = 3*pi/4,
-                  size.x =sqrt(square()$ size.x[[1]]^2 /2),
-                  size.y = 0,
+                  s.x =15,
+                  s.y = 0,
                   lty = 1, lwd =3,
-                  vis = 1) {
+                  vis = 1, 
+                  shd = NA) {
   value <- list(
     shape = "slice",
-    size.x = list(size.x),
-    size.y = list(size.y),
+    size.x = list(s.x),
+    size.y = list(s.y),
     theta.1  = list(theta1),
     theta.2  = list(theta2),
     rotation = list(pi - pi / 4),
@@ -1086,7 +1087,7 @@ slice <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(2),
     nv =  list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill", "rotate" ) 
   )
