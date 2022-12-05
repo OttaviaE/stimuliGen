@@ -1186,7 +1186,8 @@ semi.circle <- function(pos.x=0 ,pos.y=0,
                   size.y = 0,
                   rotation = pi - pi / 4,
                     lty = 1, lwd =3,
-                  vis = 1) {
+                  vis = 1, 
+                  shd = NA) {
   value <- list(
     shape = "semi.circle",
     size.x = list(size.x),
@@ -1200,7 +1201,7 @@ semi.circle <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(2),
     nv =  list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill", "rotate" ) 
   )
@@ -1222,7 +1223,8 @@ semi.circle.inv <- function(pos.x=0 ,pos.y=0,
                         size.y = 0,
                         rotation = pi - pi / 4,
                         lty = 1, lwd =3,
-                        vis = 1) {
+                        vis = 1, 
+                        shd = NA) {
   value <- list(
     shape = "semi.circle.inv",
     size.x = list(size.x),
@@ -1236,7 +1238,7 @@ semi.circle.inv <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(2),
     nv =  list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill", "rotate" ) 
   )
@@ -1251,8 +1253,8 @@ semi.circle.inv <- function(pos.x=0 ,pos.y=0,
 #' @examples
 #' pie.2()
 #' @export
-pie.2 <- function() {
-  value <-cof(semi.circle(), semi.circle.inv())
+pie.2 <- function(shd = NA) {
+  value <-cof(semi.circle(shd = NA), semi.circle.inv(shd = NA))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value
