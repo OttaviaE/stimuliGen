@@ -217,6 +217,7 @@ M12d<-logic_rules(Raven(cof(square(s.x=21,s.y=21),
                             square(s.x=21,s.y=21,shd="line12.h"))
                             ),"AND")
 draw(com(M12c,M12d),hide=TRUE)
+M12bis<-com(M12c,M12d)
 
 
 ################################################################################
@@ -224,16 +225,49 @@ draw(com(M12c,M12d),hide=TRUE)
 ################################################################################
 
 
-M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill"))
-M2<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
-draw(M1)
-draw(M2)
-draw(com(M1,M2))
+M13a<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill"))
+M13b<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+if(stamapa_su_file==TRUE){svg("a_1.svg")}
+draw(com(M13a,M13b),hide = TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
 
 ###
 
-M1<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill.line"))
-M2<-apply(Raven(cof(e.hexagon(),luck(s.x=15,s.y=17),triangle(s.x=18,s.y=18)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
-draw(M1)
-draw(M2)
-draw(com(M1,M2)) 
+M14a<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill.line"))
+M14b<-apply(Raven(cof(e.hexagon(),luck(s.x=15,s.y=17),triangle(s.x=17,s.y=17)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+if(stamapa_su_file==TRUE){svg("a1_1.svg")}
+draw(com(M14a,M14b),hide = TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
+
+### Bonus
+
+M15a<-apply(Raven(cof(ellipse(s.x = 9,s.y = 6),circle(s.x = 6,s.y = 6)),c("trans.fill")))
+M15b<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+if(stamapa_su_file==TRUE){svg("b_1.svg")}
+draw(com(M15a,M15b),hide = TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
+
+
+### Bonus alternativa 
+
+M15c<-apply(Raven(cof(pentagon(),circle()),c("trans.fill")))
+M15d<-apply(Raven(cof(e.hexagon(s.x = 3, s.y = 3,shd = "white"),
+                      square(s.x = 3, s.y = 3,shd = "white"),
+                      pentagon(s.x = 3, s.y = 3,shd = "white")),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+if(stamapa_su_file==TRUE){svg("b_1_bonus.svg")}
+draw(com(M15c,M15d),hide = TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
+
+###
+
+M16a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
+M16b<-apply(Raven(cof(pentagon(),ellipse(s.x=14,s.y=17),triangle(s.x=17,s.y=17)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+if(stamapa_su_file==TRUE){svg("b1_1.svg")}
+draw(com(M16a,M16b),hide = TRUE)
+if(stamapa_su_file==TRUE){dev.off()}
+
