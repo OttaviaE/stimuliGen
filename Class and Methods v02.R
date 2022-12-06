@@ -516,7 +516,7 @@ line<-function(obj,rule)
     {
       first_coords<-coords
       first_coords$x[coords$x<=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=1.5)){
+      for(i in seq(-20 ,20,by=1)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
@@ -524,7 +524,7 @@ line<-function(obj,rule)
     {
       first_coords<-coords
       first_coords$x[coords$x>=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=1.5)){
+      for(i in seq(-20 ,20,by=1)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
