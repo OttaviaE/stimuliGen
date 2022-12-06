@@ -7,7 +7,7 @@ split.mat = function(m) {
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1))) 
   split.m <- vector("list", length(index_elements))
   
-  if (length(elements) == 1) {
+  if (length(index_elements) == 1) {
     split.m = m.correct
   } else {
     for (i in 1:length(split.m)) {
@@ -44,9 +44,10 @@ ic = function(m,
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
   #unlist(lapply(m.correct$tag,function(x) any(x== "rotate"))) )
   
-  if (length(elements) == 1) {
+  if (length(index_elements) == 1) {
     ic.scale = size(m.correct, 3)
     ic.flip = rotation(m.correct, 3)
+    ic.inc = m.correct
   } else {
     split.m = split.mat(m)
     
