@@ -47,7 +47,17 @@ ic = function(m,
   if (length(index_elements) == 1) {
     ic.scale = size(m.correct, 3)
     ic.flip = rotation(m.correct, 3)
-    ic.inc = m.correct
+    
+    if (any(grep("pie.4", m.correct$shape)) == T)  {
+      random_shape = list(pie.2(), pie.2.inv())
+      random_index = sample(1:2, 1)
+      ic.inc = random_shape[[random_index]]
+    } else if (any(grep("pie.2", m.correct$shape)) == T) {
+      ic.inc = circle()
+    } else {
+      ic.inc = m.correct
+    }
+    
   } else {
     split.m = split.mat(m)
     
@@ -62,6 +72,8 @@ ic = function(m,
         ic.flip = cof(ic.flip, split.m[[i]])
         ic.scale = cof(ic.scale, split.m[[i]])
       }
+      
+      
     } else {
       ic.flip = rotation(split.m[[which.element]], 2) 
       ic.scale = size(split.m[[which.element]], 2) 
@@ -250,6 +262,7 @@ responses = function(m, n.rule = 1,
 # draw distractors -----
 draw.dist = function(dist.list, n.resp = 8,
                      main = NULL) {
+  # dist.list = sample(dist.list)
   if (n.resp ==8) {
     par(mfrow = c(2, 4)) 
     
@@ -271,3 +284,4 @@ draw.dist = function(dist.list, n.resp = 8,
     }
   }
 }
+
