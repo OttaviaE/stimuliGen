@@ -368,4 +368,16 @@ logic_m2 = com(M2a, M2b)
 logic_m2_dist = responses(logic_m2, which.element = "square")
 draw.dist(logic_m2_dist, n.resp = 10, main = T)
 
+# terza mtrice logica ----
+# non va
 
+M3a<-logic_rules(Raven(cof(bow.tie(),
+                           bow.tie.inv())),"XOR")
+
+M3b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
+                           ,cross.dice(),
+                           hline(),vline())),"OR")
+logic_m3 = com(M3a, M3b)
+logic_m3_dist = responses(logic_m3, which.element = "dice")
+
+draw.dist(logic_m3_dist, n.resp = 10, main = T)

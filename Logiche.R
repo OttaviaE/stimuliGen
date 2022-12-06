@@ -5,7 +5,7 @@ source("Class and Methods v02.R")
 source("Rules_27102022.R")
 source("IC_multiforme.R")
 
-stamapa_su_file=TRUE
+stamapa_su_file=FALSE
 ################################################################################
 #####                      LOGICHE OR e XOR                                #####
 ################################################################################
