@@ -461,7 +461,6 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
 
 filling<-function(q,m,coords)
 {
-  
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
   index<-c(1:length(coords$x),1)
@@ -478,9 +477,14 @@ filling<-function(q,m,coords)
     
     if(control_x && control_y && n_solu<=2)
     {
-      
-      pt[n_solu,]<-solution
-      n_solu<-n_solu+1
+      if(n_solu==1){
+        pt[n_solu,]<-solution
+        n_solu<-n_solu+1 
+      }else if(!all(pt[n_solu-1,]==solution))
+      {
+        pt[n_solu,]<-solution
+        n_solu<-n_solu+1
+      }
     }
   }
   polygon(pt[,1],pt[,2])
@@ -512,7 +516,7 @@ line<-function(obj,rule)
     {
       first_coords<-coords
       first_coords$x[coords$x<=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20)){
+      for(i in seq(-20 ,20,by=1.5)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
@@ -520,7 +524,7 @@ line<-function(obj,rule)
     {
       first_coords<-coords
       first_coords$x[coords$x>=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20)){
+      for(i in seq(-20 ,20,by=1.5)){
         filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
