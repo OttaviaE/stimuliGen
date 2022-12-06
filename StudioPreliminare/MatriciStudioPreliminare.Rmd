@@ -1,0 +1,827 @@
+---
+title: "Studio Preliminare"
+author: "Andrea & Ottavia"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    toc: yes
+# classoption:
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      fig.align = "center")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Shapes_list-10-11-Ottavia.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods v02.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Rules_27102022.R")
+source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/CodiceDistrattoriVero.R")
+
+square4bis <- function() {
+  value <-cof(hline(pos.y=-11),vline(pos.x=11),
+              hline(pos.y=11),vline(pos.x=-11))
+  value$tag <- list("compose4")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
+  value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.y, rot=pi/3, 
+                       s.x = 5, s.y=5,shd = shd), 
+              triangle(pos.x = pos.x-5, pos.y = pos.y, rot=-pi, 
+                       s.x = 5, s.y=5,shd = shd))
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
+bow.tie.inv <- function(pos.x = 0) {
+  value <-cof(triangle(pos.x = pos.x+10, pos.y = pos.x, rot=pi/3, 
+                       s.x = 10, s.y=10), 
+              triangle(pos.x = pos.x-10, pos.y = pos.x, rot=-pi, 
+                       s.x = 10, s.y=10))
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
+
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+  lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+  lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+  lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+  lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+  
+}
+
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+
+
+papillon = bow.tie()
+u.papillon = u.bow.tie()
+
+
+for(i in 1:length(papillon$shape)) {
+  papillon$size.x[[i]] <-papillon$size.x[[i]]/2
+  papillon$size.y[[i]] <-papillon$size.y[[i]]/2
+  papillon$pos.y[[i]] <-papillon$pos.y[[i]]/2
+  papillon$pos.x[[i]] <-papillon$pos.x[[i]]/2
+  
+}
+
+u.papillon$size.x[[1]] <-u.papillon$size.x[[1]]/2
+u.papillon$size.y[[1]] <-u.papillon$size.y[[1]]/2
+u.papillon$pos.y[[1]] <-u.papillon$pos.y[[1]]/2
+u.papillon$pos.x[[1]] <-u.papillon$pos.x[[1]]/2
+```
+
+\newpage
+
+
+
+
+# Blocco di pratica 
+
+## Pratica 1
+
+```{r}
+m_pratica1 <-apply(Raven(st1=cof(e.hexagon()),
+                    hrule=c("fill"),vrule=c("identity")))
+draw(m_pratica1, hide = T)
+
+pratica_1_dist = responses(m_pratica1)
+
+```
+
+
+```{r, out.width="80%"}
+draw.dist(pratica_1_dist, n.resp = 10, main = T)
+```
+
+
+## Pratica 2 
+
+```{r}
+
+m_pratica2 = apply(Raven(st1=pie.4(),
+                  hrule=c("identity"),
+                  vrule=c("size")))
+draw(m_pratica2, hide = TRUE)
+
+pratica_2_dist = responses(m_pratica2)
+```
+
+
+```{r out.width="80%"}
+draw.dist(pratica_2_dist, n.resp = 10, main = T)
+
+```
+
+
+## Pratica 3
+
+```{r}
+m_pratica3 = apply(Raven(st1=pie.2(),
+                     hrule=c("lty"),
+                     vrule=c("identity")))
+draw(m_pratica3, hide = T)
+
+pratica_3_dist = responses(m_pratica3)
+```
+
+
+```{r out.width="80%"}
+draw.dist(pratica_3_dist, n.resp = 10, main = T)
+
+```
+
+
+## Pratica 4
+
+```{r}
+m_pratica4a = apply(Raven(st1 = cof(dot(), 
+                            s.lily(), 
+                            square(s.x = 5, s.y = 5, 
+                                   shd = "black", rot = pi/2)), 
+                 hrule = "diff_shapes"))
+        
+m_pratica4b = apply(Raven(st1=pentagon(),
+                 hrule=c("identity"),
+                 vrule=c("identity")))
+
+m_pratica4 = (com(m_pratica4a, m_pratica4b))
+
+draw(m_pratica4, hide = T)
+
+pratica_4_dist = responses(m_pratica4, choose.copy = 1)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(pratica_4_dist, n.resp = 10, main = T)
+
+```
+
+
+# Matrici logiche -- SET A 
+
+## A Logic 3 
+
+```{r}
+## a_logic3 
+a_logic3a <-logic_rules(Raven(square4()),"OR")
+
+a_logic3b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"XOR")
+
+a_logic3 = com(a_logic3a, a_logic3b)
+
+draw(a_logic3, hide = T)
+
+a_logic3_dist = responses(a_logic3)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(a_logic3_dist, n.resp = 10, main = T)
+
+```
+
+
+## A1 Logic 3
+
+```{r}
+## a_logic3 
+a1_logic3a <-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
+                           square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))
+),"XOR")
+a1_logic3b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+                             vline(pos.x = -28, s.x = 15 ),
+                             hline(pos.y = 15, s.x=30),
+                             hline(pos.y = -15, s.x=30))),"OR")
+
+a1_logic3 = com(a1_logic3a, a1_logic3b)
+
+draw(a1_logic3, hide = T)
+
+a1_logic3_dist = responses(a1_logic3)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(a1_logic3_dist, n.resp = 10, main = T)
+
+```
+
+
+## A Logic 2
+
+```{r}
+a_logic2a<-logic_rules(Raven(square4bis()),"OR")
+
+a_logic2b<-logic_rules(Raven(cof(pie.4())),"AND")
+
+a_logic2 = com(a_logic2a, a_logic2b)
+
+draw(a_logic2, hide = T)
+
+a_logic2_dist = responses(a_logic2)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(a_logic2_dist, n.resp = 10, main = T)
+
+```
+
+
+
+## A1 Logic 2
+
+```{r}
+a1_logic2a<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
+                            pentagon(shd="line12.h"), hexagon(s.x=3,s.y=3)) ),"OR")
+
+a1_logic2b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+                             vline(pos.x = -28, s.x = 15 ),
+                             hline(pos.y = 15, s.x=30),
+                             hline(pos.y = -15, s.x=30))),"AND")
+
+a1_logic2 = com(a1_logic2a, a1_logic2b)
+draw(a1_logic2, hide = T)
+
+a1_logic2_dist = responses(a1_logic2)
+
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(a1_logic2_dist, n.resp = 10, main = T)
+
+```
+
+
+## A Logic 1
+
+```{r}
+a_logic1a<- logic_rules(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
+                         circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
+                         cof(diagline(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                             diagline.inv(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                             single = TRUE,name = "smallcross"),
+                         cof(diagline(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                             diagline.inv(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                             single = TRUE,name = "smallcross")
+                         )),"AND")
+
+a_logic1b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
+                            margin(hline(pos.y=-5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=-5,s.x = 18),1,"lty"))),"OR")
+
+a_logic1 = com(a_logic1a, a_logic1b)
+draw(a_logic1, hide = T)
+a_logic1_dist = responses(a_logic1)
+```
+
+
+```{r out.width="80%"}
+draw.dist(a_logic1_dist, n.resp = 10, main = T)
+
+```
+
+## A1 Logic 1
+
+```{r}
+a1_logic1a<- logic_rules(Raven(square4bis()),"OR")
+
+a1_logic1b<-logic_rules(Raven(cof(diagline.inv(),diagline(),hline(),vline())),"AND")
+
+a1_logic1 = com(a1_logic1a, a1_logic1b)
+
+draw(a1_logic1, hide = T) 
+
+a1_logic1_dist = responses(a1_logic1)
+
+```
+
+```{r out.width="80%"}
+draw.dist(a1_logic1_dist, n.resp = 10, main = T)
+
+```
+
+
+# Matrici logiche -- SET B
+
+## B Logic 3
+
+```{r}
+b_logic3a<-logic_rules(Raven(cof(bow.tie(),
+                          bow.tie.inv())),"XOR")
+
+b_logic3b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
+                          ,cross.dice(),
+                          hline(),vline())),"OR")
+
+b_logic3 = com(b_logic3a, b_logic3b)
+
+draw(b_logic3, hide = T)
+
+b_logic3_dist = responses(b_logic3)
+```
+
+
+```{r out.width="80%"}
+draw.dist(b_logic3_dist, n.resp = 10, main = T)
+
+```
+
+
+
+## B1 Logic 3
+
+```{r}
+
+b1_logic3a<-logic_rules(Raven(cof(square(s.x = 20,s.y = 20),
+                           margin(square(s.x = 17,s.y = 17,shd = "line12"),3,"lty"),
+                           dice(),
+                           margin(square(s.x = 17,s.y = 17),3,"lty")
+                           )),"XOR")
+
+b1_logic3b<-logic_rules(Raven(cof(diagline(),horizontal_eight(),
+                           vertical_eight(),
+                           diagline.inv())),"OR")
+
+b1_logic3 = com(b1_logic3a, b1_logic3b)
+
+draw(b1_logic3, hide = T)
+
+b1_logic3_dist = responses(b1_logic3)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(b1_logic3_dist, n.resp = 10, main = T)
+
+```
+
+## B logic 2
+
+```{r}
+b_logic2a<-logic_rules(Raven(cof(hexagon(shd="line1"),
+                           hexagon(shd="line2"),dot(),
+                           e.hexagon())),"OR")
+
+b_logic2b<-logic_rules(Raven(cof(bow.tie(),
+                           bow.tie.inv())),"AND")
+b_logic2 = com(b_logic2a, b_logic2b)
+
+draw(b_logic2, hide =T)
+
+b_logic2_dist = responses(b_logic2)
+```
+
+
+```{r out.width="80%"}
+draw.dist(b_logic2_dist, n.resp = 10, main = T)
+
+```
+
+## B1 logic 2
+
+```{r}
+
+b1_logic2a<-logic_rules(Raven(cof(pentagon(),
+                           margin(pentagon(s.x=13,s.y =13),3,"lty"),
+                           margin(pentagon(s.x=17,s.y =17),2,"lty"),
+                           dice()
+                           )),"OR")
+
+b1_logic2b<-logic_rules(Raven(cof(margin(hline(pos.y=5,s.x=5),1,"lty"),
+                           margin(hline(pos.y=-5,s.x=5),1,"lty"),
+                           margin(vline(pos.x=5,s.x=5),1,"lty"),
+                           margin(vline(pos.x=-5,s.x=5),1,"lty"))),"AND")
+
+
+b1_logic2 = com(b1_logic2a, b1_logic2b)
+
+draw(b1_logic2, hide =T)
+
+b1_logic2_dist = responses(b1_logic2)
+
+```
+
+
+```{r out.width="80%"}
+draw.dist(b1_logic2_dist, n.resp = 10, main = T)
+
+```
+
+
+## B Logic 1 
+
+```{r}
+b_logic1a<- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
+                            vline(pos.x = -28, s.x = 15 ),
+                            hline(pos.y = 15, s.x=28),
+                            hline(pos.y = -15, s.x=28))),"OR")
+
+b_logic1b<-logic_rules(Raven(lily()),"AND")
+
+
+b_logic1 = com(b_logic1a, b_logic1b)
+
+draw(b_logic1, hide =T)
+
+b_logic1_dist = responses(b_logic1)
+
+```
+
+
+
+```{r out.width="80%"}
+draw.dist(b_logic1_dist, n.resp = 10, main = T)
+
+```
+
+
+## B1 Logic 1 
+
+```{r}
+
+
+
+b1_logic1a<-logic_rules(Raven(cof(smallbow.tie.inv(pos.y=-7),
+                            smallbow.tie.inv(pos.y=7)
+                            )),"XOR")
+
+b1_logic1b<-logic_rules(Raven(cof(margin(smallbow.tie.inv(pos.y=-7,shd ="grey"),1,"lty"),
+                            margin(smallbow.tie.inv(pos.y=7,shd ="grey"),1,"lty"))
+                        ),"AND")
+
+
+b1_logic1 = com(b1_logic1a, b1_logic1b)
+
+draw(b1_logic1, hide =T)
+
+b1_logic1_dist = responses(b1_logic1)
+```
+
+
+
+```{r out.width="80%"}
+draw.dist(b1_logic1_dist, n.resp = 10, main = T)
+
+```
+
+
+# Matrici visuo-spaziali set A
+
+## A 2
+
+```{r}
+a2_mat = apply(Raven(st1 = cof(luck(shd = "white"), pacman(shd = "white"), 
+                           pentagon(shd = "white")), 
+                 hrule = c("diff_shapes", "size", "rotation"), 
+                 vrule = c("diff_shapes")))
+
+a2_frame = apply(Raven(
+  st1= circle(shd = "grey", s.y =17, s.x = 17), 
+  "identity", "identity"
+))
+
+a2 = com(a2_frame, a2_mat)
+draw(com(a2_frame, a2), hide = T)
+
+a2_dist = responses(a2, which.element = "pentagon")
+
+```
+
+```{r out.width="80%"}
+draw.dist(a2_dist, n.resp = 10, main = T)
+
+```
+
+## A1 2
+
+```{r}
+a1_2mat = apply(Raven(st1 = cof(slice(shd = "white", 
+                                   s.x = 13), 
+                             luck(shd="white", s.x = 10, s.y = 13), 
+                             e.hexagon(shd="white", 
+                                       s.x = 13, s.y = 13)), 
+                   hrule = c("diff_shapes", "size", "rotation"), 
+                   vrule = c("diff_shapes")))
+a1_2frame = apply(Raven(
+  st1 = square(s.x = 21, s.y=21, shd = "grey"), 
+  vrule = "identity"
+))
+a1_2 = com(a1_2frame, a1_2mat)
+draw(a1_2, hide = T)
+```
+
+```{r out.width="80%"}
+a1_2_dist = responses(a1_2, which.element = "e.hexagon")
+
+draw.dist(a1_2_dist, n.resp = 10, main = T)
+```
+
+
+## A 3
+
+```{r}
+a_3a = apply(
+  Raven(
+    st1 = cof(circle(s.x = 17, s.y = 17), 
+              pentagon(s.x = 16, s.y = 16), 
+              e.hexagon(s.x = 17, s.y = 17)), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+a_3b = apply(
+  Raven(
+    st1 = pacman(), 
+    vrule = c("rotation"), 
+    hrule = "rotation"
+  )
+)
+
+
+a_3c = apply(
+  Raven(
+    st1 = circle(s.x = 2, s.y = 2), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+
+a_3 = com(a_3a, a_3b, a_3c)
+draw(a_3, hide = T)
+```
+
+```{r out.width="80%"}
+a3_dist = responses(a_3, which.element = "pacman")
+
+draw.dist(a3_dist, n.resp = 10, main = T)
+```
+
+## A1 3 
+
+
+```{r}
+a1_3a = apply(Raven(
+  st1 = square(s.x = 20, s.y = 20), 
+  vrule = "identity", 
+  hrule= "identity"
+))
+
+a1_3b = apply(Raven(
+  st1 = cof(slice(s.x = sqrt(square()$size.x[[1]]^2 /2)), luck(s.x = 10, 
+                          s.y = 12), 
+            triangle(s.x = 10, s.y = 10)), 
+  vrule = "diff_shapes", 
+  hrule= c("diff_shapes", "rotation")
+))
+
+a1_3c = apply(
+  Raven(
+    st1 = circle(s.x = 2, s.y = 2), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+a1_3 = com(a1_3a, a1_3b, a1_3c)
+draw(a1_3, hide = T)
+```
+
+```{r out.width="80%"}
+a1_3_dist = responses(a1_3, which.element = "triangle")
+
+draw.dist(a1_3_dist, n.resp = 10, main = T)
+```
+
+
+# Matrici Visuo spaziali -- SET B
+
+## B 2
+
+```{r}
+b2_mat = apply(Raven(st1 = cof(semi.circle(shd = "white"), 
+                               pacman(shd = "white"), 
+                           ellipse(shd = "white")), 
+                 hrule = c("diff_shapes",  "size", "rotation"), 
+                 vrule = c("diff_shapes")))
+b2_frame = apply(Raven(
+  st1 = pentagon(shd = "grey")
+))
+b2 = (com(b2_frame, b2_mat))
+draw(b2, hide = T)
+
+
+```
+
+
+```{r out.width="80%"}
+b2_dist = responses(b2, which.element = "ellipse")
+
+draw.dist(b2_dist, n.resp = 10, main = T)
+```
+
+
+## B1 2
+
+```{r}
+b1_2mat = apply(Raven(st1 = cof(pentagon(shd = "white", 
+                                        s.x = 12, s.y = 12), 
+                               triangle(rot = pi/2, 
+                                        s.x = 12, s.y = 12, shd = "white"), 
+                             ellipse(shd = "white", 
+                                     
+                                     s.x = 9, s.y = 12)), 
+                   hrule = c("diff_shapes",  "size", "rotation"), 
+                   vrule = c("diff_shapes")))
+b1_2frame = apply(Raven(
+  st1 = square(shd = "grey", s.x = 20, s.y = 20)
+))
+b1_2 = com(b1_2frame, b1_2mat)
+
+draw(b1_2, hide = T)
+
+```
+
+
+```{r out.width="80%"}
+b1_2_dist = responses(b1_2, which.element = "ellipse")
+
+draw.dist(b1_2_dist, n.resp = 10, main = T)
+```
+
+
+## B 3 
+
+
+```{r}
+b_3a = apply(Raven(
+  st1 = cof(pentagon(), 
+            e.hexagon(), 
+            ellipse(s.x = 13, s.y = 17)), 
+  vrule = "diff_shapes", 
+  hrule= c("diff_shapes", "rotation")
+))
+
+
+
+b_3b = apply(Raven(
+  st1 = papillon,
+  hrule = "multifill", 
+  vrule = "multifill"
+))
+
+b_3 = com(b_3a, b_3b)
+
+draw(b_3, hide = T)
+
+```
+
+
+```{r out.width="80%"}
+b_3_dist = responses(b_3)
+
+draw.dist(b_3_dist, n.resp = 10, main = T)
+```
+
+
+## B1 3
+
+```{r}
+b1_3a = apply(Raven(
+  st1 = semi.circle(), 
+  hrule =c("rotation", "fill"),
+  vrule = c("fill")
+))
+
+
+b1_3b = apply(Raven(
+  st1 = cof(circle(s.x = 15, s.y = 15), 
+            square(s.x = 17, s.y = 17), 
+            e.hexagon()), 
+  vrule = "diff_shapes", 
+  hrule= c("diff_shapes")
+))
+
+
+b1_3 = com(b1_3a, b1_3b)
+
+draw(b1_3, hide = T)
+
+```
+
+
+```{r out.width="80%"}
+b_1_3_dist = responses(b1_3)
+
+draw.dist(b_1_3_dist, n.resp = 10, main = T)
+```
+
+
+# Trasformazione mentale 
+
+## T 1
+
+```{r}
+a_trasf1a <-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill"))
+a_trasf1b<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+a_trasf1 = com(a_trasf1a, a_trasf1b)
+
+a_trasf2a<-apply(Raven(cof(circle(s.x = 6,s.y = 6),square(s.x = 6,s.y = 6)),"trans.fill.line"))
+a_trasf2b<-apply(Raven(cof(e.hexagon(),luck(s.x=15,s.y=17),triangle(s.x=17,s.y=17)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+a_trasf2 = com(a_trasf2a, a_trasf2b)
+
+a_trasf3a<-apply(Raven(cof(ellipse(s.x = 9,s.y = 6),circle(s.x = 6,s.y = 6)),c("trans.fill")))
+a_trasf3b<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+
+a_trasf3c<-apply(Raven(cof(pentagon(),circle()),c("trans.fill")))
+a_trasf3d<-apply(Raven(cof(e.hexagon(s.x = 3, s.y = 3,shd = "white"),
+                      square(s.x = 3, s.y = 3,shd = "white"),
+                      pentagon(s.x = 3, s.y = 3,shd = "white")),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+a_trasf3 = com(a_trasf3a, a_trasf3b, a_trasf3c, a_trasf3d)
+
+a_trasf4a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
+a_trasf4b<-apply(Raven(cof(pentagon(),ellipse(s.x=14,s.y=17),triangle(s.x=17,s.y=17)),c("diff_shapes.inv","rotation"),c("diff_shapes.inv","rotation")))
+
+a_trasf4 = com(a_trasf4a, a_trasf4b)
+
+draw(a_trasf1, hide = T)
+```
+
+
+```{r out.width="80%"}
+
+a_trasf1_dist = responses(a_trasf1, which.element = "pentagon")
+
+draw.dist(a_trasf1_dist, n.resp = 10, main = T)
+```
+
+## T 2 
+
+```{r}
+draw(a_trasf2, hide = T)
+```
+
+```{r out.width="80%"}
+
+a_trasf2_dist = responses(a_trasf2, which.element = "triangle")
+
+draw.dist(a_trasf2_dist, n.resp = 10, main = T)
+```
+
+## T 3
+
+```{r}
+a_trasf3 = com(a_trasf3a, a_trasf3b)
+draw(a_trasf3, hide = T)
+
+
+```
+
+```{r out.width="80%"}
+
+a_trasf3_dist = responses(a_trasf3)
+
+draw.dist(a_trasf3_dist, n.resp = 10, main = T)
+```
+
+## T 4
+
+```{r}
+a_trasf4 = com(a_trasf4a, a_trasf4b)
+draw(a_trasf4, hide = T)
+
+
+```
+
+```{r out.width="80%"}
+
+a_trasf4_dist = responses(a_trasf4)
+
+draw.dist(a_trasf4_dist, n.resp = 10, main = T)
+```
