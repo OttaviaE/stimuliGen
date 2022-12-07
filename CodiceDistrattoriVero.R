@@ -261,19 +261,30 @@ responses = function(m, n.rule = 1,
 
 # draw distractors -----
 draw.dist = function(dist.list, n.resp = 8,
-                     main = NULL) {
+                     main = NULL, single.print = F) {
   # dist.list = sample(dist.list)
-  if (n.resp ==8) {
-    par(mfrow = c(2, 4)) 
+  if (single.print == F) {
+    if (n.resp ==8) {
+      par(mfrow = c(2, 4), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) ) 
+      
+    } else if (n.resp == 10) {
+      par(mfrow = c(2, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+    } else if (n.resp == 5) {
+      par(mfrow =c(1, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+    } else if (n.resp == 1) {
+      par(mfrow =c(1, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+    }
     
-  } else if (n.resp == 10) {
-    par(mfrow = c(2, 5))
-  } else if (n.resp == 5) {
-    par(mfrow =c(1, 5))
-  } else if (n.resp == 1) {
-    par(mfrow =c(1, 5))
+  } else if (single.print == T) {
+    par(mfrow = c(1, 1), mar = c(0.5, 6, 0.5, 2) + .1, 
+        mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
   }
   
+
   if (is.null(main) == F) {
     for (i in 1:length(dist.list)) {
       draw(dist.list[[i]], main = names(dist.list)[i])

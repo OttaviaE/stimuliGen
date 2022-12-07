@@ -14,6 +14,7 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE, 
                       fig.align = "center")
+knitr::knit_hooks$set(purl = knitr::hook_purl)
 source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Shapes_list-10-11-Ottavia.R")
 source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Class and Methods v02.R")
 source("C:/Users/huawei/OneDrive/Documenti/GitHub/stimuliGen/Rules_27102022.R")
