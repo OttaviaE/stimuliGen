@@ -73,3 +73,4 @@ draw(b_logic4)
 
 b1_logic4<-logic_rules(Raven(cof(diagline(),pentagon(),diagline.inv(),dot(pos.y = 15))),"OR")
 draw(b1_logic4)
+
