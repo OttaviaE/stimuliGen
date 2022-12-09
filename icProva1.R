@@ -23,23 +23,6 @@ split.mat(b2)
 
 m.correct = correct(m_pratica1)
 
-ic.neg = function(m) {
-  m.correct = correct(m)
-  
-  if (any(unlist(m.correct$shade == "black")) == T) {
-    m.correct$shade[[1]] = rep("white", 
-                               length(any(unlist(m.correct$shade == "black"))))
-  } else if (any(unlist(m.correct$shade == "white")) == T) {
-    m.correct$shade[[1]] = rep("black", 
-                               length(any(unlist(m.correct$shade == "white"))))
-  } else if(is.na(any(unlist(m.correct$shade))) == T) {
-    m.correct$shade[[1]] = rep("black", 
-                               length(is.na(any(unlist(m.correct$shade)))))
-  } 
-  ic.col = m.correct
-  return(ic.col)
-}
-
 
 draw(ic.neg(m_pratica1))
 

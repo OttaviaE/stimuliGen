@@ -11,7 +11,7 @@
 #' @export
 circle <- function(s.x = 10, s.y = 10, 
                    pos.x = 0, pos.y = 0, shd = NA,  
-                   vis = 1) {
+                   vis = 1, lwd = 3, lty  =1) {
   value <- list(
     shape = "circle",
     size.x = list(s.x),
@@ -21,8 +21,8 @@ circle <- function(s.x = 10, s.y = 10,
     rotation = list(0),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
-    lwd = list(2),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv = list(100),
     shade = list(shd),
@@ -75,7 +75,7 @@ triangle <- function(s.x=15,
                      s.y=15,
                      pos.x = 0, 
                      pos.y = 0, 
-                     rot=pi / 6,
+                     rot=pi / 2,
                      shd=NA,
                      vis = 1) {
   value <- list(

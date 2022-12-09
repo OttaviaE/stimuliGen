@@ -78,6 +78,27 @@ u.papillon$size.y[[1]] <-u.papillon$size.y[[1]]/2
 u.papillon$pos.y[[1]] <-u.papillon$pos.y[[1]]/2
 u.papillon$pos.x[[1]] <-u.papillon$pos.x[[1]]/2
 
+# ic neg ----- 
+
+ic.neg = function(m) {
+  m.correct = correct(m)
+  
+  if (any(unlist(m.correct$shade == "black")) == T) {
+    m.correct$shade[[1]] = rep("white", 
+                               length(any(unlist(m.correct$shade == "black"))))
+  } else if (any(unlist(m.correct$shade == "white")) == T) {
+    m.correct$shade[[1]] = rep("black", 
+                               length(any(unlist(m.correct$shade == "white"))))
+  } else if(is.na(any(unlist(m.correct$shade))) == T) {
+    m.correct$shade[[1]] = rep("black", 
+                               length(is.na(any(unlist(m.correct$shade)))))
+  } 
+  ic.col = m.correct
+  return(ic.col)
+}
+
+
+set.seed(999)
 ## -----------------------------------------------------------------------------
 m_pratica1 <-apply(Raven(st1=cof(e.hexagon()),
                     hrule=c("fill"),vrule=c("identity")))
@@ -90,7 +111,7 @@ draw.dist(pratica_1_dist, n.resp = 10, main = T)
 
 # distrattori manuali m pratica 1 
 
-resp_m_pratica1 = within(resp_m_pratica1, 
+resp_m_pratica1 = within(pratica_1_dist, 
                          rm(r.left, r.top, ic.scale, ic.inc))
 
 resp_m_pratica1[["ic.neg"]] = ic.neg(m_pratica1)
@@ -99,7 +120,8 @@ resp_m_pratica1[["d.difference"]] = square()
 
 names(resp_m_pratica1)
 
-draw.dist(resp_m_pratica1, main = T, single.print = T)
+draw(m_pratica1, hide = T)
+draw.dist(resp_m_pratica1, main = T, single.print = F)
 
 print.dist(resp_m_pratica1, "pratica_1")
 
@@ -117,17 +139,19 @@ pratica_2_dist = responses(m_pratica2)
 
 draw.dist(pratica_2_dist, n.resp = 10, main = T)
 
+# cambiare lo spessore del cerchio ------
+
 resp_m_pratica2 = list(correct = correct(m_pratica2), 
-                       dist1 = circle(s.x = 15, s.y = 15), 
-                       dist2 = circle(s.x = 15, s.y = 15), 
-                       dist3 = circle(s.x = 15, s.y = 15), 
-                       dist4 = circle(s.x = 15, s.y = 15), 
-                       dist5 = circle(s.x = 15, s.y = 15), 
-                       dist6 = circle(s.x = 15, s.y = 15), 
-                       dist7 = circle(s.x = 15, s.y = 15)) 
+                       dist1 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist2 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist3 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist4 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist5 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist6 = circle(s.x = 15, s.y = 15, lwd = 3), 
+                       dist7 = circle(s.x = 15, s.y = 15, lwd = 3)) 
 
-
-draw.dist(resp_m_pratica2, n.resp = 10, main = T)
+draw(m_pratica2, hide = T)
+draw.dist(resp_m_pratica2, n.resp = 8, main = T)
 
 print.dist(resp_m_pratica2, "pratica_2")
 
@@ -152,7 +176,8 @@ correct_pratic3$shade[[1]] = rep("grey", 2)
 resp_m_pratica3[["ic.neg"]] = (correct_pratic3)
 resp_m_pratica3[["difference"]] = ellipse(shd = "black")
 
-draw.dist(resp_m_pratica3, n.resp = 10, main = T)
+draw(m_pratica3, hide = T)
+draw.dist(resp_m_pratica3, n.resp = 8, main = T)
 
 print.dist(resp_m_pratica3, "pratica_3")
 
@@ -192,6 +217,9 @@ s_p4[[1]]$shade[[1]] = "white"
 
 resp_m_pratica4[["ic.neg"]] = cof(s_p4[[2]], s_p4[[1]])
 
+
+draw(m_pratica4, hide = T)
+
 draw.dist(resp_m_pratica4, main = T)
 print.dist(resp_m_pratica4, "pratica_4")
 
@@ -221,7 +249,7 @@ dist_alogic3 = list(correct = correct(a_logic3),
                    wp.copy = wp(a_logic3, choose.copy = 4)$wp.copy,
                    wp.matrix = wp(a_logic3, choose.matrix  = 4)$wp.matrix,
                    ic.inc = hide(a_logic3$Sq9, 1),
-                   ic.flip = cof(rotation(a_logic3b$Sq9, 2), M1$Sq9))
+                   ic.flip = cof(rotation(a_logic3b$Sq9, 2), a_logic3a$Sq9))
 
 draw.dist(dist_alogic3, main = T)
 
@@ -229,17 +257,18 @@ print.dist(dist_alogic3, "a_logic3")
 
 ## -----------------------------------------------------------------------------
 ## a_logic3 
-a1_logic3a <-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
-                           square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))
+a1_logic3a<-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
+                                  square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))
 ),"XOR")
-a1_logic3b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
-                             vline(pos.x = -28, s.x = 15 ),
-                             hline(pos.y = 15, s.x=30),
-                             hline(pos.y = -15, s.x=30))),"OR")
+a1_logic3b <- logic_rules(Raven(cof(vline(pos.x = 15, s.x = 15),
+                                    vline(pos.x = -15, s.x = 15 ),
+                                    hline(pos.y = 15, s.x=15),
+                                    hline(pos.y = -15, s.x=15))),"OR")
 
 a1_logic3 = com(a1_logic3a, a1_logic3b)
 
 draw(a1_logic3, hide = F)
+
 
 a1_logic3_dist = responses(a1_logic3)
 
@@ -248,14 +277,14 @@ a1_logic3_dist = responses(a1_logic3)
 draw.dist(a1_logic3_dist, n.resp = 10, main = T)
 
 resp_a1_logic3 = within(a1_logic3_dist, 
-                        rm(r.left, ic.scale))
+                        rm(r.diag, ic.scale))
 
 draw.dist(resp_a1_logic3, n.resp = 10, main = T)
 
 # non funziona dc
-draw.dist(resp_a1_logic3, single.print = T)
+draw.dist(resp_a1_logic3, main = T, single.print = F)
 
-#print.dist(resp_a1_logic3, "a1_logic3")
+print.dist(resp_a1_logic3, "a1_logic3")
 
 ## -----------------------------------------------------------------------------
 a_logic2a<-logic_rules(Raven(square4bis()),"OR")
@@ -281,21 +310,23 @@ p = split.mat(a_logic2)
 
 resp_a_logic2[["ic.flip"]] = cof(p[[1]], p[[2]],p[[3]], p[[4]], 
                                  rotation(p$slice, 2))
-draw.dist(resp_a_logic2, n.resp = 10, main = T)
+draw.dist(resp_a_logic2, 
+          n.resp = 8, main = T)
 
 print.dist(resp_a_logic2, "a_logic2")
 
 ## -----------------------------------------------------------------------------
 a1_logic2a<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
-                            pentagon(shd="line12.h"), hexagon(s.x=3,s.y=3)) ),"OR")
+                                  pentagon(shd="line12.h"), hexagon(s.x=3,s.y=3)) ),"OR")
 
-a1_logic2b <- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
-                             vline(pos.x = -28, s.x = 15 ),
-                             hline(pos.y = 15, s.x=30),
-                             hline(pos.y = -15, s.x=30))),"AND")
+a1_logic2b <- logic_rules(Raven(cof(vline(pos.x = 17, s.x = 15),
+                                    vline(pos.x = -17, s.x = 15 ),
+                                    hline(pos.y = 15, s.x=17),
+                                    hline(pos.y = -15, s.x=17))),"AND")
 
 a1_logic2 = com(a1_logic2a, a1_logic2b)
-draw(a1_logic2, hide = F)
+
+draw(a1_logic2, hide = T)
 
 a1_logic2_dist = responses(a1_logic2, choose.matrix = 3)
 
@@ -306,7 +337,7 @@ draw.dist(a1_logic2_dist, n.resp = 10, main = T)
 
 
 resp_a1_logic2 = within(a1_logic2_dist, 
-                       rm(r.top, ic.scale, ic.flip, ic.inc))
+                       rm(r.diag, ic.scale, ic.flip, ic.inc))
 
 draw.dist(resp_a1_logic2, n.resp = 10, main = T)
 
@@ -320,12 +351,16 @@ resp_a1_logic2[["ic.flip"]] = (cof(a1l2_p[[1]], a1l2_p[[2]],
                                   a1l2_p[[3]], rotation(a1l2_p[[4]], 3), a1l2_p[[5]]))
 
 draw(resp_a1_logic2$ic.flip)
-draw.dist(resp_a1_logic2, n.resp = 10, main = T)
+draw.dist(resp_a1_logic2,
+          n.resp = 8, main = T)
 # bisogna salvarli a mano dc
 
-draw.dist(resp_a1_logic2, single.print = T)
+resp_a1_logic2$d.union = d.union(a1_logic2, choose.start = 3)
 
-#print.dist(resp_a1_logic2, "a1_logic2")
+draw.dist(resp_a1_logic2, 
+          single.print = F)
+
+print.dist(resp_a1_logic2, "a1_logic2")
 ## -----------------------------------------------------------------------------
 a_logic1a<- logic_rules(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
                          circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
@@ -360,7 +395,14 @@ al1_p$circle$pos.x[[1]] = -11
 resp_a_logic1[["ic.flip"]] = cof(al1_p[[1]], al1_p[[2]], al1_p[[3]], al1_p[[4]], al1_p[[5]])
 
 
-draw.dist(resp_a_logic1, n.resp = 10, main = T)
+draw.dist(resp_a_logic1, 
+          n.resp = 8, 
+          main = T)
+
+resp_a_logic1$d.union = d.union(a_logic1, 
+                                choose.start = 2)
+
+
 print.dist(resp_a_logic1, "a_logic1")
 
 
@@ -390,7 +432,9 @@ resp_a1_logic1[["ic.flip"]] = cof(a1l1_p[[1]],
                                   a1l1_p[[3]], 
                                   a1l1_p[[4]], 
                                   diagline())
-draw.dist(resp_a1_logic1, n.resp = 10, main = T)
+draw.dist(resp_a1_logic1, 
+          n.resp = 8, main = T)
+
 print.dist(resp_a1_logic1, "a1_logic1")
 
 ## -----------------------------------------------------------------------------
@@ -418,7 +462,8 @@ bl3_p = split.mat(b_logic3)
 resp_b_logic3[["ic.flip"]] = cof(bl3_p[[1]], bl3_p[[2]], bl3_p[[3]], 
                                  diagline(s.x = 15), diagline.inv(s.x=15))
 
-draw.dist(resp_b_logic3, n.resp = 10, main = T)
+draw.dist(resp_b_logic3, 
+          n.resp = 8, main = T)
 print.dist(resp_b_logic3, "b_logic3")
 ## -----------------------------------------------------------------------------
 
@@ -453,7 +498,8 @@ resp_b1_logic3[["ic.flip"]] = cof(cross.dice(),
                                   b1l3_p[[4]], 
                                   b1l3_p[[5]])
 
-draw.dist(resp_b1_logic3, n.resp = 10, main = T)
+draw.dist(resp_b1_logic3, 
+          n.resp = 8, main = T)
 
 print.dist(resp_b1_logic3, "b1_logic3")
 
@@ -483,7 +529,11 @@ bl2_p$triangle$pos.y[[1]] = -10
 
 resp_b_logic2[["ic.flip"]] = cof(bl2_p[[1]], bl2_p[[2]], bl2_p[[3]], bl2_p$triangle)
 
-draw.dist(resp_b_logic2, n.resp = 10, main = T)
+draw.dist(resp_b_logic2, 
+          n.resp = 8, main = T)
+
+resp_b_logic2$d.union = d.union(b_logic2, 
+                                choose.start = 4)
 
 print.dist(resp_b_logic2, "b_logic2")
 
@@ -507,12 +557,11 @@ draw(b1_logic2, hide =T)
 
 b1_logic2_dist = responses(b1_logic2)
 
-# SONO ARRIVATA QUI -------
 ## ----out.width="80%"----------------------------------------------------------
 draw.dist(b1_logic2_dist, n.resp = 10, main = T)
 
 resp_b1_logic2 = within(b1_logic2_dist, 
-                        rm(r.top, ic.scale, ic.flip))
+                        rm(r.diag, ic.scale, ic.flip))
 
 b1l2_p = split.mat(b1_logic2)
 
@@ -522,22 +571,26 @@ resp_b1_logic2[["ic.flip"]] = cof((b1l2_p[[1]]),
                                   (b1l2_p[[4]]),
                                   rotation(b1l2_p[[5]], 3))
 
-draw.dist(resp_b1_logic2, n.resp = 10, main = T)
+draw.dist(resp_b1_logic2, 
+          n.resp = 8, main = T)
+
+resp_b1_logic2$d.union = d.union(b1_logic2, choose.start = 3)
 print.dist(resp_b1_logic2, "b1_logic2")
 ## -----------------------------------------------------------------------------
-b_logic1a<- logic_rules(Raven(cof(vline(pos.x = 28, s.x = 15),
-                            vline(pos.x = -28, s.x = 15 ),
-                            hline(pos.y = 15, s.x=28),
-                            hline(pos.y = -15, s.x=28))),"OR")
+b_logic1a<- logic_rules(Raven(cof(vline(pos.x = 17, s.x = 15),
+                                  vline(pos.x = -17, s.x = 15 ),
+                                  hline(pos.y = 15, s.x=17),
+                                  hline(pos.y = -15, s.x=17))),"OR")
 
 b_logic1b<-logic_rules(Raven(lily()),"AND")
 
 
 b_logic1 = com(b_logic1a, b_logic1b)
 
-draw(b_logic1, hide =F)
+draw(b_logic1, hide = F)
 
 b_logic1_dist = responses(b_logic1)
+
 
 
 ## ----out.width="80%"----------------------------------------------------------
@@ -554,7 +607,9 @@ resp_b_logic1[["ic.flip"]] = cof(bl1_p[[1]], bl1_p[[2]], bl1_p[[3]], bl1_p[[4]],
                     s.vertical())
 
 
-draw.dist(resp_b_logic1, n.resp = 10,single.print = T)
+draw.dist(resp_b_logic1, n.resp = 8,single.print = F)
+print.dist(resp_b_logic1, "b_logic1")
+
 ## -----------------------------------------------------------------------------
 
 
@@ -579,10 +634,11 @@ draw.dist(b1_logic1_dist, n.resp = 10, main = T)
 
 
 resp_b1_logic1 = within(b1_logic1_dist, 
-                        rm(ic.scale, ic.flip, r.left))
+                        rm(ic.scale, ic.flip, r.diag))
 
 
-draw.dist(resp_b1_logic1, main =T)
+draw.dist(resp_b1_logic1, 
+          main =T)
 
 c.b1l1 = correct(b1_logic1)
 
@@ -600,6 +656,145 @@ resp_b1_logic1[["ic.neg"]] = c.b1l1
 draw.dist(resp_b1_logic1, main =T)
 
 print.dist(resp_b1_logic1, "b1_logic1")
+
+
+### a_logic4
+
+a_logic4<-logic_rules(Raven(cof(diagline(),hline(),vline(),diagline.inv())),"OR")
+draw(a_logic4, hide = T )
+
+a_logic4_dist = responses(a_logic4)
+
+## ----out.width="80%"----------------------------------------------------------
+draw.dist(a_logic4_dist, n.resp = 10, main = T)
+
+
+resp_a_logic4 = within(a_logic4_dist, 
+                        rm(ic.scale, ic.flip, r.top))
+
+a4_p = split.mat(a_logic4)
+
+for (i in 1:length(a4_p)) {
+  a4_p[[i]]$size.x[[1]] = a4_p[[i]]$size.x[[1]]- 7
+  a4_p[[i]]$size.y[[1]]  = a4_p[[i]]$size.y[[1]] -7
+}
+
+
+resp_a_logic4$ic.scale = (cof(a4_p[[1]], a4_p[[2]], 
+         a4_p[[3]], a4_p[[4]]))
+
+resp_a_logic4$d.union = d.union(a_logic4, choose.start = 4)
+
+draw.dist(resp_a_logic4, 
+          main =T)
+
+print.dist(resp_a_logic4, "a_logic4")
+
+### a1_logic4
+
+a1_logic4<-logic_rules(Raven(cof(semi.circle.inv(),
+                                 cof(vline(pos.x=11),vline(pos.x=-11),name="h.parallel",single = TRUE),
+                                 cof(hline(pos.y=11),hline(pos.y=-11),name="v.parallel",single = TRUE),
+                                 semi.circle())),"OR")
+draw(a1_logic4)
+
+a1_logic4_dist = responses(a1_logic4)
+
+## ----out.width="80%"----------------------------------------------------------
+draw.dist(a1_logic4_dist, n.resp = 10, main = T)
+
+resp_a1_logic4 = within(a1_logic4_dist, 
+                       rm(ic.scale, ic.flip, r.top))
+
+a14_p = split.mat(a1_logic4)
+
+resp_a1_logic4$ic.scale = (cof(a14_p[[2]], 
+         a14_p[[3]], 
+         (size(pie.2(),2))))
+
+draw(correct(a1_logic4))
+
+resp_a1_logic4$d.union = cof(a1_logic4$Sq9, 
+                              
+                             s.vertical(), 
+                             s.horizontal())
+
+draw.dist(resp_a1_logic4, 
+          main =T)
+
+print.dist(resp_a1_logic4, "a1_logic4")
+
+### b_logic4
+
+b_logic4<-logic_rules(Raven(cof(diagline(),diagline.inv(),square(),dot())),"OR")
+draw(b_logic4, hide = T)
+
+
+b_logic4_dist = responses(b_logic4)
+
+## ----out.width="80%"----------------------------------------------------------
+draw.dist(b_logic4_dist, n.resp = 10, main = T)
+
+
+resp_b_logic4 = within(b_logic4_dist, 
+                       rm(ic.scale, ic.flip, r.top))
+
+b4_p = split.mat(b_logic4)
+
+for (i in 1:length(grep("diagline", names(b4_p)))) {
+  b4_p[[i]]$size.x[[1]] = b4_p[[i]]$size.x[[1]]- 7
+  b4_p[[i]]$size.y[[1]]  = b4_p[[i]]$size.y[[1]] -7
+}
+b4_p$dot$size.x[[1]] = 1
+b4_p$dot$size.y[[1]] = 1
+
+
+resp_b_logic4$ic.scale = (cof(b4_p[[1]], b4_p[[2]], 
+                              b4_p[[3]], b4_p[[4]]))
+
+
+draw.dist(resp_b_logic4, 
+          main =T)
+
+print.dist(resp_b_logic4, "b_logic4")
+
+
+### b1_logic4
+
+b1_logic4<-logic_rules(Raven(cof(diagline(),pentagon(),diagline.inv(),dot(pos.y = 15))),"OR")
+draw(b1_logic4)
+
+
+b1_logic4_dist = responses(b1_logic4)
+
+## ----out.width="80%"----------------------------------------------------------
+draw.dist(b1_logic4_dist, n.resp = 10, main = T)
+
+
+resp_b1_logic4 = within(b1_logic4_dist, 
+                       rm(ic.scale, ic.flip, r.top))
+
+b14_p = split.mat(b1_logic4)
+
+resp_b1_logic4$ic.inc = (cof(b14_p[[1]], b14_p[[2]], 
+                         b14_p[[3]]))
+
+b14_p[[1]]$size.x[[1]] = b14_p[[1]]$size.x[[1]]- 7
+b14_p[[1]]$size.y[[1]]  = b14_p[[1]]$size.y[[1]] -7
+b14_p[[3]]$size.x[[1]] = b14_p[[3]]$size.x[[1]]- 7
+b14_p[[3]]$diagline$size.y[[1]]  = b14_p[[3]]$size.y[[1]] -7
+
+draw(b14_p$diagline.inv)
+
+resp_b1_logic4$ic.scale = (cof(b14_p[[1]], b14_p[[2]], 
+                               b14_p[[3]], b14_p[[4]]))
+
+
+
+draw.dist(resp_b1_logic4, 
+          main =T)
+
+print.dist(resp_b1_logic4, "b1_logic4")
 
 ## -----------------------------------------------------------------------------
 a2_mat = apply(Raven(st1 = cof(luck(shd = "white"), pacman(shd = "white"), 
@@ -639,7 +834,10 @@ for (i in 1:length(a2_p)) {
 
 resp_a2[["ic.neg"]] = cof(a2_p[[1]], a2_p[[2]])
 
-draw.dist(resp_a2, n.resp = 10, main = T)
+draw.dist(resp_a2, 
+          n.resp = 8, main = T)
+
+resp_a2$d.union = cof(resp_a2$ic.inc, star())
 
 print.dist(resp_a2, "a_visuo2")
 
@@ -664,17 +862,41 @@ a1_2_dist = responses(a1_2, which.element = "e.hexagon")
 draw.dist(a1_2_dist, n.resp = 10, main = T)
 
 resp_a1_2 = within(a1_2_dist, 
-                   rm(r.top, wp.matrix, ic.flip))
+                   rm(r.top, wp.matrix, ic.flip, ic.scale))
 
 
-draw.dist(resp_a1_2, n.resp = 10, main = T)
+draw.dist(resp_a1_2, 
+          n.resp = 8, main = T)
 
 a1_2_p = split.mat(a1_2)
+
+
+
 
 resp_a1_2[["wp.matrix"]] = cof(a1_2_p[[1]], 
                                a1_2_p[[2]], 
                                slice(shd="white")) 
 
+draw.dist(resp_a1_2, 
+          n.resp = 8, main = T)
+
+a1_2_p = split.mat(a1_2)
+
+
+for (i in 1:length(a1_2_p)) {
+  if (a1_2_p[[i]]$shade[[1]] == "grey") {
+    a1_2_p[[i]]$shade[[1]] = "white"
+  } else if(a1_2_p[[i]]$shade[[1]] == "white") {
+    a1_2_p[[i]]$shade[[1]] = "grey"
+  }
+}
+
+
+resp_a1_2[["ic.neg"]] = cof(a1_2_p[[1]], a1_2_p[[2]])
+draw(resp_a1_2$ic.neg)
+
+draw.dist(resp_a1_2, 
+          n.resp = 8, main = T)
 
 print.dist(resp_a1_2, "a1_visuo2")
 
@@ -710,14 +932,19 @@ a_3 = com(a_3a, a_3b, a_3c)
 draw(a_3, hide = T)
 
 ## ----out.width="80%"----------------------------------------------------------
-a3_dist = responses(a_3, which.element = "pacman")
+a3_dist = responses(a_3, 
+                    which.element = "pacman", 
+                    choose.start = 3)
 
 draw.dist(a3_dist, n.resp = 10, main = T)
 
 resp_a3 = within(a3_dist, 
                 rm(r.left, ic.scale))
 
-draw.dist(resp_a3, n.resp = 10, main = T)
+resp_a3$d.union = cof(resp_a3$ic.inc, 
+                      pie.4())
+
+draw.dist(resp_a3, n.resp = 8, main = T)
 
 print.dist(resp_a3, "a_visuo3")
 
@@ -744,11 +971,12 @@ a1_3c = apply(
   )
 )
 a1_3 = com(a1_3a, a1_3b, a1_3c)
-draw(a1_3, hide = T)
+draw(a1_3, hide = F)
 
 ## ----out.width="80%"----------------------------------------------------------
 a1_3_dist = responses(a1_3, which.element = "triangle", 
-                      choose.copy = 7)
+                      choose.copy = 7, 
+                      choose.start = 1)
 
 draw.dist(a1_3_dist, n.resp = 10, main = T)
 
@@ -762,7 +990,12 @@ resp_a1_3[["ic.flip"]] =   cof(a13_p[[1]],
                                a13_p[[2]], 
                                a13_p[[3]])
 
+resp_a1_3$d.union = cof(a1_3$Sq1, 
+                        size(pie.4(), 3))
+
 draw.dist(resp_a1_3, main = T)
+
+
 
 
 print.dist(resp_a1_3, "a1_visuo3")
@@ -804,6 +1037,14 @@ for (i in 1:length(b2_p)) {
 
 resp_b2[["ic.neg"]] = cof(b2_p[[1]], b2_p[[2]])
 
+
+resp_b2[["wp.matrix"]] = cof(hide(b2_dist$wp.matrix,c(2,3)), 
+                             hide(b2$Sq4, 1), 
+                             hide(b2_dist$wp.matrix,c(1,2)))
+resp_b2$d.union = cof(resp_b2$ic.inc, 
+                      rotation(pacman(shd = "white"),3), 
+                      vertical.eight())
+
 draw.dist(resp_b2, n.resp = 8, main = T)
 
 print.dist(resp_b2, "b_visuo2")
@@ -833,9 +1074,26 @@ b1_2_dist = responses(b1_2, which.element = "ellipse")
 draw.dist(b1_2_dist, n.resp = 10, main = T)
 
 resp_b1_2 = within(b1_2_dist, 
-                   rm(r.top, ic.flip))
+                   rm(r.top, ic.flip, ic.scale))
 
 draw.dist(resp_b1_2, main = T)
+
+# metti ic neg al posto di scale ------
+b12_p = split.mat(b1_2)
+
+
+for (i in 1:length(b12_p)) {
+  if (b12_p[[i]]$shade[[1]] == "grey") {
+    b12_p[[i]]$shade[[1]] = "white"
+  } else if(b12_p[[i]]$shade[[1]] == "white") {
+    b12_p[[i]]$shade[[1]] = "grey"
+  }
+}
+
+resp_b1_2[["ic.neg"]] = cof(b12_p[[1]], b12_p[[2]])
+
+draw.dist(resp_b1_2, main = T)
+
 
 print.dist(resp_b1_2, "b1_visuo2")
 
@@ -862,11 +1120,14 @@ draw(b_3, hide = F)
 
 
 ## ----out.width="80%"----------------------------------------------------------
-b_3_dist = responses(b_3, choose.start = 1, choose.matrix = 4)
+b_3_dist = responses(b_3, 
+                     choose.start = 3, 
+                     choose.matrix = 4)
 
 
 resp_b_3 = within(b_3_dist, 
-                  rm(r.diag, ic.scale, ic.inc))
+                  rm(r.diag, 
+                     ic.scale, ic.inc))
 
 draw.dist(b_3_dist, n.resp = 10, main = T)
 
@@ -888,7 +1149,11 @@ b3_p[[2]]$shade[[1]] = rep("white", 3)
 
 resp_b_3[["ic.neg"]] = cof(b3_p[[1]], b3_p[[2]], b3_p[[3]])
 
+
+resp_b_3$d.union = cof(b_3$Sq1, smallbow.tie.inv(shd = "grey"))
+
 draw.dist(resp_b_3, n.resp = 8, main = T)
+
 
 print.dist(resp_b_3, "b_visuo3")
 ## -----------------------------------------------------------------------------
@@ -973,16 +1238,17 @@ a_trasf2b<-apply(Raven(cof(e.hexagon(),luck(s.x=15,s.y=17),triangle(s.x=17,s.y=1
 a1_1 = com(a_trasf2a, a_trasf2b)
 
 ## -----------------------------------------------------------------------------
-draw(a_trasf2, hide = T)
+draw(a1_1, hide = T)
 
 ## ----out.width="80%"----------------------------------------------------------
 
-a_trasf2_dist = responses(a_trasf2, which.element = "triangle")
 
-draw.dist(a_trasf2_dist, n.resp = 10, main = T)
+a_trasf1_dist = responses(a1_1, which.element = "triangle")
+
+draw.dist(a_trasf1_dist, n.resp = 10, main = T)
 
 
-resp_a1_1 = within(a_trasf2_dist,
+resp_a1_1 = within(a_trasf1_dist,
                    rm(r.diag, ic.scale, ic.inc))
 
 a1_1_p = split.mat(a1_1)
@@ -992,7 +1258,10 @@ inv_a1_1$shade[[1]] = "white"
 
 resp_a1_1[["ic.neg"]] = cof(inv_a1_1, a1_1_p[[2]])
 
-draw.dist(resp_a1_1, n.resp = 10, main = T)
+draw.dist(resp_a1_1, n.resp = 8, main = T)
+
+resp_a1_1$d.union = cof(a1_1$Sq4, size(star(), 2), 
+                        dot(shd = "white"))
 
 print.dist(resp_a1_1, "a1_visuo1")
 
@@ -1003,7 +1272,7 @@ b_trasf3b<-apply(Raven(cof(e.hexagon(),square(),pentagon()),c("diff_shapes.inv",
 
 ## -----------------------------------------------------------------------------
 b_trasf1 = com(b_trasf3a, b_trasf3b)
-draw(a_trasf3, hide = T)
+draw(b_trasf1, hide = T)
 
 
 
@@ -1031,6 +1300,10 @@ resp_b1[["ic.neg"]] = cof(b1_p[[2]], b1_inv)
 
 draw.dist(resp_b1, main = T)
 
+resp_b1$d.union = cof(b_trasf1$Sq1, 
+                      ellipse(shd = "grey"), 
+                      smallbow.tie.inv(shd = "white"))
+
 print.dist(resp_b1, "b_visuo1")
 
 
@@ -1046,7 +1319,7 @@ draw(b1_trasf1, hide = T)
 
 b1_trasf1_dist = responses(b1_trasf1)
 
-draw.dist(a_trasf4_dist, n.resp = 10, main = T)
+draw.dist(b1_trasf1_dist, n.resp = 10, main = T)
 
 resp_b1_1 = within(b1_trasf1_dist, 
                    rm(r.top, ic.scale, ic.inc))
@@ -1058,6 +1331,9 @@ b11_inv = b1_1_p[[1]]
 b11_inv$shade[[1]] = "black"
 
 resp_b1_1[["ic.neg"]] = cof(b11_inv, b1_1_p[[2]])
+
+resp_b1_1$d.union = cof(hide(resp_b1_1$d.union, 5), 
+                        e.hexagon())
 
 draw.dist(resp_b1_1, main = T)
 

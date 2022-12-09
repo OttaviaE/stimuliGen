@@ -18,6 +18,7 @@ draw(a1_logic3, hide = F)
 
 a1_logic3_dist = responses(a1_logic3)
 
+draw.dist(a1_logic3_dist, n.resp = 10)
 
 ###
 a1_logic2a<-logic_rules(Raven(cof(pentagon(shd="line1.inv"), pentagon(shd="line2"),
