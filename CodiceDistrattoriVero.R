@@ -241,7 +241,8 @@ responses = function(m, n.rule = 1,
                      choose.matrix = 1, 
                      choose.copy = 2, 
                      choose.start = 1, 
-                     which.element = NULL) {
+                     which.element = NULL, 
+                     choose.fig = NULL) {
   m.correct = correct(m)
   resp = list(correct = m.correct, 
               r.top = m$Sq6,
@@ -249,7 +250,7 @@ responses = function(m, n.rule = 1,
               r.left = m$Sq8, 
               wp.copy = wp(m, choose.copy = choose.copy)$wp.copy, 
               wp.matrix = wp(m, choose.matrix = choose.matrix)$wp.matrix, 
-              d.union = d.union(m, choose.start = choose.start), 
+              d.union = d.union(m, choose.start = choose.start, choose.fig = choose.fig), 
               ic.scale = ic(m, which.element = which.element)$ic.scale, 
               ic.flip = ic(m, which.element = which.element)$ic.flip, 
               ic.inc = ic(m, which.element = which.element)$ic.inc)
