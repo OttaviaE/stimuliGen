@@ -201,7 +201,8 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL) {
 
 # difference -----
 d.union = function(m,
-                   choose.start = 1) {
+                   choose.start = 1, 
+                   choose.fig = NULL) {
   d.union = m[[choose.start]]
   
   shapes.l = shapes_list("Shapes_list-10-11-Ottavia.R")
@@ -222,6 +223,13 @@ d.union = function(m,
     random<-sample(1:length(shapes.l$name),1)
     shapes.in = shapes.l$name[random]
   }
+  
+  if (is.null(choose.fig) == F) {
+    shapes.in = choose.fig
+  } else {
+    shapes.in = shapes.in
+  }
+  
   f = get(shapes.in)
   d.un = cof(d.union, f())
   return(d.un)
