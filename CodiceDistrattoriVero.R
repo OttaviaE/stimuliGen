@@ -2,21 +2,28 @@
 
 # decompone la matrice -----
 
-split.mat = function(m) {
-  m.correct = correct(m)
-  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1))) 
+split.mat = function(m, cell = NULL) {
+  if (is.null(cell) == T) {
+    m.start = correct(m)
+  } else {
+    cell = paste0("Sq", cell)
+    m.start = m[[cell]]
+  }
+  
+  
+  index_elements<-which(m.start$visible==1 & unlist(lapply(m.start$num, all, 1))) 
   split.m <- vector("list", length(index_elements))
   
   if (length(index_elements) == 1) {
-    split.m = m.correct
+    split.m = m.start
   } else {
     for (i in 1:length(split.m)) {
-      split.m[[i]] <- vector("list", length(m.correct))
+      split.m[[i]] <- vector("list", length(m.start))
       for (j in 1:length(split.m[[i]])) {
-        names(split.m)[i] = m.correct$shape[index_elements[i]]
+        names(split.m)[i] = m.start$shape[index_elements[i]]
         attr(split.m[[i]], "class") = "field"
-        split.m[[i]][[j]] = m.correct[[j]][index_elements[i]]
-        names(split.m[[i]])[j] = names(m.correct)[j]
+        split.m[[i]][[j]] = m.start[[j]][index_elements[i]]
+        names(split.m[[i]])[j] = names(m.start)[j]
       }
     }
   }
