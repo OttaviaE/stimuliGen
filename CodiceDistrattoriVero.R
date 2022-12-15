@@ -48,6 +48,8 @@ ic = function(m,
   
   ##Inizio aggiunta brutta
   elements<-decof(m.correct)##il controllo con i tag è sbagliato $EVVIVA$!
+   # bisogna trovare un modo alternativo per trovare l'indice degli elementi 
+  # perché non possiamo avere una funzione che sputa fuori 50 wanrings
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
   #unlist(lapply(m.correct$tag,function(x) any(x== "rotate"))) )
   
@@ -64,6 +66,18 @@ ic = function(m,
     } else {
       ic.inc = m.correct
     }
+    m.c = m.correct
+    if (any(unlist(m.c$shade == "black"), na.rm = T) | any(grep("line", unlist(m.c$shade)), na.rm = T) == T) {
+      m.c$shade[[1]] = rep("white", 
+                                 length(any(unlist(m.c$shade == "black"))))
+    } else if (any(unlist(m.c$shade == "white")) == T) {
+      m.c$shade[[1]] = rep("black", 
+                                 length(any(unlist(m.c$shade == "white"))))
+    } else if(is.na(any(unlist(m.c$shade))) == T) {
+      m.c$shade[[1]] = rep("black", 
+                                 length(is.na(any(unlist(m.c$shade)))))
+    }
+    ic.col = m.c
     
   } else {
     split.m = split.mat(m)
@@ -80,7 +94,6 @@ ic = function(m,
         ic.scale = cof(ic.scale, split.m[[i]])
       }
       
-      
     } else {
       ic.flip = rotation(split.m[[which.element]], 2) 
       ic.scale = size(split.m[[which.element]], 2) 
@@ -93,6 +106,23 @@ ic = function(m,
       
       ic.inc = hide(m.correct, 
                     index_elements[which(names(split.m) == which.element)])
+      
+      
+      for (i in 1:length(split.m)) {
+        if (is.na(split.m[[i]]$shade[[1]]) == T) {
+          split.m[[i]]$shade[[1]] = "grey"
+        } else if (split.m[[i]]$shade[[1]] == "grey") {
+          split.m[[i]]$shade[[1]] = "white"
+        } else if(split.m[[i]]$shade[[1]] == "white") {
+          split.m[[i]]$shade[[1]] = "grey"
+        }  else if(split.m[[i]]$shade[[1]] == "black") {
+          split.m[[i]]$shade[[1]] = "white"
+        } 
+      }
+      ic.col = split.m[[1]]
+      for (i in 2:length(split.m)) {
+        ic.col = cof(split.m[[i]],ic.col)
+      }
     } 
     
   }
@@ -109,11 +139,53 @@ ic = function(m,
   
   ic.dist = list(ic.scale = ic.scale, 
                  ic.flip = ic.flip, 
-                 ic.inc = ic.inc)
+                 ic.inc = ic.inc, 
+                 ic.neg = ic.col)
   return(ic.dist)
 }
 
-# Repeteion -----
+
+ic.neg = function(m) {
+  m.correct = correct(m)
+  
+  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  
+  if (length(index_elements) == 1) {
+    if (any(unlist(m.correct$shade == "black"), na.rm = T) | any(grep("line", unlist(m.correct$shade)), na.rm = T) == T) {
+      m.correct$shade[[1]] = rep("white", 
+                                 length(any(unlist(m.correct$shade == "black"))))
+    } else if (any(unlist(m.correct$shade == "white")) == T) {
+      m.correct$shade[[1]] = rep("black", 
+                                 length(any(unlist(m.correct$shade == "white"))))
+    } else if(is.na(any(unlist(m.correct$shade))) == T) {
+      m.correct$shade[[1]] = rep("black", 
+                                 length(is.na(any(unlist(m.correct$shade)))))
+    }
+    ic.col = m.correct
+  } else {
+    split.m = split.mat(m)
+    
+    for (i in 1:length(split.m)) {
+      if (is.na(split.m[[i]]$shade[[1]]) == T) {
+        split.m[[i]]$shade[[1]] = "grey"
+      } else if (split.m[[i]]$shade[[1]] == "grey") {
+        split.m[[i]]$shade[[1]] = "white"
+      } else if(split.m[[i]]$shade[[1]] == "white") {
+        split.m[[i]]$shade[[1]] = "black"
+      }  else if(split.m[[i]]$shade[[1]] == "black") {
+        split.m[[i]]$shade[[1]] = "white"
+      } 
+    }
+    ic.col = split.m[[1]]
+    for (i in 2:length(split.m)) {
+      ic.col = cof(split.m[[i]],ic.col)
+    }
+    
+  }
+  return(ic.col)
+}
+
+# Repetition -----
 
 repetition = function(m) {
   m.correct = correct(m)
@@ -147,7 +219,7 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL) {
   if (is.null(choose.copy) == F) {
     distr.wp.copy = m[[choose.copy]]
   } else {
-    sample.index = sample(c(2:4, 7)) # non è random
+    sample.index = (c(2:4, 7)) 
     s = sample(sample.index,1)
     distr.wp.copy = m[[s]]
   }
@@ -237,7 +309,7 @@ d.union = function(m,
 }
 
 
-responses = function(m, n.rule = 1, 
+responses = function(m, 
                      choose.matrix = 1, 
                      choose.copy = 2, 
                      choose.start = 1, 
@@ -290,10 +362,7 @@ draw.dist = function(dist.list, n.resp = 8,
     } else if (n.resp == 5) {
       par(mfrow =c(1, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
-    } else if (n.resp == 1) {
-      par(mfrow =c(1, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
-          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
-    }
+    } 
     
   } else if (single.print == T) {
     par(mfrow = c(1, 1), mar = c(0.5, 6, 0.5, 2) + .1, 
