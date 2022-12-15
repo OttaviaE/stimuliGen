@@ -109,6 +109,8 @@ for(i in seq(-30, 30, by = 1)) {
        canvas = F)
 }
 
+draw(square(pos.x=12, pos.y = -9, s.x = 5, s.y = 5, shd = "white"), canvas = F)
+
 ```
 
 ## Horizontal
@@ -336,7 +338,7 @@ draw(m6, n.cell = 4)
 ```{r}
 m7 = apply(
   Raven(
-    st1 = cof(slice(size.x = 15), 
+    st1 = cof(slice(s.x = 15), 
               square(), pacman()), 
     vrule = c("diff_shapes", "rotation"), 
     hrule =  "identity"
