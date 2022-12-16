@@ -40,4 +40,10 @@ for(i in seq(-30, 30, by = 1)) {
   draw(vline(pos.x = i, s.x=40, lwd = 5), 
        canvas = F)
 }
-draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+8,pos.y=-7),canvas = FALSE)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+8,pos.y=-7),
+     canvas = FALSE)
+
+
+mat = apply(Raven(st1 = u.bow.tie(), 
+                  "identity", "rotation"))
+draw(mat)

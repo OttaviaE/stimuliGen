@@ -3,6 +3,39 @@
 ###############################################################
 
 
+#' Default rectangle 
+#' @param vis Binary index that define if the shapes should be plot
+#' @return Return the default rectangle object
+#' @examples 
+#' rectangle()
+#' @export
+
+rectangle <- function(s.x=15,
+                      s.y=20,
+                      rot=pi / 4, pos.x = 0, pos.y = 0,
+                      shd=NA, lwd = 3, lty = 1, 
+                      vis = 1) {
+  value <- list(
+    shape = "rectangle",
+    size.x = list(s.x),
+    size.y = list(s.y),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(rot),
+    pos.x = list(pos.x),
+    pos.y = list(pos.y),
+    lty = list(lty),
+    lwd = list(lwd),
+    num = list(1),
+    nv = list(101),
+    shade = list(shd),
+    visible = vis,
+    tag=list(c('simple', 'small','rotate'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
 #' Default circle
 #' @param vis Binary index that define if the shapes should be plot
 #' @return Return the default circle object
