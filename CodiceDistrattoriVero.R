@@ -2,7 +2,7 @@
 
 # decompone la matrice -----
 
-split.mat = function(m, cell = NULL) {
+split.mat = function(m, cell = NULL, vis = T) {
   if (is.null(cell) == T) {
     m.start = correct(m)
   } else {
@@ -10,8 +10,12 @@ split.mat = function(m, cell = NULL) {
     m.start = m[[cell]]
   }
   
+  if(vis == T) {
+    index_elements<-which(m.start$visible==1 & unlist(lapply(m.start$num, all, 1))) 
+  } else {
+    index_elements = 1:length(m.start$shape)
+  }
   
-  index_elements<-which(m.start$visible==1 & unlist(lapply(m.start$num, all, 1))) 
   split.m <- vector("list", length(index_elements))
   
   if (length(index_elements) == 1) {
@@ -24,6 +28,7 @@ split.mat = function(m, cell = NULL) {
         attr(split.m[[i]], "class") = "field"
         split.m[[i]][[j]] = m.start[[j]][index_elements[i]]
         names(split.m[[i]])[j] = names(m.start)[j]
+        split.m[[i]][j]$visible = 1
       }
     }
   }
@@ -107,24 +112,25 @@ ic = function(m,
       ic.inc = hide(m.correct, 
                     index_elements[which(names(split.m) == which.element)])
       
-      
-      for (i in 1:length(split.m)) {
-        if (is.na(split.m[[i]]$shade[[1]]) == T) {
-          split.m[[i]]$shade[[1]] = "grey"
-        } else if (split.m[[i]]$shade[[1]] == "grey") {
-          split.m[[i]]$shade[[1]] = "white"
-        } else if(split.m[[i]]$shade[[1]] == "white") {
-          split.m[[i]]$shade[[1]] = "grey"
-        }  else if(split.m[[i]]$shade[[1]] == "black") {
-          split.m[[i]]$shade[[1]] = "white"
-        } 
-      }
-      ic.col = split.m[[1]]
-      for (i in 2:length(split.m)) {
-        ic.col = cof(split.m[[i]],ic.col)
-      }
+    
     } 
     
+  }
+  
+  for (i in 1:length(split.m)) {
+    if (is.na(split.m[[i]]$shade[[1]]) == T) {
+      split.m[[i]]$shade[[1]] = "black"
+    } else if (split.m[[i]]$shade[[1]] == "grey") {
+      split.m[[i]]$shade[[1]] = "white"
+    } else if(split.m[[i]]$shade[[1]] == "white") {
+      split.m[[i]]$shade[[1]] = "black"
+    }  else if(split.m[[i]]$shade[[1]] == "black") {
+      split.m[[i]]$shade[[1]] = "white"
+    }
+  }
+  ic.col = split.m[[1]]
+  for (i in 2:length(split.m)) {
+    ic.col = cof(split.m[[i]],ic.col)
   }
   # if(length(index_elements)==0)
   # {
@@ -145,45 +151,7 @@ ic = function(m,
 }
 
 
-ic.neg = function(m) {
-  m.correct = correct(m)
-  
-  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
-  
-  if (length(index_elements) == 1) {
-    if (any(unlist(m.correct$shade == "black"), na.rm = T) | any(grep("line", unlist(m.correct$shade)), na.rm = T) == T) {
-      m.correct$shade[[1]] = rep("white", 
-                                 length(any(unlist(m.correct$shade == "black"))))
-    } else if (any(unlist(m.correct$shade == "white")) == T) {
-      m.correct$shade[[1]] = rep("black", 
-                                 length(any(unlist(m.correct$shade == "white"))))
-    } else if(is.na(any(unlist(m.correct$shade))) == T) {
-      m.correct$shade[[1]] = rep("black", 
-                                 length(is.na(any(unlist(m.correct$shade)))))
-    }
-    ic.col = m.correct
-  } else {
-    split.m = split.mat(m)
-    
-    for (i in 1:length(split.m)) {
-      if (is.na(split.m[[i]]$shade[[1]]) == T) {
-        split.m[[i]]$shade[[1]] = "grey"
-      } else if (split.m[[i]]$shade[[1]] == "grey") {
-        split.m[[i]]$shade[[1]] = "white"
-      } else if(split.m[[i]]$shade[[1]] == "white") {
-        split.m[[i]]$shade[[1]] = "black"
-      }  else if(split.m[[i]]$shade[[1]] == "black") {
-        split.m[[i]]$shade[[1]] = "white"
-      } 
-    }
-    ic.col = split.m[[1]]
-    for (i in 2:length(split.m)) {
-      ic.col = cof(split.m[[i]],ic.col)
-    }
-    
-  }
-  return(ic.col)
-}
+
 
 # Repetition -----
 
@@ -361,6 +329,9 @@ draw.dist = function(dist.list, n.resp = 8,
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
     } else if (n.resp == 5) {
       par(mfrow =c(1, 5), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+    } else if (n.resp == 11) {
+      par(mfrow =c(2, 6), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
     } 
     
