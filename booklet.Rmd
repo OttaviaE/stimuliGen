@@ -1,7 +1,7 @@
 ---
 title: "Available Matrix"
 output: 
-  pdf_document:
+  pdf_document: 
     toc: yes
 editor_options: 
   chunk_output_type: console
@@ -10,9 +10,10 @@ editor_options:
 ```{r}
 #| echo: false
 #| eval: true
-
+set.seed(999)
 knitr::opts_chunk$set(echo=FALSE, 
-                      eval=TRUE)
+                      eval=TRUE, 
+                      warning = F)
 
 rm(list = ls())
 
@@ -20,6 +21,7 @@ source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
 source("DrawRegPolygon.R")
+source("CodiceDistrattoriVero.R")
 
 
 
@@ -127,11 +129,10 @@ bow.tie.inv <- function(pos.x = 0) {
 
 ## Righe semplici
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Vertical
 
-``` {r echo=FALSE}
+```{r echo=FALSE}
 
 
 # vertical canvas
@@ -146,8 +147,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 ```
 
-
-## Vertical color 
+## Vertical color
 
 ```{r}
 col = "#ffdab9"
@@ -163,11 +163,9 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-
-
 ## Horizontal
 
-``` {r echo=FALSE}
+```{r echo=FALSE}
 draw(hline(pos.y=-17, s.x = 30))
 for(i in seq(-17, 17, by = 1)) {
   draw(hline(pos.y = i, s.x=30, lwd = 5), 
@@ -179,7 +177,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 
 ```
-
 
 ## horizontal color
 
@@ -193,7 +190,6 @@ for(i in seq(-17, 17, by = 1)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
-
 
 ## Insieme
 
@@ -213,8 +209,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-## Insieme color 
-
+## Insieme color
 
 ```{r}
 draw(vline(pos.x=-30, s.x = 30, lwd = 5), bg = col)
@@ -232,8 +227,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-
-
 ## Diagonale principale
 
 ```{r}
@@ -250,10 +243,9 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 ```
 
-
 ## Diagonale principale color
 
-## Diagonale secondaria 
+## Diagonale secondaria
 
 ```{r}
 
@@ -291,7 +283,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-
 ## Si può variare la distanza
 
 ```{r}
@@ -314,7 +305,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-
 ## Insieme diagonali color
 
 ```{r}
@@ -336,7 +326,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-
 ## Più complesse
 
 ```{r}
@@ -352,43 +341,49 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-
 <!-- ## In diagonale -->
 
 <!-- ```{r} -->
-<!-- draw(diagline(pos.x = -35, s.x = 50)) -->
-<!-- for (i in seq(-32, - 10, by = 3)) { -->
-<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
-<!-- } -->
 
+<!-- draw(diagline(pos.x = -35, s.x = 50)) -->
+
+<!-- for (i in seq(-32, - 10, by = 3)) { -->
+
+<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
+
+<!-- } -->
 
 <!-- draw(diagline(pos.x = 35, s.x = 50), canvas = F) -->
-<!-- for (i in seq(10, 32, by = 3)) { -->
-<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
-<!-- } -->
 
+<!-- for (i in seq(10, 32, by = 3)) { -->
+
+<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
+
+<!-- } -->
 
 <!-- draw(diagline.inv(pos.x = 35, s.x = 50), canvas = F) -->
-<!-- for (i in seq(10, 32, by = 3)) { -->
-<!--   draw(diagline.inv(pos.x = i, s.x = 50), canvas = F) -->
-<!-- } -->
 
+<!-- for (i in seq(10, 32, by = 3)) { -->
+
+<!--   draw(diagline.inv(pos.x = i, s.x = 50), canvas = F) -->
+
+<!-- } -->
 
 <!-- draw(diagline.inv(pos.x = -35, s.x = 50), canvas = F) -->
+
 <!-- for (i in seq(-32, -10, by = 3)) { -->
+
 <!--   draw(diagline.inv(pos.x = i, s.x = 50), canvas = F) -->
+
 <!-- } -->
 
-
 <!-- draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7), -->
+
 <!--      canvas = FALSE) -->
-
-
 
 <!-- ``` -->
 
-## Con altre forme 
-
+## Con altre forme
 
 ```{r}
 draw(dot(pos.x = -25, pos.y = 15, size.x = 2, size.y = 2))
@@ -402,8 +397,6 @@ for (i in seq(-25, 25, by = 3)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
-
 
 ## 
 
@@ -420,7 +413,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-
 ```{r}
 draw(dot(pos.x = -25, pos.y = 15, size.x = 1, size.y = 1))
 
@@ -433,7 +425,6 @@ for (i in seq(-25, 25, by = 4)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
 
 ```{r}
 
@@ -456,9 +447,6 @@ draw(size(u.biscuit, 4), canvas = F)
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
-
-
 
 ```{r}
 
@@ -481,15 +469,11 @@ draw(size(u.biscuit, 4), canvas = F)
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
-
-
 :::
 
 ## Righe "complesse" verticali
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Vertical Inner
 
 ```{r}
@@ -503,7 +487,6 @@ for(i in seq(-30, 30, by = 1)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
 
 ## Vertical Outer
 
@@ -519,7 +502,6 @@ for(i in 1:length(p)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
-
 
 ## Vertical increasing
 
@@ -537,7 +519,6 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 
 ## Vertical decreasing
 
-
 ```{r}
 
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
@@ -550,18 +531,11 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 
 ```
-
-
 :::
 
+# Matrici $2 \times 2$
 
-# Matrici 2 $\times$ 2
-
-## Rotazione
-
-::: {.panel-tabset}
-
-## Diagonale
+## Rotazione Diagonale
 
 ```{r}
 m1 = apply(
@@ -573,9 +547,15 @@ m1 = apply(
 )
 draw(m1, n.cell = 4)
 
+
 ```
 
-## Verticale
+```{r}
+dist_m1 = responses(m1)
+draw.dist(dist_m1, n.resp = 11, main = T)
+```
+
+## Rotazione Verticale
 
 ```{r}
 m2 = apply(
@@ -588,13 +568,14 @@ m2 = apply(
 draw(m2, n.cell = 4)
 ```
 
-:::
+```{r}
+dist_m2 = responses(m2)
+draw.dist(dist_m2, n.resp = 11, main = T)
+```
 
-## Forma e dimensione
+## Forma e dimensione Verticale
 
-::: {.panel-tabset}
-
-## Verticale
+Ci sono problemi, perché qui bisogna mettere ben 3 forme e prende come corretta la forma che non è visibile
 
 ```{r}
 m3 = apply(
@@ -606,7 +587,15 @@ m3 = apply(
     hrule = "identity"
   )
 )
-draw(m3, n.cell = 4)
+draw(m3, n.cell = 4, hide = F)
+```
+
+C'è l'ellisse! ma noi non abbiamo l'ellisse! DC!
+
+```{r}
+dist_m3 = responses(m3, mat.type = 4)
+a = correct(dist_m3)
+draw.dist(dist_m3, n.resp = 11, main = T)
 ```
 
 ## Verticale e Orizzontale
@@ -624,14 +613,11 @@ m4 = apply(
 draw(m4, n.cell = 4)
 ```
 
-
 :::
-
 
 ## Forma e riempimento
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -648,8 +634,6 @@ draw(m5, n.cell = 4)
 
 ```
 
-
-
 ## Verticale e orizzontale
 
 ```{r}
@@ -664,14 +648,12 @@ m6 = apply(
 draw(m6, n.cell = 4)
 
 ```
-
 :::
 
-## Forma e orientamento 
+## Forma e orientamento
 
-::: {.panel-tabset}
-
-## Forma e orientamento 
+::: panel-tabset
+## Forma e orientamento
 
 ## Verticale
 
@@ -689,7 +671,6 @@ draw(m7, n.cell = 4)
 
 ## Verticale e orizzontale
 
-
 ```{r}
 m8 = apply(
   Raven(
@@ -701,15 +682,12 @@ m8 = apply(
 )
 draw(m8, n.cell = 4)
 ```
-
-
 :::
 
-## Forma e bordo 
+## Forma e bordo
 
-::: {.panel-tabset}
-
-## Verticale 
+::: panel-tabset
+## Verticale
 
 ```{r}
 m8 = apply(
@@ -724,7 +702,6 @@ draw(m8, n.cell = 4)
 
 ```
 
-
 ## Verticale e orizzontale
 
 ```{r}
@@ -738,16 +715,13 @@ m9 = apply(
 )
 draw(m9, n.cell = 4)
 ```
-
-
 :::
 
-# Matrici $3 \times 3$ 
+# Matrici $3 \times 3$
 
 ## Forma e dimensione
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -776,13 +750,11 @@ M2 = apply(
 )
 draw(M2, n.cell = 9)
 ```
-
 :::
 
-## Forma e rimepimento 
+## Forma e rimepimento
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -812,8 +784,6 @@ draw(com(M3a, M3b))
 
 ```
 
-
-
 ## Verticale e orizzontale
 
 ```{r}
@@ -838,7 +808,6 @@ M4b = apply(
 
 draw(com(M4a, M4b), n.cell=9)
 ```
-
 
 ## TL-LR per la prima regola, V per la seconda
 
@@ -865,7 +834,7 @@ M5b = apply(
 draw(com(M5a, M5b), n.cell=9)
 ```
 
-## TL-LR per la prima, TR-LL per la seconda 
+## TL-LR per la prima, TR-LL per la seconda
 
 ```{r}
 M6a = apply(
@@ -889,20 +858,12 @@ M6b = apply(
 
 draw(com(M6a, M6b), n.cell=9)
 ```
-
-
 :::
 
+## Forma e orientamento
 
-
-
-## Forma e orientamento 
-
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
-
 
 ```{r}
 M7 = apply(
@@ -916,9 +877,7 @@ M7 = apply(
 draw(M7, n.cell = 9)
 ```
 
-
-## Verticale e orizzontale 
-
+## Verticale e orizzontale
 
 ```{r}
 
@@ -932,7 +891,6 @@ M8 = apply(
 )
 draw(M8, n.cell = 9)
 ```
-
 
 ## TL-LR sulla prima, verticale sulla seconda
 
@@ -948,7 +906,6 @@ M10 = apply(
 draw(M10, n.cell = 9)
 ```
 
-
 ## TR-LL sulla prima, TL-LR sulla seconda
 
 ```{r}
@@ -962,15 +919,11 @@ M11 = apply(
 )
 draw(M11, n.cell = 9)
 ```
-
-
 :::
 
+## Forma e bordo
 
-## Forma e bordo 
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -986,7 +939,7 @@ draw(M11, n.cell = 9)
 
 ```
 
-## Verticale e orizzontale 
+## Verticale e orizzontale
 
 ```{r}
 M12 = apply(
@@ -1000,8 +953,7 @@ M12 = apply(
 draw(M12, n.cell = 9)
 ```
 
-
-## TL-LR sulla prima, V sulla seconda 
+## TL-LR sulla prima, V sulla seconda
 
 ```{r}
 M13 = apply(
@@ -1030,15 +982,12 @@ M14 = apply(
 )
 draw(M14, n.cell = 9)
 ```
-
-
 :::
 
-## Rimepimento e orientamento 
+## Rimepimento e orientamento
 
-::: {.panel-tabset}
-
-## Verticale 
+::: panel-tabset
+## Verticale
 
 ```{r}
 M15a = apply(
@@ -1090,7 +1039,6 @@ M16b = apply(
 draw(com(M16a, M16b), n.cell=9)
 ```
 
-
 ## TL-LR entrambe
 
 ```{r}
@@ -1112,15 +1060,11 @@ M17b = apply(
 
 draw(com(M17a, M17b), n.cell=9)
 ```
-
-
-::: 
-
+:::
 
 ## Riempimento e bordo
 
-::: {.panel-tabset} 
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -1157,15 +1101,13 @@ M18c = apply(
 draw(com(M18b, M18c))
 ```
 
-
-## Bonus 
+## Bonus
 
 ```{r}
 draw(com(M18a, M18b, M18c), n.cell=9)
 ```
 
-
-## Verticale e orizzontale 
+## Verticale e orizzontale
 
 ```{r}
 M19a = apply(
@@ -1186,7 +1128,7 @@ M19b = apply(
 draw(com(M19a, M19b))
 ```
 
-## TL-LR, Verticale 
+## TL-LR, Verticale
 
 ```{r}
 M20a = apply(
@@ -1209,8 +1151,7 @@ M20b = apply(
 draw(com(M20a, M20b))
 ```
 
-
-## TL-LR 
+## TL-LR
 
 ```{r}
 M21a = apply(
@@ -1232,16 +1173,11 @@ M21b = apply(
 )
 draw(com(M21a, M21b))
 ```
-
-
 :::
 
+## Forma riempimento bordo
 
-## Forma riempimento bordo 
-
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Verticale
 
 ```{r}
@@ -1267,7 +1203,7 @@ M22b = apply(
 draw(com(M22a, M22b))
 ```
 
-## Verticale e orizzontale 
+## Verticale e orizzontale
 
 ```{r}
 M23a = apply(
@@ -1292,7 +1228,7 @@ M23b = apply(
 draw(com(M23a, M23b))
 ```
 
-## TL-LR, Verticale 
+## TL-LR, Verticale
 
 ```{r}
 M24a = apply(
@@ -1344,16 +1280,12 @@ M25b = apply(
 
 draw(com(M25b, M25a))
 ```
-
-
-
 :::
 
 ## Forma riempimento dimensione
 
-::: {.panel-tabset}
-
-## Verticale 
+::: panel-tabset
+## Verticale
 
 ```{r}
 M26 = apply(
@@ -1367,7 +1299,6 @@ M26 = apply(
 )
 draw(M26, n.cell = 9)
 ```
-
 
 ## Verticale e orizzontale
 
@@ -1385,8 +1316,7 @@ draw(M27, n.cell = 9)
 
 ```
 
-
-## TL-LR, Verticale 
+## TL-LR, Verticale
 
 ```{r}
 M28a = apply(
@@ -1409,11 +1339,7 @@ M28b = apply(
 draw(com(M28a, M28b))
 ```
 
-
-## TR-LL, + altro 
-
-
-
+## TR-LL, + altro
 
 ```{r}
 M29a = apply(
@@ -1444,8 +1370,7 @@ draw(com(M29a, M29b))
 
 ```
 
-
-## Bonus 
+## Bonus
 
 ```{r}
 M29c = apply(
@@ -1457,16 +1382,12 @@ M29c = apply(
 )
 draw(com(M29a, M29c))
 ```
-
-
 :::
 
 ## Progressione Quantitativa
 
-::: {.panel-tabset}
-
-
-## 	LL-TR (crescente orizontale e decrescente verticale)
+::: panel-tabset
+## LL-TR (crescente orizontale e decrescente verticale)
 
 ```{r}
 M1<-apply(Raven(square(shd="black")))
@@ -1475,7 +1396,7 @@ draw(M1)
 
 ```
 
-## 	TL-LR 
+## TL-LR
 
 ```{r}
 M3<-apply(Raven(hexagon()))
@@ -1483,15 +1404,12 @@ M3<-numeric_progression(M3,"TL-LR-increasing")
 draw(M3)
 
 ```
-
 :::
 
 ## Forma, Progressione Quantitaiva
 
-::: {.panel-tabset}
-
-
-## 	V su entrambe le regole 
+::: panel-tabset
+## V su entrambe le regole
 
 ```{r}
 M4 <- apply(Raven(cof(pentagon(),triangle(),e.hexagon()),"identity","diff_shapes"))
@@ -1499,7 +1417,7 @@ M4<-numeric_progression(M4,"v.increasing")
 draw(M4)
 ```
 
-## 	V per una regola e H per l'altra
+## V per una regola e H per l'altra
 
 ```{r}
 M5 <- apply(Raven(cof(pentagon(),luck(),e.hexagon()),"diff_shapes"))
@@ -1508,7 +1426,7 @@ draw(M5)
 
 ```
 
-## 	H per una regola e V per l'altra
+## H per una regola e V per l'altra
 
 ```{r}
 M6 <- apply(Raven(cof(square(),luck(),triangle()),"identity","diff_shapes"))
@@ -1516,16 +1434,12 @@ M6<-numeric_progression(M6,"v.increasing",n=1.7)
 draw(M6)
 
 ```
-
 :::
-
-
 
 ## Ragionamento induttivo simbolico/astratto
 
-::: {.panel-tabset}
-
-## 	AND orizzontale
+::: panel-tabset
+## AND orizzontale
 
 ```{r}
 M32<-apply(Raven(cof(vline(),square(),hline(),s_vertical()),"AND"))
@@ -1533,7 +1447,7 @@ draw(M32)
 
 ```
 
-## 		AND orizzontale o verticale
+## AND orizzontale o verticale
 
 ```{r}
 
@@ -1547,7 +1461,7 @@ draw(M33)
 
 ```
 
-## 		OR orizzontale 
+## OR orizzontale
 
 ```{r}
 
@@ -1555,5 +1469,4 @@ M33<-apply(Raven(cof(square(),lily()),"OR"))
 draw(M33)
 
 ```
-
 :::

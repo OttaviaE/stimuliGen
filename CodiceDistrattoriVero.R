@@ -39,8 +39,13 @@ split.mat = function(m, cell = NULL, vis = T) {
 
 
 # risposta corretta ---
-correct = function(m) {
-  correct = m$Sq9 
+correct = function(m, mat.type = 9) {
+  if (mat.type == 9) {
+    correct = m$Sq9 
+  } else {
+    correct = m$Sq5
+  }
+  
   return(correct)
 }
 
@@ -48,8 +53,8 @@ correct = function(m) {
 
 ic = function(m, 
               n.rule = 1, 
-              which.element = NULL) {
-  m.correct = correct(m)
+              which.element = NULL, mat.type = 9) {
+  m.correct = correct(m, mat.type = mat.type)
   
   ##Inizio aggiunta brutta
   elements<-decof(m.correct)##il controllo con i tag è sbagliato $EVVIVA$!
@@ -60,7 +65,7 @@ ic = function(m,
   
   if (length(index_elements) == 1) {
     ic.scale = size(m.correct, 3)
-    ic.flip = rotation(m.correct, 3)
+    ic.flip = rotation(m.correct, 2)
     
     if (any(grep("pie.4", m.correct$shape)) == T)  {
       random_shape = list(pie.2(), pie.2.inv())
@@ -68,6 +73,10 @@ ic = function(m,
       ic.inc = random_shape[[random_index]]
     } else if (any(grep("pie.2", m.correct$shape)) == T) {
       ic.inc = circle()
+    } else if (any(grep("square", m.correct$shape)) == T) {
+      ic.inc = cof(vline(pos.x =-m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]), 
+                   hline(pos.y = -m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]), 
+                   vline(pos.x =m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]))
     } else {
       ic.inc = m.correct
     }
@@ -81,6 +90,9 @@ ic = function(m,
     } else if(is.na(any(unlist(m.c$shade))) == T) {
       m.c$shade[[1]] = rep("black", 
                                  length(is.na(any(unlist(m.c$shade)))))
+    } else if (any(grep("line", unlist(m5$Sq9$shade)) == T) == T) {
+      m.c$shade[[1]] = rep("white", 
+                           length(is.na(any(unlist(m.c$shade)))))
     }
     ic.col = m.c
     
@@ -114,10 +126,7 @@ ic = function(m,
       
     
     } 
-    
-  }
-  
-  for (i in 1:length(split.m)) {
+      for (i in 1:length(split.m)) {
     if (is.na(split.m[[i]]$shade[[1]]) == T) {
       split.m[[i]]$shade[[1]] = "black"
     } else if (split.m[[i]]$shade[[1]] == "grey") {
@@ -132,6 +141,9 @@ ic = function(m,
   for (i in 2:length(split.m)) {
     ic.col = cof(split.m[[i]],ic.col)
   }
+  }
+  
+
   # if(length(index_elements)==0)
   # {
   #   ic.inc$attention = "No object can rotate here!"
@@ -181,13 +193,18 @@ repetition = function(m) {
 
 # Wrong principle -----
 
-wp = function(m, choose.matrix = 1, choose.copy = NULL) {
-  m.correct = correct(m)
+wp = function(m, choose.matrix = 1, choose.copy = NULL, mat.type = 9) {
+  m.correct = correct(m, mat.type = mat.type)
   check.rep = repetition(m)
   if (is.null(choose.copy) == F) {
     distr.wp.copy = m[[choose.copy]]
   } else {
-    sample.index = (c(2:4, 7)) 
+    if (mat.type == 9) {
+      sample.index = c(1:3)
+    } else {
+      sample.index = (c(2:4, 7))  
+    }
+     
     s = sample(sample.index,1)
     distr.wp.copy = m[[s]]
   }
@@ -249,7 +266,8 @@ d.union = function(m,
   shapes.l = shapes.l[-c(grep("arc", shapes.l$name), 
                          grep("pie", shapes.l$name), 
                          grep("pacman", shapes.l$name), 
-                         grep("semi.circle", shapes.l$name)), ]
+                         grep("semi.circle", shapes.l$name), 
+                         grep("star", shapes.l$name)), ]
   
   if (any(grep("semi.circle", (d.union$shape))) == T) {
     shapes.in = "pie.2"
@@ -282,8 +300,9 @@ responses = function(m,
                      choose.copy = 2, 
                      choose.start = 1, 
                      which.element = NULL, 
-                     choose.fig = NULL) {
-  m.correct = correct(m)
+                     choose.fig = NULL, 
+                     mat.type = 9) {
+  m.correct = correct(m, mat.type = mat.type)
   resp = list(correct = m.correct, 
               r.top = m$Sq6,
               r.diag = m$Sq5,
@@ -291,9 +310,10 @@ responses = function(m,
               wp.copy = wp(m, choose.copy = choose.copy)$wp.copy, 
               wp.matrix = wp(m, choose.matrix = choose.matrix)$wp.matrix, 
               d.union = d.union(m, choose.start = choose.start, choose.fig = choose.fig), 
-              ic.scale = ic(m, which.element = which.element)$ic.scale, 
-              ic.flip = ic(m, which.element = which.element)$ic.flip, 
-              ic.inc = ic(m, which.element = which.element)$ic.inc)
+              ic.scale = ic(m, which.element = which.element, mat.type = mat.type)$ic.scale, 
+              ic.flip = ic(m, which.element = which.element, mat.type = mat.type)$ic.flip, 
+              ic.inc = ic(m, which.element = which.element, mat.type = mat.type)$ic.inc, 
+              ic.neg = ic(m, which.element = which.element, mat.type = mat.type)$ic.neg)
   
   # if (any(unlist(resp$r.top) != unlist(m.correct), 
   #         na.rm = T) == F) {
