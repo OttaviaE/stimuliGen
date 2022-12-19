@@ -99,6 +99,8 @@ ic = function(m,
   } else {
     split.m = split.mat(m)
     
+    
+    
     if (is.null(which.element) == T) {
       ic.flip = rotation(split.m[[1]], 2)
       
@@ -167,11 +169,21 @@ ic = function(m,
 
 # Repetition -----
 
-repetition = function(m) {
-  m.correct = correct(m)
-  distr.repetition = list(  r.top = m$Sq6,
-                            r.diag = m$Sq5,
-                            r.left = m$Sq8)
+repetition = function(m, mat.type = 9) {
+  m.correct = correct(m, mat.type = mat.type)
+  
+  if (mat.type == 9) {
+    
+    distr.repetition = list(  r.top = m$Sq6,
+                              r.diag = m$Sq5,
+                              r.left = m$Sq8)
+  } else {
+    
+    distr.repetition = list(  r.top = m$Sq2,
+                              r.diag = m$Sq1,
+                              r.left = m$Sq4)
+  }
+  
   if (any(unlist(distr.repetition$r.top) != unlist(m.correct),
           na.rm = T) == F) {
     warning("R-Top is equal to the correct response")
@@ -304,9 +316,9 @@ responses = function(m,
                      mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
   resp = list(correct = m.correct, 
-              r.top = m$Sq6,
-              r.diag = m$Sq5,
-              r.left = m$Sq8, 
+              r.top = repetition(m, mat.type = mat.type)$r.top,
+              r.diag = repetition(m, mat.type = mat.type)$r.diag,
+              r.left = repetition(m, mat.type = mat.type)$r.left, 
               wp.copy = wp(m, choose.copy = choose.copy)$wp.copy, 
               wp.matrix = wp(m, choose.matrix = choose.matrix)$wp.matrix, 
               d.union = d.union(m, choose.start = choose.start, choose.fig = choose.fig), 
