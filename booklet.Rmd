@@ -1007,12 +1007,10 @@ draw(m9, n.cell = 4)
 
 # Matrici $3 \times 3$
 
-## Forma e dimensione
-
-::: panel-tabset
-## Verticale
+## Forma e dimensione  Verticale
 
 ```{r}
+set.seed(999)
 M1 = apply(
   Raven(
     st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")), 
@@ -1021,12 +1019,76 @@ M1 = apply(
   )
 )
 
-draw(M1, n.cell = 9)
+draw(M1, n.cell = 9, hide = T)
 
 
 ```
 
-## Verticale e orizzontale
+```{r}
+
+dist_m1 = responses(M1)
+draw.dist(dist_m1, n.resp = 11, main = T)
+
+```
+
+## Gemella 1
+
+```{r}
+
+e_VertFill_HorLi_01a = apply(
+  Raven(
+    st1 = pacman(), 
+    vrule = c("fill"), 
+    hrule = "identity"
+  )
+)
+
+
+e_VertFill_HorLi_01b = apply(
+  Raven(
+    st1 = square(s.x = 18, s.y = 18), 
+    vrule = c("identity"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+elisa001 = com(e_VertFill_HorLi_01a, e_VertFill_HorLi_01b)
+draw(elisa001, hide = T)
+```
+
+
+```{r}
+dist_e001 = responses(elisa001)
+
+draw.dist(dist_e001, n.resp = 11)
+
+```
+
+
+
+## Gemella 2 
+
+Odio massimiliano dal profondo del mio cuore
+
+```{r}
+m_VertShSi_01= apply(
+  Raven(
+    st1 = cof(pentagon(shd = "black"), triangle(shd = "black"), square(shd = "black")), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = "identity"
+  )
+)
+
+draw(m_VertShSi_01, hide = T)
+```
+
+```{r}
+dist_m001 = responses(m_VertShSi_01)
+draw.dist(dist_m001, n.resp = 11, main = T)
+```
+
+
+## Forma e dimensione Verticale e orizzontale
 
 ```{r}
 M2 = apply(
@@ -1036,9 +1098,28 @@ M2 = apply(
     hrule = "size"
   )
 )
-draw(M2, n.cell = 9)
+draw(M2, n.cell = 9, hide = T)
 ```
+
+```{r}
+dist_M2 = responses(M2)
+
+draw.dist(dist_M2)
+```
+
+## Gemella 1 
+
+(gemella 1 è elisa)
+
+```{r}
+
+```
+
+
+
 :::
+
+
 
 ## Forma e rimepimento
 
