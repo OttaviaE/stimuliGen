@@ -125,6 +125,43 @@ bow.tie.inv <- function(pos.x = 0) {
   value
 }
 
+draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16,by=1.5) {
+  library(DescTools)
+  if (canvas == TRUE)
+  {
+    Canvas(xlim=xlim,mar=mar, main = main, bg = bg)
+  }
+  for(j in 1:length(obj$shape))
+  {
+    if(obj$visible[[j]]==1)
+    {
+      if(obj$num[[j]][1]==1){
+        if(grepl("line",obj$shade[[j]][1]))
+        {
+          elements<-decof(obj)
+          plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
+          for(ll in 1:length(plotting_lines)){
+            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1],lwd=3,by=by) #Pejo tacon che sbrego
+            
+          }
+          obj$shade[[j]][1] <- NA
+        }
+        DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],
+                       radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+                       lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+        
+        
+      }else{
+        
+        DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]],
+                   r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+                   theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+                   lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+        
+      }
+    }
+  }
+}
 
 ```
 
@@ -152,20 +189,20 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-5, 5, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
@@ -173,7 +210,7 @@ for (i in seq(-6, 7, by = 3)) {
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -191,9 +228,9 @@ for(i in seq(-5, 5, by = 1)) {
 
 ```{r}
 col = "#ffdab9"
-
 # vertical canvas
-draw(vline(pos.x=-30, s.x = 30, lwd = 3),bg = col)
+draw(rectangle(s.x=-50,s.y=50,shd=col,pos.x=+10,pos.y=-7))
+
 for(i in seq(-30, 30, by = 1)) {
   draw(vline(pos.x = i, s.x=40, lwd = 3), 
        canvas = F)
@@ -208,20 +245,20 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd=col)
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-5, 5, by = 3)) {
     draw(square(pos.x = i, pos.y = j, s.x = 0.5, s.y = 0.5, shd = "black"), canvas = F)
@@ -229,7 +266,7 @@ for (i in seq(-6, 7, by = 3)) {
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -262,22 +299,22 @@ par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1,
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-3, 3, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
@@ -285,7 +322,7 @@ for (i in seq(-6, 7, by = 3)) {
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -303,7 +340,7 @@ for(i in seq(-5, 5, by = 1)) {
 ## horizontal color
 
 ```{r}
-draw(hline(pos.y=-17, s.x = 30), bg = col)
+draw(rectangle(s.x=-50,s.y=50,shd=col,pos.x=+10,pos.y=-7))
 for(i in seq(-17, 17, by = 1)) {
   draw(hline(pos.y = i, s.x=30, lwd = 3), 
        canvas = F)
@@ -317,23 +354,23 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd=col)
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-5, 5, by = 3)) {
     draw(square(pos.x = i, pos.y = j, s.x = 0.5, s.y = 0.5, shd = "black"), canvas = F)
@@ -341,7 +378,7 @@ for (i in seq(-6, 7, by = 3)) {
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -379,7 +416,7 @@ par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1,
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -388,22 +425,22 @@ for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-3, 3, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
@@ -417,7 +454,8 @@ for (i in seq(-6, 7, by = 3)) {
 ## Insieme color
 
 ```{r}
-draw(vline(pos.x=-30, s.x = 30, lwd = 3), bg = col)
+
+draw(rectangle(s.x=-50,s.y=50,shd=col,pos.x=+10,pos.y=-7))
 for(i in seq(-30, 30, by = 1)) {
   draw(vline(pos.x = i, s.x=40, lwd = 3), 
        canvas = F)
@@ -438,7 +476,7 @@ par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1,
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd= col)
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
@@ -447,22 +485,22 @@ for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-5, 5, by = 1)) {
  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
 }
 
 
-draw(container)
+draw(container,xlim = 8)
 for(i in seq(-7, 7, by = 1)) {
  draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
 
 
 
-draw(container)
+draw(container,xlim = 8)
 
-draw(container)
+draw(container,xlim = 8)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-3, 3, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
@@ -491,13 +529,42 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 
 ```{r}
-draw(rectangle(s.x=7,s.y=5,shd="line.12"),
-     canvas = T)
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
-for(i in seq(-7, 7, by = 1.5)) {
-  draw(diagline(pos.x = i, s.x=-7, lwd = 3), 
-       canvas = F)
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
 }
+
+
+draw(container,xlim = 8)
+for(i in seq(-7, 7, by = 1)) {
+ draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
+}
+
+for(i in seq(-5, 5, by = 1)) {
+ draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+}
+
+
+
+
+
 
 ```
 
@@ -515,6 +582,41 @@ for(i in seq(-50, 50, by = 1.5)) {
 
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
+```
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+for(i in seq(-7, 7, by = 1)) {
+ draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
+}
+
+for(i in seq(-5, 5, by = 1)) {
+ draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+}
+
+
 ```
 
 ## Insieme (mal di mare)
@@ -536,6 +638,47 @@ for(i in seq(-50, 50, by = 1.5)) {
 
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
+```
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
+     canvas = FALSE)
+
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+for(i in seq(-7, 7, by = 1)) {
+ draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
+}
+
+for(i in seq(-5, 5, by = 1)) {
+ draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+}
+
+
 ```
 
 ## Si può variare la distanza
@@ -560,10 +703,51 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+for(i in seq(-7, 7, by = 1)) {
+ draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
+}
+
+for(i in seq(-5, 5, by = 1)) {
+ draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+}
+
+
+```
+
 ## Insieme diagonali color
 
 ```{r}
-draw(diagline(pos.x=-50, s.x = 50, lwd = 3), bg = col)
+draw(rectangle(s.x=-50,s.y=50,shd=col,pos.x=+10,pos.y=-7))
 for(i in seq(-50, 50, by = 3.5)) {
   draw(diagline(pos.x = i, s.x=40, lwd = 3), 
        canvas = F)
@@ -580,10 +764,53 @@ for(i in seq(-50, 50, by = 3.5)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd=col)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+for(i in seq(-7, 7, by = 1)) {
+ draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
+}
+
+for(i in seq(-5, 5, by = 1)) {
+ draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+}
+
+
+```
+
 
 ## Più complesse
 
 ```{r}
+
+
 draw(vline(pos.x = -20, s.x = 50, lwd = 3))
 draw(vline(pos.x = 20, s.x = 50, lwd = 3, lty = 3), canvas = F)
 draw(vline(pos.x = 17, s.x = 50, lwd = 3), canvas = F)
@@ -598,19 +825,63 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 
 
 ```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+
 draw(rectangle(s.x=7,s.y=5,shd=NA,pos.x=0,pos.y=0),
-     canvas = T)
+     canvas = FALSE)
 
 draw(vline(pos.x = 5, pos.y = -0, 
            s.x  = 5, lwd = 3, lty = 3), canvas = F)
 draw(vline(pos.x = 2, pos.y = 0, 
            s.x = 5, lwd = 3), canvas = F)
 
-draw(hline(pos.y = -1, 
+draw(hline(pos.y = 0, 
            pos.x = 0,  s.x = 7, lwd = 3, lty = 1), canvas = F)
 draw(hline(pos.y = -3, pos.x = 0, s.x = 7, lwd = 3, lty = 3), canvas = F)
 
+##primo distrattore
+draw(container,xlim = 8)
 
+draw(rectangle(s.x=7,s.y=5,shd=NA,pos.x=0,pos.y=0),
+     canvas = FALSE)
+
+draw(vline(pos.x = 5, pos.y = -0, 
+           s.x  = 5, lwd = 3, lty = 1), canvas = F)
+draw(vline(pos.x = 2, pos.y = 0, 
+           s.x = 5, lwd = 3), canvas = F)
+
+draw(hline(pos.y = 0, 
+           pos.x = 0,  s.x = 7, lwd = 3, lty = 1), canvas = F)
+draw(hline(pos.y = -3, pos.x = 0, s.x = 7, lwd = 3, lty = 1), canvas = F)
+
+##Secondo distrattore
+
+draw(container,xlim = 8)
+
+draw(rectangle(s.x=7,s.y=5,shd=NA,pos.x=0,pos.y=0),
+     canvas = FALSE)
+
+draw(vline(pos.x = -5, pos.y = -0, 
+           s.x  = 5, lwd = 3, lty = 3), canvas = F)
+draw(vline(pos.x = -2, pos.y = 0, 
+           s.x = 5, lwd = 3), canvas = F)
+
+draw(hline(pos.y = 0, 
+           pos.x = 0,  s.x = 7, lwd = 3, lty = 1), canvas = F)
+draw(hline(pos.y = 3, pos.x = 0, s.x = 7, lwd = 3, lty = 3), canvas = F)
+
+##terzo distrattore
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+##quarto
+draw(container,xlim = 8)
 
 ```
 
@@ -675,13 +946,42 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 
 
 ```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
-     canvas = T)
+     canvas = FALSE)
 for (i in seq(-7, 10, by = 3)) {
   for (j in seq(-5, 5, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 2, size.y = 2), canvas = F)
   }
 }
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-7, 10, by = 3)) {
+  for (j in seq(-5, 5, by = 3)) {
+    draw(circle(pos.x = i, pos.y = j, s.x = 2, s.y = 2,shd="white"), canvas = F)
+  }
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
 
 ```
 
@@ -702,6 +1002,47 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 ```
 
 ```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for (i in seq(-22.5, 25, by = 4)) {
+  for (j in seq(12.5, -15, by = -4)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 2, size.y = 2), canvas = F)
+  }
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-25, 25, by = 4)) {
+  for (j in seq(15, -15, by = -4)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 2, size.y = 2), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
+
+
+```{r}
 draw(dot(pos.x = -25, pos.y = 15, size.x = 1, size.y = 1))
 
 for (i in seq(-25, 25, by = 4)) {
@@ -713,6 +1054,46 @@ for (i in seq(-25, 25, by = 4)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+  for (j in seq(12.5, -15, by = -4)) {
+     draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1), canvas = F)
+  }
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-25, 25, by = 4)) {
+  for (j in seq(15, -15, by = -4)) {
+        draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
 
 ```{r}
 
@@ -734,6 +1115,49 @@ draw(size(u.biscuit, 4), canvas = F)
 
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
+```
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+  for (j in seq(12.5, -15, by = -4)) {
+       u.biscuit$pos.x[[1]] = i
+u.biscuit$pos.y[[1]] = j 
+    
+   
+draw(size(u.biscuit, 4), canvas = F)
+  }
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-25, 25, by = 4)) {
+  for (j in seq(15, -15, by = -4)) {
+        draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
 ```
 
 ```{r}
@@ -757,7 +1181,51 @@ draw(size(u.biscuit, 4), canvas = F)
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for (i in seq(-25, 25, by = 5)) {
+  for (j in seq(15, -15, by = -5)) {
+       u.biscuit$pos.x[[1]] = i
+u.biscuit$pos.y[[1]] = j 
+    
+   
+draw(size(u.biscuit, 4), canvas = F)
+  }
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-25, 25, by = 5)) {
+  for (j in seq(15, -15, by = -5)) {
+        draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
 :::
+
 
 ## Righe "complesse" verticali
 
@@ -774,6 +1242,44 @@ for(i in seq(-30, 30, by = 1)) {
 
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
+```
+
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 1+ abs(i)/2), 
+         canvas = F,  bg = "white")
+}
+
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
 ```
 
 ## Vertical Outer
@@ -922,6 +1428,7 @@ draw(m5, n.cell = 4)
 
 ```
 
+:::
 ## Verticale e orizzontale
 
 ```{r}
