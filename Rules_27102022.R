@@ -386,6 +386,8 @@ numeric_progression.Raven_matrix<-function(obj,rules,n=1,...){
       }
     }
   }
+  obj$hrule<-c(obj$hrule,"quant")
+  obj$vrule<-c(obj$vrule,"quant")
   return(obj)
 }
   

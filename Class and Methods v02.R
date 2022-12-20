@@ -247,11 +247,10 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,
       if(obj$num[[j]][1]==1){
         if(grepl("line",obj$shade[[j]][1]))
         {
-
           elements<-decof(obj)
           plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
           for(ll in 1:length(plotting_lines)){
-            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1])
+            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1]) #Pejo tacon che sbrego
             
           }
           obj$shade[[j]][1] <- NA
@@ -262,6 +261,7 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,
         
         
       }else{
+        
         DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]],
                    r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
                    theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
@@ -459,7 +459,7 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
   return(c(x,y))
 }
 
-filling<-function(q,m,coords)
+filling<-function(q,m,coords,lwd=1)
 {
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
@@ -487,11 +487,11 @@ filling<-function(q,m,coords)
       }
     }
   }
-  polygon(pt[,1],pt[,2])
+  polygon(pt[,1],pt[,2],lwd=lwd)
   return(pt)
 }
 
-line<-function(obj,rule)
+line<-function(obj,rule,lwd=1,by=1.5)
 {
   #coefficente angolare di default
   m<-1
@@ -516,16 +516,16 @@ line<-function(obj,rule)
     {
       first_coords<-coords
       first_coords$x[coords$x<=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=1.5)){
-        filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
+      for(i in seq(-20 ,20,by=by)){
+        filling(q=i,m=m[j],coords=first_coords,lwd = lwd) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
     if(grepl("2",rule))
     {
       first_coords<-coords
       first_coords$x[coords$x>=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=1.5)){
-        filling(q=i,m=m[j],coords=first_coords) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
+      for(i in seq(-20 ,20,by=by)){
+        filling(q=i,m=m[j],coords=first_coords,lwd = lwd) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
   }
