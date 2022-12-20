@@ -157,7 +157,7 @@ apply <- function(obj,rules) {
 }
 
 draw <- function(obj, main = NULL, canvas = TRUE, 
-                 hide = FALSE, n.cell = 9, bg = "white") {
+                 hide = FALSE, n.cell = 9, bg = "white",mar=c(1,1,1,1),xlim=16) {
   UseMethod("draw")
 }
 
@@ -234,11 +234,11 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   return(obj)
 }
 
-draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white") {
+draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16) {
   library(DescTools)
   if (canvas == TRUE)
   {
-    Canvas(xlim=16,mar=c(1,1,1,1), main = main, bg = bg)
+    Canvas(xlim=xlim,mar=mar, main = main, bg = bg)
   }
   for(j in 1:length(obj$shape))
   {
