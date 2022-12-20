@@ -2348,6 +2348,28 @@ draw.dist(dist_e010)
 
 ```
 
+## Gemella 2
+
+```{r}
+m_VertSh_HorOr_01 = apply(
+  Raven(
+    st1 = cof(triangle(), 
+              slice(), pentagon()), 
+    vrule = c("diff_shapes"), 
+    hrule = "rotation"
+  )
+)
+draw(m_VertSh_HorOr_01)
+
+```
+
+
+```{r}
+dist_m009 = responses(m_VertSh_HorOr_01)
+
+draw.dist(dist_m009)
+
+```
 
 ## TR-LL sulla prima, TL-LR sulla seconda
 
@@ -2370,12 +2392,29 @@ dist_M11 = responses(M11)
 draw.dist(dist_M11)
 ```
 
+## gemella 
+
+```{r}
+m_TLLRSh_VertOr_01 = apply(
+  Raven(
+    st1 = cof(e.hexagon(rot=pi/2), 
+              pacman(), triangle()), 
+    vrule = c("diff_shapes", "rotation"), 
+    hrule = "diff_shapes"
+  ))
+draw(m_TLLRSh_VertOr_01)
+```
 
 
-## Forma e bordo
+```{r}
+dist_m010 = responses(m_TLLRSh_VertOr_01)
 
-::: panel-tabset
-## Verticale
+draw.dist(dist_m010)
+
+```
+
+
+## Forma e bordo Verticale
 
 ```{r}
 M11 = apply(
@@ -2398,6 +2437,8 @@ draw.dist(dist_M11)
 ```
 
 
+
+
 ## Gemella 
 
 ```{r}
@@ -2418,6 +2459,28 @@ draw(elisa011)
 dist_e011 = responses(elisa011)
 
 draw.dist(dist_e011)
+
+```
+
+
+## Gemella 2 
+
+```{r}
+m_TLLRSh_TRLLOr_01 = apply(
+  Raven(
+    st1 = cof(luck(), 
+              slice(), pentagon()), 
+    vrule = c("diff_shapes.inv", "rotation"), 
+    hrule = c("diff_shapes.inv", "rotation")
+  )
+)
+draw(m_TLLRSh_TRLLOr_01)
+```
+
+```{r}
+dist_m011 = responses(m_TLLRSh_TRLLOr_01)
+
+draw.dist(dist_m011)
 
 ```
 
@@ -2464,6 +2527,28 @@ draw(elisa012)
 ```{r}
 dist_e012 = responses(elisa012)
 draw.dist(dist_e012)
+```
+
+## Gemella 2
+
+```{r}
+m_VertShLi_01= apply(
+  Raven(
+    st1 = cof(triangle(), 
+              square(), pentagon()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = "identity"
+  )
+)
+draw(m_VertShLi_01)
+```
+
+
+```{r}
+dist_m012 = responses(m_VertShLi_01)
+
+draw.dist(dist_m012)
+
 ```
 
 
@@ -2519,6 +2604,30 @@ draw.dist(dist_e013)
 ```
 
 
+## Gemella 2
+
+```{r}
+m_VertSh_HorLi_01 = apply(
+  Raven(
+    st1 = cof(ellipse(), 
+              pacman(), u.pie.4()), 
+    vrule = c("diff_shapes"), 
+    hrule = c("lty", "lwd")
+  )
+)
+draw(m_VertSh_HorLi_01)
+```
+
+
+
+```{r}
+dist_m012 = responses(m_VertSh_HorLi_01)
+
+draw.dist(dist_m012)
+
+```
+
+
 ## TL-LR sulla prima, TR-LL sulla seconda
 
 ```{r}
@@ -2543,11 +2652,30 @@ draw.dist(dist_M14)
 ```
 
 
+## Gemella 
 
-## Rimepimento e orientamento
+```{r}
+m_TLLRSh_VertLi_01 = apply(
+  Raven(
+    st1 = cof(e.hexagon(), 
+              circle(), luck()), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes", "lty", "lwd")
+  )
+)
+draw(m_TLLRSh_VertLi_01)
+```
 
-::: panel-tabset
-## Verticale
+
+```{r}
+dist_m013 = responses(m_TLLRSh_VertLi_01)
+
+draw.dist(dist_m013)
+
+```
+
+
+## Rimepimento e orientamento Verticale
 
 ```{r}
 M15a = apply(
@@ -2580,6 +2708,29 @@ dist_M15 = responses(M15)
 
 draw.dist(dist_M15)
 
+```
+
+
+## Gemella 
+
+```{r}
+m_TLLRSh_TRLLLi_01 = apply(
+  Raven(
+    st1 = cof(u.pie.2(), 
+              slice(), square()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("diff_shapes", "lty", "lwd")
+  )
+)
+draw(m_TLLRSh_TRLLLi_01)
+```
+
+
+```{r}
+dist_m014 = responses(m_TLLRSh_TRLLLi_01)
+
+
+draw.dist(dist_m014)
 ```
 
 
@@ -2618,6 +2769,42 @@ draw.dist(dist_M16)
 ```
 
 
+## Gemella 
+
+```{r}
+m_VertFilOr_01a = apply(
+  Raven(
+    st1 = triangle(s.x = 15,s.y = 15), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
+  )
+)
+
+
+m_VertFilOr_01b = apply(
+  Raven(
+    st1 = cof(square(s.x = 5,s.y = 5,shd = "black"), 
+              pentagon(s.x = 5, s.y = 5, shd = "black"), 
+              circle(s.x = 5, s.y=5, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = "identity"
+  )
+)
+
+m_015 = com(m_VertFilOr_01a, m_VertFilOr_01b)
+draw(m_015)
+
+```
+
+
+```{r}
+dist_m015 = responses(m_015)
+
+draw.dist(dist_m015)
+
+```
+
+
 ## TL-LR entrambe
 
 ```{r}
@@ -2650,10 +2837,44 @@ draw.dist(dist_M17)
 ```
 
 
-## Riempimento e bordo
+## Gemella 
 
-::: panel-tabset
-## Verticale
+```{r}
+m_VertFil_HorOr_01a = apply(
+  Raven(
+    st1 = pentagon(s.x = 17,s.y=17), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
+  )
+)
+
+
+m_VertFil_HorOr_01b = apply(
+  Raven(
+    st1 = cof(dot(), 
+              pacman(), 
+              slice(pos.y = -3)), 
+    vrule = c("identity"), 
+    hrule = "diff_shapes.inv"
+  )
+)
+m_016 = com(m_VertFil_HorOr_01a, m_VertFil_HorOr_01b)
+draw(m_016)
+```
+
+
+```{r}
+
+dist_m016 = responses(m_016)
+
+draw.dist(dist_m016)
+
+```
+
+
+
+
+## Riempimento e bordo Verticale
 
 ```{r}
 M18a = apply(
@@ -2697,6 +2918,34 @@ draw.dist(dist_M18)
 ```
 
 
+```{r}
+m_TLLRFil_VertOr_01a = apply(
+  Raven(
+    st1 = e.hexagon(), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
+  )
+)
+
+
+m_TLLRFil_VertOr_01b = apply(
+  Raven(
+    st1 = square(s.x = 4, s.y = 4), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+
+m_017 = com(m_TLLRFil_VertOr_01a, m_TLLRFil_VertOr_01b)
+draw(m_017)
+```
+
+```{r}
+dist_m017 = responses(m_017)
+
+draw.dist(dist_m017)
+```
+
 
 ## Verticale e orizzontale
 
@@ -2725,6 +2974,37 @@ draw(M19)
 dist_M19 = responses(M19)
 
 draw.dist(dist_M19)
+
+```
+
+
+## Gemella 
+
+```{r}
+m_TLLRFil_TRLLOr_01a = apply(
+  Raven(
+    st1 = triangle(), 
+    vrule = c("rotation"), 
+    hrule = c("rotation")
+  )
+)
+
+m_TLLRFil_TRLLOr_01b = apply(
+  Raven(
+    st1 = triangle(s.x = 5, s.y = 5), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+m_018 = com(m_TLLRFil_TRLLOr_01a, m_TLLRFil_TRLLOr_01b)
+draw(m_018)
+```
+
+
+```{r}
+dist_m018 = responses(m_018)
+
+draw.dist(dist_m018)
 
 ```
 
