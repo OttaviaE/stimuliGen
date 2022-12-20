@@ -236,7 +236,7 @@ ic.scale = function(m,
   if (length(index_elements) == 1) {
     ic.scale = size(m.correct, how.small)
   } else {
-    split.m = split.mat(m)
+    split.m = split.mat(m, mat.type = mat.type)
     
     if (is.null(which.element) == T) {
       
@@ -292,16 +292,34 @@ ic.flip = function(m,
   if (length(index_elements) == 1) {
     ic.rotation = rotation(m.correct, how.rot)
   } else {
-    split.m = split.mat(m)
+    split.m = split.mat(m, mat.type = mat.type)
     
     if (is.null(which.element) == T) {
       
       ic.rotation = rotation(split.m[[1]], how.rot)
       
-      new_index = sample(index_elements,1)
-      ic.inc = hide(m.correct, new_index)
+      # new_index = sample(index_elements,1)
+      # ic.inc = hide(m.correct, new_index)
       for (i in 2:length(split.m)) {
         ic.rotation = cof(ic.rotation, split.m[[i]])
+      }
+      
+      if (any(grepl("circle", names(split.m))) & length(index_elements) == 2) {
+        ic.rotation = rotation(split.m[[names(split.m)[names(split.m) != "circle"]]], 
+                               how.rot)
+        temp = ic.rotation$shape
+      
+          ic.rotation = cof(ic.rotation, 
+                            split.m[[names(split.m)[names(split.m) != temp]]])
+        
+      } else if (any(grepl("circle", names(split.m))) & length(index_elements) > 2) {
+        
+        temp = split.m[[1]]
+        for(i in 2:length(split.m)) {
+        temp = cof(temp, split.m[[i]])
+        }
+        
+        ic.rotation = rotation(temp, how.rot)
       }
       
     } else {
@@ -347,17 +365,26 @@ ic.inc = function(m, which.element = NULL,
       random_shape = list(pie.2(), pie.2.inv())
       random_index = sample(1:2, 1)
       ic.inc = random_shape[[random_index]]
-    } else if (any(grep("pie.2", m.correct$shape)) == T) {
+    } else if (any(grep("pie.2", m.correct$shape)) == T | m.correct$shape[index_elements] == "pacman") {
       ic.inc = circle()
-    } else if (any(grep("square", m.correct$shape)) == T) {
+    } else if (m.correct$shape[index_elements] == "square") {
       ic.inc = cof(vline(pos.x =-m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]), 
                    hline(pos.y = -m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]), 
                    vline(pos.x =m.correct$size.x[[1]], s.x = m.correct$size.x[[1]]))
-    } else {
+    } else if(any(grepl("line", unlist(m.correct$shade))) == T) {
+      ic.inc = m.correct
+      ic.inc$shade[[1]] = "white"
+      ic.inc$lty[[1]] = m.correct$lty[[1]]  
+    } else if(grepl("bow",  m.correct$shape[index_elements] ) == T) {
+      ic.inc = triangle(rot = pi/2)
+      ic.inc$pos.y[[1]] = -10 
+      ic.inc$size.x[[1]] = bow.tie()$size.x[[1]]
+      ic.inc$size.y[[1]] = bow.tie()$size.y[[1]]
+    }else {
       ic.inc = m.correct
     }
   } else {
-    split.m = split.mat(m)
+    split.m = split.mat(m, mat.type = mat.type)
     if (is.null(which.element) == T) {
       new_index = sample(index_elements,1)
       ic.inc = hide(m.correct, new_index)
@@ -374,16 +401,15 @@ ic.inc = function(m, which.element = NULL,
 # ic neg -----
 
 ic.neg = function(m, which.element = NULL, 
-                  mat.type = 9) {
+                  mat.type = 4) {
   m.correct = correct(m, mat.type = mat.type)
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
-  split.m = split.mat(m)
+  split.m = split.mat(m, mat.type = mat.type)
   
   if (length(index_elements) == 1 & length(split.m) != 1) {
     m.c = m.correct
-    if (any(unlist(m.c$shade == "black"), na.rm = T) | any(grep("line", unlist(m.c$shade)), na.rm = T) == T) {
-      m.c$shade[[1]] = rep("white", 
-                                  length(any(unlist(m.c$shade == "black"))))
+    if (any(unlist(m.c$shade == "black"), na.rm = T) | any(grepl("line", unlist(m.c$shade)), na.rm = T) == T) {
+      m.c$shade[[1]] = "white"
     } else if (any(unlist(m.c$shade == "white")) == T) {
       m.c$shade[[1]] = rep("black", 
                                   length(any(unlist(m.c$shade == "white"))))
@@ -398,7 +424,7 @@ ic.neg = function(m, which.element = NULL,
   } else if (length(index_elements) == 1 & length(split.m) == 1) {
     
     ic.col = split.m[[1]]
-    if (is.na(ic.col$shade[[1]]) == T ) {
+    if (is.na(ic.col$shade[[1]][1]) == T ) {
       ic.col$shade[[1]] = "black"
     } else if (ic.col$shade[[1]] == "white") {
       ic.col$shade[[1]] = "black"
@@ -406,19 +432,21 @@ ic.neg = function(m, which.element = NULL,
       ic.col$shade[[1]] = "white"
     } else if (ic.col$shade[[1]] == "grey") {
       ic.col$shade[[1]] = "white"
+    } else if ( any(grepl("line", unlist(ic.col$shade)), na.rm = T) == T) {
+      ic.col$shade[[1]] = "black"
     }
   } else {
     if (is.null(which.element) == T & length(split.m) != 1) {
-      new_index = sample(index_elements,1)
-      ic.temp = hide(m.correct, new_index)
+      new_index = sample(names(split.m),1)
+      ic.temp = ic.temp = hide(m.correct, which(m.correct$shape == new_index))
       
       if (is.na(split.m[[new_index]]$shade[[1]][1]) == T ) {
         split.m[[new_index]]$shade[[1]] = "black"
-      } else if (split.m[[new_index]]$shade[[1]] == "white") {
+      } else if (split.m[[new_index]]$shade[[1]][1] == "white") {
         split.m[[new_index]]$shade[[1]] = "black"
-      } else if (split.m[[new_index]]$shade[[1]] == "black") {
+      } else if (split.m[[new_index]]$shade[[1]][1] == "black") {
         split.m[[new_index]]$shade[[1]] = "white"
-      } else if (split.m[[new_index]]$shade[[1]] == "grey") {
+      } else if (split.m[[new_index]]$shade[[1]][1] == "grey") {
         split.m[[new_index]]$shade[[1]] = "white"
       }
       ic.col = cof(ic.temp, split.m[[new_index]])
