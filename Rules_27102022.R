@@ -327,7 +327,8 @@ logic_rules.Raven_matrix<-function(obj,rule) {
     new[ele[[i]]]<-1
     obj[[i]]$visible<-new
   }
-  
+  obj$hrule<-c(obj$hrule,rule)
+  obj$vrule<-c(obj$vrule,rule)
   attr(obj, "class") <- "Raven_matrix"
   return(obj)
 }
