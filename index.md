@@ -1,5 +1,8 @@
 [Official Documentation](OfficialDocumentation.html)
 
+[Booklet](booklet.pdf)
+
+
 [Matrici disponibili](availableMatrix.html)
 
 [update codice - Andrea](Documento_02112022.html)
