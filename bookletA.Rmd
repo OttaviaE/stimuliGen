@@ -1233,7 +1233,7 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 ```{r}
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
-for(i in seq(-30, 30, by = 1)) {
+for(i in seq(-30, 30, by = 2)) {
   
     draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i)/2), 
          canvas = F,  bg = "white")
@@ -1252,9 +1252,10 @@ container = rectangle(s.x=7,s.y=5,shd="white")
 
 draw(container,xlim = 8)
 clip(7,-7,5,-5)
-for(i in seq(14, 30, by = 1)) {
+#for(i in seq(14, 30, by = 1)) {
+for(i in seq(6, 22, by = 2)) {
   
-    draw(vline(pos.x = i-22, s.x=40, lwd = 1+ abs(i)/2), 
+    draw(vline(pos.x = i-15, s.x=40, lwd = 1+ abs(i)/2), 
          canvas = F,  bg = "white")
 }
 
@@ -1267,7 +1268,7 @@ for(i in seq(14, 30, by = 1)) {
          canvas = F,  bg = "white")
 }
 
-
+draw(container,xlim = 8)
 
 draw(container,xlim = 8)
 draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
@@ -1296,6 +1297,44 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+p = seq(-30, 30, by = 2)
+q = c(1, abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
+for(i in 1:length(p)) {
+  draw(vline(pos.x = p[i]-15, s.x=40, lwd = q[i]), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(8, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
 ## Vertical increasing
 
 ```{r}
@@ -1310,6 +1349,43 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 
 ```
 
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+ 
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i-15, s.x=40, lwd = 31 + i), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
+
 ## Vertical decreasing
 
 ```{r}
@@ -1321,6 +1397,42 @@ for(i in seq(-30, 30, by = 4)) {
 }
 
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
+     canvas = FALSE)
+
+```
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+ 
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i-15, s.x= 40, lwd = 31 - i), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
      canvas = FALSE)
 
 ```
