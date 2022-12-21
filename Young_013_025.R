@@ -12,8 +12,82 @@ u.biscuit$size.y[[1]] <-u.biscuit$size.y[[1]]/4
 u.biscuit$pos.y[[1]] <-u.biscuit$pos.y[[1]]/4
 u.biscuit$pos.x[[1]] <-u.biscuit$pos.x[[1]]/4
 
+blu = "deepskyblue3"
+
+giallo = "gold"
+
+rosso = "firebrick"
+
+########################################################################
+#                    005
+########################################################################
+
+draw(rectangle(s.x=-50,s.y=50,pos.x=+10,pos.y=-7),bg=blu)
+
+for(j in seq(0, 3, by = .2)) {
+  draw(diagline(pos.x = 30,pos.y = 10, s.x=100, rot=(pi/8)*j, lwd = 3,lty=2), 
+       canvas = F)
+}
+
+for(j in c(seq(-20, -5, by = 3),seq(5, 15, by = 1.5))) {
+  draw(vline(pos.x = j, s.x=100, lwd = 3,lty = 1), 
+       canvas = F)
+}
+
+for(j in seq(-15, -5, by = 3)) {
+  draw(hline(pos.y = j, s.x=100, lwd = 3,lty = 1), 
+       canvas = F)
+}
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
+     canvas = FALSE)
+
+##distrattori
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+    mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd=blu)
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(j in seq(0, 3, by = .2)) {
+  draw(diagline(pos.x =30- 15,pos.y = 10-(-10), s.x=100, rot=(pi/8)*j, lwd = 3,lty=2), 
+       canvas = F)
+}
+
+for(j in c(seq(-20, -5, by = 3),seq(5, 15, by = 1.5))) {
+  draw(vline(pos.x = j-15, s.x=100, lwd = 3,lty = 1), 
+       canvas = F)
+}
+
+for(j in seq(-15, -5, by = 3)) {
+  draw(hline(pos.y = j+10, s.x=100, lwd = 3,lty = 1), 
+       canvas = F)
+}
 
 
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(j in seq(0, 3, by = .2)) {
+  draw(diagline(pos.x =30- 15,pos.y = 10-(-10), s.x=100, rot=(pi/8)*j, lwd = 3,lty=2), 
+       canvas = F)
+}
+
+for(j in c(seq(-20, -5, by = 3),seq(5, 15, by = 1.5))) {
+  draw(vline(pos.x = j-15, s.x=100, lwd = 3,lty = 1), 
+       canvas = F)
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+      canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+      canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+      canvas = FALSE)
 
 ########################################################################
 #                    013
