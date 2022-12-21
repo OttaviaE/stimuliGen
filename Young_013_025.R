@@ -1,3 +1,4 @@
+rm(list = ls())
 source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
@@ -152,7 +153,8 @@ young020 = obj_addition_rules(
   ), rule="v.add"
 )
 
-draw(young020, n.cell = 4)
+
+draw(young020, n.cell = 4, bg ="gold")
 
 dist_young020 = responses(young020,mat.type = 4)
 draw.dist(dist_young020, n.resp = 11, main = T)
@@ -170,11 +172,11 @@ young021a = obj_addition_rules(
 
 young021b = apply(
   Raven(
-    st1 =e.hexagon() )
+    st1 =e.hexagon(shd="firebrick") )
 )
 
-young021<-com(young021a,young021b)
-draw(young021, n.cell = 4)
+young021<-com(young021b,young021a)
+draw(young021, n.cell = 4, bg="gold")
 
 dist_young021 = responses(young021,mat.type = 4)
 draw.dist(dist_young021, n.resp = 11, main = T)
@@ -185,22 +187,85 @@ draw.dist(dist_young021, n.resp = 11, main = T)
 #                    022
 ########################################################################
 
+
 young022a = obj_addition_rules(
+  Raven(
+    st1 = cof(cross(),e.hexagon(s.x = 10,s.y=10))
+  )
+  , rule="vh.sott"
+)
+
+young022b = apply(
+  Raven(
+    st1 =square(shd = "gold") )
+)
+
+young022<-com(young022b,young022a)
+draw(young022, n.cell = 4, bg="deepskyblue3")
+
+dist_young022 = responses(young022,mat.type = 4)
+draw.dist(dist_young022, n.resp = 11, main = T)
+
+
+
+
+########################################################################
+#                    023
+########################################################################
+
+young023 = obj_addition_rules(
+  Raven(
+    st1 = cof(cross(),square(rot = pi)) 
+  ), rule="v.sott"
+)
+
+draw(young023, n.cell = 4)
+
+dist_young023 = responses(young020,mat.type = 4)
+draw.dist(dist_young020, n.resp = 11, main = T)
+
+
+########################################################################
+#                    024
+########################################################################
+
+young024a = obj_addition_rules(
+  Raven(
+    st1 = cof(circle(s.x=8,s.y = 8),dot()) 
+  ), rule="vh.add"
+)
+
+young024b = apply(
+  Raven(
+    st1 = pentagon() )
+)
+
+young024<-com(young024a,young024b)
+draw(young024, n.cell = 4)
+
+dist_young024 = responses(young024,mat.type = 4)
+draw.dist(dist_young024, n.resp = 11, main = T)
+
+
+
+########################################################################
+#                    025
+########################################################################
+
+young025a = obj_addition_rules(
   Raven(
     st1 = cof(cof(circle(s.x = 7,s.y = 7),dot(),name="oggetto",single=TRUE ),
               dice()) 
   ), rule="vh.add"
 )
 
-young022b = apply(
+young025b = apply(
   Raven(
     st1 =luck() )
 )
 
-young022<-com(young022a,young022b)
-draw(young022, n.cell = 4)
+young025<-com(young025a,young025b)
+draw(young025, n.cell = 4)
 
-dist_young022 = responses(young022,mat.type = 4)
+dist_young025 = responses(young022,mat.type = 4)
 draw.dist(dist_young022, n.resp = 11, main = T)
-
-
