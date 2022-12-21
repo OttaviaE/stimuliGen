@@ -150,6 +150,18 @@ smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
   value
 }
 
+
+u.smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
+  value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.y, rot=pi/3, 
+                       s.x = 5, s.y=5,shd = shd), 
+              triangle(pos.x = pos.x-5, pos.y = pos.y, rot=-pi, 
+                       s.x = 5, s.y=5,shd = shd), 
+              single = T, name = "u.smallbowtie.inv")
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
 bow.tie.inv <- function(pos.x = 0) {
   value <-cof(triangle(pos.x = pos.x+10, pos.y = pos.x, rot=pi/3, 
                        s.x = 10, s.y=10), 
@@ -686,8 +698,6 @@ young028a = apply(Raven(
   st1 = square(shd = giallo)
 ))
 
-draw(young028a)
-
 young028b = apply(Raven(
   st1 = pacman(), 
   hrule = "fill"
@@ -770,7 +780,173 @@ draw.dist(dist_young030)
 ## young031
 
 ```{r}
+young031a = apply(Raven(
+  st1=rectangle(shd = giallo, s.x = 20, s.y = 15)
+))
+
+young031b = apply(Raven(
+  st1 = cof(u.smallbow.tie.inv(shd = blu), size(u.star(), 2), u.pie.4( 
+                                                    shd = rosso)), 
+  vrule  = "diff_shapes"
+))
+
+young031 = com(young031a, young031b)
+
+draw(young031)
 
 ```
 
+
+```{r}
+dist_young031 = responses(young031)
+
+draw.dist(dist_young031)
+
+```
+
+## young032
+
+```{r}
+young032a = apply(Raven(
+  st1=cof(square(shd = giallo), 
+          square(shd = blu), 
+          square(shd = rosso)), 
+  hrule = "diff_shapes"
+))
+
+young032b = apply(Raven(
+  st1 = cof(u.smallbow.tie.inv(shd = "black"), size(u.star(), 2), 
+            size(pacman(shd = "black"), 2)), 
+  vrule  = "diff_shapes"
+))
+
+young032 = com(young032a, young032b)
+
+draw(young032)
+```
+
+```{r out.width="80%"}
+
+dist_young032 = responses(young032)
+
+draw.dist(dist_young032)
+```
+
+## young033
+
+```{r}
+young033 = apply(
+  Raven(
+    st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")), 
+    vrule = c("diff_shapes", "size")
+  )
+)
+draw(young033, n.cell = 9, hide = T)
+```
+
+```{r out.width="80%"}
+
+dist_young033 = responses(young033)
+
+
+draw.dist(dist_young033)
+```
+
+
+## Young034
+
+
+```{r}
+young034a = apply(Raven(
+  st1 = cof(u.star(), pentagon(shd = "black"), e.hexagon(shd = "black")), 
+  vrule = "diff_shapes"
+))
+
+young034b = apply(
+  Raven(
+    st1 = dot(shd = "white", size.x = 10), 
+    hrule = c("size")
+  )
+)
+
+young034 = com(young034a, young034b)
+
+
+draw(young034, n.cell = 9, hide = T)
+```
+
+```{r out.width="80%"}
+
+dist_young034 = responses(young034)
+
+
+draw.dist(dist_young034)
+```
+
+
+## Young035 
+
+
+```{r}
+young035a = apply(Raven(
+  st1 = square()
+))
+
+young035b = apply(Raven(
+  st1 = cof(u.smallbow.tie.inv(), u.pie.2(), pacman()), 
+  vrule = c("diff_shapes", "fill")
+))
+
+young035 = com(young035a, young035b)
+
+
+draw(young035)
+```
+
+
+```{r}
+dist_young035 = responses(young035)
+
+draw.dist(dist_young035)
+```
+
+
+## Young036
+
+```{r}
+a_3a = apply(
+  Raven(
+    st1 = cof(circle(s.x = 17, s.y = 17), 
+              pentagon(s.x = 16, s.y = 16), 
+              e.hexagon(s.x = 17, s.y = 17)), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+a_3b = apply(
+  Raven(
+    st1 = pacman()
+  )
+)
+
+
+a_3c = apply(
+  Raven(
+    st1 = circle(s.x = 2, s.y = 2), 
+    vrule = c("fill"), 
+    hrule = "fill"
+  )
+)
+
+young036 = com(a_3a, a_3b, a_3c)
+draw(young036, hide = F)
+```
+
+```{r out.width="80%"}
+dist_young036 = responses(young036)
+
+draw.dist(dist_young036)
+
+```
 
