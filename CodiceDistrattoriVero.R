@@ -404,12 +404,9 @@ ic.neg = function(m, which.element = NULL,
                   mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
-<<<<<<< HEAD
-  split.m = split.mat(m)
-=======
+
   split.m = split.mat(m, mat.type = mat.type)
 
->>>>>>> 38c5def3333a6e48079fe19f90a196806d901ef2
   if (length(index_elements) == 1 & length(split.m) != 1) {
     m.c = m.correct
     if (any(unlist(m.c$shade == "black"), na.rm = T) | any(grepl("line", unlist(m.c$shade)), na.rm = T) == T) {

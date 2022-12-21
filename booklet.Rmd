@@ -167,6 +167,8 @@ bow.tie.inv <- function(pos.x = 0) {
 
 # Monotematiche
 
+\newpage
+
 ## Righe semplici Verticali
 
 ```{r echo=FALSE}
@@ -185,7 +187,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 ```
 
 
-```{r }
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
@@ -241,7 +243,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 ```
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd=col)
@@ -294,7 +296,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
@@ -350,7 +352,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-```{r }
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd=col)
@@ -411,7 +413,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd="white")
@@ -471,7 +473,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 ```
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 container = rectangle(s.x=7,s.y=5,shd= col)
@@ -528,7 +530,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
 
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -583,7 +585,8 @@ for(i in seq(-50, 50, by = 1.5)) {
 draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
-```{r}
+
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -640,7 +643,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -703,7 +706,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -765,7 +768,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -825,7 +828,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 ```
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -888,48 +891,6 @@ draw(container,xlim = 8)
 
 
 
-<!-- ## In diagonale -->
-
-<!-- ```{r} -->
-
-<!-- draw(diagline(pos.x = -35, s.x = 50)) -->
-
-<!-- for (i in seq(-32, - 10, by = 3)) { -->
-
-<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
-
-<!-- } -->
-
-<!-- draw(diagline(pos.x = 35, s.x = 50), canvas = F) -->
-
-<!-- for (i in seq(10, 32, by = 3)) { -->
-
-<!--   draw(diagline(pos.x = i, s.x = 50), canvas = F) -->
-
-<!-- } -->
-
-<!-- draw(diagline.inv(pos.x = 35, s.x = 50), canvas = F) -->
-
-<!-- for (i in seq(10, 32, by = 3)) { -->
-
-<!--   draw(diagline.inv(pos.x = i, s.x = 50), canvas = F) -->
-
-<!-- } -->
-
-<!-- draw(diagline.inv(pos.x = -35, s.x = 50), canvas = F) -->
-
-<!-- for (i in seq(-32, -10, by = 3)) { -->
-
-<!--   draw(diagline.inv(pos.x = i, s.x = 50), canvas = F) -->
-
-<!-- } -->
-
-<!-- draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+10,pos.y=-7), -->
-
-<!--      canvas = FALSE) -->
-
-<!-- ``` -->
-
 ## Con altre forme
 
 ```{r}
@@ -946,7 +907,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 ```
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -987,7 +948,7 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 ```
 
 
-## 
+## ???
 
 ```{r}
 draw(dot(pos.x = -25, pos.y = 15, size.x = 2, size.y = 2))
@@ -1002,7 +963,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -1056,7 +1017,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -1097,20 +1058,20 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 
 ```{r}
+un.biscuit = u.biscuit
+un.biscuit$pos.x[[1]] = -25
+un.biscuit$pos.y[[1]] = 15
 
-u.biscuit$pos.x[[1]] = -25
-u.biscuit$pos.y[[1]] = 15
 
-
-draw(size(u.biscuit, 4))
+draw(size(un.biscuit, 4))
 
 for (i in seq(-25, 25, by = 4)) {
   for (j in seq(15, -15, by = -4)) {
-    u.biscuit$pos.x[[1]] = i
-u.biscuit$pos.y[[1]] = j 
+    un.biscuit$pos.x[[1]] = i
+un.biscuit$pos.y[[1]] = j 
     
    
-draw(size(u.biscuit, 4), canvas = F)
+draw(size(un.biscuit, 4), canvas = F)
   }
 }
 
@@ -1118,7 +1079,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -1128,11 +1089,11 @@ draw(container,xlim = 8)
 clip(7,-7,5,-5)
 for (i in seq(-21, 25, by = 4)) {
   for (j in seq(12.5, -15, by = -4)) {
-       u.biscuit$pos.x[[1]] = i
-u.biscuit$pos.y[[1]] = j 
+       un.biscuit$pos.x[[1]] = i
+un.biscuit$pos.y[[1]] = j 
     
    
-draw(size(u.biscuit, 4), canvas = F)
+draw(size(un.biscuit, 4), canvas = F)
   }
 }
 
@@ -1161,21 +1122,23 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 ```
 
+## Altro
+
 ```{r}
 
-u.biscuit$pos.x[[1]] = -25
-u.biscuit$pos.y[[1]] = 15
+un.biscuit = u.biscuit
+un.biscuit$pos.x[[1]] = -25
+un.biscuit$pos.y[[1]] = 15
 
-
-draw(size(u.biscuit, 4))
+draw(size(un.biscuit, 4))
 
 for (i in seq(-25, 25, by = 5)) {
   for (j in seq(15, -15, by = -5)) {
-    u.biscuit$pos.x[[1]] = i
-u.biscuit$pos.y[[1]] = j 
+    un.biscuit$pos.x[[1]] = i
+un.biscuit$pos.y[[1]] = j 
     
    
-draw(size(u.biscuit, 4), canvas = F)
+draw(size(un.biscuit, 4), canvas = F)
   }
 }
 
@@ -1183,7 +1146,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -1193,11 +1156,11 @@ draw(container,xlim = 8)
 clip(7,-7,5,-5)
 for (i in seq(-25, 25, by = 5)) {
   for (j in seq(15, -15, by = -5)) {
-       u.biscuit$pos.x[[1]] = i
-u.biscuit$pos.y[[1]] = j 
+       un.biscuit$pos.x[[1]] = i
+un.biscuit$pos.y[[1]] = j 
     
    
-draw(size(u.biscuit, 4), canvas = F)
+draw(size(un.biscuit, 4), canvas = F)
   }
 }
 
@@ -1230,12 +1193,10 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 ## Righe "complesse" verticali
 
-::: panel-tabset
-## Vertical Inner
 
 ```{r}
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
-for(i in seq(-30, 30, by = 1)) {
+for(i in seq(-30, 30, by = 2)) {
   
     draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i)/2), 
          canvas = F,  bg = "white")
@@ -1246,7 +1207,7 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
 ```
 
 
-```{r}
+```{r out.width="80%"}
 par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
           mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
 
@@ -1254,9 +1215,10 @@ container = rectangle(s.x=7,s.y=5,shd="white")
 
 draw(container,xlim = 8)
 clip(7,-7,5,-5)
-for(i in seq(14, 30, by = 1)) {
+#for(i in seq(14, 30, by = 1)) {
+for(i in seq(6, 22, by = 2)) {
   
-    draw(vline(pos.x = i-22, s.x=40, lwd = 1+ abs(i)/2), 
+    draw(vline(pos.x = i-15, s.x=40, lwd = 1+ abs(i)/2), 
          canvas = F,  bg = "white")
 }
 
@@ -1269,7 +1231,7 @@ for(i in seq(14, 30, by = 1)) {
          canvas = F,  bg = "white")
 }
 
-
+draw(container,xlim = 8)
 
 draw(container,xlim = 8)
 draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
@@ -1285,7 +1247,7 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 ## Vertical Outer
 
-```{r}
+```{r out.width="80%"}
 # vertical outer canvas
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
 p = seq(-30, 30, by = 2)
@@ -1298,9 +1260,47 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 ```
 
-## Vertical increasing
 
 ```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+p = seq(-30, 30, by = 2)
+q = c(1, abs(p[(length(p)/2):1]), abs(p[1:(length(p)/2)]))
+for(i in 1:length(p)) {
+  draw(vline(pos.x = p[i]-15, s.x=40, lwd = q[i]), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(8, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
+## Vertical increasing
+
+```{r }
 draw(vline(pos.x=-50, s.x = 30, lwd = 1), bg = "white")
 for(i in seq(-30, 30, by = 4)) {
   draw(vline(pos.x = i, s.x=40, lwd = 31 + i), 
@@ -1311,6 +1311,43 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 
 ```
+
+```{r out.width="80%"} 
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+ 
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i-15, s.x=40, lwd = 31 + i), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
 
 ## Vertical decreasing
 
@@ -1326,9 +1363,47 @@ draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
      canvas = FALSE)
 
 ```
+
+```{r out.width="80%"}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd="white")
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+ 
+for(i in seq(-30, 30, by = 4)) {
+  draw(vline(pos.x = i-15, s.x= 40, lwd = 31 - i), 
+       canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8)
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
 :::
 
 # Matrici $2 \times 2$
+
+\newpage
 
 ## Rotazione Diagonale
 
@@ -1345,7 +1420,7 @@ draw(m1, n.cell = 4)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m1 = responses(m1)
 draw.dist(dist_m1, n.resp = 11, main = T)
 ```
@@ -1363,14 +1438,13 @@ m2 = apply(
 draw(m2, n.cell = 4)
 ```
 
-```{r}
-dist_m2 = responses(m2)
+```{r out.width="80%"}
+dist_m2 = responses(m2, mat.type = 4)
 draw.dist(dist_m2, n.resp = 11, main = T)
 ```
 
 ## Forma e dimensione Verticale
 
-Ci sono problemi, perché qui bisogna mettere ben 3 forme e prende come corretta la forma che non è visibile
 
 ```{r}
 m3 = apply(
@@ -1382,12 +1456,12 @@ m3 = apply(
     hrule = "identity"
   )
 )
-draw(m3, n.cell = 9, hide = F)
+draw(m3, n.cell = 4, hide = F)
 ```
 
 
 
-```{r}
+```{r out.width="80%"}
 dist_m3 = responses(m3, mat.type = 4)
 
 draw.dist(dist_m3, n.resp = 11, main = T)
@@ -1409,7 +1483,7 @@ draw(m4, n.cell = 4)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m4 = responses(m4, mat.type = 4)
 
 draw.dist(dist_m4)
@@ -1418,10 +1492,7 @@ draw.dist(dist_m4)
 
 :::
 
-## Forma e riempimento
-
-::: panel-tabset
-## Verticale
+## Forma e riempimento Verticale
 
 ```{r}
 
@@ -1437,9 +1508,9 @@ draw(m5, n.cell = 4)
 
 ```
 
-## Non stampa i distarttori nel pdf ma non capisco come mai
 
-```{r}
+
+```{r out.width="80%"}
 dist_m5 = responses(m5, mat.type = 4)
 
 draw.dist(dist_m5)
@@ -1465,7 +1536,7 @@ draw(m6, n.cell = 4)
 :::
 
 
-```{r}
+```{r out.width="80%"}
 dist_m6 = responses(m6, mat.type = 4)
 draw.dist(dist_m6)
 ```
@@ -1473,7 +1544,7 @@ draw.dist(dist_m6)
 
 ## Forma e orientamento Verticale
 
-```{r}
+```{r }
 m7 = apply(
   Raven(
     st1 = cof(slice(s.x = 15), 
@@ -1485,8 +1556,8 @@ m7 = apply(
 draw(m7, n.cell = 4)
 ```
 
-```{r}
-dist_m7 = responses(m7)
+```{r out.width="80%"}
+dist_m7 = responses(m7, mat.type = 4)
 
 draw.dist(dist_m7)
 
@@ -1507,7 +1578,7 @@ m8 = apply(
 draw(m8, n.cell = 4)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m8 = responses(m8, mat.type = 4)
 
 draw.dist(dist_m8)
@@ -1530,7 +1601,7 @@ draw(m8_bis, n.cell = 4)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m8bis = responses(m8_bis, mat.type = 4)
 
 draw.dist(dist_m8bis)
@@ -1554,7 +1625,7 @@ draw(m9, n.cell = 4)
 :::
 
 
-```{r}
+```{r out.width="80%"}
 dist_m9 = responses(m9, mat.type = 4)
 
 draw.dist(dist_m9)
@@ -1583,49 +1654,16 @@ draw(M1, n.cell = 9, hide = T)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 
 dist_m1 = responses(M1)
 draw.dist(dist_m1, n.resp = 11, main = T)
 
 ```
 
-## Gemella 1
-
-```{r}
-
-e_VertFill_HorLi_01a = apply(
-  Raven(
-    st1 = pacman(), 
-    vrule = c("fill"), 
-    hrule = "identity"
-  )
-)
 
 
-e_VertFill_HorLi_01b = apply(
-  Raven(
-    st1 = square(s.x = 18, s.y = 18), 
-    vrule = c("identity"), 
-    hrule = c("lty", "lwd")
-  )
-)
-
-elisa001 = com(e_VertFill_HorLi_01a, e_VertFill_HorLi_01b)
-draw(elisa001, hide = T)
-```
-
-
-```{r}
-dist_e001 = responses(elisa001)
-
-draw.dist(dist_e001, n.resp = 11)
-
-```
-
-
-
-## Gemella 2 
+## Max
 
 
 ```{r}
@@ -1640,7 +1678,7 @@ m_VertShSi_01= apply(
 draw(m_VertShSi_01, hide = T)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m001 = responses(m_VertShSi_01)
 draw.dist(dist_m001, n.resp = 11, main = T)
 ```
@@ -1659,49 +1697,16 @@ M2 = apply(
 draw(M2, n.cell = 9, hide = T)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M2 = responses(M2)
 
 draw.dist(dist_M2)
 ```
 
-## Gemella 1 
-
-```{r}
-e_TLLRLi_VertFill_01a = apply(
-  Raven(
-    st1 = square(s.x = 20, s.y = 20), 
-    vrule = c("lty", "lwd"), 
-    hrule = c("lty", "lwd")
-  )
-)
-
-e_TLLRLi_VertFill_01b = apply(
-  Raven(
-    st1 = triangle(s.x = 10, s.y = 10), 
-    vrule = c("fill"), 
-    hrule = c("identity")
-  )
-)
-
-elisa002 = com(com(e_TLLRLi_VertFill_01a, e_TLLRLi_VertFill_01b))
-draw(elisa002)
-
-```
 
 
 
-```{r}
-dist_e002 = responses(elisa002)
-
-draw.dist(dist_e002)
-
-```
-
-
-:::
-
-## Gemella 2
+## Max
 
 ```{r}
 m_VertShSi_01= apply(
@@ -1714,7 +1719,7 @@ m_VertShSi_01= apply(
 draw(m_VertShSi_01)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m002 = responses(m_VertShSi_01)
 
 draw.dist(dist_m002)
@@ -1755,7 +1760,7 @@ draw(M3)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M3 = responses(M3)
 
 
@@ -1764,58 +1769,44 @@ draw.dist(dist_M3)
 
 ```
 
-## Gemella 
+
+
+
+
+## Max
 
 ```{r}
-e_TLLRFill_TRLLLi_01a = apply(
+m_TLLRSh_TRLLFil_01a = apply(
   Raven(
-    st1 = circle(s.x = 17, s.y = 17), 
-    vrule = c("lty", "lwd"), 
-    hrule = c("lty", "lwd")
-  )
-)
-
-e_TLLRFill_TRLLLi_01b = apply(
-  Raven(
-    st1 = cof(u.star(), 
-              u.bow.tie(), 
-              triangle(s.x = 14, s.y=14, rot = pi/2, shd = "black", pos.y = -1)), 
+    st1 = cof(e.hexagon(s.x = 17,s.y = 17), 
+              luck(s.x = 17, s.y = 20), pentagon(s.x = 17,s.y = 17)), 
     vrule = c("diff_shapes"), 
-    hrule = c("diff_shapes")
+    hrule = "diff_shapes"
   )
 )
 
-elisa003 = com(e_TLLRFill_TRLLLi_01a, e_TLLRFill_TRLLLi_01b)
-draw(elisa003)
-```
-
-```{r}
-dist_e003 = responses(elisa003)
-
-draw.dist(dist_e003)
-```
-
-
-## Gemella 2
-
-```{r}
-m_VertSh_HorSi_01  = apply(
+m_TLLRSh_TRLLFil_01b = apply(
   Raven(
-    st1 = cof(luck(), ellipse(), slice()), 
-    vrule = c("diff_shapes"), 
-    hrule = "size"
+    st1 = cof(pacman(), 
+              square(s.x = 8, s.y = 8), 
+              s.lily()), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = "diff_shapes.inv"
   )
 )
-draw(m_VertSh_HorSi_01)
+
+m_007 = com(m_TLLRSh_TRLLFil_01a, m_TLLRSh_TRLLFil_01b)
+
+draw(m_007)
 ```
 
+```{r out.width="80%"}
+dist_m007 = responses(m_007)
 
-```{r}
-dist_m003 = responses(m_VertSh_HorSi_01)
-
-draw.dist(dist_m003)
+draw.dist(dist_m007)
 
 ```
+
 
 
 ## Forma e rimepimento Verticale e orizzontale
@@ -1843,49 +1834,15 @@ M4 = com(M4a, M4b)
 draw(M4, n.cell=9)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M4 = responses(M4)
 
 draw.dist(dist_M4)
 
 ```
 
-## Gemella 
 
-```{r}
-e_VertShFillLi_01a = apply(
-  Raven(
-    st1 = cof(triangle(s.x = 17, s.y = 17), 
-              rot.hexagon(shd = "white"), 
-              luck(s.x = 15, s.y = 20)), 
-    vrule = c("diff_shapes", "lty", "lwd"), 
-    hrule = c("identity")
-  )
-)
-
-e_VertShFillLi_01b = apply(
-  Raven(
-    st1 = cof(circle(s.x = 5, s.y = 5), 
-              u.pie.2(), 
-              e.hexagon(s.x = 6, s.y = 6)), 
-    vrule = c("diff_shapes"), 
-    hrule = c("identity")
-  )
-)
-elisa004 = com(e_VertShFillLi_01a, e_VertShFillLi_01b)
-
-draw(elisa004)
-```
-
-
-```{r}
-dist_e004 = responses(elisa004)
-
-draw.dist(dist_e004)
-```
-
-
-## Gemella 2 
+## Max
 
 ```{r}
 m_VertShFil_01a = apply(
@@ -1912,7 +1869,7 @@ draw(max_004)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m004 = responses(max_004)
 
 draw.dist(dist_m004)
@@ -1947,7 +1904,7 @@ draw(M5, n.cell=9)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M5 = responses(M5)
 
 draw.dist(dist_M5)
@@ -1955,44 +1912,9 @@ draw.dist(dist_M5)
 ```
 
 
-## Gemella 1
-```{r}
-e_HorShFill_VertLi_01a = apply(
-  Raven(
-    st1 = cof(circle(s.x = 15, s.y = 15), 
-              pentagon(), 
-              square(s.x = 18, s.y = 18)), 
-    vrule = c("diff_shapes", "lty", "lwd"), 
-    hrule = c("identity")
-  )
-)
-
-e_HorShFill_VertLi_01b = apply(
-  Raven(
-    st1 = cof(X(), 
-              triangle(s.x = 7, s.y = 7), 
-              u.pie.2.inv()), 
-    vrule = c("identity"), 
-    hrule = c("diff_shapes")
-  )
-)
-elisa_005 = com(e_HorShFill_VertLi_01a, e_HorShFill_VertLi_01b)
-
-draw(elisa_005)
 
 
-
-```
-
-```{r}
-dist_e005 = responses(elisa_005)
-
-draw.dist(dist_e005)
-
-```
-
-
-## Gemella 2 
+## Max
 
 
 ```{r}
@@ -2019,7 +1941,7 @@ max_005 = com(m_VertSh_HorFil_01a, m_VertSh_HorFil_01b)
 draw(max_005)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m005 = responses(max_005)
 
 draw.dist(dist_m005)
@@ -2055,7 +1977,7 @@ draw(M6, n.cell=9)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M6 = responses(M6)
 
 draw.dist(dist_M6)
@@ -2063,44 +1985,8 @@ draw.dist(dist_M6)
 ```
 
 
-## Gemella 1 
 
-```{r}
-e_TLLRSh_VertLil_HorFill_01a = apply(
-  Raven(
-    st1 = cof(circle(), 
-              u.pie.2(), 
-              u.pie.4()), 
-    vrule = c("diff_shapes", "lty", "lwd"), 
-    hrule = c("diff_shapes")
-  )
-)
-
-e_TLLRSh_VertLil_HorFill_01b = apply(
-  Raven(
-    st1 = pentagon(s.x = 3, s.y = 3), 
-    vrule = c("identity"), 
-    hrule = "fill"
-  )
-)
-
-elisa006 = com(e_TLLRSh_VertLil_HorFill_01a, e_TLLRSh_VertLil_HorFill_01b)
-
-draw(elisa006)
-
-
-```
-
-
-
-```{r}
-dist_e006 = responses(elisa006)
-
-draw.dist(dist_e006)
-
-```
-
-## Gemella 2 
+## Max
 
 ```{r}
 m_TLLRSh_VertFil_01a = apply(
@@ -2126,7 +2012,7 @@ draw(m_006)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m006 = responses(m_006)
 
 draw.dist(dist_m006)
@@ -2135,7 +2021,7 @@ draw.dist(dist_m006)
 
 ## Forma e orientamento Verticale
 
-```{r}
+```{r }
 M7 = apply(
   Raven(
     st1 = cof(luck(), 
@@ -2148,85 +2034,33 @@ draw(M7, n.cell = 9)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M7 = responses(M7)
 
 draw.dist(dist_M7)
 ```
 
-## Gemella 
+
+## Max
 
 ```{r}
-e_TLLRSh_TRLLFillLi_01a = apply(
+m_VertSh_HorSi_01  = apply(
   Raven(
-    st1 = cof(ellipse(s.x = 15, s.y = 11), 
-              e.hexagon(), 
-              square()), 
-    vrule = c("diff_shapes.inv", "lty", "lwd"), 
-    hrule = c("diff_shapes.inv", "lty", "lwd")
-  )
-)
-
-
-e_TLLRSh_TRLLFillLi_01b = apply(
-  Raven(
-    st1 =  cof(dot(), 
-               s.lily(), 
-               vline()), 
+    st1 = cof(luck(), ellipse(), slice()), 
     vrule = c("diff_shapes"), 
-    hrule = "diff_shapes"
+    hrule = "size"
   )
 )
-
-elisa007 = com(e_TLLRSh_TRLLFillLi_01b, e_TLLRSh_TRLLFillLi_01a)
-
-
-draw(elisa007)
+draw(m_VertSh_HorSi_01)
 ```
 
 
-```{r}
-dist_e007 = responses(elisa007)
+```{r out.width="80%"}
+dist_m003 = responses(m_VertSh_HorSi_01)
 
-draw.dist(dist_e007)
-
-```
-
-## Gemella 2
-
-```{r}
-m_TLLRSh_TRLLFil_01a = apply(
-  Raven(
-    st1 = cof(e.hexagon(s.x = 17,s.y = 17), 
-              luck(s.x = 17, s.y = 20), pentagon(s.x = 17,s.y = 17)), 
-    vrule = c("diff_shapes"), 
-    hrule = "diff_shapes"
-  )
-)
-
-m_TLLRSh_TRLLFil_01b = apply(
-  Raven(
-    st1 = cof(pacman(), 
-              square(s.x = 8, s.y = 8), 
-              s.lily()), 
-    vrule = c("diff_shapes.inv"), 
-    hrule = "diff_shapes.inv"
-  )
-)
-
-m_007 = com(m_TLLRSh_TRLLFil_01a, m_TLLRSh_TRLLFil_01b)
-
-draw(m_007)
-```
-
-```{r}
-dist_m007 = responses(m_007)
-
-draw.dist(dist_m007)
+draw.dist(dist_m003)
 
 ```
-
-
 
 ## Verticale e orizzontale
 
@@ -2251,37 +2085,8 @@ draw.dist(dist_M8)
 
 ```
 
-## Gemella 
 
-
-```{r}
-
-
-e_VertShSi_HorFill_01 = apply(
-  Raven(
-    st1 = cof(e.hexagon(), 
-              pentagon(), 
-              triangle()), 
-    vrule = c("diff_shapes", "size"), 
-    hrule = c("parfill")
-  )
-)
-elisa008 = e_VertShSi_HorFill_01
-draw(elisa008, n.cell = 9)
-
-```
-
-
-```{r}
-dist_e008 = responses(elisa008)
-
-draw.dist(dist_e008)
-
-
-```
-
-
-## Gemella 2
+## Max
 
 ```{r}
 m_VertShOr_01 = apply(
@@ -2296,7 +2101,7 @@ draw(m_VertShOr_01)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m008 = responses(m_VertShOr_01)
 
 draw.dist(dist_m008)
@@ -2317,38 +2122,16 @@ M10 = apply(
 draw(M10, n.cell = 9)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M10 = responses(M10)
 
 draw.dist(dist_M10)
 
 ```
 
-## Gemella 
 
-```{r}
-e_TLLRSh_VertFillSi_01a = apply(
-  Raven(
-    st1 = cof(triangle(s.x=16, s.y=16), 
-              e.hexagon(), 
-              circle(s.x=17, s.y = 14)), 
-    vrule = c("diff_shapes"), 
-    hrule = c("diff_shapes")
-  )
-)
 
-elisa010 = e_TLLRSh_VertFillSi_01a
-draw(elisa010)
-```
-
-```{r}
-dist_e010 = responses(elisa010)
-
-draw.dist(dist_e010)
-
-```
-
-## Gemella 2
+## Max
 
 ```{r}
 m_VertSh_HorOr_01 = apply(
@@ -2364,7 +2147,7 @@ draw(m_VertSh_HorOr_01)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m009 = responses(m_VertSh_HorOr_01)
 
 draw.dist(dist_m009)
@@ -2386,13 +2169,13 @@ draw(M11, n.cell = 9)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M11 = responses(M11)
 
 draw.dist(dist_M11)
 ```
 
-## gemella 
+## Max
 
 ```{r}
 m_TLLRSh_VertOr_01 = apply(
@@ -2406,7 +2189,7 @@ draw(m_TLLRSh_VertOr_01)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m010 = responses(m_TLLRSh_VertOr_01)
 
 draw.dist(dist_m010)
@@ -2429,7 +2212,7 @@ draw(M11, n.cell = 9)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M11 = responses(M11)
 
 draw.dist(dist_M11)
@@ -2439,31 +2222,9 @@ draw.dist(dist_M11)
 
 
 
-## Gemella 
-
-```{r}
-e_TLLRSh_VertFillSi_01b = apply(
-  Raven(
-    st1 = cof(square(s.x=6, s.y=6)), 
-    vrule = c("fill", "size"), 
-    hrule = c("identity")
-  )
-)
-elisa011 = com(e_TLLRSh_VertFillSi_01a, e_TLLRSh_VertFillSi_01b)
-draw(elisa011)
-
-```
 
 
-```{r}
-dist_e011 = responses(elisa011)
-
-draw.dist(dist_e011)
-
-```
-
-
-## Gemella 2 
+## Max
 
 ```{r}
 m_TLLRSh_TRLLOr_01 = apply(
@@ -2477,7 +2238,7 @@ m_TLLRSh_TRLLOr_01 = apply(
 draw(m_TLLRSh_TRLLOr_01)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m011 = responses(m_TLLRSh_TRLLOr_01)
 
 draw.dist(dist_m011)
@@ -2499,7 +2260,7 @@ M12 = apply(
 draw(M12, n.cell = 9)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M12 = responses(M12)
 
 draw.dist(dist_M12)
@@ -2507,29 +2268,8 @@ draw.dist(dist_M12)
 ```
 
 
-## Gemella 
 
-```{r}
-e_TLLRSh_TRLLFillSi_01a = apply(
-  Raven(
-    st1 = cof(circle(s.x = 13, s.y=13, shd = "black"), 
-              u.star(), 
-              square(s.x = 15, s.y=15, shd = "black")), 
-    vrule = c("diff_shapes.inv"), 
-    hrule = c("diff_shapes.inv")
-  )
-)
-elisa012 = e_TLLRSh_TRLLFillSi_01a
-draw(elisa012)
-```
-
-
-```{r}
-dist_e012 = responses(elisa012)
-draw.dist(dist_e012)
-```
-
-## Gemella 2
+## Max
 
 ```{r}
 m_VertShLi_01= apply(
@@ -2544,7 +2284,7 @@ draw(m_VertShLi_01)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m012 = responses(m_VertShLi_01)
 
 draw.dist(dist_m012)
@@ -2569,42 +2309,16 @@ draw(M13, n.cell = 9)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M13 = responses(M13)
 
 draw.dist(dist_M13)
 ```
 
 
-## Gemella 
-
-```{r}
-e_TLLRSh_TRLLFillSi_01b = apply(
-  Raven(
-    st1 = cof(triangle(s.x=15, s.y=15, shd = "white"), 
-              circle(s.x=6, s.y=6, shd = "white"), 
-              e.hexagon(s.x=10, s.y=10, shd="white")), 
-    vrule = c("diff_shapes", "size"), 
-    hrule = c("diff_shapes", "size")
-  )
-)
-
-elisa013 = com(e_TLLRSh_TRLLFillSi_01a, e_TLLRSh_TRLLFillSi_01b)
-
-draw(elisa013)
-
-```
 
 
-```{r}
-dist_e013 = responses(elisa013)
-
-draw.dist(dist_e013)
-
-```
-
-
-## Gemella 2
+## Max
 
 ```{r}
 m_VertSh_HorLi_01 = apply(
@@ -2620,7 +2334,7 @@ draw(m_VertSh_HorLi_01)
 
 
 
-```{r}
+```{r out.width="80%"}
 dist_m012 = responses(m_VertSh_HorLi_01)
 
 draw.dist(dist_m012)
@@ -2644,7 +2358,7 @@ draw(M14, n.cell = 9)
 :::
 
 
-```{r}
+```{r out.width="80%"}
 dist_M14 = responses(M14)
 
 draw.dist(dist_M14)
@@ -2652,7 +2366,7 @@ draw.dist(dist_M14)
 ```
 
 
-## Gemella 
+## Max
 
 ```{r}
 m_TLLRSh_VertLi_01 = apply(
@@ -2667,7 +2381,7 @@ draw(m_TLLRSh_VertLi_01)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m013 = responses(m_TLLRSh_VertLi_01)
 
 draw.dist(dist_m013)
@@ -2677,7 +2391,7 @@ draw.dist(dist_m013)
 
 ## Rimepimento e orientamento Verticale
 
-```{r}
+```{r }
 M15a = apply(
   Raven(
     st1 = pentagon(), 
@@ -2703,35 +2417,51 @@ draw(M15, n.cell=9)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M15 = responses(M15)
 
 draw.dist(dist_M15)
 
 ```
 
-
-## Gemella 
+## Max 
 
 ```{r}
-m_TLLRSh_TRLLLi_01 = apply(
+m_VertFilOr_01a = apply(
   Raven(
-    st1 = cof(u.pie.2(), 
-              slice(), square()), 
-    vrule = c("diff_shapes", "lty", "lwd"), 
-    hrule = c("diff_shapes", "lty", "lwd")
+    st1 = triangle(s.x = 15,s.y = 15), 
+    vrule = c("rotation"), 
+    hrule = c("identity")
   )
 )
-draw(m_TLLRSh_TRLLLi_01)
+
+
+m_VertFilOr_01b = apply(
+  Raven(
+    st1 = cof(square(s.x = 5,s.y = 5,shd = "black"), 
+              pentagon(s.x = 5, s.y = 5, shd = "black"), 
+              circle(s.x = 5, s.y=5, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = "identity"
+  )
+)
+
+m_015 = com(m_VertFilOr_01a, m_VertFilOr_01b)
+draw(m_015)
+
 ```
 
 
-```{r}
-dist_m014 = responses(m_TLLRSh_TRLLLi_01)
+```{r out.width="80%"}
+dist_m015 = responses(m_015)
 
+draw.dist(dist_m015)
 
-draw.dist(dist_m014)
 ```
+
+
+
+
 
 
 ## Vertical e orizzontale
@@ -2761,48 +2491,35 @@ M16 = com(M16a, M16b)
 draw(M16, n.cell=9)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M16 = responses(M16)
 
 draw.dist(dist_M16)
 
 ```
 
-
-## Gemella 
+## Max
 
 ```{r}
-m_VertFilOr_01a = apply(
+m_TLLRSh_TRLLLi_01 = apply(
   Raven(
-    st1 = triangle(s.x = 15,s.y = 15), 
-    vrule = c("rotation"), 
-    hrule = c("identity")
+    st1 = cof(u.pie.2(), 
+              slice(), square()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("diff_shapes", "lty", "lwd")
   )
 )
-
-
-m_VertFilOr_01b = apply(
-  Raven(
-    st1 = cof(square(s.x = 5,s.y = 5,shd = "black"), 
-              pentagon(s.x = 5, s.y = 5, shd = "black"), 
-              circle(s.x = 5, s.y=5, shd = "black", pos.y = -1)), 
-    vrule = c("diff_shapes.inv"), 
-    hrule = "identity"
-  )
-)
-
-m_015 = com(m_VertFilOr_01a, m_VertFilOr_01b)
-draw(m_015)
-
+draw(m_TLLRSh_TRLLLi_01)
 ```
 
 
-```{r}
-dist_m015 = responses(m_015)
+```{r out.width="80%"}
+dist_m014 = responses(m_TLLRSh_TRLLLi_01)
 
-draw.dist(dist_m015)
 
+draw.dist(dist_m014)
 ```
+
 
 
 ## TL-LR entrambe
@@ -2829,7 +2546,7 @@ draw(M17, n.cell=9)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M17 = responses(M17)
 
 draw.dist(dist_M17)
@@ -2837,7 +2554,7 @@ draw.dist(dist_M17)
 ```
 
 
-## Gemella 
+## Max
 
 ```{r}
 m_VertFil_HorOr_01a = apply(
@@ -2863,7 +2580,7 @@ draw(m_016)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 
 dist_m016 = responses(m_016)
 
@@ -2911,12 +2628,14 @@ draw(M18)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M18 = responses(M18)
 draw.dist(dist_M18)
 
 ```
 
+
+## Max
 
 ```{r}
 m_TLLRFil_VertOr_01a = apply(
@@ -2940,7 +2659,7 @@ m_017 = com(m_TLLRFil_VertOr_01a, m_TLLRFil_VertOr_01b)
 draw(m_017)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_m017 = responses(m_017)
 
 draw.dist(dist_m017)
@@ -2970,15 +2689,47 @@ M19b = apply(
 draw(M19)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M19 = responses(M19)
 
 draw.dist(dist_M19)
 
 ```
 
+## Elisa
 
-## Gemella 
+```{r}
+
+e_VertFill_HorLi_01a = apply(
+  Raven(
+    st1 = pacman(), 
+    vrule = c("fill"), 
+    hrule = "identity"
+  )
+)
+
+
+e_VertFill_HorLi_01b = apply(
+  Raven(
+    st1 = square(s.x = 18, s.y = 18), 
+    vrule = c("identity"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+elisa001 = com(e_VertFill_HorLi_01a, e_VertFill_HorLi_01b)
+draw(elisa001, hide = T)
+```
+
+
+```{r out.width="80%"}
+dist_e001 = responses(elisa001)
+
+draw.dist(dist_e001, n.resp = 11)
+
+```
+
+## Max
 
 ```{r}
 m_TLLRFil_TRLLOr_01a = apply(
@@ -3001,7 +2752,7 @@ draw(m_018)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_m018 = responses(m_018)
 
 draw.dist(dist_m018)
@@ -3033,13 +2784,45 @@ M20 = com(M20a, M20b)
 draw(M20)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M20 = responses(M20)
 
 draw.dist(dist_M20)
 
 ```
 
+## Elisa
+
+```{r}
+e_TLLRLi_VertFill_01a = apply(
+  Raven(
+    st1 = square(s.x = 20, s.y = 20), 
+    vrule = c("lty", "lwd"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+e_TLLRLi_VertFill_01b = apply(
+  Raven(
+    st1 = triangle(s.x = 10, s.y = 10), 
+    vrule = c("fill"), 
+    hrule = c("identity")
+  )
+)
+
+elisa002 = com(com(e_TLLRLi_VertFill_01a, e_TLLRLi_VertFill_01b))
+draw(elisa002)
+
+```
+
+
+
+```{r out.width="80%"}
+dist_e002 = responses(elisa002)
+
+draw.dist(dist_e002)
+
+```
 
 ## TL-LR
 
@@ -3067,16 +2850,45 @@ draw(M21)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M21 = responses(M21)
 draw.dist(dist_M21)
 ```
 
 
-## Forma riempimento bordo
+## Elisa
 
-::: panel-tabset
-## Verticale
+```{r}
+e_TLLRFill_TRLLLi_01a = apply(
+  Raven(
+    st1 = circle(s.x = 17, s.y = 17), 
+    vrule = c("lty", "lwd"), 
+    hrule = c("lty", "lwd")
+  )
+)
+
+e_TLLRFill_TRLLLi_01b = apply(
+  Raven(
+    st1 = cof(u.star(), 
+              u.bow.tie(), 
+              triangle(s.x = 14, s.y=14, rot = pi/2, shd = "black", pos.y = -1)), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes")
+  )
+)
+
+elisa003 = com(e_TLLRFill_TRLLLi_01a, e_TLLRFill_TRLLLi_01b)
+draw(elisa003)
+```
+
+```{r out.width="80%"}
+dist_e003 = responses(elisa003)
+
+draw.dist(dist_e003)
+```
+
+
+## Forma riempimento bordo  Verticale
 
 ```{r}
 
@@ -3102,13 +2914,46 @@ M22 = com(M22a, M22b)
 draw(M22)
 ```
 
-```{r}
+```{r out.width="80%"}
 
 dist_M22 = responses(M22)
 draw.dist(dist_M22)
 
 ```
 
+## Elisa
+
+```{r}
+e_VertShFillLi_01a = apply(
+  Raven(
+    st1 = cof(triangle(s.x = 17, s.y = 17), 
+              rot.hexagon(shd = "white"), 
+              luck(s.x = 15, s.y = 20)), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("identity")
+  )
+)
+
+e_VertShFillLi_01b = apply(
+  Raven(
+    st1 = cof(circle(s.x = 5, s.y = 5), 
+              u.pie.2(), 
+              e.hexagon(s.x = 6, s.y = 6)), 
+    vrule = c("diff_shapes"), 
+    hrule = c("identity")
+  )
+)
+elisa004 = com(e_VertShFillLi_01a, e_VertShFillLi_01b)
+
+draw(elisa004)
+```
+
+
+```{r out.width="80%"}
+dist_e004 = responses(elisa004)
+
+draw.dist(dist_e004)
+```
 
 ## Verticale e orizzontale
 
@@ -3137,11 +2982,86 @@ M23 = com(M23a, M23b)
 draw(M23)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M23 = responses(M23)
 
 draw.dist(dist_M23)
 ```
+
+## Elisa
+
+```{r}
+e_HorShFill_VertLi_01a = apply(
+  Raven(
+    st1 = cof(circle(s.x = 15, s.y = 15), 
+              pentagon(), 
+              square(s.x = 18, s.y = 18)), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("identity")
+  )
+)
+
+e_HorShFill_VertLi_01b = apply(
+  Raven(
+    st1 = cof(X(), 
+              triangle(s.x = 7, s.y = 7), 
+              u.pie.2.inv()), 
+    vrule = c("identity"), 
+    hrule = c("diff_shapes")
+  )
+)
+elisa_005 = com(e_HorShFill_VertLi_01a, e_HorShFill_VertLi_01b)
+
+draw(elisa_005)
+
+
+
+```
+
+```{r out.width="80%"}
+dist_e005 = responses(elisa_005)
+
+draw.dist(dist_e005)
+
+```
+
+## Elisa
+
+```{r}
+e_TLLRSh_VertLil_HorFill_01a = apply(
+  Raven(
+    st1 = cof(circle(), 
+              u.pie.2(), 
+              u.pie.4()), 
+    vrule = c("diff_shapes", "lty", "lwd"), 
+    hrule = c("diff_shapes")
+  )
+)
+
+e_TLLRSh_VertLil_HorFill_01b = apply(
+  Raven(
+    st1 = pentagon(s.x = 3, s.y = 3), 
+    vrule = c("identity"), 
+    hrule = "fill"
+  )
+)
+
+elisa006 = com(e_TLLRSh_VertLil_HorFill_01a, e_TLLRSh_VertLil_HorFill_01b)
+
+draw(elisa006)
+
+
+```
+
+
+
+```{r out.width="80%"}
+dist_e006 = responses(elisa006)
+
+draw.dist(dist_e006)
+
+```
+
 
 
 ## TL-LR, Verticale
@@ -3172,13 +3092,50 @@ draw(M24)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M24 = responses(M24)
 
 draw.dist(dist_M24)
 
 ```
 
+## Elisa
+
+```{r}
+e_TLLRSh_TRLLFillLi_01a = apply(
+  Raven(
+    st1 = cof(ellipse(s.x = 15, s.y = 11), 
+              e.hexagon(), 
+              square()), 
+    vrule = c("diff_shapes.inv", "lty", "lwd"), 
+    hrule = c("diff_shapes.inv", "lty", "lwd")
+  )
+)
+
+
+e_TLLRSh_TRLLFillLi_01b = apply(
+  Raven(
+    st1 =  cof(dot(), 
+               s.lily(), 
+               vline()), 
+    vrule = c("diff_shapes"), 
+    hrule = "diff_shapes"
+  )
+)
+
+elisa007 = com(e_TLLRSh_TRLLFillLi_01b, e_TLLRSh_TRLLFillLi_01a)
+
+
+draw(elisa007)
+```
+
+
+```{r out.width="80%"}
+dist_e007 = responses(elisa007)
+
+draw.dist(dist_e007)
+
+```
 
 ## TL-LR, TR-LL
 
@@ -3212,20 +3169,45 @@ draw(M25)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M25 = responses(M25)
 
 draw.dist(dist_M25)
 
 ```
 
+## Elisa
 
-## Forma riempimento dimensione
-
-::: panel-tabset
-## Verticale
 
 ```{r}
+
+
+e_VertShSi_HorFill_01 = apply(
+  Raven(
+    st1 = cof(e.hexagon(), 
+              pentagon(), 
+              triangle()), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = c("parfill")
+  )
+)
+elisa008 = e_VertShSi_HorFill_01
+draw(elisa008, n.cell = 9)
+
+```
+
+
+```{r out.width="80%"}
+dist_e008 = responses(elisa008)
+
+draw.dist(dist_e008)
+
+
+```
+
+## Forma riempimento dimensione Verticale
+
+```{r }
 M26 = apply(
   Raven(
     st1 = cof(square(), 
@@ -3239,11 +3221,36 @@ draw(M26, n.cell = 9)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M26 = responses(M26)
 
 draw.dist(dist_M26)
 ```
+
+## Elisa
+
+```{r}
+e_TLLRSh_VertFillSi_01a = apply(
+  Raven(
+    st1 = cof(triangle(s.x=16, s.y=16), 
+              e.hexagon(), 
+              circle(s.x=17, s.y = 14)), 
+    vrule = c("diff_shapes"), 
+    hrule = c("diff_shapes")
+  )
+)
+
+elisa010 = e_TLLRSh_VertFillSi_01a
+draw(elisa010)
+```
+
+```{r out.width="80%"}
+dist_e010 = responses(elisa010)
+
+draw.dist(dist_e010)
+
+```
+
 
 ## Verticale e orizzontale
 
@@ -3261,7 +3268,7 @@ draw(M27, n.cell = 9)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M27 = responses(M27)
 
 draw.dist(dist_M27)
@@ -3269,6 +3276,30 @@ draw.dist(dist_M27)
 
 ```
 
+
+
+## Elisa
+
+```{r}
+e_TLLRSh_VertFillSi_01b = apply(
+  Raven(
+    st1 = cof(square(s.x=6, s.y=6)), 
+    vrule = c("fill", "size"), 
+    hrule = c("identity")
+  )
+)
+elisa011 = com(e_TLLRSh_VertFillSi_01a, e_TLLRSh_VertFillSi_01b)
+draw(elisa011)
+
+```
+
+
+```{r out.width="80%"}
+dist_e011 = responses(elisa011)
+
+draw.dist(dist_e011)
+
+```
 
 ## TL-LR, Verticale
 
@@ -3295,13 +3326,34 @@ M28 = com(M28a, M28b)
 draw(M28)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M28 = responses(M28)
 
 draw.dist(dist_M28)
 
 ```
 
+## Elisa
+
+```{r}
+e_TLLRSh_TRLLFillSi_01a = apply(
+  Raven(
+    st1 = cof(circle(s.x = 13, s.y=13, shd = "black"), 
+              u.star(), 
+              square(s.x = 15, s.y=15, shd = "black")), 
+    vrule = c("diff_shapes.inv"), 
+    hrule = c("diff_shapes.inv")
+  )
+)
+elisa012 = e_TLLRSh_TRLLFillSi_01a
+draw(elisa012)
+```
+
+
+```{r out.width="80%"}
+dist_e012 = responses(elisa012)
+draw.dist(dist_e012)
+```
 
 ## TR-LL, + altro
 
@@ -3337,10 +3389,37 @@ draw(M29)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_29 = responses(M29)
 
 draw.dist(dist_29)
+```
+
+## Elisa
+
+```{r}
+e_TLLRSh_TRLLFillSi_01b = apply(
+  Raven(
+    st1 = cof(triangle(s.x=15, s.y=15, shd = "white"), 
+              circle(s.x=6, s.y=6, shd = "white"), 
+              e.hexagon(s.x=10, s.y=10, shd="white")), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = c("diff_shapes", "size")
+  )
+)
+
+elisa013 = com(e_TLLRSh_TRLLFillSi_01a, e_TLLRSh_TRLLFillSi_01b)
+
+draw(elisa013)
+
+```
+
+
+```{r out.width="80%"}
+dist_e013 = responses(elisa013)
+
+draw.dist(dist_e013)
+
 ```
 
 
@@ -3360,7 +3439,7 @@ draw(M29_bonus)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M29Bonus = responses(M29_bonus)
 
 draw.dist(dist_M29Bonus)
@@ -3368,6 +3447,8 @@ draw.dist(dist_M29Bonus)
 
 
 # Progressione Quantitativa
+
+\newpage 
 
 ::: panel-tabset
 ## LL-TR (crescente orizontale e decrescente verticale)
@@ -3379,7 +3460,7 @@ draw(p001)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_p001 = responses(p001)
 
 draw.dist(dist_p001)
@@ -3397,7 +3478,7 @@ draw(p003)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_p003 = responses(p003)
 
 draw.dist(dist_p003)
@@ -3405,10 +3486,7 @@ draw.dist(dist_p003)
 ```
 
 
-## Forma, Progressione Quantitaiva
-
-::: panel-tabset
-## V su entrambe le regole
+## Forma, Progressione Quantitaiva V su entrambe le regole
 
 ```{r}
 p004 <- apply(Raven(cof(pentagon(),triangle(),e.hexagon()),"identity","diff_shapes"))
@@ -3417,7 +3495,7 @@ draw(p004)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_p004 = responses(p004)
 
 draw.dist(dist_p004)
@@ -3434,7 +3512,7 @@ draw(p005)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_p005 = responses(p005)
 
 draw.dist(dist_p005)
@@ -3451,7 +3529,7 @@ draw(p006)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_p006 = responses(p006)
 
 draw.dist(dist_p006)
@@ -3469,7 +3547,7 @@ draw(p007)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_p007 = responses(p007)
 
 draw.dist(dist_p007)
@@ -3489,7 +3567,7 @@ draw(p009)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_p009 = responses(p009)
 
 draw.dist(dist_p009)
@@ -3504,14 +3582,16 @@ draw(p010)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_p010 = responses(p010)
 
 draw.dist(dist_p010)
 ```
 
 
-## Ragionamento induttivo simbolico/astratto
+# Ragionamento induttivo simbolico/astratto
+
+\newpage
 
 ::: panel-tabset
 ## AND orizzontale
@@ -3522,7 +3602,7 @@ draw(M32)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 
 dist_M32 = responses(M32)
 
@@ -3544,7 +3624,7 @@ draw(M33)
 
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M33 = responses(M33)
 
 draw.dist(dist_M33)
@@ -3561,7 +3641,7 @@ draw(M34)
 ```
 :::
 
-```{r}
+```{r out.width="80%"}
 dist_M34 = responses(M34)
 
 draw.dist(dist_M34)
@@ -3569,6 +3649,8 @@ draw.dist(dist_M34)
 ```
 
 # Logiche
+
+## M35
 
 ```{r}
 shapes<-shapes_list("Shapes_list-10-11-Ottavia.R")
@@ -3586,19 +3668,21 @@ draw(M35)
 ```
 
 
-```{r}
+```{r out.width="80%"}
 dist_M35 = responses(M35)
 
 draw.dist(dist_M35)
 ```
 
 
+## M36
+
 ```{r}
 M36<-apply(Raven(cof(vline(),square(),hline(),s_vertical()),"AND"))
 draw(M36)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M36 = responses(M36)
 
 draw.dist(dist_M36)
@@ -3611,14 +3695,14 @@ draw.dist(dist_M36)
 M37<-logic_rules(Raven(cof(diagline(),hline(),vline(),diagline.inv())),"AND")
 draw(M37)
 
-M37<-logic_rules(Raven(cof(semi.circle.inv(),
-                cof(vline(pos.x=11),vline(pos.x=-11),name="h.parallel",single = TRUE),
-                cof(hline(pos.y=11),hline(pos.y=-11),name="v.parallel",single = TRUE),
-                semi.circle())),"AND")
+# M37<-logic_rules(Raven(cof(semi.circle.inv(),
+#                 cof(vline(pos.x=11),vline(pos.x=-11),name="h.parallel",single = TRUE),
+#                 cof(hline(pos.y=11),hline(pos.y=-11),name="v.parallel",single = TRUE),
+#                 semi.circle())),"AND")
 draw(M37)
 ```
 
-```{r}
+```{r out.width="80%"}
 dist_M37 = responses(M37)
 
 draw.dist(dist_M37)
