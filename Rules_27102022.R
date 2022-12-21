@@ -402,7 +402,50 @@ numeric_progression.Raven_matrix<-function(obj,rules,n=1,...){
   obj$vrule<-c(obj$vrule,"quant")
   return(obj)
 }
+
+
+
+obj_addition_rules <- function(obj,n,...) {
+  UseMethod("obj_addition_rules")
+}
+
+
+
+obj_addition_rules.Raven_matrix<-function(obj,rule) {
+  if(grepl("add",rule)){
+    if(grepl("h",rule))
+    {
+      obj$Sq1<-hide(obj$Sq1,2)
+      obj$Sq4<-hide(obj$Sq4,2)
+    }
+    if(grepl("v",rule))
+    {
+      obj$Sq1<-hide(obj$Sq1,1)
+      obj$Sq2<-hide(obj$Sq2,1)
+      obj$Sq2<-show(obj$Sq2,2)
+    }
+    
+  }else{
+    if(grepl("h",rule))
+    {
+      obj$Sq2<-hide(obj$Sq2,2)
+      obj$Sq5<-hide(obj$Sq5,2)
+    }
+    if(grepl("v",rule))
+    {
+      obj$Sq4<-hide(obj$Sq4,1)
+      obj$Sq5<-hide(obj$Sq5,1)
+      #obj$Sq5<-show(obj$Sq5,2)
+    }
+  }
   
+    
+  obj$hrule<-c(obj$hrule,rule)
+  obj$vrule<-c(obj$vrule,rule)
+  attr(obj, "class") <- "Raven_matrix"
+  return(obj)
+}
+
   
   
 
