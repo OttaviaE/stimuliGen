@@ -369,11 +369,11 @@ u.star <- function() {
 #' @examples
 #' bow.tie()
 #' @export
-bow.tie <- function(pos.x = 0) {
+bow.tie <- function(pos.x = 0, shd = NA) {
   value <-cof(triangle(pos.x = pos.x, pos.y = pos.x+10, rot=pi/6, 
-                       s.x = 10, s.y=10), 
+                       s.x = 10, s.y=10, shd = shd), 
               triangle(pos.x = pos.x, pos.y = pos.x-10, rot=pi/2, 
-                       s.x = 10, s.y=10))
+                       s.x = 10, s.y=10, shd = shd))
   value$tag <- list("compose2","fill", "rotate")
   attr(value, "class") <- "field"
   value
@@ -385,11 +385,11 @@ bow.tie <- function(pos.x = 0) {
 #' @return Return the default cross object
 #' @examples
 #' u.bow.tie()
-u.bow.tie <- function(pos.x = 0) {
+u.bow.tie <- function(pos.x = 0, shd = NA) {
   value <-cof(triangle(pos.x = pos.x, pos.y = pos.x+10, rot=pi/6, 
-                       s.x = 10, s.y=10), 
+                       s.x = 10, s.y=10, shd = shd), 
               triangle(pos.x = pos.x, pos.y = pos.x-10, rot=pi/2, 
-                       s.x = 10, s.y=10), single = T, 
+                       s.x = 10, s.y=10, shd = shd), single = T, 
               name = "u.bow.tie")
   value$tag <- list("simple","fill", "rotate")
   attr(value, "class") <- "field"
@@ -1019,7 +1019,8 @@ diagline.inv <- function(pos.x=0 ,pos.y=0,
                          s.y = sqrt(square()$ size.y[[1]]^2 /2),
                          lty = 1, lwd =3,
                          rotation = pi + pi / 4,
-                         vis = 1) {
+                         vis = 1,
+                         shd = NA) {
   value <- list(
     shape = "diagline.inv",
     size.x = list(s.x),
@@ -1033,7 +1034,7 @@ diagline.inv <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(1),
     nv =  list(2),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill",'rotate' ) 
   )
@@ -1054,7 +1055,8 @@ diagline <- function(pos.x=0 ,pos.y=0,
                      s.x=list(sqrt(square()$ size.x[[1]]^2 /2)),
                      s.y=list(sqrt(square()$ size.x[[1]]^2 /2)),
                      lty = 1, lwd =3, rotation = pi-pi/4,
-                     vis = 1) {
+                     vis = 1, 
+                     shd = NA) {
   value <- list(
     shape = "diagline.inv",
     size.x = s.x,
@@ -1068,7 +1070,7 @@ diagline <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(1),
     nv =  list(2),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill",'rotate' ) 
   )
@@ -1191,11 +1193,11 @@ pie.4 <- function() {
 #' @examples
 #' pie.4()
 #' @export
-u.pie.4 <- function() {
-  value <-cof(slice(), 
-              slice(theta1 = 3*pi/4, theta2 = 5*pi/4), 
-              slice(theta1 = 5*pi/4, theta2 = 7*pi/4), 
-              slice(theta1 = 7*pi/4, theta2 = 9*pi/4), 
+u.pie.4 <- function(size.x = 10, size.y = 0, shd = NA) {
+  value <-cof(slice(s.x = size.x, s.y = size.y, shd = shd), 
+              slice(theta1 = 3*pi/4, theta2 = 5*pi/4, s.x = size.x, s.y = size.y, shd = shd), 
+              slice(theta1 = 5*pi/4, theta2 = 7*pi/4,s.x = size.x, s.y = size.y, shd = shd), 
+              slice(theta1 = 7*pi/4, theta2 = 9*pi/4, s.x = size.x, s.y = size.y, shd = shd), 
               single = TRUE, 
               name = "u.pie.4")
   value$tag <- list("simple","fill")
@@ -1299,8 +1301,9 @@ pie.2 <- function(shd = NA) {
 #' @examples
 #' u.pie.2()
 #' @export
-u.pie.2 <- function() {
-  value <-cof(semi.circle(), semi.circle.inv(), single = T, 
+u.pie.2 <- function(size.x = 10, size.y = 0, shd = NA) {
+  value <-cof(semi.circle(size.x = size.x, size.y = size.y, shd = shd), 
+              semi.circle.inv(size.x = size.x, size.y = size.y, shd = shd), single = T, 
               name = "u.pie.2")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
@@ -1320,7 +1323,8 @@ semi.circle1 <- function(pos.x=0 ,pos.y=0,
                         size.x =sqrt(square()$ size.x[[1]]^2 /2),
                         size.y = 0,
                         lty = 1, lwd =3,
-                        vis = 1) {
+                        vis = 1, 
+                        shd = NA) {
   value <- list(
     shape = "semi.circle1",
     size.x = list(size.x),
@@ -1334,7 +1338,7 @@ semi.circle1 <- function(pos.x=0 ,pos.y=0,
     lwd = list(lwd),
     num = list(2),
     nv =  list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill", "rotate" ) 
   )
@@ -1355,7 +1359,7 @@ semi.circle.inv1 <- function(pos.x=0, pos.y=0,
                             size.x =sqrt(square()$ size.x[[1]]^2 /2),
                             size.y = 0,
                             lty = 1, lwd =3,
-                            vis = 1) {
+                            vis = 1, shd = NA) {
   value <- list(
     shape = "semi.circle.inv1",
     size.x = list(size.x),
@@ -1369,7 +1373,7 @@ semi.circle.inv1 <- function(pos.x=0, pos.y=0,
     lwd = list(lwd),
     num = list(2),
     nv =  list(100),
-    shade = list(NA),
+    shade = list(shd),
     visible = vis,
     tag = list("simple","fill", "rotate" ) 
   )
@@ -1397,8 +1401,9 @@ pie.2.inv <- function() {
 #' @examples
 #' u.pie.2.inv()
 #' @export
-u.pie.2.inv <- function() {
-  value <-cof(semi.circle1(), semi.circle.inv1(), single = T, 
+u.pie.2.inv <- function(size.x = 10, size.y = 0, shd = NA) {
+  value <-cof(semi.circle1(size.x = size.x, size.y = size.y, shd = NA), 
+              semi.circle.inv1(size.x = size.x, size.y = size.y, shd = NA), single = T, 
               name = "u.pie.2.inv")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"

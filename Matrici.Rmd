@@ -241,7 +241,72 @@ for(i in seq(-5, 5, by = 1)) {
 
 ```
 
-## Young002
+## young002 
+
+```{r}
+draw(rectangle(s.x=-50,s.y=50,shd=giallo,pos.x=+10,pos.y=-7))
+draw(dot(pos.x = -30, pos.y = 15, size.x = 1, size.y = 1, shd = blu), canvas = F)
+
+for (i in seq(-30, 30, by = 4)) {
+  for (j in seq(15, -19, by = -4)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = blu), canvas = F)
+  }
+}
+
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
+     canvas = FALSE)
+
+```
+
+
+```{r out.width="80%"}
+
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd=giallo)
+
+draw(container,xlim = 8, main = "correct")
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+  for (j in seq(12.5, -15, by = -4)) {
+     draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = blu), canvas = F)
+  }
+}
+
+draw(container,xlim = 8, main = "ic.neg")
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd=blu,pos.x=0,pos.y=0),
+     canvas = FALSE)
+for (i in seq(-25, 25, by = 4)) {
+  for (j in seq(15, -15, by = -4)) {
+        draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = giallo), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8, main = "difference")
+
+
+draw(container,xlim = 8, main = "difference1")
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+  for (j in seq(12.5, -15, by = -4)) {
+     draw(square(pos.x = i, pos.y = j, s.x = 1, s.y = 1, shd = blu), canvas = F)
+  }
+}
+
+
+draw(container,xlim = 8, main = "boh")
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+
+```
+
+
+## Young003
 
 ```{r}
 
@@ -249,7 +314,7 @@ draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7))
 draw(vline(pos.x = -20, s.x = 50, lwd = 3), canvas = F)
 draw(vline(pos.x = 20, s.x = 50, lwd = 3, lty = 3), canvas = F)
 draw(vline(pos.x = 17, s.x = 50, lwd = 3), canvas = F)
-
+draw(hline(pos.y = 9, s.x = 50, lwd = 3, lty = 1), canvas = F)
 draw(hline(pos.y = -9, s.x = 50, lwd = 3, lty = 1), canvas = F)
 draw(hline(pos.y = -12, s.x = 50, lwd = 3, lty = 3), canvas = F)
 
@@ -322,6 +387,68 @@ draw(container,xlim = 8, main = "difference")
 ```
 
 
+## young004
+
+```{r}
+
+draw(rectangle(s.x=-50,s.y=50,shd=giallo,pos.x=+10,pos.y=-7))
+draw(vline(pos.x=-50, s.x = 30, lwd = 1), canvas = F)
+for(i in seq(-30, 30, by = 2)) {
+  
+    draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i)/2), 
+         canvas = F,  bg = "white")
+}
+
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
+     canvas = FALSE)
+```
+
+
+
+```{r}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+          mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd=giallo)
+
+draw(container,xlim = 8, main = "correct")
+clip(7,-7,5,-5)
+#for(i in seq(14, 30, by = 1)) {
+for(i in seq(6, 22, by = 2)) {
+  
+    draw(vline(pos.x = i-15, s.x=40, lwd = 1+ abs(i)/2), 
+         canvas = F,  bg = "white")
+}
+
+
+draw(container,xlim = 8, "wp")
+clip(7,-7,5,-5)
+for(i in seq(14, 30, by = 1)) {
+  
+    draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+         canvas = F,  bg = "white")
+}
+
+draw(container,xlim = 8, main = "difference")
+
+draw(container,xlim = 8, main = "boh")
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+
+draw(container,xlim = 8, "wp")
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+     canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+     canvas = FALSE)
+```
+
+## Young005
+
+```{r}
+
+```
+
+
 ## Young006
 
 ```{r}
@@ -386,7 +513,7 @@ young008b = apply(Raven(
 
 young008 = com(young008b, young008a)
 
-draw(young008)
+draw(young008, n.cell = 4)
 ```
 
 ```{r out.width="80%"}
@@ -430,25 +557,220 @@ draw.dist(dist_young009)
 
 ## young010 
 
-<!-- ```{r} -->
+```{r}
 
-<!-- young010a = apply(Raven( -->
-<!--   st1 = cof(u.pie.2(size.x = 5, shd = blu),  -->
-<!--            u.pie.4(size.x = 5, shd = rosso), ellipse()), -->
-<!--   vrule = "diff_shapes" -->
+young010a = apply(Raven(
+  st1 = cof(u.pie.2(size.x = 5, shd = blu),
+           u.pie.4(size.x = 5, shd = rosso), ellipse()),
+  vrule = "diff_shapes"
 
-<!-- )) -->
+))
 
-<!-- young010b = apply(Raven( -->
-<!--   st1 = cof(e.hexagon(shd = giallo),  -->
-<!--             triangle(shd = giallo),  -->
-<!--             circle()),  -->
-<!--   hrule = "diff_shapes" -->
-<!-- )) -->
+young010b = apply(Raven(
+  st1 = cof(e.hexagon(shd = giallo, s.x = 13, s.y = 13),
+            triangle(shd = giallo, s.x = 15, s.y = 15),
+            circle()),
+  hrule = "diff_shapes"
+))
 
-<!-- young010 = com(young010b, young010a) -->
+young010 = com(young010b, young010a)
 
-<!-- draw(young010, n.cell = 4) -->
-<!-- ``` -->
+draw(young010, n.cell = 4)
+```
+
+## young011
+
+```{r}
+
+
+young011 = apply(Raven(
+  st1 = cof(e.hexagon(shd = giallo, s.x = 13, s.y = 13),
+            triangle(shd = giallo, s.x = 15, s.y = 15),
+            circle()),
+  vrule = c( "reflection", "diff_shapes")
+))
+
+
+draw(young011, n.cell = 4)
+```
+
+```{r out.width="80%"}
+
+```
+
+
+## Young012 
+
+
+```{r}
+
+young012a = apply(Raven(
+  st1 = cof(pentagon(shd = giallo, s.x = 13, s.y = 13),
+            triangle(shd = giallo, s.x = 15, s.y = 15),
+            circle()),
+  vrule = "diff_shapes",
+  hrule = "reflection"
+))
+
+young012b = apply(Raven(
+  st1 = dot(size.x = 2, size.y = 1, shd = rosso)
+))
+
+young012 = com(young012a, young012b)
+draw(young012, n.cell = 4)
+```
+
+
+## young026 
+
+```{r}
+set.seed(999)
+young026a = apply(
+  Raven(
+    st1 = cof(square(shd = giallo), u.bow.tie(shd = giallo), triangle(rot = pi/2, shd = giallo)), 
+    vrule = c("diff_shapes"), 
+    hrule = "identity"
+  )
+)
+
+young026b = apply(Raven(
+  st1 = cof(dot(shd = blu))
+))
+
+young026 = com(young026a, young026b)
+draw(young026, n.cell = 9)
+
+
+```
+
+```{r out.width="80%"}
+
+dist_young026 = responses(young026)
+draw.dist(dist_young026, n.resp = 11, main = T)
+
+```
+
+
+## young027 
+
+```{r}
+young027a= apply(
+  Raven(
+    st1 = cof(pentagon(shd = rosso), triangle(shd = rosso), square(shd = rosso)), 
+    hrule = c("diff_shapes"), 
+    vrule = "identity"
+  )
+)
+
+young027b = apply(Raven(
+  st1 = cof(dot(shd = giallo, size.x = 7)), 
+  hrule = "size"
+))
+
+
+young027 = com(young027a, young027b)
+
+draw(young027, hide = F)
+```
+
+```{r out.width="80%"}
+dist_young027 = responses(young027)
+draw.dist(dist_young027, n.resp = 11, main = T)
+```
+
+
+## young028
+
+```{r}
+young028a = apply(Raven(
+  st1 = square(shd = giallo)
+))
+
+draw(young028a)
+
+young028b = apply(Raven(
+  st1 = pacman(), 
+  hrule = "fill"
+))
+
+young028 = com(young028a, young028b)
+draw(young028)
+```
+
+
+```{r out.width="80%"}
+dist_young028 = responses(young028)
+
+draw.dist(dist_young028)
+
+```
+
+## young029 
+
+```{r}
+young029a = apply(Raven(
+  st1=rectangle(shd = blu, s.x = 20, s.y = 15)
+))
+
+
+
+young029b= apply(
+  Raven(
+    st1 = cof(pentagon(shd = "black", s.x = 12, s.y = 12), u.star(), square(shd = "black")), 
+    vrule = c("diff_shapes", "size"), 
+    hrule = "identity"
+  )
+)
+
+young029 = com(young029a, young029b)
+
+draw(young029)
+```
+
+
+```{r out.width="80%"}
+dist_young029 = responses(young029)
+
+draw.dist(dist_young029)
+```
+
+
+## young030 
+
+```{r}
+young030a = apply(Raven(
+  st1 = cof(square(s.x = 18, s.y = 18), e.hexagon(), 
+            pentagon()), 
+  hrule = "diff_shapes"
+))
+
+young030b = apply(Raven(
+  st1 = pacman(shd = rosso, size.x = 8), 
+  vrule = "size"
+  
+))
+
+
+young030 = com(young030a, young030b)
+
+draw(young030)
+
+```
+
+
+```{r out.width="80%"}
+dist_young030 = responses(young030)
+
+
+draw.dist(dist_young030)
+
+```
+
+
+## young031
+
+```{r}
+
+```
 
 
