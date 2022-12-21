@@ -21,7 +21,7 @@ rm(list = ls())
 select.dist = function(dist.list, selection) {
   resp = list()
 for (i in 1:length(selection)) {
-  resp[[i]] = dist.list[[i]]
+  resp[[i]] = dist.list[[selection[i]]]
   names(resp)[[i]] = selection[i]
 }
     return(resp)
@@ -831,9 +831,13 @@ draw(young013, n.cell = 4)
 
 
 ```{r out.width="80%"}
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.neg")
+
 
 dist_young013 = responses(young013,mat.type = 4)
-draw.dist(dist_young013, n.resp = 11, main = T)
+resp_young013 = select.dist(dist_young013, selection.neg)
+
+draw.dist(resp_young013, n.resp = 11, main = T)
 ```
 
 
@@ -853,7 +857,9 @@ draw(young014, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young014 = responses(young014,mat.type = 4)
-draw.dist(dist_young014, n.resp = 11, main = T)
+
+resp_young014 = select.dist(dist_young014, selection.neg)
+draw.dist(resp_young014, n.resp = 11, main = T)
 ```
 
 
@@ -875,7 +881,9 @@ draw(young015, n.cell = 4)
 ```{r out.width="80%"}
 
 dist_young015 = responses(young015,mat.type = 4)
-draw.dist(dist_young015, n.resp = 11, main = T)
+
+resp_young015 = select.dist(dist_young015, selection.neg)
+draw.dist(resp_young015, n.resp = 11, main = T)
 ```
 
 
@@ -897,7 +905,14 @@ draw(young016, n.cell = 4)
 ```{r out.width="80%"}
 
 dist_young016 = responses(young016,mat.type = 4)
-draw.dist(dist_young016, n.resp = 11, main = T)
+
+resp_young016 = select.dist(dist_young016, selection.neg)
+
+resp_young016[["wp.matrix"]] = cof(resp_young016[["wp.matrix"]] , 
+                                   resp_young016[["r.top"]] )
+
+draw.dist(resp_young016, n.resp = 5, main = T)
+
 ```
 
 
@@ -927,7 +942,11 @@ draw(young017, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young017 = responses(young017,mat.type = 4)
-draw.dist(dist_young017, n.resp = 11, main = T)
+resp_young017 = select.dist(dist_young017, selection.neg)
+
+
+draw.dist(resp_young017, n.resp = 5, main = T)
+
 
 ```
 
@@ -949,7 +968,11 @@ draw(young018, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young018 = responses(young018,mat.type = 4)
-draw.dist(dist_young018, n.resp = 11, main = T)
+
+resp_young018 = select.dist(dist_young018, selection.neg)
+
+
+draw.dist(resp_young018, n.resp = 5, main = T)
 ```
 
 
@@ -972,7 +995,11 @@ draw(young019, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young019 = responses(young019,mat.type = 4)
-draw.dist(dist_young019, n.resp = 11, main = T)
+resp_young019 = select.dist(dist_young019, selection.neg)
+
+
+draw.dist(resp_young019, n.resp = 5, main = T)
+
 ```
 
 ## young020
