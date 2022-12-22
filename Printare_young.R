@@ -43,6 +43,27 @@ draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xl
   }
 }
 
+print.dist = function(resp.list, mat.name) {
+  for (i in 1:length(resp.list)) {
+    svg(paste0(getwd(), "/Test_young/Matrici/",
+               mat.name, "_", names(resp.list)[i], ".svg")
+    )
+    draw(resp.list[[i]])
+    dev.off()
+  }
+}
+
+
+select.dist = function(dist.list, selection) {
+  resp = list()
+  for (i in 1:length(selection)) {
+    resp[[i]] = dist.list[[selection[i]]]
+    names(resp)[[i]] = selection[i]
+  }
+  return(resp)
+}
+
+
 lilth<-lily()
 s.lilth<-s.lily()
 for(i in 1:length(lilth$shape)) {
@@ -295,7 +316,7 @@ draw(container,xlim = 8)
 dev.off()
 
 svg(paste0(getwd(), "/Test_young/Matrici/young002_diff2.svg"))
-draw(container,xlim = 8, main = "difference1")
+draw(container,xlim = 8)
 clip(7,-7,5,-5)
 for (i in seq(-21, 25, by = 4)) {
   for (j in seq(12.5, -15, by = -4)) {
@@ -630,6 +651,122 @@ for(i in 1:length(lista))
   print.mat(get(lista[i]),lista[i],4)
 }
 
+
+selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+
+dist_young006 = responses(young006,mat.type = 4)
+
+resp_young006 = select.dist(dist_young006, selection)
+
+resp_young006[["d.union"]] =cof(resp_young006[["d.union"]], 
+                                square())
+resp_young006[["wp.matrix"]] =cof(resp_young006[["wp.matrix"]], 
+                                  e.hexagon())
+###############
+dist_young007 = responses(young007,mat.type = 4)
+
+resp_young007 = select.dist(dist_young007, selection)
+
+resp_young007[["d.union"]] = cof(resp_young007[["d.union"]], 
+                                 pie.4())
+resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]], 
+                                   dice())
+p = split.mat(young007, mat.type  = 4)
+
+resp_young007[["ic.flip"]] = cof(rotation(p[[1]], 2), 
+                                 p[[2]]) 
+#########
+dist_young008 = responses(young008, mat.type = 4)
+resp_young008 = select.dist(dist_young008, selection)
+
+resp_young008[["wp.matrix"]] = cof(resp_young008[["wp.matrix"]], 
+                                   rotation(pacman(shd = rosso), 3))
+resp_young008[["d.union"]] = cof(resp_young008[["d.union"]], 
+                                 pentagon())
+p = split.mat(young008, mat.type = 4)
+
+resp_young008[["ic.flip"]] = cof(rotation(p[[1]], 3), 
+                                 p[[2]])
+
+
+##########
+
+dist_young009 = responses(young009, mat.type = 4)
+
+resp_young009 = select.dist(dist_young009, selection)
+
+resp_young009[["d.union"]] = cof(resp_young009[["d.union"]], 
+                                 cross.dice())
+resp_young009[["wp.matrix"]] = cof(resp_young009[["wp.matrix"]], 
+                                   pacman())
+
+p = split.mat(young009, mat.type  = 4)
+
+resp_young009[["ic.flip"]] = cof( 
+  p[[1]], rotation(p[[2]], 3)) 
+
+draw.dist(resp_young009)
+
+#############
+
+dist_young010 = responses(young010, mat.type = 4)
+resp_young010 = select.dist(dist_young010, selection)
+
+resp_young010[["d.union"]] = cof(resp_young010[["d.union"]], 
+                                 cross(), 
+                                 pentagon())
+
+resp_young010[["wp.matrix"]] = cof(resp_young010[["wp.matrix"]], 
+                                   triangle())
+p = split.mat(young010,mat.type  = 4)
+
+
+resp_young010[["ic.flip"]] = cof(rotation(p[[1]], 3), 
+                                 p[[2]])
+
+#####
+dist_young011 = responses(young011, mat.type = 4) 
+
+resp_young011 = select.dist(dist_young011, selection)
+
+resp_young011[["d.union"]] = cof(resp_young011[["d.union"]], 
+                                 resp_young011[["wp.matrix"]], 
+                                 lily())
+
+resp_young011[["wp.matrix"]] = cof(
+  resp_young011[["wp.matrix"]], 
+  triangle())
+
+######
+
+dist_young012 = responses(young012, mat.type = 4)
+
+resp_young012 = select.dist(dist_young012, selection)
+
+resp_young012[["d.union"]] = cof(resp_young012[["d.union"]], 
+                                 size(square(shd = rosso), 3))
+
+resp_young012[["wp.matrix"]] =  cof(resp_young012[["r.top"]], 
+                                    resp_young012[["wp.matrix"]])
+
+p = split.mat(young012, mat.type = 4)
+
+
+
+resp_young012[["ic.flip"]] =cof(reflection(p[[1]], 2), 
+                                p[[2]])
+
+
+##############################################################
+#Stampa distratttori
+lista<-ls()
+lista<-lista[grepl("resp_young",lista) & (!grepl("a",lista)&!grepl("b",lista)&!grepl("dist",lista))  ]
+
+for(i in 1:length(lista))
+{
+  print.dist(get(lista[i]),strsplit(lista,"_")[[i]][2])
+}
+
 ########################################################################
 #                    013
 ########################################################################
@@ -740,7 +877,12 @@ young020 = obj_addition_rules(
   ), rule="v.add"
 )
 
+young020frame =  apply(Raven(
+  st1 = rectangle(s.x = 20, s.y = 15, shd = blu)
+))
 
+young020 = com(young020frame, young020)
+draw(young020, n.cell = 4)
 
 
 
@@ -842,8 +984,88 @@ young025<-com(young025a,young025b)
 lista<-ls()
 lista<-lista[grepl("young",lista) & (!grepl("a",lista)&!grepl("b",lista)&!grepl("dist",lista))  ]
 
+for(i in 1:length(lista))
+{
+  print.mat(get(lista[i]),lista[i],4)
+}
 
 
+##############################################
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.neg")
+
+dist_young013 = responses(young013,mat.type = 4)
+resp_young013 = select.dist(dist_young013, selection.neg)
+
+
+dist_young014 = responses(young014,mat.type = 4)
+
+resp_young014 = select.dist(dist_young014, selection.neg)
+
+dist_young015 = responses(young015,mat.type = 4)
+
+resp_young015 = select.dist(dist_young015, selection.neg)
+
+dist_young016 = responses(young016,mat.type = 4)
+
+resp_young016 = select.dist(dist_young016, selection.neg)
+
+resp_young016[["wp.matrix"]] = cof(resp_young016[["wp.matrix"]] , 
+                                   resp_young016[["r.top"]] )
+
+dist_young017 = responses(young017,mat.type = 4)
+resp_young017 = select.dist(dist_young017, selection.neg)
+
+dist_young018 = responses(young018,mat.type = 4)
+
+resp_young018 = select.dist(dist_young018, selection.neg)
+
+dist_young019 = responses(young019,mat.type = 4)
+resp_young019 = select.dist(dist_young019, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
+dist_young020 = responses(young020,mat.type = 4)
+resp_young020 = select.dist(dist_young020, selection.neg)
+
+resp_young020[["wp.matrix"]] = cof(resp_young020[["wp.matrix"]] , 
+                                   dot() )
+resp_young020[["ic.inc"]] = show(resp_young020[["ic.inc"]] ,index=1:2 )
+resp_young020[["ic.inc"]] = hide(resp_young020[["ic.inc"]], 3 )
+
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+dist_young021 = responses(young021,mat.type = 4)
+resp_young021 = select.dist(dist_young021, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+dist_young022 = responses(young022,mat.type = 4)
+resp_young022 = select.dist(dist_young022, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
+dist_young023 = responses(young023,mat.type = 4)
+resp_young023 = select.dist(dist_young023, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+dist_young024 = responses(young024,mat.type = 4)
+resp_young024 = select.dist(dist_young024, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+dist_young025 = responses(young025,mat.type = 4)
+resp_young025 = select.dist(dist_young025, selection.neg)
+resp_young025[["ic.flip"]] = replace(resp_young025[["ic.flip"]] ,3 ,luck(rot = pi) )
+
+########################################################
+###################Stampa distrattori 
+
+lista<-ls()
+lista<-lista[grepl("resp_young",lista) & (!grepl("a",lista)&!grepl("b",lista)&!grepl("dist",lista))  ]
+
+for(i in 1:length(lista))
+{
+  print.dist(get(lista[i]),strsplit(lista,"_")[[i]][2])
+}
+
+############################
 
 set.seed(999)
 young026a = apply(
@@ -1004,3 +1226,88 @@ a_3c = apply(
 
 young036 = com(a_3a, a_3b, a_3c)
 
+#################################################################################
+#FASE DI STAMPA 2
+###################################################################################
+lista<-ls()
+lista<-lista[grepl("young",lista) & (!grepl("a",lista)&!grepl("b",lista)&!grepl("dist",lista))  ]
+
+for(i in 1:length(lista))
+{
+  print.mat(get(lista[i]),lista[i],9)
+}
+
+
+#############
+
+
+selection.neg = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
+
+dist_young026 = responses(young026,mat.type = 9)
+resp_young026 = select.dist(dist_young026, selection.neg)
+
+
+dist_young027 = responses(young027,mat.type = 9)
+resp_young027 = select.dist(dist_young027, selection.neg)
+resp_young027[["wp.copy"]] = young027$Sq1
+
+
+selection.neg = c("correct", "r.diag", "d.union","wp.matrix", "ic.scale","ic.flip","ic.inc","ic.neg")
+
+dist_young028 = responses(young028,mat.type = 9)
+resp_young028 = select.dist(dist_young028, selection.neg)
+
+
+selection.neg = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.neg")
+
+dist_young029 = responses(young029,mat.type = 9)
+resp_young029 = select.dist(dist_young029, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young030 = responses(young030,mat.type = 9)
+resp_young030 = select.dist(dist_young030, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young031 = responses(young031,mat.type = 9)
+resp_young031 = select.dist(dist_young031, selection.neg)
+resp_young031[["ic.flip"]] = rotation(resp_young031[["ic.flip"]],2)
+resp_young031[["wp.matrix"]] = cof(resp_young031[["wp.matrix"]],resp_young031[["wp.copy"]])
+resp_young031[["ic.neg"]] = cof(resp_young031[["ic.neg"]],semi.circle(shd=rosso),semi.circle.inv(shd=rosso))
+
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young032 = responses(young032,mat.type = 9)
+resp_young032 = select.dist(dist_young032, selection.neg)
+
+selection.neg = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.neg")
+
+dist_young033 = responses(young033,mat.type = 9)
+resp_young033 = select.dist(dist_young033, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young034 = responses(young034,mat.type = 9)
+resp_young034 = select.dist(dist_young034, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young035 = responses(young035,mat.type = 9)
+resp_young035 = select.dist(dist_young035, selection.neg)
+
+selection.neg = c("correct", "r.top", "d.union","wp.copy","wp.matrix", "ic.flip", "ic.scale","ic.inc")
+
+dist_young036 = responses(young036,mat.type = 9)
+resp_young036 = select.dist(dist_young036, selection.neg)
+
+###################Stampa distrattori 
+
+lista<-ls()
+lista<-lista[grepl("resp_young",lista) & (!grepl("a",lista)&!grepl("b",lista)&!grepl("dist",lista))  ]
+
+for(i in 1:length(lista))
+{
+  print.dist(get(lista[i]),strsplit(lista,"_")[[i]][2])
+}
