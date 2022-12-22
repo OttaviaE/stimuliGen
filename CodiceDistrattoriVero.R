@@ -680,7 +680,7 @@ responses = function(m,
 
 # draw distractors -----
 draw.dist = function(dist.list, n.resp = 11,
-                     main = T, single.print = F) {
+                     main = F, single.print = F) {
   # dist.list = sample(dist.list)
   if (single.print == F) {
     if (n.resp ==8) {
