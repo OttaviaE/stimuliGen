@@ -244,17 +244,18 @@ draw.field<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,
   {
     if(obj$visible[[j]]==1)
     {
-      if(obj$num[[j]][1]==1){
-        if(grepl("line",obj$shade[[j]][1]))
-        {
-          elements<-decof(obj)
-          plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
-          for(ll in 1:length(plotting_lines)){
-            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1]) #Pejo tacon che sbrego
-            
-          }
-          obj$shade[[j]][1] <- NA
+      if(grepl("line",obj$shade[[j]][1]))
+      {
+        elements<-decof(obj)
+        plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
+        for(ll in 1:length(plotting_lines)){
+          line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1]) #Pejo tacon che sbrego
+          
         }
+        obj$shade[[j]][1] <- NA
+      }
+      if(obj$num[[j]][1]==1){
+        
         DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],
                        radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
                        lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
@@ -495,9 +496,18 @@ line<-function(obj,rule,lwd=1,by=1.5)
 {
   #coefficente angolare di default
   m<-1
-  coords<-DrawRegPolygon(x = obj$pos.x[[1]], y = obj$pos.y[[1]], rot = obj$rotation[[1]],
-                         radius.x = obj$size.x[[1]], radius.y = obj$size.y[[1]],
-                         nv = obj$nv[[1]],plot = F)
+  if(obj$num==1)
+  {
+    coords<-DrawRegPolygon(x = obj$pos.x[[1]], y = obj$pos.y[[1]], rot = obj$rotation[[1]],
+                           radius.x = obj$size.x[[1]], radius.y = obj$size.y[[1]],
+                           nv = obj$nv[[1]],plot = F)
+  }else{
+    coords<-DrawCircle(x = obj$pos.x[[1]], y = obj$pos.y[[1]], theta.1 =  obj$theta.1[[1]],
+                       theta.2 =  obj$theta.2[[1]], r.out = obj$size.x[[1]], 
+                       r.in = obj$size.y[[1]],nv = obj$nv[[1]],plot = F)
+    coords<-coords[[1]]
+    }
+
   # coords<-matrix(c(coords$x,coords$y),ncol = 2)
   
   if(grepl("both",rule))
