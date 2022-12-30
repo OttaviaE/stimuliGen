@@ -216,3 +216,20 @@ draw(m3)
 
 m4<-numeric_progression(M1,"h.increasing")
 draw(m4)
+
+#30-12-202
+
+M4a<-logic_rules(Raven(cof(square(s.x = 20,s.y = 20),
+                           dice(),
+                           margin(square(s.x = 17,s.y = 17,shd = "line12"),3,"lty"),
+                           margin(square(s.x = 17,s.y = 17),3,"lty")
+)),"XOR")
+
+#M4b<-logic_rules(Raven(cof(horizontal_eight(),vertical_eight(),
+#                           diagline(),diagline.inv())),"OR")
+
+M4b<-logic_rules(Raven(cof(diagline(),horizontal_eight(),
+                           vertical_eight(),
+                           diagline.inv())),"OR")
+
+draw(com(M4a,M4b),hide=TRUE)
