@@ -5,6 +5,29 @@ source("Rules_27102022.R")
 source("DrawRegPolygon.R")
 source("CodiceDistrattoriVero.R")
 
+empty <- function() {
+  value <- list(
+    shape = "empty",
+    size.x = list(5),
+    size.y = list(5),
+    theta.1  = list(0),
+    theta.2  = list(0),
+    rotation = list(pi),
+    pos.x = list(0),
+    pos.y = list(0),
+    lty = list(0),
+    lwd = list(1),
+    num = list(1),
+    nv = list(101),
+    shade = list(NA),
+    visible = 0,
+    tag=list(c('simple'))
+  )
+  attr(value, "class") <- "field"
+  value
+}
+
+
 adult031<-apply(Raven(pie.4(),"AND"))
 draw(adult031)
 
@@ -50,3 +73,33 @@ adult039<-logic_rules(Raven(cof(cof(vline(pos.x = -15,s.x=15 ),vline(pos.x = 15,
                                 ,dot(pos.x = 5))),"XOR")
 draw(adult039)
 
+adult040<-logic_rules(Raven(cof(dice(),dot(),cross.dice(),X())),"XOR")
+draw(adult040)
+
+adult041a<-logic_rules(Raven(cof(hline(pos.y = 3,s.y=12),hline(pos.y = -3,s.y=12),
+                     square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))),
+                 "XOR")
+adult041b <- logic_rules(Raven(cof(vline(pos.x = 15, s.x = 15),
+                       vline(pos.x = -15, s.x = 15 ),
+                       hline(pos.y = 15, s.x=15),
+                       hline(pos.y = -15, s.x=15))),"AND")
+adult041<-com(adult041a,adult041b)
+draw(adult041)
+
+adult042a<- apply(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
+                             circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
+                             cof(diagline(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                                 diagline.inv(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                                 single = TRUE,name = "smallcross"),
+                             cof(diagline(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                                 diagline.inv(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                                 single = TRUE,name = "smallcross")
+),"XOR"))
+
+adult042b<- apply(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
+                            margin(hline(pos.y=-5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=-5,s.x = 18),1,"lty")),vrule="AND"))
+
+adult042<-com(adult042b,adult042a)
+draw(adult042)
