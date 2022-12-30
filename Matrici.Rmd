@@ -539,7 +539,7 @@ draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
 
 ## Young006
 
-```{r}
+```{r young006}
 young006 = apply(Raven(
     st1 = cof( 
               rectangle(s.x = 25, s.y = 15, pos.y = -1, shd = blu), 
@@ -552,7 +552,7 @@ draw(young006, n.cell = 4, hide = F)
 
 
 ```{r out.width="80%"}
-dist_young006 = responses(young006,mat.type = 4)
+dist_young006 = responses(young006,mat.type = 4, how.rot = 4)
 
 selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 
@@ -565,6 +565,12 @@ resp_young006[["d.union"]] =cof(resp_young006[["d.union"]],
                                 square())
 resp_young006[["wp.matrix"]] =cof(resp_young006[["wp.matrix"]], 
                                 e.hexagon())
+
+p = split.mat(young006)
+
+resp_young006[["ic.flip"]] = cof(p$rectangle, 
+                                rotation(p$triangle, 2))
+
 
 draw.dist(resp_young006, n.resp = 5, main = T)
 ```
