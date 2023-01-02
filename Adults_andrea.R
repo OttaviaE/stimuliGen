@@ -27,14 +27,24 @@ empty <- function() {
   value
 }
 
+bow.tie.inv <- function(pos.x = 0) {
+  value <-cof(triangle(pos.x = pos.x+10, pos.y = pos.x, rot=pi/3, 
+                       s.x = 10, s.y=10), 
+              triangle(pos.x = pos.x-10, pos.y = pos.x, rot=-pi, 
+                       s.x = 10, s.y=10))
+  value$tag <- list("compose2","fill", "rotate")
+  attr(value, "class") <- "field"
+  value
+}
+
 
 adult031<-apply(Raven(pie.4(),"AND"))
 draw(adult031)
 
 
 adult032<-logic_rules(Raven(cof(
-                                semi.circle.inv(lty=0,shd = "grey"),
-                                semi.circle(lty=0,shd = "black"),
+                                semi.circle.inv(lty=0,shd = "line12.inv"),
+                                semi.circle(lty=0,shd = "line12"),
                                 semi.circle.inv(lwd=5),semi.circle(lwd=5)
                            )),"AND")
 draw(adult032)
@@ -103,3 +113,21 @@ adult042b<- apply(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
 
 adult042<-com(adult042b,adult042a)
 draw(adult042)
+
+adult043a<-logic_rules(Raven(cof(bow.tie(),
+                           bow.tie.inv())),"XOR")
+
+adult043b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
+                           ,cross.dice(),
+                           hline(),vline())),"OR")
+adult043<-com(adult043a,adult043b)
+draw(adult043)
+
+adult044a<-apply(Raven(cof(hline(pos.y = 3,s.x=7),hline(pos.y = -3,s.x=7),
+                     margin(circle(s.x=7.5, s.y = 7.5),5,"lwd"),
+                     hexagon(s.x=3,s.y=3)),"XOR"))
+adult044b<- apply(Raven(cof(hline(pos.y = -11),hline(pos.y = 11),
+                       vline(pos.x = -11),vline(pos.x = +11)),"identity","OR"))
+adult044<-com(adult044a,adult044b)
+draw(adult044)
+

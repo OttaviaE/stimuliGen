@@ -89,7 +89,7 @@ fill.field<-function(obj,n,rule,...){
         return(index[n])
       }else{
         pos <- which(pos)
-        return(index[pos+n])
+        return(index[pos[1]+n])
       }
     },index,n)
   }
