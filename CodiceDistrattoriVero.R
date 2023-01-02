@@ -265,6 +265,13 @@ ic.scale = function(m,
       }
       
     }
+    if(any(grepl("quant", rule.mat)) == T) {
+      split.m = split.mat(m)
+      ic.scale = size(split.m[[1]], how.small)
+      for (i in 2:length(split.m)) {
+        ic.scale = cof(ic.scale, size(split.m[[i]], how.small))
+      }
+    }
   }
   ic.size = ic.scale 
   return(ic.size)
@@ -334,6 +341,13 @@ ic.flip = function(m,
       }
       
     }
+    if(any(grepl("quant", rule.mat)) == T) {
+      split.m = split.mat(m)
+      ic.rotation = rotation(split.m[[1]], how.rot)
+      for (i in 2:length(split.m)) {
+        ic.rotation = cof(ic.rotation, rotation(split.m[[i]], how.rot))
+      }
+    }
   }
   ic.rotate = ic.rotation 
   return(ic.rotate)
@@ -378,6 +392,14 @@ ic.inc = function(m, which.element = NULL,
       
     }
   }
+  
+  rule.mat = c(m$vrule, m$hrule) 
+  if(any(grepl("quant", rule.mat)) == T) {
+    ic.inc = (split.m[[2]])
+    for (i in 2:length(split.m)) {
+      ic.inc = cof(ic.inc, (split.m[[i]]))
+    }
+  } 
   return(ic.inc)
   
 }
@@ -457,6 +479,48 @@ ic.inc = function(m, which.element = NULL,
 #   }
 #   return(ic.col)
 # }
+## Ic neg prova 1 ----
+# ic.neg = function(m, mat.type = 9) {
+#   m.correct = correct(m, mat.type = mat.type)
+#   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+#   
+#   split.m = split.mat(m, mat.type = mat.type)
+#   
+#   ic.temp = split.m[[length(split.m)]]
+#   
+#   for (i in 1:length(ic.temp$shade)) {
+#     if(is.na(ic.temp$shade[[i]][1]) == T) {
+#       ic.temp$shade[[i]][1] = "black"
+#     } else if (ic.temp$shade[[i]][1] == "white") {
+#       ic.temp$shade[[i]][1] = "black"
+#     } else if (ic.temp$shade[[i]][1] == "grey") {
+#       ic.temp$shade[[i]][1] = "black"
+#     } else {
+#       ic.temp$shade[[i]][1] = "white"
+#     }
+#   }
+#   
+#   
+#   ic.neg = replace(m.correct, 
+#                    index_elements[length(split.m)], 
+#                    ic.temp)
+#   return(ic.neg)
+# }
+## ic neg prova 2 .-----
+change.col = function(obj) {
+  for(i in 1:length(obj$shade)) {
+    if(is.na(obj$shade[[i]][1]) == T) {
+      obj$shade[[i]][1] = "black"
+    } else if (obj$shade[[i]][1] == "white") {
+      obj$shade[[i]][1] = "black"
+    } else if (obj$shade[[i]][1] == "grey") {
+      obj$shade[[i]][1] = "white"
+    } else {
+      obj$shade[[i]][1] = "white"
+    }
+  }
+  return(obj)
+}
 
 ic.neg = function(m, mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
@@ -466,22 +530,20 @@ ic.neg = function(m, mat.type = 9) {
   
   ic.temp = split.m[[length(split.m)]]
   
-  for (i in 1:length(ic.temp$shade)) {
-    if(is.na(ic.temp$shade[[i]][1]) == T) {
-      ic.temp$shade[[i]][1] = "black"
-    } else if (ic.temp$shade[[i]][1] == "white") {
-      ic.temp$shade[[i]][1] = "black"
-    } else if (ic.temp$shade[[i]][1] == "grey") {
-      ic.temp$shade[[i]][1] = "black"
-    } else {
-      ic.temp$shade[[i]][1] = "white"
+  ic.temp = change.col(ic.temp)
+  
+  rule.mat = c(m$vrule, m$hrule) 
+  if(any(grepl("quant", rule.mat)) == T) {
+    ic.neg = change.col(split.m[[1]])
+    for (i in 2:length(split.m)) {
+      ic.neg = cof(ic.neg, change.col(split.m[[i]]))
     }
+  } else {
+    ic.neg = replace(m.correct, 
+                     index_elements[length(split.m)], 
+                     ic.temp)
   }
-  
-  
-  ic.neg = replace(m.correct, 
-                   index_elements[length(split.m)], 
-                   ic.temp)
+ 
   return(ic.neg)
 }
 
