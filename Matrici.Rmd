@@ -552,7 +552,7 @@ draw(young006, n.cell = 4, hide = F)
 
 
 ```{r out.width="80%"}
-dist_young006 = responses(young006,mat.type = 4, how.rot = 4)
+dist_young006 = responses(young006,mat.type = 4, which.element = "triangle")
 
 selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 
@@ -572,7 +572,7 @@ resp_young006[["ic.flip"]] = cof(p$rectangle,
                                 rotation(p$triangle, 2))
 
 
-draw.dist(resp_young006, n.resp = 5, main = T)
+draw.dist(resp_young006, n.resp = 11, main = T)
 ```
 
 
@@ -1933,7 +1933,7 @@ draw.dist(dist_adult018, n.resp = 11, main = T)
 ## adult025
 
 ```{r}
-b_3a = apply(Raven(
+adult025a = apply(Raven(
   st1 = cof(pentagon(), 
             e.hexagon(), 
             ellipse(s.x = 13, s.y = 17)), 
@@ -1943,13 +1943,13 @@ b_3a = apply(Raven(
 
 
 
-b_3b = apply(Raven(
+adult025b = apply(Raven(
   st1 = papillon,
   hrule = "identity",
   vrule = "multifill"
 ))
 
-adult025 = com(b_3a, b_3b)
+adult025 = com(adult025a, adult025b)
 
 draw(adult025, hide = F)
 
@@ -1958,33 +1958,6 @@ draw(adult025, hide = F)
 
 ```{r out.width="80%"}
 dist_adult025 = responses(adult025)
-
-
-# resp_b_3 = within(b_3_dist, 
-#                   rm(r.diag, 
-#                      ic.scale, ic.inc))
-# 
-# 
-# 
-# b3_p = split.mat(b_3)
-# 
-# for (i in 2:length(b3_p)) {
-#   if (any(b3_p[[i]]$shade[[1]] == "grey", na.rm = T) == T) {
-#     b3_p[[i]]$shade[[1]] = rep("white", 
-#                                length((b3_p[[i]]$shade[[1]])))
-#   } else if(any(b3_p[[i]]$shade[[1]] == "white") == T) {
-#     b3_p[[i]]$shade[[1]] = rep("grey", 
-#                                length((b3_p[[i]]$shade[[1]])))
-#   } 
-# }
-# 
-# b3_p[[2]]$shade[[1]] = rep("white", 3)
-# 
-# 
-# resp_b_3[["ic.neg"]] = cof(b3_p[[1]], b3_p[[2]], b3_p[[3]])
-# 
-# 
-# resp_b_3$d.union = cof(b_3$Sq1, smallbow.tie.inv(shd = "grey"))
 
 draw.dist(dist_adult025, n.resp = 11, main = T)
 ```
@@ -2005,7 +1978,7 @@ adult026a = apply(
 
 
 
-adult026b = apply(
+adult026c = apply(
   Raven(
     st1 = cof(circle(s.x = 3, s.y = 3), 
               pentagon(s.x = 5, s.y = 5), 
@@ -2016,7 +1989,7 @@ adult026b = apply(
 )
 
 
-adult026c = apply(
+adult026b = apply(
   Raven(
     st1 = square(s.x = 13, s.y = 13), 
     vrule = c("lty"), 
@@ -2070,7 +2043,7 @@ draw(adult027)
 ```{r out.width="80%"}
 dist_adult027 = responses(adult027)
 
-draw.dist(dist_adult018, n.resp = 11, main = T)
+draw.dist(dist_adult027, n.resp = 11, main = T)
 
 ```
 
@@ -2126,6 +2099,16 @@ adult029 = com(adult029a, adult029b)
 draw(adult029)
 
 ```
+
+
+```{r out.width="80%"}
+dist_adult029 = responses(adult029)
+
+draw.dist(dist_adult029, main = T)
+
+```
+
+
 
 ## adult030
 
