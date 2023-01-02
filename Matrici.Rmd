@@ -1796,14 +1796,14 @@ adult001 = obj_addition_rules(
   ), rule="v.sott"
 )
 
-draw(adult001, n.cell = 9)
+draw(adult001, n.cell = 4)
 
 ```
 
 
 ```{r out.width = "80%"}
-selection.neg = c("correct", "r.top", "r.diag", "d.union", "wp.matrix", "ic.inc", "ic.scale", "ic.flip")
-dist_adult001 = responses(adult001,mat.type = 9)
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
+dist_adult001 = responses(adult001,mat.type = 4)
 
 
 resp_adult001 = select.dist(dist_adult001, 
@@ -1814,7 +1814,7 @@ resp_adult001 = select.dist(dist_adult001,
 
 #resp_adult023 = select.dist(dist_adult023, selection.neg)
 
-draw.dist(resp_adult001, n.resp = 8, main = T)
+draw.dist(resp_adult001, n.resp = 5, main = T)
 
 ```
 
@@ -1854,7 +1854,7 @@ resp_adult002[["d.union"]] = cof(resp_adult002$d.union,
 
 resp_adult002 = select.dist(dist_adult002, selection.neg)
 
-draw.dist(resp_adult002, n.resp = 11, main = T)
+draw.dist(resp_adult002, n.resp = 5, main = T)
 
 ```
 
@@ -1880,7 +1880,7 @@ draw(adult003, n.cell = 4)
 
 
 ```{r out.width="80%"}
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+
 dist_adult003 = responses(adult003,mat.type = 4)
 
 
