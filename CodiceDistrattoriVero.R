@@ -639,6 +639,16 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL, mat.type = 9) {
     distr.wp.matrix = show(distr.wp.matrix, p[1])
   }
   
+  rule.mat = c(m$vrule, m$hrule) 
+  if(any(grepl("quant", rule.mat)) == T) {
+    split.m = split.mat(m)
+    temp = change.col(split.m[[1]])
+    for(i in 2:length(split.m)) {
+      temp = cof(rotation(split.m[[i]], 5-i), size(temp, 5-1))
+    }
+    distr.wp.matrix = temp
+    
+  }
   
   if (any(unlist(distr.wp.copy) != unlist(m.correct),
           na.rm = T) == F) {
