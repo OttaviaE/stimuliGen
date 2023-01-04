@@ -1,4 +1,4 @@
-rm(list = ls())
+
 source("Shapes_list-10-11-Ottavia.R")
 source("Class and Methods v02.R")
 source("Rules_27102022.R")
@@ -42,3 +42,9 @@ adult013b<-apply(Raven(cof(pentagon(s.x=15, s.y=15),e.hexagon(s.x=14, s.y=14),
                            square(s.x=15, s.y=15)),vrule = "diff_shapes"))
 adult013<-com(adult013a,adult013b)
 draw(adult013)
+
+selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+
+resp_adult013 = responses(adult013,mat.type = 4)
+
+resp_adult013 = select.dist(resp_adult013, selection)

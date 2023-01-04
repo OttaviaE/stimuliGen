@@ -127,7 +127,7 @@ movement.field<-function(obj,n,rule,x=0,y=0,...) {
 #   return(obj)
 # }
 
-rotation.field<-function(obj,n,rule,...) {
+rotation.field<-function(obj,n,rule="rot",...) {
   numbers<-unlist(strsplit(rule,split=""))
   num<-4
   for(i in 1:length(numbers))
