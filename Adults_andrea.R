@@ -37,6 +37,32 @@ bow.tie.inv <- function(pos.x = 0) {
   value
 }
 
+adult013a<-apply(Raven(cof(empty(),cross(),X()),"diff_shapes"))
+adult013b<-apply(Raven(cof(pentagon(s.x=15, s.y=15),e.hexagon(s.x=14, s.y=14),
+                           square(s.x=15, s.y=15)),vrule = "diff_shapes"))
+adult013<-com(adult013a,adult013b)
+draw(adult013)
+
+adult014a<-apply(Raven(cof(dice(),empty(),cross()),"diff_shapes","diff_shapes"))
+adult014b<-apply(Raven(cof(size(u.star(),3),size(s.lily(),3),
+                           dot()),vrule = "diff_shapes.inv","diff_shapes.inv"))
+adult014<-com(adult014a,adult014b)
+draw(adult014)
+
+
+adult015a<-apply(Raven(cof(cross.dice(),cross(),X()),"diff_shapes"))
+adult015b<-apply(Raven(cof(square(shd="grey",s.x=9,s.y=9),e.hexagon(shd="grey",s.x=9,s.y=9),
+                           luck(shd="grey",s.x=7,s.y=9)),vrule = "diff_shapes"))
+adult015<-com(adult015b,adult015a)
+draw(adult015)
+
+adult016a<-apply(Raven(cof(circle(),square(),pentagon()),"diff_shapes","diff_shapes"))
+adult016b<-apply(Raven(cof(size(circle(),3),size(circle(),2),
+                           square(s.x=3,s.y=3)),vrule = "diff_shapes.inv","diff_shapes.inv"))
+adult016<-com(adult016a,adult016b)
+draw(adult016)
+
+
 
 adult031<-apply(Raven(pie.4(),"AND"))
 draw(adult031)
@@ -131,3 +157,39 @@ adult044b<- apply(Raven(cof(hline(pos.y = -11),hline(pos.y = 11),
 adult044<-com(adult044a,adult044b)
 draw(adult044)
 
+
+adult045a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
+adult045b<-apply(Raven(cof(pentagon(),ellipse(s.x=14,s.y=17),triangle(s.x=17,s.y=17)),vrule = "diff_shapes.inv"))
+
+adult045 = com(adult045a, adult045b)
+
+draw(adult045)
+
+
+adult046a<-apply(Raven(cof(pentagon(s.x = 6,s.y = 6),ellipse(s.x = 4,s.y = 3)),"trans.fill"))
+adult046b<-apply(Raven(cof(e.hexagon(), luck(s.x=14,s.y=14),square(s.x=17,s.y=17)),"diff_shapes","diff_shapes"))
+
+adult046 = com(adult046a, adult046b)
+
+draw(adult046)
+
+adult047a<-apply(Raven(cof(circle(s.x = 12,s.y = 12),pentagon(s.x = 12,s.y = 12)),"trans.fill.line"))
+adult047b<-apply(Raven(cof(pentagon(s.x = 4, s.y = 4,shd = "white"), luck(s.x=4,s.y=5,shd = "white"),
+                           triangle(s.x=4,s.y=4,shd = "white")),
+                       c("diff_shapes","rotation.inv6"),c("diff_shapes","rotation.inv3")))
+
+adult047 = com(adult047a, adult047b)
+
+draw(adult047)
+
+adult048a<-apply(Raven(cof(circle(s.x = 14,s.y = 14),pentagon(s.x = 14,s.y = 14)),
+                       "trans.fill"))
+
+adult048b<-apply(Raven(cof(triangle(shd="white"),e.hexagon(shd="white"),
+                           square(shd="white")),
+                       c("diff_shapes"),c("diff_shapes")))
+adult048b<-numeric_progression(adult048b,"LL-TR")
+
+adult048 = com(adult048a, adult048b)
+
+draw(adult048)

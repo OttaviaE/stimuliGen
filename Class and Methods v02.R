@@ -179,11 +179,17 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   #and in the second row the function associated
   function_list <- read.csv("function_list.prn", sep="")
   #applying the horizontal rules
+
   if(rules=="HV")
   {
     for (r in 1:length(hrules))
     {
-      f<-get(function_list$function.[function_list$label==hrules[r]])
+      nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,hrules[r]))]
+      if(length(nth_rule)>1)
+      {
+        nth_rule <-nth_rule[!nth_rule=="fill"] 
+      }
+      f<-get(nth_rule )
       for (i in 1:3)
       {
         obj[[row_1[i]]] <- f(obj[[row_1[i]]],i,hrules[r],seed=1)
@@ -195,7 +201,12 @@ apply.Raven_matrix <- function(obj,rules="HV") {
     #applying the vertical rules
     for (r in 1:length(vrules))
     {
-      f<-get(function_list$function.[function_list$label==vrules[r]])
+      nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,vrules[r]))]
+      if(length(nth_rule)>1)
+      {
+        nth_rule <-nth_rule[!nth_rule=="fill"] 
+      }
+      f<-get(nth_rule )
       for (i in 1:3)
       {
         obj[[col_1[i]]] <- f(obj[[col_1[i]]],i,vrules[r],seed=1)
@@ -207,7 +218,13 @@ apply.Raven_matrix <- function(obj,rules="HV") {
     #applying the vertical rules
     for (r in 1:length(vrules))
     {
-      f<-get(function_list$function.[function_list$label==vrules[r]])
+      nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,vrules[r]))]
+      if(length(nth_rule)>1)
+      {
+        nth_rule <-nth_rule[!nth_rule=="fill"] 
+      }
+      f<-get(nth_rule)
+
       for (i in 1:3)
       {
         obj[[col_1[i]]] <- f(obj[[col_1[i]]],i,vrules[r],seed=1)
@@ -218,8 +235,13 @@ apply.Raven_matrix <- function(obj,rules="HV") {
     
     for (r in 1:length(hrules))
     {
-      f<-get(function_list$function.[function_list$label==hrules[r]])
-      for (i in 1:3)
+      nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,hrules[r]))]
+      if(length(nth_rule)>1)
+      {
+        nth_rule <-nth_rule[!nth_rule=="fill"] 
+      }
+      f<-get(nth_rule )
+           for (i in 1:3)
       {
         obj[[row_1[i]]] <- f(obj[[row_1[i]]],i,hrules[r],seed=1)
         obj[[row_2[i]]] <- f(obj[[row_2[i]]],i,hrules[r],seed=5)
@@ -492,7 +514,7 @@ filling<-function(q,m,coords,lwd=1)
   return(pt)
 }
 
-line<-function(obj,rule,lwd=1,by=1.5)
+line<-function(obj,rule,lwd=1,by=2.5)
 {
   #coefficente angolare di default
   m<-1
