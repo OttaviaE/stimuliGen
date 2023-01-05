@@ -516,7 +516,7 @@ change.col = function(obj) {
     } else if (obj$shade[[i]][1] == "grey") {
       obj$shade[[i]][1] = "white"
     } else {
-      obj$shade[[i]][1] = "white"
+      obj$shade[[i]][1] = "black"
     }
   }
   return(obj)
