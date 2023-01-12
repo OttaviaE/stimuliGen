@@ -2985,42 +2985,42 @@ draw.dist(dist_adults036)
 
 Non funziona il codice
 
-<!-- ```{r} -->
+```{r}
 
-<!-- adult037a<-apply(Raven(cof(hline(pos.y = 3),hline(pos.y = -3), -->
-<!--                      pentagon(s.x=3,s.y=3),pentagon(s.x=2.5,s.y=2.5,shd="grey",lty = 0)),"OR")) -->
-<!-- adult037b<-apply(Raven(pentagon(s.x=17, s.y=17))) -->
-<!-- adult037<-com(adult037a,adult037b) -->
-<!-- draw(adult037) -->
-<!-- ``` -->
+adult037a<-apply(Raven(cof(hline(pos.y = 3),hline(pos.y = -3),
+                     pentagon(s.x=3,s.y=3),pentagon(s.x=2.5,s.y=2.5,shd="grey",lty = 0)),"XOR"))
+adult037b<-apply(Raven(pentagon(s.x=17, s.y=17)))
+adult037<-com(adult037b,adult037a)
+draw(adult037)
+```
 
-<!-- ```{r out.width="80%"} -->
-<!-- dist_adults037 = responses(adult037) -->
-
-
-<!-- draw.dist(dist_adults037) -->
-
-<!-- ``` -->
+```{r out.width="80%"}
+dist_adults037 = responses(adult037)
 
 
-<!-- ## Adults038 -->
+draw.dist(dist_adults037)
 
-<!-- ```{r} -->
-<!-- adult038<-logic_rules(Raven(cof(cross(),square(), -->
-<!--                            margin(square(s.x=18,s.y=18),1,"lty") -->
-<!--                            ,cross.dice())),"XOR") -->
-<!-- draw(adult038) -->
-<!-- ``` -->
+```
 
-<!-- ```{r out.width="80%"} -->
-<!-- dist_adults038 = responses(adult038) -->
 
-<!-- dist_adults038$d.union = cof(dist_adults038$wp.matrix,  -->
-<!--                              bow.tie()) -->
+## Adults038
 
-<!-- draw.dist(dist_adults038) -->
+```{r}
+adult038<-logic_rules(Raven(cof(cross(),square(),
+                           margin(square(s.x=18,s.y=18),1,"lty")
+                           ,cross.dice())),"XOR")
+draw(adult038)
+```
 
-<!-- ``` -->
+```{r out.width="80%"}
+dist_adults038 = responses(adult038)
+
+dist_adults038$d.union = cof(dist_adults038$wp.matrix,
+                             bow.tie())
+
+draw.dist(dist_adults038)
+
+```
 
 ## Adults039 
 
