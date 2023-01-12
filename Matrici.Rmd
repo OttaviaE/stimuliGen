@@ -2981,7 +2981,7 @@ draw.dist(dist_adults036)
 ```
 
 
-## Adults037 non funziona il codice
+## Adults037 
 
 Non funziona il codice
 
@@ -3091,36 +3091,36 @@ draw.dist(dist_adults041)
 ```
 
 
-## Adults042 non funziona il codice
+## Adults042 
 
 
-<!-- ```{r} -->
-<!-- adult042a<- apply(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3), -->
-<!--                              circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3), -->
-<!--                              cof(diagline(pos.x = 11,pos.y = -11,s.x=3,s.y=3), -->
-<!--                                  diagline.inv(pos.x = 11,pos.y = -11,s.x=3,s.y=3), -->
-<!--                                  single = TRUE,name = "smallcross"), -->
-<!--                              cof(diagline(pos.x = -11,pos.y = -11,s.x=3,s.y=3), -->
-<!--                                  diagline.inv(pos.x = -11,pos.y = -11,s.x=3,s.y=3), -->
-<!--                                  single = TRUE,name = "smallcross") -->
-<!-- ),"XOR")) -->
+```{r}
+adult042a<- apply(Raven(cof(circle(pos.x = 11,pos.y = 11, s.x=3,s.y=3),
+                             circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
+                             cof(diagline(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                                 diagline.inv(pos.x = 11,pos.y = -11,s.x=3,s.y=3),
+                                 single = TRUE,name = "smallcross"),
+                             cof(diagline(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                                 diagline.inv(pos.x = -11,pos.y = -11,s.x=3,s.y=3),
+                                 single = TRUE,name = "smallcross")
+),"XOR"))
 
-<!-- adult042b<- apply(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"), -->
-<!--                             margin(hline(pos.y=-5,s.x = 18),1,"lty"), -->
-<!--                             margin(vline(pos.x=5,s.x = 18),1,"lty"), -->
-<!--                             margin(vline(pos.x=-5,s.x = 18),1,"lty")),vrule="AND")) -->
+adult042b<- apply(Raven(cof(margin(hline(pos.y=5,s.x = 18),1,"lty"),
+                            margin(hline(pos.y=-5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=5,s.x = 18),1,"lty"),
+                            margin(vline(pos.x=-5,s.x = 18),1,"lty")),vrule="AND"))
 
-<!-- adult042<-com(adult042b,adult042a) -->
-<!-- draw(adult042) -->
+adult042<-com(adult042b,adult042a)
+draw(adult042)
 
-<!-- ``` -->
+```
 
-<!-- ```{r out.width="80%"} -->
-<!-- dist_adults042 = responses(adult042) -->
+```{r out.width="80%"}
+dist_adults042 = responses(adult042)
 
-<!-- draw.dist(dist_adults042) -->
+draw.dist(dist_adults042)
 
-<!-- ``` -->
+```
 
 ## Adults043 
 
@@ -3153,24 +3153,24 @@ draw.dist(dist_adults043)
 
 ```
 
-## Adults044 non funziona il codice
+## Adults044
 
 
-<!-- ```{r} -->
-<!-- adult044a<-apply(Raven(cof(hline(pos.y = 3,s.x=7),hline(pos.y = -3,s.x=7), -->
-<!--                      margin(circle(s.x=7.5, s.y = 7.5),5,"lwd"), -->
-<!--                      hexagon(s.x=3,s.y=3)),"XOR")) -->
-<!-- adult044b<- apply(Raven(cof(hline(pos.y = -11),hline(pos.y = 11), -->
-<!--                        vline(pos.x = -11),vline(pos.x = +11)),"identity","OR")) -->
-<!-- adult044<-com(adult044a,adult044b) -->
-<!-- draw(adult044) -->
-<!-- ``` -->
+```{r}
+adult044a<-apply(Raven(cof(hline(pos.y = 3,s.x=7),hline(pos.y = -3,s.x=7),
+                     margin(circle(s.x=7.5, s.y = 7.5),5,"lwd"),
+                     hexagon(s.x=3,s.y=3)),"XOR"))
+adult044b<- apply(Raven(cof(hline(pos.y = -11),hline(pos.y = 11),
+                       vline(pos.x = -11),vline(pos.x = +11)),"identity","OR"))
+adult044<-com(adult044a,adult044b)
+draw(adult044)
+```
 
-<!-- ```{r out.width="80%"} -->
-<!-- dist_adults044 = responses(adult044) -->
+```{r out.width="80%"}
+dist_adults044 = responses(adult044)
 
-<!-- draw.dist(dist_adults044) -->
-<!-- ``` -->
+draw.dist(dist_adults044)
+```
 
 
 ## Adults045 
