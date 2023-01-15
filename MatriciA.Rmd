@@ -34,6 +34,28 @@ source("Rules_27102022.R")
 source("DrawRegPolygon.R")
 source("CodiceDistrattoriVero.R")
 
+temp.dice = function(object){
+  object<-movement(object,1,"pos",-10,11)
+object<-size(object,4)
+object2<-object
+for(row in 1:3) {
+  obj<-movement(object,row,"y")
+  if(row>1)
+  {
+    object2<-cof(object2,obj)
+  }
+  
+  for( col in 2:3 )
+  {
+    obj<-movement(obj,2,"x")
+    object2<-cof(object2,obj)
+    
+  }
+}
+return(object2)
+}
+
+
 draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16,by=1.5) {
   library(DescTools)
   if (canvas == TRUE)
