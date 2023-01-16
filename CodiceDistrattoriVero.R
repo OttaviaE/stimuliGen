@@ -1,7 +1,7 @@
 # codice distrattori questa volta sul serio -----
 # mi serve per fare i distrattori dei cosi quantitativi
 temp.dice = function(object){
-  object<-movement(object,2,"pos",-10,9) 
+  object<-movement(object,2,"pos",-9,9) 
   object2<-object
   for(row in 1:3) {
     obj<-movement(object,row,"y")

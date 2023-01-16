@@ -35,9 +35,9 @@ source("DrawRegPolygon.R")
 source("CodiceDistrattoriVero.R")
 
 temp.dice = function(object){
-  object<-movement(object,1,"pos",-10,11)
-object<-size(object,4)
-object2<-object
+  object<-movement(object,1,"pos",-10,11) 
+  object<-size(object,4)
+  object2<-object
 for(row in 1:3) {
   obj<-movement(object,row,"y")
   if(row>1)
