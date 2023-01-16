@@ -353,7 +353,8 @@ ic.flip = function(m,
       } else {
         ap = split.m[[1]]
         
-        for (i in 2:length(p)) {
+        #for (i in 2:length(p)) { ### DA DOVE SALTA FUORI P????
+         for (i in 2:length(split.m)) {  
           ap = cof(ap, split.m[[i]])
         }
         ic.rotation = rotation(ap, how.rot)

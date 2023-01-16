@@ -5,7 +5,9 @@ source("Class and Methods v02.R")
 source("Rules_27102022.R")
 source("DrawRegPolygon.R")
 source("CodiceDistrattoriVero.R")
+library(DescTools)
 set.seed(999)
+
 
 blu = "deepskyblue3"
 
@@ -64,29 +66,22 @@ for(i in seq(-50, 50, by = 3.5)) {
        canvas = F)
 }
 
-draw(container,xlim = 8)
-draws(rectangle(s.x=6,s.y=6,shd="line.12.inv",lty=0),by=3.5,
-      canvas = FALSE)
-draws(rectangle(s.x=6,s.y=6,shd="line.12",lty=0),by=3.5,
-      canvas = FALSE)
-
 dev.off()
 
-svg(paste0(getwd(), "/Test_young/Matrici/young001_ic.scale.svg"))
-draw(container,xlim = 8)
+svg(paste0(getwd(), "/young001_ic.scale.svg"))
+draw(container,xlim = 6)
 draws(rectangle(s.x=7,s.y=5,shd="line.12"),
       canvas = FALSE)
 draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),
       canvas = FALSE)
 dev.off()
 
-svg(paste0(getwd(), "/Test_young/Matrici/young001_diff1.svg"))
-
-draw(container,xlim = 8)
+svg(paste0(getwd(), "/young001_diff1.svg"))
+draw(container,xlim = 6)
 dev.off()
 
-svg(paste0(getwd(), "/Test_young/Matrici/young001_diff2.svg"))
-draw(container,xlim = 8)
+svg(paste0(getwd(), "/young001_diff2.svg"))
+draw(container,xlim = 6)
 for (i in seq(-6, 7, by = 3)) {
   for (j in seq(-3, 3, by = 3)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
@@ -95,8 +90,8 @@ for (i in seq(-6, 7, by = 3)) {
 
 dev.off()
 
-svg(paste0(getwd(), "/Test_young/Matrici/young001_ic.flip.svg"))
-draw(container,xlim = 8)
+svg(paste0(getwd(), "/young001_ic.flip.svg"))
+draw(container,xlim = 6)
 for(i in seq(-7, 7, by = 1)) {
   draw(vline(pos.x = i, s.x=5, lwd = 3), canvas = F)
 }
