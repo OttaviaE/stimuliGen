@@ -2,8 +2,8 @@
 set.seed(999)
 knitr::opts_chunk$set(echo=FALSE, 
                       eval=TRUE, 
-                      warning = F, 
-                      message = F, 
+                      warning = FALSE, 
+                      message = FALSE, 
                       fig.align = "center")
 knitr::knit_hooks$set(purl = knitr::hook_purl)
 
@@ -2132,7 +2132,7 @@ resp_adult015 = select.dist(dist_adult015, sel015)
 resp_adult015$wp.matrix = cof(resp_adult015$wp.copy, 
                               size(adult015$Sq1, 3))
 
-draw.dist(resp_adult015)
+draw.dist(resp_adult015, n.resp = 8, main = T)
 
 ## -----------------------------------------------------------------------------
 adult016a<-apply(Raven(cof(circle(),square(),pentagon()),"diff_shapes","diff_shapes"))
@@ -2281,7 +2281,7 @@ draw(adult020)
 
 ## ----out.width="90%"----------------------------------------------------------
 dist_adult020 = responses(adult020)
-sel20 = c("correct",  "r.top", "r.left", "wp.copy", "wp.matrix",  "d.union", 
+sel20 = c("correct",  "r.diag", "r.left", "wp.copy", "wp.matrix",  "d.union", 
           "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
 
@@ -2430,6 +2430,10 @@ sel25 = c("correct", "r.top", "r.diag", "wp.copy", "wp.matrix", "d.union", "ic.i
 resp_adult025 = select.dist(dist_adult025, sel25)
 
 resp_adult025$wp.matrix = replace(resp_adult025$wp.matrix, 2, size(e.hexagon(), 2))
+
+resp_adult025$ic.neg$shade[[4]] = "grey"
+resp_adult025$ic.neg$shade[[5]] = "white"
+
 
 draw.dist(resp_adult025, n.resp = 8, main = T)
 
