@@ -264,8 +264,7 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
 
 ### Progressione numerica
 
-create_dice.field<-function(object)
-{
+create_dice.field<-function(object) {
   #if(!any(unlist(object$tag)=="small")) ##idealmente risolvi
   #{
   #  stop("The function need to be resizeable")
@@ -273,8 +272,7 @@ create_dice.field<-function(object)
   object<-movement(object,1,"pos",-10,11)
   object<-size(object,4)
   object2<-object
-  for(row in 1:3)
-  {
+  for(row in 1:3) {
     obj<-movement(object,row,"y")
     if(row>1)
     {

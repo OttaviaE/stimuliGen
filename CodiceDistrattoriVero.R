@@ -1,5 +1,24 @@
 # codice distrattori questa volta sul serio -----
-
+# mi serve per fare i distrattori dei cosi quantitativi
+temp.dice = function(object){
+  object<-movement(object,2,"pos",-9,9) 
+  object2<-object
+  for(row in 1:3) {
+    obj<-movement(object,row,"y")
+    if(row>1)
+    {
+      object2<-cof(object2,obj)
+    }
+    
+    for( col in 2:3 )
+    {
+      obj<-movement(obj,2,"x")
+      object2<-cof(object2,obj)
+      
+    }
+  }
+  return(object2)
+}
 # decompone la matrice -----
 
 # non lo so vorrei morire il codice non funziona con le matrici di massimiliano dc
@@ -515,7 +534,10 @@ change.col = function(obj) {
       obj$shade[[i]][1] = "black"
     } else if (obj$shade[[i]][1] == "grey") {
       obj$shade[[i]][1] = "white"
-    } else {
+    } else if(obj$shade[[i]][1] == "black") {
+      obj$shade[[i]][1] = "white"
+    }
+    else {
       obj$shade[[i]][1] = "black"
     }
   }
@@ -633,7 +655,7 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL, mat.type = 9) {
   p = which(which.vis == 0)
   
   if (length(p) == 0) {
-    distr.wp.matrix = cof(distr.wp.matrix, 
+    distr.wp.matrix = cof(distr.wp.matrix,
                           size(m$Sq1, 3))
   } else {
     distr.wp.matrix = show(distr.wp.matrix, p[1])
@@ -643,9 +665,8 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL, mat.type = 9) {
   if(any(grepl("quant", rule.mat)) == T) {
     split.m = split.mat(m)
     temp = change.col(split.m[[1]])
-    for(i in 2:length(split.m)) {
-      temp = cof(rotation(split.m[[i]], 5-i), size(temp, 5-1))
-    }
+    temp = rotation(temp, 2)
+    temp = temp.dice(temp)
     distr.wp.matrix = temp
     
   }
@@ -715,6 +736,24 @@ d.union = function(m,
   
   f = get(shapes.in)
   d.un = cof(d.union, f())
+  
+  rule.mat = c(m$vrule, m$hrule) 
+  if(any(grepl("quant", rule.mat)) == T) {
+    rm(d.un)
+    # split.m = split.mat(m, cell = 2)
+    # g = get(names(split.m)[[1]])
+    # h = rotation(size(g(), 2), 2)
+   # temp2 = temp.dice(size(f(), 2))
+    temp2 = size(f(), 3)
+  #  temp2 = change.col(temp2)
+    temp2 = temp.dice(temp2)
+    d.un = cof(temp2, rectangle(s.x = 15, s.y = 18, 
+                                pos.y = -1, 
+                                pos.x = 0))
+    
+  }
+  
+
   return(d.un)
   
 }
