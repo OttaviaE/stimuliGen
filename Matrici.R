@@ -1250,14 +1250,16 @@ young028 = com(young028a, young028b)
 draw(young028)
 
 ## ----out.width="80%"----------------------------------------------------------
-selection.neg = c("correct", "r.diag","wp.matrix", "d.union", "ic.scale","ic.flip","ic.inc","ic.neg")
 
-dist_young028 = responses(young028,mat.type = 9)
-resp_young028 = select.dist(dist_young028, selection.neg)
+dist_young028 = responses(young028,mat.type = 9, choose.copy = 1)
+
+sely028 = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
+
+
 
 
 resp_young028 = select.dist(dist_young028, 
-                            select.new)
+                            sely028)
 
 # p = split.mat(young028)
 # resp_young028$ic.inc = p$square
@@ -1269,6 +1271,10 @@ resp_young028 = select.dist(dist_young028,
 #                              reflection(p$pacman, 2))
 # 
 # resp_young028$wp.copy = young028$Sq1
+
+p = split.mat(young028)
+resp_young028$ic.flip = replace(resp_young028$ic.flip, 2, reflection(p$pacman, 2))
+
 
 draw.dist(resp_young028, n.resp = 8, main = T)
 
@@ -1795,11 +1801,13 @@ draw(adult006)
 ## ----out.width="80%"----------------------------------------------------------
 
 
-dist_adult006 = responses(adult006,mat.type = 9)
-
+dist_adult006 = responses(adult006,mat.type = 9, choose.copy = 1)
+sel6 = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
 
 resp_adult006 = select.dist(dist_adult006, 
-                            select.new)
+                            sel6)
+p = split.mat(adult006)
+resp_adult006$ic.flip = replace(resp_adult006$ic.flip, 2, reflection(p$pacman, 2))
 
 # p = split.mat(adult006)
 # resp_adult006$ic.inc = p$square
@@ -2280,8 +2288,8 @@ adult020  = numeric_progression(adult020a,"LL-TR")
 draw(adult020)
 
 ## ----out.width="90%"----------------------------------------------------------
-dist_adult020 = responses(adult020)
-sel20 = c("correct",  "r.diag", "r.left", "wp.copy", "wp.matrix",  "d.union", 
+dist_adult020 = responses(adult020, choose.copy=3)
+sel20 = c("correct",  "r.top", "r.left", "wp.copy", "wp.matrix",  "d.union", 
           "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
 
@@ -2305,7 +2313,7 @@ draw(adult021)
 
 ## ----out.width="80%"----------------------------------------------------------
 dist_adult021 = responses(adult021)
-sel21 = c("correct",  "r.top", "r.left", "wp.copy", "wp.matrix",  "d.union", 
+sel21 = c("correct",  "r.top", "ic.inc", "wp.copy", "wp.matrix",  "d.union", 
           "ic.flip", "ic.scale")
 
 
@@ -2361,7 +2369,7 @@ draw(adult023)
 ## ----out.width="80%"----------------------------------------------------------
 dist_adult023 = responses(adult023)
 
-sel23 = c("correct",  "r.top", "r.left", "wp.copy", "wp.matrix",  "d.union", 
+sel23 = c("correct",  "r.top", "ic.scale", "wp.copy", "wp.matrix",  "d.union", 
           "ic.inc", "ic.flip")
 resp_adult023 = select.dist(dist_adult023, 
                             sel23)
@@ -2388,8 +2396,9 @@ adult024 = numeric_progression(adult024a, "h.increasing")
 draw(adult024)
 
 ## ----out.width="80%"----------------------------------------------------------
-dist_adult024 = responses(adult024)
-sel24 = sel23
+dist_adult024 = responses(adult024, choose.copy = 1)
+sel24 = c("correct",  "r.diag", "ic.scale", "wp.copy", "wp.matrix",  "d.union", 
+          "ic.inc", "ic.flip")
 resp_adult024 = select.dist(dist_adult024, sel24)
 resp_adult024$wp.matrix = size(resp_adult024$wp.matrix , 2)
 
