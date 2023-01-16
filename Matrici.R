@@ -1272,10 +1272,6 @@ resp_young028 = select.dist(dist_young028,
 # 
 # resp_young028$wp.copy = young028$Sq1
 
-p = split.mat(young028)
-resp_young028$ic.flip = replace(resp_young028$ic.flip, 2, reflection(p$pacman, 2))
-
-
 draw.dist(resp_young028, n.resp = 8, main = T)
 
 
@@ -2288,8 +2284,8 @@ adult020  = numeric_progression(adult020a,"LL-TR")
 draw(adult020)
 
 ## ----out.width="90%"----------------------------------------------------------
-dist_adult020 = responses(adult020, choose.copy=3)
-sel20 = c("correct",  "r.top", "r.left", "wp.copy", "wp.matrix",  "d.union", 
+dist_adult020 = responses(adult020)
+sel20 = c("correct",  "r.diag", "r.left", "wp.copy", "wp.matrix",  "d.union", 
           "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
 
