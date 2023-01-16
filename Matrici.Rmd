@@ -3216,6 +3216,10 @@ dist_adult037 = responses(adult037)
 sel37 = c("correct", "r.diag", "r.left" , "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.neg")
 resp_adult037 = select.dist(dist_adult037,
                             sel37)
+m = correct(adult037)
+p = split.mat(adult037)
+
+resp_adult037$ic.flip = replace(m, 4, reflection(p[[3]], 2))
 
 draw.dist(resp_adult037, n.resp =8)
 
@@ -3294,7 +3298,20 @@ m.c = correct(adult040)
 
 p$cross.dice$shade[[1]] = rep("white", 4)
 dist_adult040$ic.neg = p[[1]]
-draw.dist(dist_adult040)
+sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.inc")
+
+resp_adult040 = select.dist(dist_adult040, sel40)
+resp_adult040$ic.flip = dice()
+
+resp_adult040$ic.inc = cof(dot(pos.x=13,
+                  pos.y=0),
+              dot(pos.x=-13, pos.y= 0),
+              dot(pos.x = 0,
+                  pos.y =13))
+
+
+
+draw.dist(resp_adult040, n.resp = 8)
 
 ```
 
@@ -3448,7 +3465,14 @@ sel44 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.
 resp_adult44 = select.dist(dist_adult044,
                            sel44)
 # bisogna mettere una righetta verticale nel cerchio per IC flip
-resp_adult44$ic.flip$rotation[[1]]<-resp_adult44$ic.flip$rotation[[1]]-pi/2
+
+m = correct(adult044)
+p = split.mat(adult044)
+p$hline = rotation(p$hline, 3)
+p$hline$pos.y[[1]] = 0
+
+resp_adult44$ic.flip = replace(m, 2, p$hline)
+
 draw.dist(resp_adult44,n.resp=8)
 ```
 
