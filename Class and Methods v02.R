@@ -187,6 +187,7 @@ apply.Raven_matrix <- function(obj,rules="HV") {
       nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,hrules[r]))]
       if(length(nth_rule)>1)
       {
+        nth_rule <-unique(nth_rule)
         nth_rule <-nth_rule[!nth_rule=="fill"] 
       }
       f<-get(nth_rule )
@@ -204,6 +205,7 @@ apply.Raven_matrix <- function(obj,rules="HV") {
       nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,vrules[r]))]
       if(length(nth_rule)>1)
       {
+        nth_rule <-unique(nth_rule)
         nth_rule <-nth_rule[!nth_rule=="fill"] 
       }
       f<-get(nth_rule )
@@ -221,6 +223,7 @@ apply.Raven_matrix <- function(obj,rules="HV") {
       nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,vrules[r]))]
       if(length(nth_rule)>1)
       {
+        nth_rule <-unique(nth_rule)
         nth_rule <-nth_rule[!nth_rule=="fill"] 
       }
       f<-get(nth_rule)
@@ -238,6 +241,7 @@ apply.Raven_matrix <- function(obj,rules="HV") {
       nth_rule<-function_list$function.[unlist(lapply(function_list$label,grepl,hrules[r]))]
       if(length(nth_rule)>1)
       {
+        nth_rule <-unique(nth_rule)
         nth_rule <-nth_rule[!nth_rule=="fill"] 
       }
       f<-get(nth_rule )

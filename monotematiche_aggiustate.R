@@ -5,7 +5,9 @@ source("Class and Methods v02.R")
 source("Rules_27102022.R")
 source("DrawRegPolygon.R")
 source("CodiceDistrattoriVero.R")
+library(DescTools)
 set.seed(999)
+
 
 blu = "deepskyblue3"
 
