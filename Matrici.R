@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo=FALSE,
                       fig.align = "center")
 knitr::knit_hooks$set(purl = knitr::hook_purl)
 
-rm(list = ls())
+#rm(list = ls())
 select.dist = function(dist.list, selection) {
   resp = list()
 for (i in 1:length(selection)) {
@@ -2851,7 +2851,11 @@ m.c = correct(adult040)
 
 p$cross.dice$shade[[1]] = rep("white", 4)
 dist_adult040$ic.neg = p[[1]]
-draw.dist(dist_adult040)
+dist_adult040$ic.flip = dice()
+sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.neg")
+
+resp_adult040 = select.dist(dist_adult040, sel40)
+draw.dist(resp_adult040, n.resp = 8)
 
 
 ## -----------------------------------------------------------------------------
@@ -2981,11 +2985,11 @@ draw(adult044)
 dist_adult044 = responses(adult044)
 sel44 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.inc", "ic.flip")
 
-resp_adult44 = select.dist(dist_adult044,
+resp_adult044 = select.dist(dist_adult044,
                            sel44)
 # bisogna mettere una righetta verticale nel cerchio per IC flip
-resp_adult44$ic.flip$rotation[[1]]<-resp_adult44$ic.flip$rotation[[1]]-pi/2
-draw.dist(resp_adult44,n.resp=8)
+resp_adult044$ic.flip$rotation[[1]]<-resp_adult044$ic.flip$rotation[[1]]-pi/2
+draw.dist(resp_adult044,n.resp=8)
 
 ## -----------------------------------------------------------------------------
 adult045a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
@@ -3000,13 +3004,13 @@ draw(adult045)
 dist_adult045 = responses(adult045)
 sel45 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.neg", "ic.flip")
 
-resp_adult45 = select.dist(dist_adult045, 
+resp_adult045 = select.dist(dist_adult045, 
                            sel45)
 
 
-resp_adult45$ic.neg$shade[[4]] = "white"
+resp_adult045$ic.neg$shade[[4]] = "white"
 
-draw.dist(resp_adult45, n.resp = 8)
+draw.dist(resp_adult045, n.resp = 8)
 
 
 ## -----------------------------------------------------------------------------
@@ -3027,16 +3031,16 @@ sel46 = c("correct", "r.diag",
           "r.left", "wp.copy", "wp.matrix", 
           "d.union", "ic.neg", "ic.flip")
 
-resp_adult46 = select.dist(dist_adult046, sel46)
+resp_adult046 = select.dist(dist_adult046, sel46)
 
 
 m= correct(adult046)
 p = split.mat(adult046)
 
-resp_adult46$ic.flip = replace(m, 3, 
+resp_adult046$ic.flip = replace(m, 3, 
                                rotation(p$square, 2))
 
-draw.dist(resp_adult46, n.resp = 8)
+draw.dist(resp_adult046, n.resp = 8)
 
 
 ## -----------------------------------------------------------------------------
