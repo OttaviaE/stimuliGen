@@ -1,0 +1,7 @@
+Changes from version 0.2 to version 0.3
+
+19/01/2023
+
+*field* change into *cell*
+*num* inside the field class change into **
+definition of the class *responses*

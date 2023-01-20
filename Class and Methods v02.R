@@ -178,7 +178,6 @@ apply.Raven_matrix <- function(obj,rules="HV") {
   #This table contains in the first row the label of the rules 
   #and in the second row the function associated
   function_list <- read.csv("function_list.prn", sep="")
-  #applying the horizontal rules
 
   if(rules=="HV")
   {
