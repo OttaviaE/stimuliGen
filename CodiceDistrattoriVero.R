@@ -838,3 +838,15 @@ draw.dist = function(dist.list, n.resp = 11,
   }
 }
 
+# SELECT DIST ------
+
+select.dist = function(dist.list, selection) {
+  resp = list()
+  for (i in 1:length(selection)) {
+    resp[[i]] = dist.list[[selection[i]]]
+    names(resp)[[i]] = selection[i]
+  }
+  return(resp)
+}
+
+
