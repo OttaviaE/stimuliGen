@@ -162,7 +162,7 @@ size.field<-function(obj,n,...) {
 }
 
 margin.field<-function(obj,n,rules,...){
-  if(grepl("inv",rule))
+  if(grepl("inv",rules))
   {
     index<-c(3:1,3:1,3:1) #TL-LR
   }else{
