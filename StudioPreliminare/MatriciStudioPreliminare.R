@@ -94,7 +94,7 @@ ic.neg = function(m) {
   ic.col = m.correct
   return(ic.col)
 }
-
+# se ci son le righe metti trasparente
 
 set.seed(999)
 ## -----------------------------------------------------------------------------
@@ -1136,7 +1136,7 @@ for (i in 2:length(b3_p)) {
   if (any(b3_p[[i]]$shade[[1]] == "grey", na.rm = T) == T) {
     b3_p[[i]]$shade[[1]] = rep("white", 
                                length((b3_p[[i]]$shade[[1]])))
-  } else if(any(b3_p[[i]]$shade[[1]] == "white") == T) {
+  } else if(any(b3_p[[i]]$shade[[1]] == "white", na.rm = T) == T) {
     b3_p[[i]]$shade[[1]] = rep("grey", 
                                length((b3_p[[i]]$shade[[1]])))
   } 
