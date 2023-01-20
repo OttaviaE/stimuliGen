@@ -158,11 +158,12 @@ reflection.field<-function(obj,n,...) {
 size.field<-function(obj,n,...) {
   obj$size.x<-Map('/', obj$size.x,(n*.9))
   obj$size.y<-Map('/', obj$size.y,(n*.9))
+  obj$pos.x<-Map('/', obj$pos.x,(n*.9)) ## Per Problemi commentami
+  obj$pos.y<-Map('/', obj$pos.y,(n*.9)) ##  Per Problemi commentami
   return(obj)
 }
-
 margin.field<-function(obj,n,rules,...){
-  if(grepl("inv",rule))
+  if(grepl("inv",rules))
   {
     index<-c(3:1,3:1,3:1) #TL-LR
   }else{

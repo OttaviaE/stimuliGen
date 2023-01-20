@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo=FALSE,
                       fig.align = "center")
 knitr::knit_hooks$set(purl = knitr::hook_purl)
 
-#rm(list = ls())
+rm(list = ls())
 select.dist = function(dist.list, selection) {
   resp = list()
 for (i in 1:length(selection)) {
@@ -2855,12 +2855,12 @@ m.c = correct(adult040)
 
 p$cross.dice$shade[[1]] = rep("white", 4)
 dist_adult040$ic.neg = p[[1]]
-<<<<<<< HEAD
+
 dist_adult040$ic.flip = dice()
 sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.neg")
 
 resp_adult040 = select.dist(dist_adult040, sel40)
-=======
+
 sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.inc")
 
 resp_adult040 = select.dist(dist_adult040, sel40)
@@ -2874,7 +2874,6 @@ resp_adult040$ic.inc = cof(dot(pos.x=13,
 
 
 
->>>>>>> 58c8a52e1e9540a985d8ad57ac3ac423ab713683
 draw.dist(resp_adult040, n.resp = 8)
 
 
@@ -3008,20 +3007,19 @@ sel44 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.
 resp_adult044 = select.dist(dist_adult044,
                            sel44)
 # bisogna mettere una righetta verticale nel cerchio per IC flip
-<<<<<<< HEAD
+
 resp_adult044$ic.flip$rotation[[1]]<-resp_adult044$ic.flip$rotation[[1]]-pi/2
-draw.dist(resp_adult044,n.resp=8)
-=======
+#draw.dist(resp_adult044,n.resp=8)
 
 m = correct(adult044)
 p = split.mat(adult044)
 p$hline = rotation(p$hline, 3)
 p$hline$pos.y[[1]] = 0
 
-resp_adult44$ic.flip = replace(m, 2, p$hline)
+resp_adult044$ic.flip = replace(m, 2, p$hline)
 
-draw.dist(resp_adult44,n.resp=8)
->>>>>>> 58c8a52e1e9540a985d8ad57ac3ac423ab713683
+draw.dist(resp_adult044,n.resp=8)
+
 
 ## -----------------------------------------------------------------------------
 adult045a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
