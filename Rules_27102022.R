@@ -162,7 +162,12 @@ size.field<-function(obj,n,...) {
 }
 
 margin.field<-function(obj,n,rules,...){
-  index<-c(3:1,3:1,3:1)
+  if(grepl("inv",rule))
+  {
+    index<-c(3:1,3:1,3:1) #TL-LR
+  }else{
+    index<-c(1:3,1:3,1:3) #TR-LL
+  }
   if(grepl("lwd",rules)){
     obj$lwd<- lapply(obj$lwd,function(x,i,n){i[x+n]+1},index,n)
   }else if(grepl("lty",rules)){
