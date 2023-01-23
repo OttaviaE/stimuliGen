@@ -655,12 +655,26 @@ wp = function(m, choose.matrix = 1, choose.copy = NULL, mat.type = 9) {
   which.vis = unlist(distr.wp.matrix$visible)
   p = which(which.vis == 0)
   
+  # Codice peggio
   if (length(p) == 0) {
     distr.wp.matrix = cof(distr.wp.matrix,
                           size(m$Sq1, 3))
   } else {
     distr.wp.matrix = show(distr.wp.matrix, p[1])
   }
+  
+  # Codice meglio 
+  # if (length(p) == 0) { # aggiungo la rotazione su wp matrix
+  #   distr.wp.matrix = cof(rotation(distr.wp.matrix, 2),
+  #                         size(m$Sq2, 3)
+  #                         
+  #                         )
+  # } else { 
+  #   distr.wp.matrix = show(distr.wp.matrix, p[1])
+  #   distr.wp.matrix = cof(size(distr.wp.matrix, 2), 
+  #                         rotation(m$Sq2, 3)
+  #                         )
+  # }
   
   rule.mat = c(m$vrule, m$hrule) 
   if(any(grepl("quant", rule.mat)) == T) {
