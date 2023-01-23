@@ -3,19 +3,17 @@ title: "Matrici"
 author: "Andrea & Ottavia"
 date: "`r Sys.Date()`"
 output: 
-pdf_document: 
-toc: yes
+  pdf_document: 
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
-#| echo: false
-#| eval: true
 set.seed(999)
-knitr::opts_chunk$set(echo=FALSE, 
-eval=TRUE, 
-warning = FALSE, 
-message = FALSE, 
-fig.align = "center")
+knitr::opts_chunk$set(echo=FALSE,  
+                      eval=TRUE,  
+                      warning = FALSE, 
+                      message = FALSE, 
+                      fig.align = "center")
 knitr::knit_hooks$set(purl = knitr::hook_purl)
 
 rm(list = ls())
@@ -633,6 +631,8 @@ draw(young007, n.cell = 4)
 ```{r out.width="80%"}
 dist_young007 = responses(young007,mat.type = 4)
 
+selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+
 resp_young007 = select.dist(dist_young007, selection)
 
 resp_young007[["d.union"]] = cof(resp_young007[["d.union"]], 
@@ -641,8 +641,8 @@ resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]],
  dice())
 p = split.mat(young007, mat.type= 4)
 
-resp_young007[["ic.flip"]] = cof(rotation(p[[1]], 2), 
- p[[2]]) 
+resp_young007[["ic.flip"]] = cof((p[[1]]), 
+ reflection(p[[2]], 2)) 
 
 draw.dist(resp_young007, n.resp = 5, main = T)
 ```
@@ -677,7 +677,7 @@ resp_young008[["d.union"]] = cof(resp_young008[["d.union"]],
  pentagon())
 p = split.mat(young008, mat.type = 4)
 
-resp_young008[["ic.flip"]] = cof(rotation(p[[1]], 3), 
+resp_young008[["ic.flip"]] = cof(reflection(p[[1]], 2),
  p[[2]])
 
 draw.dist(resp_young008, n.resp = 5)
@@ -721,8 +721,8 @@ resp_young009[["wp.matrix"]] = cof(resp_young009[["wp.matrix"]],
 
 p = split.mat(young009, mat.type= 4)
 
-resp_young009[["ic.flip"]] = cof( 
-p[[1]], rotation(p[[2]], 3)) 
+resp_young009[["ic.flip"]] = cof(
+p[[1]], reflection(p[[2]], 2))
 
 draw.dist(resp_young009, n.resp = 5)
 
@@ -765,7 +765,7 @@ resp_young010[["wp.matrix"]] = cof(resp_young010[["wp.matrix"]],
 p = split.mat(young010,mat.type= 4)
 
 
-resp_young010[["ic.flip"]] = cof(rotation(p[[1]], 3), 
+resp_young010[["ic.flip"]] = cof(reflection(p[[1]], 2), 
  p[[2]])
 
 draw.dist(resp_young010, n.resp = 5)
@@ -869,11 +869,12 @@ draw(young013, n.cell = 4)
 
 
 ```{r out.width="80%"}
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.neg")
+sely013 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 
 
 dist_young013 = responses(young013,mat.type = 4)
-resp_young013 = select.dist(dist_young013, selection.neg)
+resp_young013 = select.dist(dist_young013, sely013)
+resp_young013$ic.flip = rotation(resp_young013$correct, 6)
 
 draw.dist(resp_young013, n.resp = 5, main = T)
 ```
@@ -895,8 +896,10 @@ draw(young014, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young014 = responses(young014,mat.type = 4)
-
-resp_young014 = select.dist(dist_young014, selection.neg)
+sely014 = sely013
+resp_young014 = select.dist(dist_young014, sely014)
+resp_young014$ic.flip = rotation(resp_young014$correct, 
+                                   7)
 draw.dist(resp_young014, n.resp = 5, main = T)
 ```
 
@@ -919,9 +922,11 @@ draw(young015, n.cell = 4)
 ```{r out.width="80%"}
 
 dist_young015 = responses(young015,mat.type = 4)
+sely015 = sely013
+resp_young015 = select.dist(dist_young015, sely015)
 
-resp_young015 = select.dist(dist_young015, selection.neg)
-resp_young015$ic.neg$shade = "black"
+resp_young015$ic.flip = rotation(resp_young015$correct, 
+                                 3)
 
 draw.dist(resp_young015, n.resp = 5, main = T)
 ```
@@ -945,8 +950,8 @@ draw(young016, n.cell = 4)
 ```{r out.width="80%"}
 
 dist_young016 = responses(young016,mat.type = 4)
-
-resp_young016 = select.dist(dist_young016, selection.neg)
+sely016 = sely013
+resp_young016 = select.dist(dist_young016, sely016)
 
 resp_young016[["wp.matrix"]] = cof(resp_young016[["wp.matrix"]] , 
  resp_young016[["r.top"]] )
@@ -983,7 +988,8 @@ draw(young017, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young017 = responses(young017,mat.type = 4)
-resp_young017 = select.dist(dist_young017, selection.neg)
+sely017 = sely016
+resp_young017 = select.dist(dist_young017, sely017)
 
 # p = split.mat(young017, mat.type = 4)
 # 
@@ -1016,9 +1022,11 @@ draw(young018, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young018 = responses(young018,mat.type = 4)
+sely018 = sely017
+resp_young018 = select.dist(dist_young018, sely017)
 
-resp_young018 = select.dist(dist_young018, selection.neg)
-
+resp_young018$ic.flip = rotation(resp_young018$correct, 
+                                 3)
 
 draw.dist(resp_young018, n.resp = 5, main = T)
 ```
@@ -1043,7 +1051,11 @@ draw(young019, n.cell = 4)
 
 ```{r out.width="80%"}
 dist_young019 = responses(young019,mat.type = 4)
-resp_young019 = select.dist(dist_young019, selection.neg)
+sely019 = sely018
+resp_young019 = select.dist(dist_young019, sely018)
+
+resp_young019$ic.flip = rotation(resp_young019$correct, 
+                                 7)
 
 
 draw.dist(resp_young019, n.resp = 5, main = T)
@@ -1123,15 +1135,14 @@ draw(young021, n.cell = 4, bg="white")
 ```{r out.width="80%"}
 dist_young021 = responses(young021,mat.type = 4)
 
-resp_young021 = select.dist(dist_young021, 
-selec_add)
-
 
 #draw.dist(resp_young021, n.resp = 5, main = T)
 
 
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
-resp_young021 = select.dist(dist_young021, selection.neg)
+sely021 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+resp_young021 = select.dist(dist_young021, sely021)
+resp_young021$ic.flip = rotation(resp_young021$correct, 
+                                 3)
 draw.dist(resp_young021, n.resp = 5, main = T)
 
 
@@ -1196,12 +1207,12 @@ draw(young023, n.cell = 4)
 
 
 ```{r out.width = "80%"}
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 dist_young023 = responses(young023,mat.type = 4)
 
 
 resp_young023 = select.dist(dist_young023, 
-selec_add)
+selection.neg)
 
 
 #draw.dist(resp_young023, n.resp = 5, main = T)
@@ -1237,6 +1248,8 @@ draw(young024, n.cell = 4)
 
 selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 dist_young024 = responses(young024,mat.type = 4)
+selec_add = c("correct", "r.top", 
+"d.union", "ic.scale", "wp.matrix")
 
 resp_young024 = select.dist(dist_young024, 
 selec_add)
@@ -1247,8 +1260,9 @@ resp_young024[["d.union"]] = cof(resp_young024$d.union,
 
 
 resp_young024 = select.dist(dist_young024, selection.neg)
-
-draw.dist(resp_young024, n.resp = 11, main = T)
+resp_young024$ic.flip = reflection(resp_young024$correct, 
+                                 2)
+draw.dist(resp_young024, n.resp = 5, main = T)
 
 ```
 
@@ -1274,12 +1288,11 @@ draw(young025, n.cell = 4)
 
 
 ```{r out.width="80%"}
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 dist_young025 = responses(young025,mat.type = 4)
 
-
+sel025 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 resp_young025 = select.dist(dist_young025, 
-selec_add)
+sel025)
 resp_young025[["d.union"]] = cof(resp_young025$d.union, 
  bow.tie())
 
@@ -1291,8 +1304,13 @@ size(p[[3]], 2))
 
 # draw.dist(resp_young025, n.resp = 5, main = T)
 
-resp_young025 = select.dist(dist_young025, selection.neg)
-resp_young025[["ic.flip"]] = replace(resp_young025[["ic.flip"]] ,3 ,luck(rot = pi) )
+resp_young025 = select.dist(dist_young025, sel025)
+
+
+resp_young025$wp.matrix = cof(resp_young025$wp.matrix, 
+rotation(resp_young025$wp.matrix, 3))
+
+
 draw.dist(resp_young025, n.resp = 5, main = T)
 
 ```
@@ -1323,14 +1341,6 @@ draw(young026, n.cell = 9)
 ```{r out.width="80%"}
 
 
-dist_young026 = responses(young026)
-select.new = c("correct", "r.diag", 
- "wp.copy", "wp.matrix", 
- "ic.inc", "ic.scale", "ic.flip", "d.union")
-
-resp_young026 = select.dist(dist_young026, 
-select.new)
-
 p = split.mat(young026)
 
 
@@ -1343,9 +1353,13 @@ resp_young026 = select.dist(dist_young026, selection.neg)
 
 resp_young026[["ic.flip"]] = replace(correct(young026), 
  3, 
- rotation(p$triangle, 2))
+ reflection(p$triangle, 2))
+
+
 
 draw.dist(resp_young026, n.resp = 8, main = T)
+
+
 
 ```
 
@@ -1373,13 +1387,6 @@ draw(young027, hide = F)
 ```
 
 ```{r out.width="80%"}
-
-dist_young027 = responses(young027)
-resp_young027 = select.dist(dist_young027, 
-select.new)
-# resp_young027$wp.copy = cof(resp_young027$wp.copy, 
-# reflection(triangle(), 2))
-
 
 dist_young027 = responses(young027,mat.type = 9)
 resp_young027 = select.dist(dist_young027, selection.neg)
@@ -1418,14 +1425,12 @@ draw(young028)
 ```{r out.width="80%"}
 
 dist_young028 = responses(young028,mat.type = 9, choose.copy = 1)
-
-sely028 = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
-
-
-
+sel6 = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
 
 resp_young028 = select.dist(dist_young028, 
-sely028)
+sel6)
+p = split.mat(young028)
+resp_young028$ic.flip = replace(resp_young028$ic.flip, 2, reflection(p$pacman, 2))
 
 # p = split.mat(young028)
 # resp_young028$ic.inc = p$square
@@ -1439,6 +1444,7 @@ sely028)
 # resp_young028$wp.copy = young028$Sq1
 
 draw.dist(resp_young028, n.resp = 8, main = T)
+
 
 
 
@@ -1470,25 +1476,24 @@ draw(young029)
 ```{r out.width="80%"}
 dist_young029 = responses(young029)
 
+select.new1 = c("correct","r.diag", "d.union", "wp.copy", 
+"wp.matrix", "ic.flip", "ic.neg", 
+"ic.scale")
+
 resp_young029 = select.dist(dist_young029, 
-select.new)
-#p= split.mat(young029)
+select.new1)
 
-# resp_young029$ic.scale = cof(p$rectangle, 
-#square(shd = "black"))
+
 resp_young029$d.union = cof(resp_young029$d.union, 
-size(square(shd = "white"), 2))
-
-resp_young029$wp.matrix = cof(resp_young029$d.union, 
-size(bow.tie(shd = "white"), 2))
+luck(shd = "white"), 
+smallbow.tie.inv(shd = "black"))
 
 
-# draw.dist(resp_young029, n.resp = 8)
+p =split.mat(young029)
 
-selection.neg = c("correct", "r.diag", "wp.copy","wp.matrix","d.union", "ic.flip", "ic.scale","ic.neg")
+resp_young029$ic.scale = cof(p$rectangle, square(shd = "black")) 
 
-dist_young029 = responses(young029,mat.type = 9)
-resp_young029 = select.dist(dist_young029, selection.neg)
+
 draw.dist(resp_young029, n.resp = 8, main = T)
 
 ```
@@ -1519,15 +1524,16 @@ draw(young030)
 
 ```{r out.width="80%"}
 dist_young030 = responses(young030)
-
+select.new = c("correct", "r.diag", "wp.copy", "wp.matrix", "d.union", "ic.scale", "ic.inc", "ic.flip")
 resp_young030 = select.dist(dist_young030, 
 select.new)
-# p= split.mat(young030)
+p= split.mat(young030)
 # 
-# resp_young030$ic.flip = cof(p$pentagon, 
-# reflection(p$pacman, 2)) 
+resp_young030$ic.flip = cof(p$pentagon,
+reflection(p$pacman, 2))
 
 draw.dist(resp_young030, n.resp = 8)
+
 
 
 ```
@@ -1611,8 +1617,8 @@ dist_young032 = responses(young032)
 
 resp_young032 = select.dist(dist_young032, 
 select.new)
-# p= split.mat(young032)
-# 
+p= split.mat(young032)
+
 # resp_young032$ic.scale = cof(p$square, 
 #size(p$pacman, 2))
 
@@ -1623,8 +1629,9 @@ resp_young032$wp.matrix = cof(resp_young032$wp.matrix,
 
 # resp_young032$ic.inc = cof(p$square)
 # 
-# resp_young032$ic.flip = cof(p$square, 
-# reflection(p$pacman, 2))
+resp_young032$ic.flip = cof(p$square,
+reflection(p$pacman, 2))
+
 
 draw.dist(resp_young032, 
 n.resp = 8)
@@ -1659,7 +1666,7 @@ luck(shd = "white"),
 smallbow.tie.inv(shd = "black"))
 
 
-
+resp_young033$ic.scale = triangle(shd = "black")
 
 
 draw.dist(resp_young033, n.resp = 8)
@@ -1748,9 +1755,9 @@ p = split.mat(young035)
 
 # resp_young035$ic.inc = p$square
 # 
-# resp_young035$ic.flip = cof(reflection(p$pacman, 2), 
-# p$square)
-# 
+resp_young035$ic.flip = cof(reflection(p$pacman, 2),
+p$square)
+
 # 
 # resp_young035$ic.scale = cof(size(p$pacman, 2), 
 # p$square)
@@ -1810,6 +1817,11 @@ p$e.hexagon,
 p$circle)
 
 resp_young036$wp.copy = young036$Sq1
+
+resp_young036$ic.scale = replace(resp_young036$correct, 
+                                 4, 
+                                 size(p$pacman, 2))
+
 
 draw.dist(resp_young036, n.resp = 8)
 
@@ -1920,9 +1932,9 @@ draw(adult003, n.cell = 4)
 
 dist_adult003 = responses(adult003,mat.type = 4)
 
-
+sel003 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
 resp_adult003 = select.dist(dist_adult003, 
-selec_add)
+sel003)
 resp_adult003[["d.union"]] = cof(resp_adult003$d.union, 
  bow.tie())
 
@@ -1934,7 +1946,7 @@ size(p[[3]], 2))
 
 # draw.dist(resp_adult003, n.resp = 5, main = T)
 
-resp_adult003 = select.dist(dist_adult003, selection.neg)
+resp_adult003 = select.dist(dist_adult003, sel003)
 
 
 resp_adult003$wp.matrix = cof(resp_adult003$wp.matrix, 
@@ -2107,7 +2119,7 @@ luck(shd = "white"),
 smallbow.tie.inv(shd = "black"))
 
 
-
+resp_adult007$ic.scale = triangle(shd = "black")
 
 
 draw.dist(resp_adult007, n.resp = 8)
@@ -2552,7 +2564,7 @@ vrule = "diff_shapes.inv"
 
 
 adult018b = apply(Raven(
-st1 = size(lily(), 4), 
+st1 = size(lily(), 2), 
 hrule = c("lty"), 
 vrule = c("lty")
 ))
@@ -2577,12 +2589,12 @@ sel018 = c("correct","r.top", "r.diag", "wp.copy","wp.matrix", "d.union", "ic.ne
 resp_adult018 = select.dist(dist_adult018, sel018)
 
 
-p = split.mat(adult018)
-p$dot$shade[[1]] = "white"
+# p = split.mat(adult018)
+# p$dot$shade[[1]] = "white"
 
-resp_adult018$ic.neg = replace(resp_adult018$ic.neg, 
- 5, 
- p$dot)
+# resp_adult018$ic.neg = replace(resp_adult018$ic.neg, 
+#  5, 
+#  p$dot)
 
 draw.dist(resp_adult018,n.resp = 8, main = T)
 
@@ -3046,9 +3058,9 @@ dist_adult031 = responses(adult031)
 
 p = split.mat(adult031)
 
-dist_adult031$ic.flip = (cof(rotation(p[[1]], 2), 
+dist_adult031$ic.flip = (cof(rotation(p[[1]], 2),
  rotation(p[[2]], 2)))
-dist_adult031$ic.scale = (cof(size(p[[1]], 2), 
+dist_adult031$ic.scale = (cof(size(p[[1]], 2),
 size(p[[2]], 2)))
 
 dist_adult031$ic.neg = (cof(change.col(p[[1]]), 
@@ -3108,8 +3120,8 @@ draw.dist(resp_adult032, n.resp = 8)
 ## adult033
 
 ```{r}
-adult033<-logic_rules(Raven(cof(cof(diagline(lty = 3),diagline.inv(lty = 3),name="oggetto",single=TRUE),
-hline(lty = 3),vline(lty = 3),circle(s.x = 11,s.y = 11))),"AND")
+adult033<-logic_rules(Raven(cof(cof(diagline(),diagline.inv(),name="oggetto",single=TRUE),
+hline(),vline(),circle(s.x = 11,s.y = 11))),"AND")
 draw(adult033)
 
 ```
@@ -3145,7 +3157,7 @@ sel34)
 p = split.mat(adult034)
 
 resp_adult034$ic.scale = cof(p$square, 
- size(lily(), 3))
+ size(lily(), 1.5))
 
 resp_adult034$wp.matrix = cof(resp_adult034$wp.matrix, 
 rotation(p$square, 2))
@@ -3172,10 +3184,10 @@ size(p[[2]], 2),
 size(p$dot, 2), 
 p$square))
 
-dist_adult035$ic.flip = (cof(rotation(p[[1]],2), 
- rotation(p[[2]], 2), 
- (p$dot), 
- p$square))
+# dist_adult035$ic.flip = (cof(rotation(p[[1]],2), 
+# p[[2]], 
+#  (p$dot), 
+#  p$square))
 
 dist_adult035$ic.neg = cof(p[[1]], p[[2]], 
  dot(shd="white"), 
@@ -3183,10 +3195,12 @@ dist_adult035$ic.neg = cof(p[[1]], p[[2]],
 sel35 = c("correct", "r.diag", 
 "r.left", "wp.copy",
 "wp.matrix", "d.union", 
-"ic.scale", "ic.neg")
+"ic.flip", "ic.inc")
 
 resp_adult035 = select.dist(dist_adult035, 
 sel35)
+
+resp_adult035$ic.inc = cof(p[[2]], p$dot, p$square)
 
 resp_adult035$wp.matrix = cof(resp_adult035$wp.matrix, cross(), square(), dot(), size(square(),2))
 draw.dist(resp_adult035, n.resp = 8)
@@ -3468,7 +3482,7 @@ resp_adult043 = select.dist(dist_adult043,
 sel43)
 p = split.mat(adult043)
 
-p = split.mat(adult043, cell = 1)
+p = split.mat(adult043, cell = 7)
 
 resp_adult043$ic.flip = replace(resp_adult043$correct, 
 3, 
