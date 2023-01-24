@@ -73,8 +73,12 @@ print.from.file<-function(filename,folder,name,avoid,delete,mat.type)
   }
 }
 
-mat.type<-rep(9,48)
+mat.type<-rep(9,4)
 mat.type[1:3]<-4
 print.from.file(filename="Matrici.R",folder="/Adults/",name="adult",
+                avoid=c("dist",paste0(0:9,"a"),paste0(0:9,"b"),paste0(0:9,"c"),paste0(0:9,"d")),
+                delete = "resp",mat.type)
+
+print.from.file(filename="pratica.R",folder="/",name="pratica",
                 avoid=c("dist",paste0(0:9,"a"),paste0(0:9,"b"),paste0(0:9,"c"),paste0(0:9,"d")),
                 delete = "resp",mat.type)
