@@ -357,6 +357,71 @@ canvas = FALSE)
 ```
 
 
+## young002 BONUS
+
+```{r}
+draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7))
+draw(star(pos.x = -30, pos.y = 15, size.x = 1, size.y = 1, shd = giallo, lty = 0), canvas = F)
+
+for (i in seq(-30, 30, by = 4)) {
+for (j in seq(15, -17, by = -3)) {
+draw(star(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = giallo, lty = 0), canvas = F)
+}
+}
+
+draw(rectangle(s.x=7,s.y=5,shd="white",pos.x=+15,pos.y=-10),
+ canvas = FALSE)
+
+```
+
+
+```{r out.width="80%"}
+
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+
+container = rectangle(s.x=7,s.y=5,shd=blu)
+
+draw(container,xlim = 8, main = "correct")
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+for (j in seq(12.5, -15, by = -4)) {
+draw(star(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = giallo, lty = 0), canvas = F)
+}
+}
+
+draw(container,xlim = 8, main = "ic.neg")
+clip(7,-7,5,-5)
+draw(rectangle(s.x=7,s.y=5,shd=giallo,pos.x=0,pos.y=0),
+ canvas = FALSE)
+for (i in seq(-25, 25, by = 4)) {
+for (j in seq(15, -15, by = -4)) {
+draw(star(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = blu, lty = 0), canvas = F)
+}
+}
+
+
+draw(container,xlim = 8, main = "difference")
+
+
+draw(container,xlim = 8, main = "difference1")
+clip(7,-7,5,-5)
+for (i in seq(-21, 25, by = 4)) {
+for (j in seq(12.5, -15, by = -4)) {
+draw(luck(pos.x = i, pos.y = j, s.x = 1, s.y = 1, shd = giallo), canvas = F)
+}
+}
+
+
+draw(container,xlim = 8, main = "boh")
+draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+canvas = FALSE)
+draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+canvas = FALSE)
+
+```
+
+
 ## Young003
 
 ```{r}
@@ -499,7 +564,7 @@ canvas = FALSE)
 draw(rectangle(s.x=-50,s.y=50,pos.x=+10,pos.y=-7),bg=blu)
 
 for(j in seq(0, 3, by = .2)) {
-draw(diagline(pos.x = 30,pos.y = 10, s.x=100, rot=(pi/8)*j, lwd = 3,lty=2), 
+draw(diagline(pos.x = 30,pos.y = 10, s.x=100, rot=(pi/8)*j, lwd = 3), 
  canvas = F)
 }
 

@@ -312,7 +312,7 @@ rot.hexagon <- function(s.x=15,
                         rot=3*pi/2,
                         shd="black",
                         pos.x = 0, pos.y = 0,
-                        vis = 1) {
+                        vis = 1, lty = 1) {
   value <- list(
     shape = "rot.hexagon",
     size.x = list(s.x),
@@ -322,7 +322,7 @@ rot.hexagon <- function(s.x=15,
     rotation = list(rot),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
+    lty = list(lty),
     lwd = list(3),
     num = list(1),
     nv = list(6),
@@ -341,8 +341,9 @@ rot.hexagon <- function(s.x=15,
 #' @examples
 #' star()
 #' @export
-star <- function() {
-  value <-cof(hexagon(),rot.hexagon())
+star <- function(pos.x = 0, pos.y = 0, size.x = 10, size.y = 10, shd = NA, lty = 0) {
+  value <-cof(hexagon(pos.x = pos.x, pos.y = pos.y, s.x = size.x, s.y = size.y, shd = shd, lty = lty),
+              rot.hexagon(pos.x = pos.x, pos.y = pos.y, s.x = size.x, s.y = size.y, shd = shd, lty = lty))
   value$tag <- list("small", "compose2","fill")
   attr(value, "class") <- "field"
   value
