@@ -16,10 +16,10 @@ giallo = "gold"
 rosso = "firebrick"
 
 
-a=5.2
+a=5.2 #proporzione dei canvas
+spessore= 9 # spessore linee 
 
-
-draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16,by=1.5) {
+draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16,by=3.5) {
   library(DescTools)
   if (canvas == TRUE)
   {
@@ -35,7 +35,7 @@ draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xl
           elements<-decof(obj)
           plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
           for(ll in 1:length(plotting_lines)){
-            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1],lwd=3,by=by) #Pejo tacon che sbrego
+            line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1],lwd=9,by=by) #Pejo tacon che sbrego
             
           }
           obj$shade[[j]][1] <- NA
@@ -102,15 +102,15 @@ draw(container,canvas = FALSE)
 #draw(rectangle(s.x=-6,s.y=6,shd=blu,pos.x=0,pos.y=0), canvas = F)
 
 
-draw(diagline(pos.x=-50, s.x = 50, lwd = 3, shd = giallo), canvas = F)
+draw(diagline(pos.x=-50, s.x = 50, lwd = spessore, shd = giallo), canvas = F)
 for(i in seq(-50+12, 50-12, by = 3.5)) {
-  draw(diagline(pos.x = i, s.x=40, lwd = 3),
+  draw(diagline(pos.x = i, s.x=40, lwd = spessore),
        canvas = F)
 }
 
-draw(diagline.inv(pos.x=-50+12, s.x = 50-12, lwd = 3), canvas = F)
+draw(diagline.inv(pos.x=-50+12, s.x = 50-12, lwd = spessore), canvas = F)
 for(i in seq(-50, 50, by = 3.5)) {
-  draw(diagline.inv(pos.x = i, s.x=40, lwd = 3),
+  draw(diagline.inv(pos.x = i, s.x=40, lwd = spessore),
        canvas = F)
 }
 
@@ -121,9 +121,9 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas = FALSE)
 
-draw(rectangle(s.x=8,s.y=8,shd="line.12",lty = 0),
+draws(rectangle(s.x=10,s.y=10,shd="line.12",lty = 0),
       canvas = FALSE)
-draw(rectangle(s.x=8,s.y=8,shd="line.12.inv",lty = 0),
+draws(rectangle(s.x=10,s.y=10,shd="line.12.h",lty = 0),
       canvas = FALSE)
 dev.off()
 
@@ -153,12 +153,12 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas = FALSE)
 
-for(i in seq(-20, 20, by = 1)) {
-  draw(vline(pos.x = i, s.x=7, lwd = 3), canvas = F)
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(vline(pos.x = i, s.x=7, lwd = spessore), canvas = F)
 }
 
-for(i in seq(-20, 20, by = 1)) {
-  draw(hline(pos.y = i, s.x=7, lwd = 3), canvas = F)
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(hline(pos.y = i, s.x=7, lwd = spessore), canvas = F)
 }
 
 dev.off()
@@ -190,8 +190,8 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
-for (i in seq(-21, 25, by = 4)) {
-  for (j in seq(12.5+12, -15-12, by = -4)) {
+for (i in seq(-30+12, 30-12, by = 4)) {
+  for (j in seq(15-12, -19+12, by = -4)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = blu), canvas = F)
   }
 }
@@ -201,10 +201,10 @@ svg(paste0(getwd(), "/young002_ic.neg.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
-draw(rectangle(s.x=7,s.y=5,shd=blu,pos.x=0,pos.y=0),
+draw(rectangle(s.x=10,s.y=10,shd=blu,pos.x=0,pos.y=0),
      canvas = FALSE)
-for (i in seq(-25, 25, by = 4)) {
-  for (j in seq(15, -15, by = -4)) {
+for (i in seq(-30+12, 30-12, by = 4)) {
+  for (j in seq(15-12, -19+12, by = -4)) {
     draw(dot(pos.x = i, pos.y = j, size.x = 1, size.y = 1, shd = giallo), canvas = F)
   }
 }
@@ -221,8 +221,8 @@ svg(paste0(getwd(), "/young002_diff2.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
-for (i in seq(-21, 25, by = 4)) {
-  for (j in seq(12.5, -15, by = -4)) {
+for (i in seq(-30+12, 30-12, by = 4)) {
+  for (j in seq(15-12, -19+12, by = -4)) {
     draw(square(pos.x = i, pos.y = j, s.x = 1, s.y = 1, shd = blu), canvas = F)
   }
 }
@@ -233,9 +233,9 @@ svg(paste0(getwd(), "/young002_dist.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
-draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12.inv"),by=3.5,
       canvas = FALSE)
-draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12"),by=3.5,
       canvas = FALSE)
 
 dev.off()
@@ -247,11 +247,11 @@ svg(paste0(getwd(), "/young003_11.svg"))
 Canvas(xlim = 17,ylim = 17)
 draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7), canvas = F)
 draw(vline(pos.x = -13, s.x = 50, lwd = 3), canvas = F)
-draw(vline(pos.x = 13, s.x = 50, lwd = 3, lty = 3), canvas = F)
+draw(vline(pos.x = 13, s.x = 50, lwd = 3, lty = 1), canvas = F)
 draw(vline(pos.x = 10, s.x = 50, lwd = 3), canvas = F)
 draw(hline(pos.y = 9, s.x = 50, lwd = 3, lty = 1), canvas = F)
 draw(hline(pos.y = -12, s.x = 50, lwd = 3, lty = 1), canvas = F)
-draw(hline(pos.y = -15, s.x = 50, lwd = 3, lty = 3), canvas = F)
+draw(hline(pos.y = -15, s.x = 50, lwd = 3, lty = 1), canvas = F)
 
 clip(6,18,-18,-6)
 draw(rectangle(s.x=20,s.y=20,shd="white",pos.x=12,pos.y=-12,lty=0),
@@ -267,12 +267,12 @@ clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
 draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7), canvas = F)
-draw(vline(pos.x = -13-12, s.x = 50, lwd = 3), canvas = F)
-draw(vline(pos.x = 13-12, s.x = 50, lwd = 3, lty = 3), canvas = F)
-draw(vline(pos.x = 10-12, s.x = 50, lwd = 3), canvas = F)
-draw(hline(pos.y = 9+12, s.x = 50, lwd = 3, lty = 1), canvas = F)
-draw(hline(pos.y = -12+12, s.x = 50, lwd = 3, lty = 1), canvas = F)
-draw(hline(pos.y = -15+12, s.x = 50, lwd = 3, lty = 3), canvas = F)
+draw(vline(pos.x = -13-12, s.x = 50, lwd = spessore), canvas = F)
+draw(vline(pos.x = 13-12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+draw(vline(pos.x = 10-12, s.x = 50, lwd = spessore), canvas = F)
+draw(hline(pos.y = 9+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = -12+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = -15+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
 
 dev.off()
 
@@ -283,17 +283,15 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
-draw(rectangle(s.x=7,s.y=5,shd=NA,pos.x=0,pos.y=0),
-     canvas = FALSE)
 
 draw(vline(pos.x = 5, pos.y = -0, 
-           s.x  = 5, lwd = 3, lty = 1), canvas = F)
+           s.x  = 10, lwd = spessore, lty = 1), canvas = F)
 draw(vline(pos.x = 2, pos.y = 0, 
-           s.x = 5, lwd = 3), canvas = F)
+           s.x = 10, lwd = spessore), canvas = F)
 
 draw(hline(pos.y = 0, 
-           pos.x = 0,  s.x = 7, lwd = 3, lty = 1), canvas = F)
-draw(hline(pos.y = -3, pos.x = 0, s.x = 7, lwd = 3, lty = 1), canvas = F)
+           pos.x = 0,  s.x = 10, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = -3, pos.x = 0, s.x = 10, lwd = spessore, lty = 1), canvas = F)
 dev.off()
 
 svg(paste0(getwd(), "/young003_ic1.svg"))
@@ -301,17 +299,14 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
-draw(rectangle(s.x=7,s.y=5,shd=NA,pos.x=0,pos.y=0),
-     canvas = FALSE)
-
 draw(vline(pos.x = -5, pos.y = -0, 
-           s.x  = 5, lwd = 3, lty = 3), canvas = F)
+           s.x  = 10, lwd = spessore, lty = 1), canvas = F)
 draw(vline(pos.x = -2, pos.y = 0, 
-           s.x = 5, lwd = 3), canvas = F)
+           s.x = 10, lwd = spessore), canvas = F)
 
 draw(hline(pos.y = 0, 
-           pos.x = 0,  s.x = 7, lwd = 3, lty = 1), canvas = F)
-draw(hline(pos.y = 3, pos.x = 0, s.x = 7, lwd = 3, lty = 3), canvas = F)
+           pos.x = 0,  s.x = 10, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = 3, pos.x = 0, s.x = 10, lwd = spessore, lty = 0), canvas = F)
 dev.off()
 
 svg(paste0(getwd(), "/young003_diff.svg"))
@@ -355,7 +350,7 @@ draw(container,canvas=FALSE)
 
 for(i in seq(-30-12, 30-12, by = 2)) {
   
-  draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i+12)/2), 
+  draw(vline(pos.x = i, s.x=40, lwd = 1+ abs(i+12)*2), 
        canvas = F,  bg = "white")
 }
 dev.off()
@@ -367,7 +362,7 @@ draw(container,canvas=FALSE)
 
 for(i in seq(14, 30, by = 1)) {
   
-  draw(vline(pos.x = i-22, s.x=40, lwd = 5), 
+  draw(vline(pos.x = i-22, s.x=40, lwd = spessore+3), 
        canvas = F,  bg = "white")
 }
 dev.off()
@@ -384,7 +379,7 @@ Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
-draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12.inv"),by=3.5,
       canvas = FALSE)
 dev.off()
 
@@ -434,17 +429,17 @@ clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
 for(j in seq(0, 3, by = .2)) {
-  draw(diagline(pos.x = 30,pos.y = 10, s.x=100, rot=(pi/8)*j, lwd = 5,lty=2), 
+  draw(diagline(pos.x = 30,pos.y = 10, s.x=100, rot=(pi/8)*j, lwd = spessore,lty=2), 
        canvas = F)
 }
 
 for(j in c(seq(-20+12, -5+12, by = 3),seq(7-12, 17-12, by = 1.5))) {
-  draw(vline(pos.x = j, s.x=100, lwd = 5,lty = 1), 
+  draw(vline(pos.x = j, s.x=100, lwd = spessore,lty = 1), 
        canvas = F)
 }
 
 for(j in seq(-16+12, -6+12, by = 3)) {
-  draw(hline(pos.y = j, s.x=100, lwd = 5,lty = 1), 
+  draw(hline(pos.y = j, s.x=100, lwd = spessore,lty = 1), 
        canvas = F)
 }
 
@@ -461,7 +456,7 @@ for(j in seq(0, 3, by = .2)) {
 }
 
 for(j in c(seq(-20, -5, by = 3),seq(5, 15, by = 1.5))) {
-  draw(vline(pos.x = j-15, s.x=100, lwd = 3,lty = 1), 
+  draw(vline(pos.x = j-15, s.x=100, lwd =spessore,lty = 1), 
        canvas = F)
 }
 
@@ -477,7 +472,7 @@ svg(paste0(getwd(), "/young005_wp2.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
-draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12.inv"),by=3.5,
       canvas = FALSE)
 dev.off()
 
@@ -487,9 +482,9 @@ svg(paste0(getwd(), "/young005_diff2.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
-draws(rectangle(s.x=7,s.y=5,shd="line.12.inv"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12.inv"),by=3.5,
       canvas = FALSE)
-draws(rectangle(s.x=7,s.y=5,shd="line.12"),by=3.5,
+draws(rectangle(s.x=10,s.y=10,shd="line.12"),by=3.5,
       canvas = FALSE)
 dev.off()
 

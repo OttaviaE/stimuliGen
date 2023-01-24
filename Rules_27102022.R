@@ -275,8 +275,8 @@ create_dice.field<-function(object) {
   #{
   #  stop("The function need to be resizeable")
   #}
-  object<-movement(object,1,"pos",-10,11)
   object<-size(object,4)
+  object<-movement(object,1,"pos",-10,11)
   object2<-object
   for(row in 1:3) {
     obj<-movement(object,row,"y")
