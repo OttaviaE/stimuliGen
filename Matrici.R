@@ -2929,3 +2929,329 @@ margin(pacman(shd = "white"),1,"lty")
 draw(adult039)
 
 
+## ----out.width="80%"----------------------------------------------------------
+dist_adult039 = responses(adult039)
+
+dist_adult039$ic.inc = circle(lty = 2)
+
+sel39 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.inc")
+
+resp_adult039 = select.dist(dist_adult039, sel39)
+
+resp_adult039$wp.matrix = cof( reflection(resp_adult039$r.left, 2), resp_adult039$wp.copy)
+
+draw.dist(resp_adult039, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult040<-logic_rules(Raven(cof(size(dice(), 2),size(dot(),2),size(cross.dice(),2),size(X(), 2))),"XOR")
+draw(adult040)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult040 = responses(adult040)
+
+p = split.mat(adult040)
+m.c = correct(adult040)
+
+p$cross.dice$shade[[1]] = rep("white", 4)
+dist_adult040$ic.neg = p[[1]]
+# 
+# dist_adult040$ic.flip = dice()
+# sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.neg")
+# 
+# resp_adult040 = select.dist(dist_adult040, sel40)
+
+sel40 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.inc")
+
+resp_adult040 = select.dist(dist_adult040, sel40)
+resp_adult040$ic.flip = dice()
+
+resp_adult040$ic.inc = cof(size(dot(pos.x=13,
+ pos.y=0), 2),
+ size(dot(pos.x=-13, pos.y= 0),2),
+ size(dot(pos.x = 0,
+ pos.y =13), 2))
+
+resp_adult040$ic.flip = size(resp_adult040$ic.flip, 2)
+resp_adult040$wp.matrix = cof(resp_adult040$wp.matrix, 
+                              size(resp_adult040$wp.copy, 2))
+
+draw.dist(resp_adult040, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult041a<-logic_rules(Raven(cof(hline(pos.y = 3,s.y=10),hline(pos.y = -3,s.y=10),
+ square(shd="line12"),pentagon(s.x=3,s.y=3,shd="white"))),
+ "XOR")
+adult041b <- logic_rules(Raven(cof(vline(pos.x = 13, s.x = 13),
+ vline(pos.x = -13, s.x = 13 ),
+ hline(pos.y = 13, s.x=13),
+ hline(pos.y = -13, s.x=13))),"AND")
+adult041<-com(adult041a,adult041b)
+draw(adult041)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult041 = responses(adult041)
+
+p = split.mat(adult041)
+m.c = correct(adult041)
+dist_adult041$ic.neg = replace(m.c, 3, change.col(p$square))
+
+sel41 = c("correct", "r.diag", 
+"r.left", 
+"wp.copy",
+"wp.matrix", 
+"d.union", 
+"ic.inc", 
+"ic.flip")
+
+resp_adult041 = select.dist(dist_adult041, 
+sel41)
+
+m = correct(adult041)
+
+m$shade[[3]] = "line12.inv"
+
+resp_adult041$ic.flip = m
+resp_adult041$wp.matrix = cof(resp_adult041$wp.matrix, 
+                              (resp_adult041$wp.copy))
+
+
+draw.dist(resp_adult041,n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult042a<- apply(Raven(cof(circle(pos.x = 10,pos.y = 10, s.x=3,s.y=3),
+circle(pos.x = 0,pos.y = 0, s.x=3,s.y=3),
+cof(diagline(pos.x = 10,pos.y = -10,s.x=3,s.y=3),
+diagline.inv(pos.x = 10,pos.y = -10,s.x=3,s.y=3),
+single = TRUE,name = "smallcross"),
+cof(diagline(pos.x = -10,pos.y = -10,s.x=3,s.y=3),
+diagline.inv(pos.x = -10,pos.y = -10,s.x=3,s.y=3),
+single = TRUE,name = "smallcross")
+),"XOR"))
+
+adult042b<- apply(Raven(cof(margin(hline(pos.y=5,s.x = 12),1,"lty"),
+margin(hline(pos.y=-5,s.x = 12),1,"lty"),
+margin(vline(pos.x=5,s.x = 12),1,"lty"),
+margin(vline(pos.x=-5,s.x = 12),1,"lty")),vrule="AND"))
+
+adult042<-com(adult042b,adult042a)
+draw(adult042)
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult042 = responses(adult042)
+sel42 = c("correct", "r.diag", "r.left",
+"wp.copy",
+"wp.matrix", "d.union", "ic.inc", "ic.flip")
+# in ic flip va girato il per e trasformato in più
+dist_adult042$ic.flip <- dist_adult042$correct
+dist_adult042$ic.flip$rotation[[7]]<-dist_adult042$ic.flip$rotation[[7]]-pi/4
+
+resp_adult042 = select.dist(dist_adult042, 
+sel42)
+
+# 
+# resp_adult042$wp.matrix = cof(resp_adult042$wp.matrix, 
+#                              (adult042$Sq7))
+
+
+draw.dist(resp_adult042, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult043a<-logic_rules(Raven(cof(bow.tie(),
+ bow.tie.inv())),"XOR")
+
+adult043b<-logic_rules(Raven(cof(circle(s.x=4,s.y=4,shd="black")
+ ,cross.dice(),
+ hline(),vline())),"OR")
+adult043<-com(adult043a,adult043b)
+draw(adult043)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult043 = responses(adult043)
+
+p = split.mat(adult043)
+m.c = correct(adult043)
+dist_adult043$ic.flip = cof(rotation(p$vline, 2), 
+rotation(p$hline, 2), 
+p$cross.dice, 
+p$triangle, 
+p$circle)
+sel43 = c("correct", "r.diag", 
+"r.left", "wp.copy", "wp.matrix", 
+"d.union", "ic.inc", "ic.flip")
+
+dist_adult043$ic.neg = replace(m.c,5, change.col(p$circle))
+
+resp_adult043 = select.dist(dist_adult043, 
+sel43)
+p = split.mat(adult043)
+
+p = split.mat(adult043, cell = 7)
+
+resp_adult043$ic.flip = replace(resp_adult043$correct, 
+3, 
+(p$triangle))
+
+draw.dist(resp_adult043, n.resp = 8)
+
+
+
+
+## -----------------------------------------------------------------------------
+adult044a<-apply(Raven(cof(hline(pos.y = 3,s.x=7),hline(pos.y = -3,s.x=7),
+ margin(circle(s.x=7.5, s.y = 7.5),5,"lwd"),
+ hexagon(s.x=3,s.y=3)),"XOR"))
+adult044b<- apply(Raven(cof(hline(pos.y = -11),hline(pos.y = 11),
+vline(pos.x = -11),vline(pos.x = +11)),"identity","OR"))
+adult044<-com(adult044a,adult044b)
+draw(adult044)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult044 = responses(adult044)
+sel44 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.inc", "ic.flip")
+
+resp_adult044 = select.dist(dist_adult044,
+sel44)
+# bisogna mettere una righetta verticale nel cerchio per IC flip
+
+resp_adult044$ic.flip$rotation[[1]]<-resp_adult044$ic.flip$rotation[[1]]-pi/2
+
+
+m = correct(adult044)
+p = split.mat(adult044)
+p$hline = rotation(p$hline, 3)
+p$hline$pos.y[[1]] = 0
+
+resp_adult044$ic.flip = replace(m, 2, p$hline)
+
+draw.dist(resp_adult044,n.resp=8)
+
+## -----------------------------------------------------------------------------
+adult045a<-apply(Raven(cof(luck(s.x = 6,s.y = 6),circle(s.x = 3,s.y = 3)),"trans.fill.line"))
+adult045b<-apply(Raven(cof(pentagon(),ellipse(s.x=14,s.y=17),triangle(s.x=17,s.y=17)),vrule = "diff_shapes.inv"))
+
+adult045 = com(adult045b, adult045a)
+
+draw(adult045)
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult045 = responses(adult045)
+sel45 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.neg", "ic.flip")
+
+resp_adult045 = select.dist(dist_adult045, 
+sel45)
+
+
+resp_adult045$ic.neg$shade[[4]] = "white"
+
+draw.dist(resp_adult045, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult046a<-apply(Raven(cof(pentagon(s.x = 6,s.y = 6),ellipse(s.x = 4,s.y = 3)),"trans.fill"))
+adult046b<-apply(Raven(cof(e.hexagon(), luck(s.x=14,s.y=14),square(s.x=17,s.y=17)),"diff_shapes","diff_shapes"))
+
+adult046 = com(adult046b, adult046a)
+
+draw(adult046)
+
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult046 = responses(adult046)
+
+
+sel46 = c("correct", "r.diag", 
+"r.left", "wp.copy", "wp.matrix", 
+"d.union", "ic.neg", "ic.flip")
+
+resp_adult046 = select.dist(dist_adult046, sel46)
+
+
+m= correct(adult046)
+p = split.mat(adult046)
+
+resp_adult046$ic.flip = cof(p$square, 
+                            reflection(p$pentagon, 2))
+
+draw.dist(resp_adult046, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+adult047a<-apply(Raven(cof(circle(s.x = 12,s.y = 12),pentagon(s.x = 12,s.y = 12)),"trans.fill.line"))
+adult047b<-apply(Raven(cof(pentagon(s.x = 4, s.y = 4,shd = "white"), luck(s.x=4,s.y=5,shd = "white"),
+ triangle(s.x=4,s.y=4,shd = "white")),
+ c("diff_shapes","rotation.inv6"),c("diff_shapes","rotation.inv3")))
+
+adult047 = com(adult047a, adult047b)
+
+draw(adult047)
+
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult047 = responses(adult047)
+
+p = split.mat(adult047)
+
+dist_adult047$ic.flip = cof(p$circle, rotation(p$triangle, 4))
+
+sel47 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", "d.union", "ic.neg", "ic.inc")
+
+resp_adult047 = select.dist(dist_adult047,
+sel47)
+
+m=correct(adult047)
+
+
+m$shade[[1]] = "line12"
+resp_adult047$ic.inc = m
+
+draw.dist(resp_adult047, n.resp=8)
+
+
+## -----------------------------------------------------------------------------
+adult048a<-apply(Raven(cof(circle(s.x = 14,s.y = 14),pentagon(s.x = 14,s.y = 14)),
+ "trans.fill"))
+
+adult048b<-apply(Raven(cof(triangle(shd="white"),e.hexagon(shd="white"),
+ square(shd="white")),
+ c("diff_shapes"),c("diff_shapes")))
+adult048b<-numeric_progression(adult048b,"LL-TR")
+
+adult048 = com(adult048a, adult048b)
+
+draw(adult048)
+
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_adult048 = responses(adult048)
+
+p = split.mat(adult047)
+
+dist_adult047$ic.flip = cof(p$circle, rotation(p$triangle, 4))
+
+
+sel48 = c("correct", "r.diag", "r.left", 
+"wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.neg")
+
+resp_adult048 = select.dist(dist_adult048, 
+sel48)
+
+resp_adult048$wp.matrix = cof(resp_adult048$wp.copy, size(dist_adult048$r.top, 2))
+
+
+
+
+resp_adult048$d.union = cof(star(), 
+show(create_dice(pacman(shd = "grey")),c(1,2,5,4)) )
+
+draw.dist(resp_adult048, n.resp = 8)
+
+
