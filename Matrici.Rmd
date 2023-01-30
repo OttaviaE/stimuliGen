@@ -2018,6 +2018,7 @@ dist_young034 = responses(young034)
 
 resp_young034 = select.dist(dist_young034, 
 select.new)
+select.new = c("correct", "r.diag", "wp.copy", "wp.matrix", "d.union", "ic.scale", "ic.inc", "ic.flip")
 
 
 resp_young034$d.union = cof(resp_young034$wp.matrix, 
@@ -2346,15 +2347,23 @@ draw.dist(resp_young040)
 
 \newpage
 
-## adult001
+## adult001 
 
 ```{r}
 
-adult001 = obj_addition_rules(
+adult001b = obj_addition_rules(
 Raven(
-st1 = cof(size(u.bow.tie(), 2),square(rot = pi)) 
+st1 = cof(size(u.bow.tie(shd = "grey"), 2), size(horizontal.eight(), 2)) 
 ), rule="v.sott"
 )
+
+
+adult001a = apply(Raven(
+  st1 = square(rot = pi)
+))
+
+adult001 = com(adult001a, adult001b)
+
 
 draw(adult001, n.cell = 4)
 
@@ -2362,22 +2371,21 @@ draw(adult001, n.cell = 4)
 
 
 ```{r out.width = "80%"}
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
-dist_adult001 = responses(adult001,mat.type = 4)
+selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
+# dist_adult001 = responses(adult001,mat.type = 4)
+# 
+# 
+# resp_adult001 = select.dist(dist_adult001, 
+# selection.neg)
+resp_adult001 = resp_young023
 
+#draw.dist(resp_adult001, n.resp = 5, main = T)
 
-resp_adult001 = select.dist(dist_adult001, 
-selection.neg)
-
-
-#draw.dist(resp_adult023, n.resp = 5, main = T)
-
-#resp_adult023 = select.dist(dist_adult023, selection.neg)
+#resp_adult001 = select.dist(dist_adult001, selection.neg)
 
 draw.dist(resp_adult001, n.resp = 5, main = T)
 
 ```
-
 
 ## adult002
 
@@ -2393,7 +2401,7 @@ Raven(
 st1 = pentagon() )
 )
 
-adult002<-com(adult002b,adult002a)
+adult002<-com(adult002a,adult002b)
 draw(adult002, n.cell = 4)
 
 ```
@@ -2401,22 +2409,23 @@ draw(adult002, n.cell = 4)
 
 ```{r out.width="80%"}
 
-selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.inc")
-dist_adult002 = responses(adult002,mat.type = 4)
-
-resp_adult002 = select.dist(dist_adult002, 
-selec_add)
-resp_adult002[["d.union"]] = cof(resp_adult002$d.union, 
- size(biscuit, 1))
-
-
-
-#draw.dist(resp_adult002, n.resp = 5, main = T)
-
-
-resp_adult002 = select.dist(dist_adult002, selection.neg)
-resp_adult002$wp.matrix = cof(resp_adult002$wp.matrix, 
-size(dist_adult002$wp.copy, 3))
+# selection.neg = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+# dist_adult002 = responses(adult002,mat.type = 4)
+# selec_add = c("correct", "r.top", 
+# "d.union", "ic.scale", "wp.matrix")
+# 
+# resp_adult002 = select.dist(dist_adult002, 
+# selec_add)
+# resp_adult002[["d.union"]] = cof(resp_adult002$d.union, 
+#  size(biscuit, 1))
+# 
+# #draw.dist(resp_adult002, n.resp = 5, main = T)
+# 
+# 
+# resp_adult002 = select.dist(dist_adult002, selection.neg)
+# resp_adult002$ic.flip = reflection(resp_adult002$correct, 
+#                                  2)
+resp_adult001 = resp_young024
 draw.dist(resp_adult002, n.resp = 5, main = T)
 
 ```
@@ -2427,14 +2436,14 @@ draw.dist(resp_adult002, n.resp = 5, main = T)
 ```{r}
 adult003a = obj_addition_rules(
 Raven(
-st1 = cof(cof(circle(s.x = 7,s.y = 7),dot(),name="oggetto",single=TRUE ),
-dice()) 
+st1 = cof(cof(circle(s.x = 5,s.y = 5),size(dot(), 2),name="oggetto",single=TRUE ),
+size(dice(), 2)) 
 ), rule="vh.add"
 )
 
 adult003b = apply(
 Raven(
-st1 =luck() )
+st1 =luck(s.x = 8, s.y = 10) )
 )
 
 adult003<-com(adult003a,adult003b)
@@ -2443,29 +2452,29 @@ draw(adult003, n.cell = 4)
 
 
 ```{r out.width="80%"}
+# dist_adult003 = responses(adult003,mat.type = 4)
+# 
+# sel003 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+# resp_adult003 = select.dist(dist_adult003, 
+# sel003)
+# resp_adult003[["d.union"]] = cof(resp_adult003$d.union, 
+#  bow.tie())
+# 
+# p = split.mat(adult003)
+# 
+# resp_adult003[["ic.scale"]] = cof(size(p[[1]], 2), p[[2]],
+# size(p[[3]], 2))
+# 
+# 
+# # draw.dist(resp_adult003, n.resp = 5, main = T)
+# 
+# resp_adult003 = select.dist(dist_adult003, sel003)
+# 
+# 
+# resp_adult003$wp.matrix = cof(resp_adult003$wp.matrix, 
+# rotation(resp_adult003$wp.matrix, 3))
 
-dist_adult003 = responses(adult003,mat.type = 4)
-
-sel003 = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
-resp_adult003 = select.dist(dist_adult003, 
-sel003)
-resp_adult003[["d.union"]] = cof(resp_adult003$d.union, 
- bow.tie())
-
-p = split.mat(adult003)
-
-resp_adult003[["ic.scale"]] = cof(size(p[[1]], 2), p[[2]],
-size(p[[3]], 2))
-
-
-# draw.dist(resp_adult003, n.resp = 5, main = T)
-
-resp_adult003 = select.dist(dist_adult003, sel003)
-
-
-resp_adult003$wp.matrix = cof(resp_adult003$wp.matrix, 
-rotation(resp_adult003$wp.matrix, 3))
-
+resp_adult003 = resp_young025
 
 draw.dist(resp_adult003, n.resp = 5, main = T)
 
@@ -2523,8 +2532,7 @@ draw.dist(resp_adult004, n.resp = 8, main = T)
 ```{r}
 adult005a= apply(
 Raven(
-st1 = cof(pentagon(), triangle(), square()), 
-hrule = c("diff_shapes"), 
+st1 = cof(pentagon(shd = rosso)), 
 vrule = "identity"
 )
 )
@@ -2542,18 +2550,19 @@ draw(adult005, hide = F)
 
 ```{r out.width="80%"}
 
-dist_adult005 = responses(adult005,mat.type = 9)
-resp_adult005 = select.dist(dist_adult005, selection.neg)
+dist_adult005 = responses(adult005,mat.type = 9, choose.copy = 1)
+sel.y005 = c("correct", "r.diag", "d.union","wp.copy","wp.matrix", "ic.scale","ic.flip","ic.inc")
+resp_adult005 = select.dist(dist_adult005, sel.y005)
 
 # ic flip non ha funzionato sul quadrato perché giustamente non funziona più sul quadrato
 p = split.mat(adult005)
-
-resp_adult005[["ic.flip"]] = replace(correct(adult005), 
- 3, 
- rotation(p$square, 2)) 
+m = correct(adult005)
+resp_adult005$ic.flip = cof(reflection(p$pentagon, 2), p$dot)
 
 
 resp_adult005[["wp.copy"]] = adult005$Sq1
+resp_adult005$d.union = cof(adult005$Sq1, dice())
+
 
 draw.dist(resp_adult005, n.resp = 8, main = T)
 ```
@@ -2613,7 +2622,7 @@ st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")),
 vrule = c("diff_shapes", "size")
 )
 )
-draw(adult007, n.cell = 9, hide = T)
+draw(adult007, n.cell = 9, hide = F)
 ```
 
 ```{r out.width="80%"}
@@ -2637,7 +2646,7 @@ resp_adult007$ic.scale = triangle(shd = "black")
 
 
 draw.dist(resp_adult007, n.resp = 8)
-```
+ ```
 
 
 ## adult008
@@ -2659,7 +2668,7 @@ hrule = c("size")
 adult008 = com(adult008a, adult008b)
 
 
-draw(adult008, n.cell = 9, hide = T)
+draw(adult008, n.cell = 9, hide = F)
 ```
 
 ```{r out.width="80%"}
