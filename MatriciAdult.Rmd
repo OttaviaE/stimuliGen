@@ -1056,7 +1056,7 @@ draw(adult020)
 
 
 ```{r out.width="90%"}
-dist_adult020 = responses(adult020)
+dist_adult020 = responses(adult020, choose.copy = 3)
 sel20 = c("correct","r.diag", "r.left", "wp.copy", "wp.matrix","d.union", 
 "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
@@ -1092,11 +1092,13 @@ dist_adult021 = responses(adult021)
 sel21 = c("correct","r.top", "ic.inc", "wp.copy", "wp.matrix","d.union", 
 "ic.flip", "ic.scale")
 
-
+a = cof(semi.circle(shd = "grey"), 
+        rotation(semi.circle(shd = "black"), 5), 
+        single = T, name = "Ogg")
 resp_adult021 = select.dist(dist_adult021, sel21)
-# resp_adult021$d.union = temp.dice(size(X(), 8))
+resp_adult021$d.union = temp.dice(size(a, 8))
 # 
- resp_adult021$wp.matrix = change.col(resp_adult021$wp.matrix)
+resp_adult021$wp.matrix = change.col(resp_adult021$wp.matrix)
 
 draw.dist(resp_adult021, n.resp = 8)
 
