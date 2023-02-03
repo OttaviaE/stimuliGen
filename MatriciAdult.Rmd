@@ -1036,8 +1036,8 @@ dist_adult019 = responses(adult019)
 
 resp_adult019 = select.dist(dist_adult019, sel019)
 
-resp_adult019$d.union = temp.dice(size(slice(shd = "grey"), 2))
-resp_adult019$wp.matrix = reflection(resp_adult019$wp.matrix, 2)
+# resp_adult019$d.union = temp.dice(size(slice(shd = "grey"), 2))
+resp_adult019$wp.matrix = (reflection(resp_adult019$wp.matrix, 2))
 
 
 draw.dist(resp_adult019, n.resp = 8)
@@ -1061,12 +1061,12 @@ sel20 = c("correct","r.diag", "r.left", "wp.copy", "wp.matrix","d.union",
 "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
 
-resp_adult020$d.union = temp.dice(cof(size(triangle(), 4), 
-reflection(size(triangle(), 4),2)))
+# resp_adult020$d.union = temp.dice(cof(size(triangle(), 4), 
+# reflection(size(triangle(), 4),2)))
 
 resp_adult020$wp.matrix = temp.dice(size(hexagon(shd = "grey"), 8))
 
-
+resp_adult020$d.union = temp.dice(size(cross(), 3))
 
 draw.dist(resp_adult020, n.resp = 8)
 
@@ -1094,11 +1094,9 @@ sel21 = c("correct","r.top", "ic.inc", "wp.copy", "wp.matrix","d.union",
 
 
 resp_adult021 = select.dist(dist_adult021, sel21)
-resp_adult021$d.union = temp.dice(cof(size(e.hexagon(), 8), 
-reflection(size(pentagon(), 4),2)))
-
-resp_adult021$wp.matrix = temp.dice(cof(size(adult021$Sq2, 2), 
-size(pacman(shd = "black"), 3)))
+# resp_adult021$d.union = temp.dice(size(X(), 8))
+# 
+ resp_adult021$wp.matrix = change.col(resp_adult021$wp.matrix)
 
 draw.dist(resp_adult021, n.resp = 8)
 
@@ -1133,9 +1131,9 @@ resp_adult022 = select.dist(dist_adult022, sel22)
 resp_adult022$wp.matrix = temp.dice(reflection(size(pentagon(shd = "grey"), 7), 2))
 
 
-resp_adult022$d.union = hide(resp_adult022$d.union, 10)
+# resp_adult022$d.union = hide(resp_adult022$d.union, 10)
 
-resp_adult022$d.union = temp.dice(size(u.star(), 5))
+resp_adult022$d.union = temp.dice(size(luck(shd = "black"), 5))
 
 draw.dist(resp_adult022, n.resp = 8)
 ```
@@ -1164,8 +1162,8 @@ sel23 = c("correct","r.top", "ic.scale", "wp.copy", "wp.matrix","d.union",
 resp_adult023 = select.dist(dist_adult023, 
 sel23)
 
-resp_adult023$wp.matrix = size(resp_adult023$wp.matrix,2)
-
+# resp_adult023$wp.matrix = size(resp_adult023$wp.matrix,2)
+# 
 resp_adult023$d.union = hide(resp_adult023$d.union, 37)
 
 resp_adult023$d.union = temp.dice(size(u.bow.tie(shd = "grey"), 3))
@@ -1193,11 +1191,11 @@ sel24 = c("correct","r.diag", "ic.scale", "wp.copy", "wp.matrix","d.union",
 "ic.inc", "ic.flip")
 resp_adult024 = select.dist(dist_adult024, sel24)
 resp_adult024$wp.matrix = size(resp_adult024$wp.matrix , 2)
-
+# 
 resp_adult024$d.union = hide(resp_adult024$d.union, c(20:37))
 
 
-resp_adult024$d.union = temp.dice(size(reflection(pacman(shd = "grey"), 2), 3))
+resp_adult024$d.union = temp.dice(size(reflection(pacman(shd = "grey"), 2), 4))
 
 draw.dist(resp_adult024, n.resp = 8)
 ```
@@ -2085,9 +2083,9 @@ draw(adult048)
 ```{r out.width="80%"}
 dist_adult048 = responses(adult048)
 
-p = split.mat(adult047)
+p = split.mat(adult048)
 
-dist_adult047$ic.flip = cof(p$circle, rotation(p$triangle, 4))
+dist_adult048$ic.flip = cof(p$circle, rotation(p$square, 4))
 
 
 sel48 = c("correct", "r.diag", "r.left", 
