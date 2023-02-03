@@ -644,8 +644,8 @@ h.arc.right.down <- function(lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
 #' @examples
 #' s.vertical()
 #' @export
-s.vertical <- function() {
-  value <-cof( v.arc.left.up(), v.arc.right.down())
+s.vertical <- function(lwd = 3) {
+  value <-cof( v.arc.left.up(lwd = lwd), v.arc.right.down(lwd = lwd))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value
@@ -657,8 +657,8 @@ s.vertical <- function() {
 #' @examples
 #' s.vertical.inv()
 #' @export
-s.vertical.inv <- function() {
-  value <-cof( v.arc.right.up(), v.arc.left.down())
+s.vertical.inv <- function(lwd = 3) {
+  value <-cof( v.arc.right.up(lwd = lwd), v.arc.left.down(lwd = lwd))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value
@@ -671,8 +671,8 @@ s.vertical.inv <- function() {
 #' @examples
 #' s.horizontal()
 #' @export
-s.horizontal <- function() {
-  value <-cof( h.arc.left.up(), h.arc.right.down())
+s.horizontal <- function(lwd = 3) {
+  value <-cof( h.arc.left.up(lwd = lwd), h.arc.right.down(lwd = lwd))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value
@@ -684,8 +684,8 @@ s.horizontal <- function() {
 #' @examples
 #' s.horizontal.inv()
 #' @export
-s.horizontal.inv <- function() {
-  value <-cof( h.arc.left.down(), h.arc.right.up())
+s.horizontal.inv <- function(lwd = 3) {
+  value <-cof( h.arc.left.down(lwd = lwd), h.arc.right.up(lwd = lwd))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value
@@ -701,8 +701,8 @@ s.horizontal.inv <- function() {
 #' @examples
 #' s.vertical()
 #' @export
-s_vertical <- function() {
-  value <-cof( v.arc.left.up(), v.arc.right.down(),
+s_vertical <- function(lwd = 3) {
+  value <-cof( v.arc.left.up(lwd = lwd), v.arc.right.down(lwd = lwd),
                single=TRUE, name="s.vertical")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
@@ -715,8 +715,8 @@ s_vertical <- function() {
 #' @examples
 #' s.vertical.inv()
 #' @export
-s_vertical.inv <- function() {
-  value <-cof( v.arc.right.up(), v.arc.left.down(),single=TRUE,
+s_vertical.inv <- function(lwd = 3) {
+  value <-cof( v.arc.right.up(lwd = lwd), v.arc.left.down(lwd = lwd),single=TRUE,
                name="s.vertical.inv")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
@@ -730,8 +730,8 @@ s_vertical.inv <- function() {
 #' @examples
 #' s.horizontal()
 #' @export
-s_horizontal <- function() {
-  value <-cof(h.arc.left.up(), h.arc.right.down(),single=TRUE,
+s_horizontal <- function(lwd = 3) {
+  value <-cof(h.arc.left.up(lwd = lwd), h.arc.right.down(lwd = lwd),single=TRUE,
               name="s.horizontal")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
@@ -744,8 +744,8 @@ s_horizontal <- function() {
 #' @examples
 #' s.horizontal.inv()
 #' @export
-s_horizontal.inv <- function() {
-  value <-cof( h.arc.left.down(), h.arc.right.up(),single=TRUE,
+s_horizontal.inv <- function(lwd = 3) {
+  value <-cof( h.arc.left.down(lwd = lwd), h.arc.right.up(lwd = lwd),single=TRUE,
                name="s.horizontal.inv")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
@@ -763,8 +763,8 @@ s_horizontal.inv <- function() {
 #' @examples
 #' vertical.eight()
 #' @export
-vertical.eight <- function() {
-  value <-cof(  s_vertical(), s_vertical.inv())
+vertical.eight <- function(lwd = 3) {
+  value <-cof(  s_vertical(lwd = lwd), s_vertical.inv(lwd = lwd))
   value$tag <- list("compose2")
   attr(value, "class") <- "field"
   value
@@ -776,8 +776,8 @@ vertical.eight <- function() {
 #' @examples
 #' vertical.eight()
 #' @export
-horizontal.eight <- function() {
-  value <-cof(s_horizontal(), s_horizontal.inv())
+horizontal.eight <- function(lwd = 3) {
+  value <-cof(s_horizontal(lwd = lwd), s_horizontal.inv(lwd = lwd))
   value$tag <- list("compose2")
   attr(value, "class") <- "field"
   value
@@ -790,8 +790,8 @@ horizontal.eight <- function() {
 #' @examples
 #' lily()
 #' @export
-lily <- function() {
-  value <-cof( horizontal.eight(), vertical.eight())
+lily <- function(lwd = 3) {
+  value <-cof( horizontal.eight(lwd = lwd), vertical.eight(lwd = lwd))
   value$tag <- list("compose4")
   attr(value, "class") <- "field"
   value
@@ -808,8 +808,9 @@ lily <- function() {
 #' @examples
 #' vertical.eight()
 #' @export
-vertical_eight <- function() {
-  value <-cof(  s_vertical(), s_vertical.inv(),single=TRUE,name="v.eigth")
+vertical_eight <- function(lwd = 3) {
+  value <-cof(  s_vertical(lwd = lwd), s_vertical.inv(lwd = lwd),
+                single=TRUE,name="v.eigth")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
@@ -821,8 +822,9 @@ vertical_eight <- function() {
 #' @examples
 #' vertical.eight()
 #' @export
-horizontal_eight <- function() {
-  value <-cof(s_horizontal(), s_horizontal.inv(),single=TRUE,name="h.eigth")
+horizontal_eight <- function(lwd = 1) {
+  value <-cof(s_horizontal(lwd = lwd), s_horizontal.inv(lwd = lwd),
+              single=TRUE,name="h.eigth")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value
@@ -835,8 +837,9 @@ horizontal_eight <- function() {
 #' @examples
 #' lily()
 #' @export
-s.lily <- function() {
-  value <-cof( horizontal_eight(), vertical_eight(),single=TRUE,name="single_lily")
+s.lily <- function(lwd = 3) {
+  value <-cof( horizontal_eight(lwd = lwd), vertical_eight(lwd = lwd),
+               single=TRUE,name="single_lily")
   value$tag <- list("simple","fill")
   attr(value, "class") <- "field"
   value

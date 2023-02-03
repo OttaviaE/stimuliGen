@@ -105,7 +105,7 @@ identity.field <- function(obj,...) {
 movement.field<-function(obj,n,rule,x=0,y=0,...) {
   
   if(rule=="x"){
-    obj$pos.x[[1]]<-obj$pos.x[[1]]+18*(n-1)
+    obj$pos.x[[1]]<-obj$pos.x[[1]]+10*(n-1)
   }else if(rule=="y"){
     obj$pos.y[[1]]<-obj$pos.y[[1]]-12*(n-1)
   }else{

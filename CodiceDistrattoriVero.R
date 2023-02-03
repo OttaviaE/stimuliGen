@@ -762,9 +762,10 @@ d.union = function(m,
     temp2 = size(f(), 3)
   #  temp2 = change.col(temp2)
     temp2 = temp.dice(temp2)
-    d.un = cof(temp2, rectangle(s.x = 15, s.y = 18, 
-                                pos.y = -1, 
-                                pos.x = 0))
+    # d.un = cof(temp2, rectangle(s.x = 15, s.y = 18, 
+    #                             pos.y = -1, 
+    #                             pos.x = 0))
+    d.un = temp2
     
   }
   
