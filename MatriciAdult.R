@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo=FALSE,
                       fig.align = "center")
 knitr::knit_hooks$set(purl = knitr::hook_purl)
 
-rm(list = ls())
+#rm(list = ls())
 select.dist = function(dist.list, selection) {
 resp = list()
 for (i in 1:length(selection)) {
@@ -913,7 +913,7 @@ dist_adult019 = responses(adult019)
 
 resp_adult019 = select.dist(dist_adult019, sel019)
 
-# resp_adult019$d.union = temp.dice(size(slice(shd = "grey"), 2))
+resp_adult019$d.union = temp.dice(size(slice(shd = "grey"), 2.5))
 resp_adult019$wp.matrix = (reflection(resp_adult019$wp.matrix, 2))
 
 
@@ -926,8 +926,8 @@ adult020= numeric_progression(adult020a,"LL-TR")
 draw(adult020)
 
 ## ----out.width="90%"----------------------------------------------------------
-dist_adult020 = responses(adult020)
-sel20 = c("correct","r.diag", "r.left", "wp.copy", "wp.matrix","d.union", 
+dist_adult020 = responses(adult020,choose.copy = 3)
+sel20 = c("correct","r.top", "r.left", "wp.copy", "wp.matrix","d.union", 
 "ic.flip", "ic.inc")
 resp_adult020 = select.dist(dist_adult020, sel20)
 
