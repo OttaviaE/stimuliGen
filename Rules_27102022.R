@@ -107,7 +107,7 @@ movement.field<-function(obj,n,rule,x=0,y=0,...) {
   if(rule=="x"){
     obj$pos.x[[1]]<-obj$pos.x[[1]]+10*(n-1)
   }else if(rule=="y"){
-    obj$pos.y[[1]]<-obj$pos.y[[1]]-12*(n-1)
+    obj$pos.y[[1]]<-obj$pos.y[[1]]-10*(n-1)
   }else{
     obj$pos.x[[1]]<-rep(x,length(obj$pos.x[[1]]-20*(n-1)))
     obj$pos.y[[1]]<-rep(y,length(obj$pos.y[[1]]-20*(n-1)))
