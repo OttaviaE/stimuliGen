@@ -1037,6 +1037,8 @@ dist_adult019 = responses(adult019)
 resp_adult019 = select.dist(dist_adult019, sel019)
 
 resp_adult019$d.union = temp.dice(size(slice(shd = "grey"), 2))
+resp_adult019$wp.matrix = reflection(resp_adult019$wp.matrix, 2)
+
 
 draw.dist(resp_adult019, n.resp = 8)
 
@@ -1062,7 +1064,9 @@ resp_adult020 = select.dist(dist_adult020, sel20)
 resp_adult020$d.union = temp.dice(cof(size(triangle(), 4), 
 reflection(size(triangle(), 4),2)))
 
-resp_adult020$wp.matrix = temp.dice(size(hexagon(), 8))
+resp_adult020$wp.matrix = temp.dice(size(hexagon(shd = "grey"), 8))
+
+
 
 draw.dist(resp_adult020, n.resp = 8)
 
@@ -1164,7 +1168,7 @@ resp_adult023$wp.matrix = size(resp_adult023$wp.matrix,2)
 
 resp_adult023$d.union = hide(resp_adult023$d.union, 37)
 
-resp_adult023$d.union = temp.dice(size(u.bow.tie(shd = "grey"), 2))
+resp_adult023$d.union = temp.dice(size(u.bow.tie(shd = "grey"), 3))
 
 
 draw.dist(resp_adult023, n.resp = 8)
@@ -1193,7 +1197,7 @@ resp_adult024$wp.matrix = size(resp_adult024$wp.matrix , 2)
 resp_adult024$d.union = hide(resp_adult024$d.union, c(20:37))
 
 
-resp_adult024$d.union = temp.dice(size(reflection(pacman(shd = "line12"), 2), 3))
+resp_adult024$d.union = temp.dice(size(reflection(pacman(shd = "grey"), 2), 3))
 
 draw.dist(resp_adult024, n.resp = 8)
 ```
