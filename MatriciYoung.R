@@ -1059,7 +1059,7 @@ st1 = cof(pacman(shd = giallo), dot())
 )
 
 young020frame =apply(Raven(
-st1 = rectangle(s.x = 20, s.y = 15, shd = blu)
+st1 = rectangle(s.x = 20, s.y = 15, shd = blu, lty = 0)
 ))
 
 young020 = com(young020frame, young020)
@@ -1408,7 +1408,7 @@ draw.dist(resp_young028, n.resp = 8, main = T)
 
 ## -----------------------------------------------------------------------------
 young029a = apply(Raven(
-st1=rectangle(shd = blu, s.x = 20, s.y = 15)
+st1=rectangle(shd = blu, s.x = 20, s.y = 15, lty = 0)
 ))
 
 
@@ -1481,5 +1481,433 @@ reflection(p$pacman, 2))
 draw.dist(resp_young030, n.resp = 8)
 
 
+
+
+## -----------------------------------------------------------------------------
+young031a = apply(Raven(
+st1=rectangle(shd = giallo, s.x = 20, s.y = 15)
+))
+
+young031b = apply(Raven(
+st1 = cof(u.smallbow.tie.inv(shd = blu), size(u.star(), 2), u.pie.4( 
+shd = rosso)), 
+vrule= "diff_shapes"
+))
+
+young031 = com(young031a, young031b)
+
+draw(young031)
+
+
+## ----out.width="80%"----------------------------------------------------------
+
+dist_young031 = responses(young031)
+resp_young031 = select.dist(dist_young031, 
+select.new)
+p= split.mat(young031)
+
+
+resp_young031$wp.matrix = cof(resp_young031$wp.matrix, 
+size(bow.tie(shd = "white"), 2))
+
+
+resp_young031$ic.inc = cof(p$rectangle, 
+ cof(semi.circle.inv(shd = rosso), 
+ semi.circle(shd = rosso)))
+
+# resp_young031$ic.flip = cof(p$rectangle, 
+# rotation(p$u.pie.4, 2))
+
+
+
+#dist_young031 = responses(young031,mat.type = 9)
+draw.dist(resp_young031, n.resp = 8, main = T)
+# resp_young031[["wp.matrix"]] = cof(resp_young031[["wp.matrix"]],resp_young031[["wp.copy"]])
+# resp_young031[["ic.neg"]] = cof(resp_young031[["ic.neg"]],semi.circle(shd=rosso),semi.circle.inv(shd=rosso))
+# resp_young031[["ic.flip"]] = rotation(resp_young031[["ic.flip"]],2)
+
+
+
+
+## -----------------------------------------------------------------------------
+young032a = apply(Raven(
+st1=cof(square(shd = giallo, s.x = 18, s.y = 18), 
+square(shd = blu, s.x = 18, s.y = 18), 
+square(shd = rosso, s.x = 18, s.y = 18)), 
+hrule = "diff_shapes"
+))
+
+young032b = apply(Raven(
+st1 = cof(u.smallbow.tie.inv(shd = "black"), size(u.star(), 2), 
+size(pacman(shd = "black"), 2)), 
+vrule= "diff_shapes"
+))
+
+young032 = com(young032a, young032b)
+
+draw(young032)
+
+## ----out.width="80%"----------------------------------------------------------
+
+dist_young032 = responses(young032)
+
+resp_young032 = select.dist(dist_young032, 
+select.new)
+p= split.mat(young032)
+
+# resp_young032$ic.scale = cof(p$square, 
+#size(p$pacman, 2))
+
+resp_young032$wp.matrix = cof(resp_young032$wp.matrix, 
+(vertical.eight()))
+
+
+
+# resp_young032$ic.inc = cof(p$square)
+# 
+resp_young032$ic.flip = cof(p$square,
+reflection(p$pacman, 2))
+
+
+draw.dist(resp_young032, 
+n.resp = 8)
+
+## -----------------------------------------------------------------------------
+young033 = apply(
+Raven(
+st1 = cof(square(shd = "black"), u.star(), triangle(rot = pi/2, shd = "black")), 
+vrule = c("diff_shapes", "size")
+)
+)
+draw(young033, n.cell = 9, hide = F)
+
+## ----out.width="80%"----------------------------------------------------------
+
+dist_young033 = responses(young033)
+
+select.new1 = c("correct","r.diag", "d.union", "wp.copy", 
+"wp.matrix", "ic.flip", "ic.neg", 
+"ic.scale")
+
+resp_young033 = select.dist(dist_young033, 
+select.new1)
+
+
+resp_young033$d.union = cof(resp_young033$d.union, 
+luck(shd = "white"), 
+smallbow.tie.inv(shd = "black"))
+
+
+resp_young033$ic.scale = triangle(shd = "black")
+
+
+draw.dist(resp_young033, n.resp = 8)
+
+## -----------------------------------------------------------------------------
+young034a = apply(Raven(
+st1 = cof(u.star(), pentagon(shd = "black"), e.hexagon(shd = "black")), 
+vrule = "diff_shapes"
+))
+
+young034b = apply(
+Raven(
+st1 = dot(shd = "white", size.x = 10), 
+hrule = c("size")
+)
+)
+
+young034 = com(young034a, young034b)
+
+
+draw(young034, n.cell = 9, hide = F)
+
+## ----out.width="80%"----------------------------------------------------------
+
+dist_young034 = responses(young034)
+
+resp_young034 = select.dist(dist_young034, 
+select.new)
+
+
+resp_young034$d.union = cof(resp_young034$wp.matrix, 
+
+smallbow.tie.inv(shd = "black"))
+
+p = split.mat(young034)
+
+#resp_young034$ic.inc = p$e.hexagon
+# deve ruotare l'esagono
+
+resp_young034$ic.flip = cof(rotation(p$e.hexagon, 3), 
+p$dot)
+
+draw.dist(resp_young034, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+young035a = apply(Raven(
+st1 = square()
+))
+
+young035b = apply(Raven(
+st1 = cof(u.smallbow.tie.inv(), u.pie.2(), pacman()), 
+vrule = c("diff_shapes", "fill")
+))
+
+young035 = com(young035a, young035b)
+
+
+draw(young035)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_young035 = responses(young035)
+select.y035 = c("correct", "r.diag", "wp.copy", "wp.matrix", "d.union", "ic.scale", "ic.inc", "ic.neg")
+
+resp_young035 = select.dist(dist_young035, 
+select.y035)
+
+
+resp_young035$wp.matrix = cof(resp_young035$wp.matrix, 
+
+smallbow.tie.inv(shd = "black"))
+
+p = split.mat(young035)
+
+# resp_young035$ic.inc = p$square
+# # 
+# resp_young035$ic.flip = cof(reflection(p$pacman, 2),
+# p$square)
+
+# 
+# resp_young035$ic.scale = cof(size(p$pacman, 2), 
+# p$square)
+draw.dist(resp_young035, n.resp = 8)
+
+
+
+## -----------------------------------------------------------------------------
+young036a = apply(
+Raven(
+st1 = cof(circle(s.x = 17, s.y = 17), 
+pentagon(s.x = 16, s.y = 16), 
+e.hexagon(s.x = 17, s.y = 17)), 
+vrule = c("diff_shapes")
+)
+)
+
+young036b = apply(
+Raven(
+st1 = pacman()
+)
+)
+
+
+young036c = apply(
+Raven(
+st1 = circle(s.x = 2, s.y = 2), 
+hrule = c("fill")
+)
+)
+
+young036 = com(young036a, young036b, young036c)
+draw(young036, hide = F)
+
+## ----out.width="80%"----------------------------------------------------------
+dist_young036 = responses(young036)
+
+resp_young036 = select.dist(dist_young036, 
+select.new)
+
+
+resp_young036$d.union = cof(resp_young036$r.diag, 
+
+lily())
+
+p = split.mat(young036)
+
+resp_young036$ic.flip = cof(reflection(p$pacman, 2), 
+p$e.hexagon, 
+p$circle)
+
+resp_young036$wp.copy = young036$Sq1
+
+resp_young036$ic.scale = replace(resp_young036$correct, 
+                                 4, 
+                                 size(p$pacman, 2))
+
+
+draw.dist(resp_young036, n.resp = 8)
+
+
+
+## -----------------------------------------------------------------------------
+young037a = apply(Raven(
+  pacman(), 
+  hrule = "rotation"
+))
+
+young037b = apply(Raven(
+  dot(), 
+  hrule = "fill"
+))
+
+
+young037 = com(young037a, young037b)
+
+
+draw(young037)
+
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_young037 = responses(young037, choose.copy = 1)
+
+
+sel.y037 = c("correct", "r.left", "wp.copy", "wp.matrix", "d.union", 
+             "ic.flip", "ic.neg", "ic.inc")
+
+
+resp_young037 = select.dist(dist_young037, sel.y037)
+
+p = split.mat(young037)
+
+resp_young037$ic.flip = replace(resp_young037$correct, 
+                                1, 
+                                reflection(p$pacman, 2))
+
+resp_young037$wp.matrix = cof(resp_young037$wp.copy, 
+                              rotation(size(p$pacman, 1.5), 3))
+
+resp_young037$d.union = cof(size(resp_young037$r.left, 2), luck())
+
+draw.dist(resp_young037, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+
+young038a = apply(Raven(
+  slice(), 
+  vrule = "rotation"
+))
+
+young038b = apply(Raven(
+  square(s.x = 3, s.y = 3), 
+  hrule = "fill"
+))
+
+
+young038 = com(young038a, young038b)
+
+draw(young038)
+
+
+## ----out.width="80%"----------------------------------------------------------
+dist_young038 = responses(young038)
+
+sel.y038 = c("correct", "r.diag", "r.left", 
+             "wp.copy", "wp.matrix", "d.union", "ic.flip", "ic.inc")
+
+
+
+resp_young038 = select.dist(dist_young038, 
+                             sel.y038)
+
+p = split.mat(young038)
+
+resp_young038$ic.flip = replace(resp_young038$correct, 
+                                1, 
+                                rotation(p$slice, 2))
+
+resp_young038$wp.matrix = cof( 
+                              rotation(p$slice, 3), resp_young038$wp.copy)
+
+resp_young038$d.union = cof( rotation(p$slice, 1), 
+                             rotation(p$slice, 5),
+                             resp_young038$wp.matrix)
+
+
+
+draw.dist(resp_young038, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+young039a = apply(Raven(
+  st1 = cof(square(s.x =16, s.y = 16), pentagon(), e.hexagon()), 
+  hrule = "diff_shapes"
+))
+
+young039b = apply(Raven(
+  st1 = pacman(size.x = 8), 
+  vrule = c("rotation", "size")
+))
+
+young039 = com(young039a, young039b)
+
+draw(young039)
+
+
+## ----out.width="80%"----------------------------------------------------------
+
+dist_young039 = responses(young039, choose.copy = 1)
+
+sel.y039 = c("correct", "r.diag", "r.left", "wp.copy", "wp.matrix", 
+             "d.union", "ic.scale", "ic.flip")
+
+resp_young039 = select.dist(dist_young039, 
+                            sel.y039)
+
+
+resp_young039$d.union = cof(young039$Sq4, 
+                            ellipse())
+
+
+draw.dist(resp_young039, n.resp = 8)
+
+
+## -----------------------------------------------------------------------------
+young040b = apply(Raven(
+  st1 = semi.circle(), 
+  hrule =c("rotation", "fill"),
+  vrule = c("identity")
+))
+
+
+young040a = apply(Raven(
+  st1 = cof(circle(s.x = 15, s.y = 15), 
+            square(s.x = 17, s.y = 17), 
+            e.hexagon()), 
+  vrule = "diff_shapes", 
+  hrule= c("identity")
+))
+
+
+young040 = com(young040a, young040b)
+
+draw(young040)
+
+## ----out.width="80%"----------------------------------------------------------
+
+resp_young040 = list()
+
+resp_young040$correct = correct(young040)
+
+resp_young040$r.left = repetition(young040)$r.left
+resp_young040$r.diag = repetition(young040)$r.diag
+
+resp_young040$wp.copy = young040$Sq1
+resp_young040$wp.matrix = cof(young040$Sq1, 
+                              semi.circle.inv())
+resp_young040$d.union = cof(size(resp_young040$wp.matrix, 2), 
+                              luck(s.x = 12, s.y = 17))
+p = split.mat(young040)
+
+resp_young040$ic.flip = replace(resp_young040$correct, 
+                                4, 
+                                rotation(p$semi.circle, 2))
+
+
+resp_young040$ic.neg = ic.neg(young040)
+
+draw.dist(resp_young040, n.resp = 8)
 
 

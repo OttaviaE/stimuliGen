@@ -755,6 +755,15 @@ d.union = function(m,
   rule.mat = c(m$vrule, m$hrule) 
   if(any(grepl("quant", rule.mat)) == T) {
     rm(d.un)
+    random<-sample(1:length(shapes.l$name),1)
+    shapes.in = shapes.l$name[random]
+    if (is.null(choose.fig) == F) {
+      shapes.in = choose.fig
+    } else {
+      shapes.in = shapes.in
+    }
+    
+    f = get(shapes.in)
     # split.m = split.mat(m, cell = 2)
     # g = get(names(split.m)[[1]])
     # h = rotation(size(g(), 2), 2)
