@@ -20,3 +20,6 @@
 [News-10-11](news-10-11.html)
 
 [Riunione-02-dicembre](Riunione02.html)
+
+
+[Studio Preliminare](StudioPreliminare.html)
