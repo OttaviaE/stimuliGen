@@ -1182,7 +1182,7 @@ st1 = cof(pacman(shd = giallo), dot())
 )
 
 young020frame =apply(Raven(
-st1 = rectangle(s.x = 20, s.y = 15, shd = blu)
+st1 = rectangle(s.x = 20, s.y = 15, shd = blu, lty = 0)
 ))
 
 young020 = com(young020frame, young020)
@@ -1578,7 +1578,7 @@ draw.dist(resp_young028, n.resp = 8, main = T)
 
 ```{r}
 young029a = apply(Raven(
-st1=rectangle(shd = blu, s.x = 20, s.y = 15)
+st1=rectangle(shd = blu, s.x = 20, s.y = 15, lty = 0)
 ))
 
 
@@ -1667,7 +1667,7 @@ draw.dist(resp_young030, n.resp = 8)
 
 ```{r}
 young031a = apply(Raven(
-st1=rectangle(shd = giallo, s.x = 20, s.y = 15)
+st1=rectangle(shd = giallo, s.x = 20, s.y = 15, lty = 0)
 ))
 
 young031b = apply(Raven(
