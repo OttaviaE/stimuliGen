@@ -76,7 +76,8 @@ ellipse <- function(s.x=10,
                     s.y=7,
                     rot=0,
                     shd=NA, pos.x = 0, pos.y = 0,
-                    vis = 1) {
+                    vis = 1,
+                    lty = 1) {
   value <- list(
     shape = "ellipse",
     size.x = list(s.x),
@@ -86,7 +87,7 @@ ellipse <- function(s.x=10,
     rotation = list(rot),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
+    lty = list(lty),
     lwd = list(3),
     num = list(1),
     nv = list(100),
@@ -143,7 +144,9 @@ square <- function(    s.x=15,
                        s.y=15,
                        rot=pi / 4, pos.x = 0, pos.y = 0,
                        shd=NA,
-                       vis = 1) {
+                       vis = 1, 
+                       lty = 1, 
+                       lwd = 3) {
   value <- list(
     shape = "square",
     size.x = list(s.x),
@@ -153,8 +156,8 @@ square <- function(    s.x=15,
     rotation = list(rot),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
-    lwd = list(3),
+    lty = list(lty),
+    lwd = list(lwd),
     num = list(1),
     nv = list(4),
     shade = list(shd),
@@ -245,7 +248,8 @@ e.hexagon <- function(s.x=15,
                       rot=0,
                       pos.x = 0, pos.y = 0,
                       shd=NA,
-                      vis = 1) {
+                      vis = 1, 
+                      lty = 1) {
   value <- list(
     shape = "e.hexagon",
     size.x = list(s.x),
@@ -255,7 +259,7 @@ e.hexagon <- function(s.x=15,
     rotation = list(rot),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
+    lty = list(lty),
     lwd = list(3),
     num = list(1),
     nv = list(6),
@@ -341,7 +345,7 @@ rot.hexagon <- function(s.x=15,
 #' @examples
 #' star()
 #' @export
-star <- function(pos.x = 0, pos.y = 0, size.x = 10, size.y = 10, shd = NA, lty = 0) {
+star <- function(pos.x = 0, pos.y = 0, size.x = 10, size.y = 10, shd = "black", lty = 1) {
   value <-cof(hexagon(pos.x = pos.x, pos.y = pos.y, s.x = size.x, s.y = size.y, shd = shd, lty = lty),
               rot.hexagon(pos.x = pos.x, pos.y = pos.y, s.x = size.x, s.y = size.y, shd = shd, lty = lty))
   value$tag <- list("small", "compose2","fill")
@@ -410,7 +414,8 @@ u.bow.tie <- function(pos.x = 0, shd = NA) {
 #' @examples
 #' v.arc.left.up()
 #' @export
-v.arc.left.up <- function(s.x=square()$size.x[[1]]/2,s.y=square()$size.y[[1]]/2,
+v.arc.left.up <- function(s.x=square()$size.x[[1]]/2,
+                          s.y=square()$size.y[[1]]/2,
                           lty =1, lwd = 3, vis = 1, pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.left.up",
