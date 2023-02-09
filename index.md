@@ -22,4 +22,4 @@
 [Riunione-02-dicembre](Riunione02.html)
 
 
-[Studio Preliminare](StudioPreliminare.html)
+[Studio Preliminare](StudioPreliminareI.html)
