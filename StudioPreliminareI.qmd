@@ -5,11 +5,12 @@ format:
   html:
     page-layout: full
     toc: true
-    toc-location: body
+    toc-location: right
     code-tools:
       source: true
       toggle: false
       caption: none
+    theme: cosmo
 ---
 
 ```{r}
@@ -240,7 +241,7 @@ rosso = "firebrick"
 
 # Intro 
 
-Sulle dei risultati dello studio pilota dello studio preliminare, abbiamo deciso di portare aventi lo studio e quindi di sviluppare altre nuove matrici.
+Sulla base dei risultati dello studio pilota dello studio preliminare, abbiamo deciso di portare aventi lo studio e quindi di sviluppare altre nuove matrici.
 
 Per il momento, abbiamo deciso di: 
 
@@ -248,7 +249,7 @@ Per il momento, abbiamo deciso di:
 
 - Considerare 3 matrici logiche e 3 matrici visuo spaziali
 
-Abbiamo dei dubbi circa il tipo di disegno che vogliamo implementare. Nello specifico, non sappiamo se manetere un disegno within o spostarci su un disegno between, dove il fattore between è il numero di distrattori. 
+Abbiamo dei dubbi circa il tipo di disegno che vogliamo implementare. Nello specifico, non sappiamo se mantenere un disegno within o spostarci su un disegno between, dove il fattore between è il numero di distrattori. 
 
 [Qui](https://www.dropbox.com/scl/fi/a38eyoyx5pddve7o1qjx8/Diesgno-studio-distrattori.xlsx?dl=0&rlkey=dtij7eb0v5d6rnjqzr0cph9gq) trovate la skill map usata per generare gli stimoli che seguono. 
 
