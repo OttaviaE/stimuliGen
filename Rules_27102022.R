@@ -263,7 +263,7 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
       
   }else if(grepl("rotation",rule))
   {
-    
+   # qui ci andrà la trasf mentale con la rotazione 
   }
   return(obj)
 }
