@@ -505,8 +505,9 @@ a1_visuo1c<-apply(Raven(cof(ellipse(s.x = 3,s.y = 2),
                         c("trans.fill")))
 
 a1_visuo1a<-apply(Raven(cof(e.hexagon(s.x = 17, s.y = 17), 
-              square(s.x = 17, s.y = 17), 
-              pentagon(s.x = 17, s.y = 17)),
+             
+              pentagon(s.x = 17, s.y = 17), 
+               square(s.x = 17, s.y = 17)),
                        c("diff_shapes"),
                        c("diff_shapes.inv")))
 
@@ -738,6 +739,8 @@ p = split.mat(a1_3)
 resp.a13$ic.flip = cof(p$pentagon, 
                        pie.2.inv(), 
                        p$circle)
+resp.a13$d.union = cof(a1_3$Sq5, 
+                       pie.4())
 
 draw.dist(resp.a13, n.resp = 8, main = T)
 
