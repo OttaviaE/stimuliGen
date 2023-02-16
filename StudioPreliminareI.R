@@ -252,12 +252,13 @@ sel.al1 = c("correct", "r.top", "r.left",
             "d.union", 
             "ic.inc", 
             "ic.flip") 
-
 resp.a_logic1 = select.dist(dist.a_logic1, sel.al1)
 p = split.mat(a_logic1)
-resp.a_logic1$ic.flip = replace(resp.a_logic1$correct, 
-                                5, 
-                                reflection(p$triangle, 1))
+
+a = hide(a_logic1$Sq7, c(1,3,5))
+
+resp.a_logic1$ic.flip = cof(resp.a_logic1$ic.inc, 
+                            a)
 
 resp.a_logic1$d.union = cof(a_logic1$Sq1, 
                             pacman())
@@ -313,8 +314,9 @@ sel.al11 = c("correct", "r.top", "r.left",
             "ic.flip") 
 
 resp.a1_logic1 = select.dist(dist.a1_logic1, sel.al11)
-resp.a1_logic1$ic.flip = cof(resp.a1_logic1$ic.inc, s.horizontal.inv())
-resp.a1_logic1$d.union = cof(a1_logic1$Sq1, 
+resp.a1_logic1$ic.flip = cof(resp.a1_logic1$ic.inc, petalo.su)
+resp.a1_logic1$d.union = cof(cof(petalo.giu, petalo.su, 
+            petalo.sx, petalo.dx), 
                             cross.dice())
 
 draw.dist(resp.a1_logic1, n.resp = 8)
@@ -375,11 +377,10 @@ sel.al12 = c("correct", "r.top", "r.left",
 
 resp.a1_logic2 = select.dist(dist.a1_logic2, sel.al2)
 resp.a1_logic2$ic.flip = cof(resp.a1_logic2$ic.inc, 
-                             s.vertical.inv())
+                             petalo.dx)
 
-resp.a1_logic2$d.union = cof(a1_logic2$Sq4, 
-                            size(cof(slice(), 
-                                rotation(slice(), 5)), 2))
+resp.a1_logic2$d.union = cof(a1_logic2$Sq5, 
+                            circle(s.x = 12, s.y = 12))
 
 draw.dist(resp.a1_logic2, n.resp = 8)
 
@@ -449,21 +450,21 @@ draw(a1_logic3, hide = F)
 ## ----r------------------------------------------------------------------------
 
 
-dist.a1_logic1 = responses(a1_logic1)
+dist.a1_logic3 = responses(a1_logic3)
 
 
-sel.al11 = c("correct", "r.top", "r.left", 
+sel.al13 = c("correct", "r.top", "r.left", 
             "wp.copy", "wp.matrix", 
             "d.union", 
             "ic.inc", 
             "ic.flip") 
 
-resp.a1_logic1 = select.dist(dist.a1_logic1, sel.al11)
-resp.a1_logic1$ic.flip = cof(resp.a1_logic1$ic.inc, s.horizontal.inv())
-resp.a1_logic1$d.union = cof(a1_logic1$Sq1, 
-                            cross.dice())
+resp.a1_logic3 = select.dist(dist.a1_logic3, sel.al13)
+resp.a1_logic3$ic.flip = cof(resp.a1_logic3$ic.inc, s.horizontal.inv())
+resp.a1_logic3$d.union = cof(a1_logic3$Sq3, 
+                            lily())
 
-draw.dist(resp.a1_logic1, n.resp = 8)
+draw.dist(resp.a1_logic3, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
 a_visuo1c <-apply(Raven(cof(circle(s.x = 3,s.y = 3),
