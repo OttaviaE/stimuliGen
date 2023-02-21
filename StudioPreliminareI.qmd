@@ -734,6 +734,7 @@ draw.dist(resp.a2_visuo1, n.resp = 8)
 
 ## Visuo 2
 
+
 ::: {.grid}
 
 ::: {.g-col-6}
