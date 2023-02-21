@@ -278,21 +278,52 @@ dev.off()
 
 
 
-svg(paste0(getwd(), "/young003_ic.svg"))
+svg(paste0(getwd(), "/young003_ic_alternativa3.svg"))
 Canvas(xlim = a)
 clip(6,-6,6,-6)
 draw(container,canvas=FALSE)
 
 
-draw(vline(pos.x = 5, pos.y = -0, 
+draw(vline(pos.x = -5, pos.y = -0, 
+           s.x  = 10, lwd = spessore, lty = 1), canvas = F)
+draw(vline(pos.x = -2, pos.y = 0, 
+           s.x = 10, lwd = spessore), canvas = F)
+
+draw(hline(pos.y = 2, 
+           pos.x = 0,  s.x = 10, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = 5, pos.x = 0, s.x = 10, lwd = spessore, lty = 1), canvas = F)
+dev.off()
+
+svg(paste0(getwd(), "/young003_ic_alternativa.svg"))
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas=FALSE)
+
+
+draw(vline(pos.x = 3, pos.y = -0, 
            s.x  = 10, lwd = spessore, lty = 1), canvas = F)
 draw(vline(pos.x = 2, pos.y = 0, 
            s.x = 10, lwd = spessore), canvas = F)
 
-draw(hline(pos.y = 0, 
+draw(hline(pos.y = -4, 
            pos.x = 0,  s.x = 10, lwd = spessore, lty = 1), canvas = F)
 draw(hline(pos.y = -3, pos.x = 0, s.x = 10, lwd = spessore, lty = 1), canvas = F)
 dev.off()
+
+svg(paste0(getwd(), "/young003_ic_alternativa2.svg"))
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas=FALSE)
+
+draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7), canvas = F)
+draw(vline(pos.x = -13-12, s.x = 50, lwd = spessore), canvas = F)
+
+draw(vline(pos.x = 10-12, s.x = 50, lwd = spessore), canvas = F)
+draw(hline(pos.y = 9+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = -12+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+draw(hline(pos.y = -15+12, s.x = 50, lwd = spessore, lty = 1), canvas = F)
+dev.off()
+
 
 svg(paste0(getwd(), "/young003_ic1.svg"))
 Canvas(xlim = a)
@@ -322,6 +353,28 @@ draw(container,canvas=FALSE)
 
 dev.off()
 
+svg(paste0(getwd(), "/young003_wpalternativa1.svg"))
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas=FALSE)
+draws(rectangle(s.x=10,s.y=10,shd="line.12.inv"),by=3.5,
+      canvas = FALSE)
+draws(rectangle(s.x=10,s.y=10,shd="line.12"),by=3.5,
+      canvas = FALSE)
+dev.off()
+
+svg(paste0(getwd(), "/young003_wpalternativa2.svg"))
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas=FALSE)
+draw(rotation(vline(pos.x = -5, pos.y = -0, 
+           s.x  = 10, lwd = spessore, lty = 1),2), canvas = F)
+draw(rotation(vline(pos.x = -2, pos.y = 0, 
+           s.x = 10, lwd = spessore),2), canvas = F)
+
+draw(rotation(hline(pos.y = 0, 
+           pos.x = 0,  s.x = 10, lwd = spessore, lty = 1),2), canvas = F)
+dev.off()
 
 ############################################################
 ## YOUNG004
