@@ -597,7 +597,7 @@ resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]],
 p = split.mat(young007, mat.type= 4)
 
 resp_young007[["ic.flip"]] = cof((p[[1]]), 
- reflection(p[[2]], 2), p$dot) 
+ rotation(p[[2]], 7), p$dot) 
 
 draw.dist(resp_young007, n.resp = 5, main = T)
 
@@ -1485,7 +1485,7 @@ draw.dist(resp_young030, n.resp = 8)
 
 ## -----------------------------------------------------------------------------
 young031a = apply(Raven(
-st1=rectangle(shd = giallo, s.x = 20, s.y = 15)
+st1=rectangle(shd = giallo, s.x = 20, s.y = 15, lty = 0)
 ))
 
 young031b = apply(Raven(
