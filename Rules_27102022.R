@@ -240,9 +240,14 @@ mental_transformation.field<-function(obj,n,rule,seed,...) {
     stop("You must have two forms to apply a mental transformation!")
   }
   set.seed(seed)
-  if(grepl("line",rule))
+  if(grepl("line",rule) & grepl("inv",rule))
+  {
+    index<-sample(c("line12both","line12inv","line12","line12","line12"),1)
+  }else if(grepl("line",rule))
   {
     index<-sample(c("line12","line12inv","line12both","line12both","line12both"),1)
+  }else if(grepl("inv",rule)){
+    index<-sample(c("black","grey","white","white","white"),1)
   }else{
     index<-sample(c("white","grey","black","black","black"),1)
   }
