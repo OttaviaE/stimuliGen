@@ -179,7 +179,7 @@ luck <- function(    s.x=10,
                        s.y=15,
                        rot=pi / 2, pos.x = 0, pos.y = 0,
                        shd=NA,
-                       vis = 1) {
+                       vis = 1, lty = 1) {
   value <- list(
     shape = "luck",
     size.x = list(s.x),
@@ -189,7 +189,7 @@ luck <- function(    s.x=10,
     rotation = list(rot),
     pos.x = list(pos.x),
     pos.y = list(pos.y),
-    lty = list(1),
+    lty = list(lty),
     lwd = list(3),
     num = list(1),
     nv = list(4),
@@ -502,11 +502,14 @@ v.arc.left.down <- function(lty =1, lwd = 3, vis  = 1, pos.x = 0, pos.y = 0) {
 #' @examples
 #' v.arc.right.down()
 #' @export
-v.arc.right.down <- function(lty =1, lwd = 3,vis = 1, pos.x = 0, pos.y = 0) {
+v.arc.right.down <- function(lty =1, lwd = 3,vis = 1,
+                             s.x = square()$size.x[[1]]/2, 
+                             s.y = square()$size.y[[1]]/2,
+                             pos.x = 0, pos.y = 0) {
   value <- list(
     shape = "v.arc.right.down",
-    size.x  = list(square()$size.x[[1]]/2),
-    size.y  = list(square()$size.y[[1]]/2),
+    size.x  = list(s.x),
+    size.y  = list(s.y),
     theta.1  = list(7*pi/4),
     theta.2  = list(pi/4),
     rotation = list(pi),
@@ -1006,7 +1009,6 @@ cross <- function() {
 #' Default square4 
 #'
 #' @return Return the default square4
-#' @examples
 #' square4()
 #' @export
 square4 <- function() {

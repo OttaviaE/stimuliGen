@@ -322,83 +322,17 @@ resp.a1_logic1$d.union = cof(cof(petalo.giu, petalo.su,
 draw.dist(resp.a1_logic1, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
-a_logic2a<-logic_rules(Raven(cof(hexagon(shd="line1"),
-                                 hexagon(shd="line2"),dot(),
-                                 e.hexagon())),"AND")
-
-a_logic2b<-logic_rules(Raven(cof(size(bow.tie(), 2),
-                                 size(bow.tie.inv(), 2))),"XOR")
-a_logic2 = com(a_logic2a, a_logic2b)
-
-draw(a_logic2, hide =F)
-
-
-## ----r------------------------------------------------------------------------
-dist.a_logic2 = responses(a_logic2)
-
-sel.al2 = c("correct", "r.top", "r.left", 
-            "wp.copy", "wp.matrix", 
-            "d.union", 
-            "ic.inc", 
-            "ic.flip") 
-
-resp.a_logic2 = select.dist(dist.a_logic2, sel.al2)
-p = split.mat(a_logic2, cell = 3)
-resp.a_logic2$ic.flip = cof(resp.a_logic2$ic.inc, p$triangle)
-
-resp.a_logic2$d.union = cof(a_logic2$Sq5, 
-                            luck(s.x = 17))
-
-draw.dist(resp.a_logic2, n.resp = 8)
-
-
-
-
-## ----r------------------------------------------------------------------------
-a1_logic2a<-logic_rules(Raven(cof(pentagon(shd="line2"),
-                                 pentagon(shd="line1"),dot(),
-                                 pentagon())),"AND")
-
-a1_logic2b<-logic_rules(Raven((cof(petalo.giu, petalo.su, 
-            petalo.sx, petalo.dx))),"XOR")
-
-a1_logic2 = com(a1_logic2a, a1_logic2b)
-
-draw(a1_logic2, hide =F)
-
-## ----r------------------------------------------------------------------------
-dist.a1_logic2 = responses(a1_logic2)
-
-sel.al12 = c("correct", "r.top", "r.left", 
-            "wp.copy", "wp.matrix", 
-            "d.union", 
-            "ic.inc", 
-            "ic.flip") 
-
-resp.a1_logic2 = select.dist(dist.a1_logic2, sel.al2)
-resp.a1_logic2$ic.flip = cof(resp.a1_logic2$ic.inc, 
-                             petalo.dx)
-
-resp.a1_logic2$d.union = cof(a1_logic2$Sq5, 
-                            circle(s.x = 12, s.y = 12))
-
-draw.dist(resp.a1_logic2, n.resp = 8)
-
-
-
-
-## ----r------------------------------------------------------------------------
 # vincolo non tangente non deve toccare interno con esterno
-a_logic3a<- logic_rules(Raven(square4bis()),"OR")
+a_logic2a<- logic_rules(Raven(square4bis()),"OR")
 
-a_logic3b<-logic_rules(Raven(cof((vline()), 
+a_logic2b<-logic_rules(Raven(cof((vline()), 
                                  (hline()), 
                                  (diagline()), 
                                  (diagline.inv()))),"AND")
 
-a_logic3 = com(a_logic3a, a_logic3b)
+a_logic2 = com(a_logic2a, a_logic2b)
 
-draw(a_logic3, hide = F) 
+draw(a_logic2, hide = F) 
 
 
 
@@ -407,7 +341,7 @@ draw(a_logic3, hide = F)
 ## ----r------------------------------------------------------------------------
 
 
-dist.a_logic3 = responses(a_logic3)
+dist.a_logic2 = responses(a_logic2)
 
 
 sel.al3 = c("correct", "r.top", "r.left", 
@@ -416,55 +350,121 @@ sel.al3 = c("correct", "r.top", "r.left",
             "ic.inc", 
             "ic.flip") 
 
-resp.a_logic3 = select.dist(dist.a_logic3, sel.al3)
-p = split.mat(a_logic3)
-resp.a_logic3$ic.flip = replace(resp.a_logic3$correct, 
+resp.a_logic2 = select.dist(dist.a_logic2, sel.al3)
+p = split.mat(a_logic2)
+resp.a_logic2$ic.flip = replace(resp.a_logic2$correct, 
                                 5, 
                                 diagline.inv())
 
-resp.a_logic3$d.union = cof(a_logic3$Sq1, 
+resp.a_logic2$d.union = cof(a_logic2$Sq1, 
                             e.hexagon())
 
-draw.dist(resp.a_logic3, n.resp = 8)
+draw.dist(resp.a_logic2, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
 # gemella a1_logic1 ------
 
-a1_logic3a<- logic_rules(Raven(cof(vline(pos.x = 17, s.x = 15),
+a1_logic2a<- logic_rules(Raven(cof(vline(pos.x = 17, s.x = 15),
                                   vline(pos.x = -17, s.x = 15 ),
                                   hline(pos.y = 15, s.x=17),
                                   hline(pos.y = -15, s.x=17))),"OR")
 
 
 
-a1_logic3b<-logic_rules(Raven(cof(
+a1_logic2b<-logic_rules(Raven(cof(
   s_vertical(), s_horizontal(), diagline.inv(), diagline()
 )),"AND")
 
 
-a1_logic3 = com(a1_logic3a, a1_logic3b)
+a1_logic2 = com(a1_logic2a, a1_logic2b)
 
-draw(a1_logic3, hide = F)
+draw(a1_logic2, hide = F)
 
 
 ## ----r------------------------------------------------------------------------
 
 
-dist.a1_logic3 = responses(a1_logic3)
+dist.a1_logic2 = responses(a1_logic2)
 
 
-sel.al13 = c("correct", "r.top", "r.left", 
+sel.al12 = c("correct", "r.top", "r.left", 
             "wp.copy", "wp.matrix", 
             "d.union", 
             "ic.inc", 
             "ic.flip") 
 
-resp.a1_logic3 = select.dist(dist.a1_logic3, sel.al13)
-resp.a1_logic3$ic.flip = cof(resp.a1_logic3$ic.inc, s.horizontal.inv())
-resp.a1_logic3$d.union = cof(a1_logic3$Sq3, 
+resp.a1_logic2 = select.dist(dist.a1_logic2, sel.al12)
+resp.a1_logic2$ic.flip = cof(resp.a1_logic2$ic.inc, s.horizontal.inv())
+resp.a1_logic2$d.union = cof(a1_logic2$Sq3, 
                             lily())
 
+draw.dist(resp.a1_logic2, n.resp = 8)
+
+## ----r------------------------------------------------------------------------
+a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
+                                 hexagon(shd="line2"),dot(),
+                                 e.hexagon())),"AND")
+
+a_logic3b<-logic_rules(Raven(cof(size(bow.tie(), 2),
+                                 size(bow.tie.inv(), 2))),"XOR")
+a_logic3 = com(a_logic3a, a_logic3b)
+
+draw(a_logic3, hide =F)
+
+
+## ----r------------------------------------------------------------------------
+dist.a_logic3 = responses(a_logic3)
+
+sel.al3 = c("correct", "r.top", "r.left", 
+            "wp.copy", "wp.matrix", 
+            "d.union", 
+            "ic.inc", 
+            "ic.flip") 
+
+resp.a_logic3 = select.dist(dist.a_logic3, sel.al3)
+p = split.mat(a_logic3, cell = 3)
+resp.a_logic3$ic.flip = cof(resp.a_logic3$ic.inc, p$triangle)
+
+resp.a_logic3$d.union = cof(a_logic3$Sq5, 
+                            luck(s.x = 17))
+
+draw.dist(resp.a_logic3, n.resp = 8)
+
+
+
+
+## ----r------------------------------------------------------------------------
+a1_logic3a<-logic_rules(Raven(cof(pentagon(shd="line2"),
+                                 pentagon(shd="line1"),dot(),
+                                 pentagon())),"AND")
+
+a1_logic3b<-logic_rules(Raven((cof(petalo.giu, petalo.su, 
+            petalo.sx, petalo.dx))),"XOR")
+
+a1_logic3 = com(a1_logic3a, a1_logic3b)
+
+draw(a1_logic3, hide =F)
+
+## ----r------------------------------------------------------------------------
+dist.a1_logic3 = responses(a1_logic3)
+
+sel.al12 = c("correct", "r.top", "r.left", 
+            "wp.copy", "wp.matrix", 
+            "d.union", 
+            "ic.inc", 
+            "ic.flip") 
+
+resp.a1_logic3 = select.dist(dist.a1_logic3, sel.al3)
+resp.a1_logic3$ic.flip = cof(resp.a1_logic3$ic.inc, 
+                             petalo.dx)
+
+resp.a1_logic3$d.union = cof(a1_logic3$Sq5, 
+                            circle(s.x = 12, s.y = 12))
+
 draw.dist(resp.a1_logic3, n.resp = 8)
+
+
+
 
 ## ----r------------------------------------------------------------------------
 a_visuo1c <-apply(Raven(cof(circle(s.x = 3,s.y = 3),
@@ -508,7 +508,7 @@ draw.dist(resp.a_visuo1, n.resp = 8)
 
 a1_visuo1c<-apply(Raven(cof(ellipse(s.x = 5,s.y = 4),
                            luck(s.x = 5,s.y = 4)),
-                        c("trans.fill")))
+                        c("trans.fill.inv")))
 
 a1_visuo1a<-apply(Raven(cof(e.hexagon(s.x = 17, s.y = 17), 
              
@@ -546,49 +546,6 @@ resp.a_visuo1$d.union = cof(resp.a_visuo1$r.left,
                             size(pie.4(), 2))
 
 draw.dist(resp.a1_visuo1, n.resp = 8)
-
-## ----r------------------------------------------------------------------------
-
-a2_visuo1c<-apply(Raven(cof(ellipse(s.x = 7,s.y = 5),
-                           luck(s.x = 7,s.y = 5)),
-                        c("trans.fill.line")))
-
-a2_visuo1a<-apply(Raven(cof(e.hexagon(s.x = 17, s.y = 17), 
-             
-              pentagon(s.x = 17, s.y = 17), 
-               square(s.x = 17, s.y = 17)),
-                       c("diff_shapes"),
-                       c("diff_shapes.inv")))
-
-a2_visuo1b<-apply(Raven(pacman(size.x = 10), 
-                       hrule = "rotation", 
-                       vrule = "rotation.inv"))
-
-
-a2_visuo1 = com(a2_visuo1a, a2_visuo1b, a2_visuo1c)
-draw(a2_visuo1, hide = F)
-
-
-## ----r------------------------------------------------------------------------
-dist.a2_visuo1 = responses(a2_visuo1)
-
-sel.av21 = c("correct", "r.top", "r.left", 
-            "wp.copy", "wp.matrix", 
-            "d.union", 
-            "ic.flip", 
-            "ic.neg") 
-
-resp.a2_visuo1 = select.dist(dist.a2_visuo1, sel.av21)
-p = split.mat(a2_visuo1)
-
-resp.a2_visuo1$ic.flip = cof(p$e.hexagon, 
-                            rotation(p$pacman, 2), 
-                            p$ellipse)
-
-resp.a2_visuo1$d.union = cof(resp.a2_visuo1$r.left, 
-                            size(pie.4(), 2))
-
-draw.dist(resp.a2_visuo1, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
 a_visuo2a = apply(Raven(
