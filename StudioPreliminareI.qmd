@@ -737,13 +737,18 @@ draw.dist(resp.a2_logic2, n.resp = 8)
 ### 0
 
 ```{r}
-a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
-                                 hexagon(shd="line2"),dot(),
-                                 e.hexagon())),"AND")
+# a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
+#                                  hexagon(shd="line2"),dot(),
+#                                  e.hexagon())),"AND")
 
-a_logic3b<-logic_rules(Raven(cof(size(bow.tie(), 2),
-                                 size(bow.tie.inv(), 2))),"XOR")
-a_logic3 = com(a_logic3a, a_logic3b)
+mcross<-fill(cof(size(bow.tie(), 2),size(bow.tie.inv(), 2)),1,"inv")
+
+a_logic3a<-logic_rules(Raven(q.grigio),"AND")
+
+a_logic3b<-logic_rules(Raven(mcross),"XOR")
+
+a_logic3c<-apply(Raven(square(s.x = d*2, s.y=d*2 )))
+a_logic3 = com(a_logic3a, a_logic3b,a_logic3c)
 
 draw(a_logic3, hide =F)
 
@@ -879,10 +884,10 @@ a2_logic3a1 = apply(Raven(
   st1 = circle(s.x =15, s.y =15)
 ))
 
-a2_logic3a = logic_rules(Raven(cof(slice(shd="line21", lty = 0), 
-         rotation(slice(shd="line21", lty = 0), 3), 
-         rotation(slice(shd="line21", lty = 0), 5), 
-         rotation(slice(shd="line21", lty = 0), 7))), "XOR")
+a2_logic3a = logic_rules(Raven(cof(slice(shd="grey", lty = 0), 
+         rotation(slice(shd="grey", lty = 0), 3), 
+         rotation(slice(shd="grey", lty = 0), 5), 
+         rotation(slice(shd="grey", lty = 0), 7))), "XOR")
 
 a2_logic3b = logic_rules(Raven(size(maxi, 2)), "AND")
 

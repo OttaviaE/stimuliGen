@@ -467,7 +467,6 @@ draw.Raven_matrix<- function(obj, main = NULL,
 
 
 found_points<-function(x1,x2,y1,y2,m1,q1){
-  
   delta_y<- (y2 - y1)
   delta_x<- (x2 - x1)
   if(round(x2,3)==round(x1,3)){
@@ -487,6 +486,7 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
 
 filling<-function(q,m,coords,lwd=1)
 {
+  smooth<-14
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
   index<-c(1:length(coords$x),1)
@@ -496,11 +496,11 @@ filling<-function(q,m,coords,lwd=1)
                            coords$y[index[i-1]],coords$y[index[i]],
                            m,q)
     
-    control_x<-min(coords$x[index[i-1]],coords$x[index[i]])<=solution[1] &
-      max(coords$x[index[i-1]],coords$x[index[i]])>=solution[1]
-    control_y<-min(coords$y[index[i-1]],coords$y[index[i]])<=solution[2] &
-      max(coords$y[index[i-1]],coords$y[index[i]])>=solution[2]
-    
+    control_x<-round(min(coords$x[index[i-1]],coords$x[index[i]]),smooth)<=solution[1] &
+      round(max(coords$x[index[i-1]],coords$x[index[i]]),smooth)>=solution[1]
+    control_y<-round(min(coords$y[index[i-1]],coords$y[index[i]]),smooth)<=solution[2] &
+      round(max(coords$y[index[i-1]],coords$y[index[i]]),smooth)>=solution[2]
+
     if(control_x && control_y && n_solu<=2)
     {
       if(n_solu==1){
@@ -513,6 +513,7 @@ filling<-function(q,m,coords,lwd=1)
       }
     }
   }
+  cat(pt[,1],pt[,2],"\n")
   polygon(pt[,1],pt[,2],lwd=lwd)
   return(pt)
 }
@@ -532,7 +533,7 @@ line<-function(obj,rule,lwd=1,by=2.5)
                        r.in = obj$size.y[[1]],nv = obj$nv[[1]],plot = F)
     coords<-coords[[1]]
   }
- # browser()
+
   # coords<-matrix(c(coords$x,coords$y),ncol = 2)
   
   if(grepl("both",rule))
@@ -545,7 +546,7 @@ line<-function(obj,rule,lwd=1,by=2.5)
   {
     m=0
   }
-  
+ 
   for(j in 1:length(m)){
     if(grepl("1",rule))
     {
