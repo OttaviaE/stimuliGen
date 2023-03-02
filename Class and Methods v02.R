@@ -531,8 +531,8 @@ line<-function(obj,rule,lwd=1,by=2.5)
                        theta.2 =  obj$theta.2[[1]], r.out = obj$size.x[[1]], 
                        r.in = obj$size.y[[1]],nv = obj$nv[[1]],plot = F)
     coords<-coords[[1]]
-    }
-
+  }
+ # browser()
   # coords<-matrix(c(coords$x,coords$y),ncol = 2)
   
   if(grepl("both",rule))
@@ -551,7 +551,7 @@ line<-function(obj,rule,lwd=1,by=2.5)
     {
       first_coords<-coords
       first_coords$x[coords$x<=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=by)){
+      for(i in seq(-30 ,30,by=by)){
         filling(q=i,m=m[j],coords=first_coords,lwd = lwd) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
@@ -559,11 +559,10 @@ line<-function(obj,rule,lwd=1,by=2.5)
     {
       first_coords<-coords
       first_coords$x[coords$x>=obj$pos.x[[1]]]<-obj$pos.x[[1]]
-      for(i in seq(-20 ,20,by=by)){
+      for(i in seq(-30 ,30,by=by)){
         filling(q=i,m=m[j],coords=first_coords,lwd = lwd) #,p.x=obj$pos.x[[1]],p.y=obj$pos.y[[1]], rule)
       } 
     }
   }
- 
   
 }
