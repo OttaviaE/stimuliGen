@@ -1187,11 +1187,11 @@ pacman <- function(pos.x=0 ,pos.y=0,
 #' @examples
 #' pie.4()
 #' @export
-pie.4 <- function() {
-  value <-cof(slice(), 
-              slice(theta1 = 3*pi/4, theta2 = 5*pi/4), 
-              slice(theta1 = 5*pi/4, theta2 = 7*pi/4), 
-              slice(theta1 = 7*pi/4, theta2 = 9*pi/4))
+pie.4 <- function(s.x = 15, shd = NA, lty =1) {
+  value <-cof(slice(s.x = s.x, shd = shd, lty = lty), 
+              slice(s.x = s.x,theta1 = 3*pi/4, theta2 = 5*pi/4,shd = shd, lty = lty), 
+              slice(s.x = s.x,theta1 = 5*pi/4, theta2 = 7*pi/4, shd = shd, lty = lty), 
+              slice(s.x = s.x,theta1 = 7*pi/4, theta2 = 9*pi/4, shd = shd, lty = lty))
   value$tag <- list("compose4","fill")
   attr(value, "class") <- "field"
   value
