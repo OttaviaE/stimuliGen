@@ -629,18 +629,18 @@ resp.a2_logic2$d.union = cof(cof(circle(s.x = d,
 draw.dist(resp.a2_logic2, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
-# a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
-#                                  hexagon(shd="line2"),dot(),
-#                                  e.hexagon())),"AND")
+a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
+                                 hexagon(shd="line2"),dot(),
+                                 e.hexagon())),"AND")
 
-mcross<-fill(cof(size(bow.tie(), 2),size(bow.tie.inv(), 2)),1,"inv")
+mcross<-cof(size(bow.tie(), 2),size(bow.tie.inv(), 2))
 
-a_logic3a<-logic_rules(Raven(q.grigio),"AND")
+# a_logic3a<-logic_rules(Raven(q.grigio),"AND")
 
 a_logic3b<-logic_rules(Raven(mcross),"XOR")
 
-a_logic3c<-apply(Raven(square(s.x = d*2, s.y=d*2 )))
-a_logic3 = com(a_logic3a, a_logic3b,a_logic3c)
+#a_logic3c<-apply(Raven(square(s.x = d*2+1.5, s.y=d*2+1.5 )))
+a_logic3 = com(a_logic3a, a_logic3b)
 
 draw(a_logic3, hide =F)
 
@@ -656,7 +656,7 @@ sel.al3 = c("correct", "r.top", "r.left",
 
 resp.a_logic3 = select.dist(dist.a_logic3, sel.al3)
 p = split.mat(a_logic3, cell = 3)
-resp.a_logic3$ic.flip = cof(resp.a_logic3$ic.inc, p$triangle)
+resp.a_logic3$ic.flip = cof(resp.a_logic3$ic.inc, reflection(p$triangle, 2))
 
 resp.a_logic3$d.union = cof(a_logic3$Sq5, 
                             luck(s.x = 17))
@@ -677,6 +677,8 @@ a1_logic3b<-logic_rules(Raven((cof(petalo.giu, petalo.su,
             petalo.sx, petalo.dx))),"XOR")
 
 a1_logic3 = com(a1_logic3a, a1_logic3b)
+
+
 
 draw(a1_logic3, hide =F)
 
@@ -709,7 +711,7 @@ draw.dist(resp.a1_logic3, n.resp = 8)
 #                                  hexagon(shd="line2", lty = 0),
 #                                  dot(),e.hexagon())),"XOR")
 
-d.cerchio = 16
+#d.cerchio = 16
 # a2_logic3a1<-apply(Raven(
 #   st1=square(s.x = d.cerchio, s.y=d.cerchio)
 # ))
@@ -754,20 +756,51 @@ luck(pos.x = pos.x, pos.y = pos.x+cost.x, rot=-pi,
 luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi, 
  s.x = cost.y, s.y=cost.x, shd = "white")) 
 
+# a2_logic3a1 = apply(Raven(
+#   st1 = circle(s.x =15, s.y =15)
+# ))
+# 
+# a2_logic3a = logic_rules(Raven(cof(slice(shd="grey", lty = 0), 
+#          rotation(slice(shd="grey", lty = 0), 3), 
+#          rotation(slice(shd="grey", lty = 0), 5), 
+#          rotation(slice(shd="grey", lty = 0), 7))), "XOR")
+# 
+# a2_logic3b = logic_rules(Raven(size(maxi, 2)), "AND")
+# 
+# a2_logic3 = com(a2_logic3a, a2_logic3a1,  a2_logic3b)
+# 
+# draw(a2_logic3, hide =F)
+
+
+rect.x = 16
+rect.y =12
 a2_logic3a1 = apply(Raven(
-  st1 = circle(s.x =15, s.y =15)
+  st1 = rectangle(s.x=rect.x, s.y = rect.y)
 ))
 
-a2_logic3a = logic_rules(Raven(cof(slice(shd="grey", lty = 0), 
-         rotation(slice(shd="grey", lty = 0), 3), 
-         rotation(slice(shd="grey", lty = 0), 5), 
-         rotation(slice(shd="grey", lty = 0), 7))), "XOR")
+a2_logic3a = logic_rules(Raven(
+  cof(rectangle(s.x=rect.x/2, s.y = rect.y/2, pos.x = rect.x/2, 
+                pos.y = +rect.y/2, lty =0, 
+               shd = "line12"),
+rectangle(s.x=rect.x/2, s.y = rect.y/2, pos.x = rect.x/2, 
+          pos.y = -rect.y/2,  lty =0, 
+               shd = "line12"),
+rectangle(s.x=rect.x/2, s.y = rect.y/2, pos.x = -rect.x/2, 
+          pos.y = -rect.y/2, lty =0, 
+               shd = "line12"),
+rectangle(s.x=rect.x/2, s.y = rect.y/2, pos.x = -rect.x/2, 
+          pos.y = rect.y/2, lty =0, 
+               shd = "line12")
+)
+
+), "XOR")
 
 a2_logic3b = logic_rules(Raven(size(maxi, 2)), "AND")
 
 a2_logic3 = com(a2_logic3a, a2_logic3a1,  a2_logic3b)
 
 draw(a2_logic3, hide =F)
+
 
 ## ----r------------------------------------------------------------------------
 dist.a2_logic3 = responses(a2_logic3)
