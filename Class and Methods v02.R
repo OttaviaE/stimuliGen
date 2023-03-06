@@ -486,7 +486,7 @@ found_points<-function(x1,x2,y1,y2,m1,q1){
 
 filling<-function(q,m,coords,lwd=1)
 {
-  smooth<-14
+  smooth<-19
   pt<-matrix(ncol=2,nrow = 2)
   n_solu<-1
   index<-c(1:length(coords$x),1)
@@ -513,7 +513,7 @@ filling<-function(q,m,coords,lwd=1)
       }
     }
   }
-  cat(pt[,1],pt[,2],"\n")
+ # cat(pt[,1],pt[,2],"\n")
   polygon(pt[,1],pt[,2],lwd=lwd)
   return(pt)
 }
