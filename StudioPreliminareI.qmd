@@ -1013,7 +1013,7 @@ resp.a_visuo1$d.union = cof(resp.a_visuo1$r.left,
                             size(pie.4(), 2))
 
 resp.a_visuo1$wp.matrix = cof(a_visuo1$Sq7, 
-                              e.hexagon(s.x = 10, s.y = 10))
+                              e.hexagon(s.x = 12, s.y = 12))
 
 
 draw.dist(resp.a_visuo1, n.resp = 8)
@@ -1064,8 +1064,8 @@ resp.a1_visuo1$ic.flip = cof(p$e.hexagon,
                             rotation(p$u.pie.2, 2), 
                             p$ellipse)
 
-resp.a_visuo1$d.union = cof(resp.a_visuo1$r.left, 
-                            size(pie.4(), 2))
+resp.a1_visuo1$d.union = cof(resp.a_visuo1$r.left, 
+                            pie.4(s.x=12))
 
 resp.a1_visuo1$wp.matrix = cof(a1_visuo1$Sq7, 
                               pentagon(s.x = 12, s.y = 12))
@@ -1383,6 +1383,8 @@ sel.a3 = c("correct", "r.top", "r.diag",
 
 resp.a3 = select.dist(dist.a3, 
                       sel.a3)
+
+resp.a3$d.union=cof(resp.a3$wp.copy, pie.4(s.x = 11))
 
 resp.a3$ic.flip = reflection(resp.a3$correct, 2)
 
