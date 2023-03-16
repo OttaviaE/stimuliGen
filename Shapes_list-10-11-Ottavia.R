@@ -1300,8 +1300,10 @@ semi.circle.inv <- function(pos.x=0 ,pos.y=0,
 #' @examples
 #' pie.2()
 #' @export
-pie.2 <- function(shd = NA) {
-  value <-cof(semi.circle(shd = NA), semi.circle.inv(shd = NA))
+pie.2 <- function(s.x = 10, s.y = 0, shd = NA) {
+  value <-cof(semi.circle(size.x = s.x, size.y =s.y, 
+                          shd = NA), 
+              semi.circle.inv(size.x = s.x, size.y =s.y,  shd = NA))
   value$tag <- list("compose2","fill")
   attr(value, "class") <- "field"
   value

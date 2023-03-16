@@ -349,6 +349,8 @@ luck(pos.x = pos.x, pos.y = pos.x+cost.x, rot=-pi,
 luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi, 
  s.x = cost.y, s.y=cost.x)) 
 
+
+
 a2_logic1b = logic_rules(Raven(size(maxi, 2)),"OR")
 
 a2_logic1a<- logic_rules(Raven(square4bis()),"AND")
@@ -630,7 +632,7 @@ draw.dist(resp.a2_logic2, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
 a_logic3a<-logic_rules(Raven(cof(hexagon(shd="line1"),
-                                 hexagon(shd="line2"),dot(),
+                                 hexagon(shd="line2"),empty(),
                                  e.hexagon())),"AND")
 
 mcross<-cof(size(bow.tie(), 2),size(bow.tie.inv(), 2))
@@ -648,7 +650,7 @@ draw(a_logic3, hide =F)
 ## ----r------------------------------------------------------------------------
 dist.a_logic3 = responses(a_logic3)
 
-sel.al3 = c("correct", "r.top", "r.left", 
+sel.al3 = c("correct", "r.diag", "r.left", 
             "wp.copy", "wp.matrix", 
             "d.union", 
             "ic.inc", 
@@ -658,10 +660,10 @@ resp.a_logic3 = select.dist(dist.a_logic3, sel.al3)
 p = split.mat(a_logic3, cell = 3)
 resp.a_logic3$ic.flip = cof(resp.a_logic3$ic.inc, reflection(p$triangle, 2))
 
-resp.a_logic3$d.union = cof(a_logic3$Sq5, 
+resp.a_logic3$d.union = cof(a_logic3$Sq3, 
                             luck(s.x = 17))
-resp.a_logic3$wp.matrix = cof(a_logic3$Sq5, 
-                              dot())
+resp.a_logic3$wp.matrix = cof(a_logic3$Sq4, 
+                              mcross)
 
 draw.dist(resp.a_logic3, n.resp = 8)
 
@@ -670,7 +672,7 @@ draw.dist(resp.a_logic3, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
 a1_logic3a<-logic_rules(Raven(cof(pentagon(shd="line2"),
-                                 pentagon(shd="line1"),dot(),
+                                 pentagon(shd="line1"),empty(),
                                  pentagon())),"AND")
 
 a1_logic3b<-logic_rules(Raven((cof(petalo.giu, petalo.su, 
@@ -685,7 +687,7 @@ draw(a1_logic3, hide =F)
 ## ----r------------------------------------------------------------------------
 dist.a1_logic3 = responses(a1_logic3)
 
-sel.al12 = c("correct", "r.top", "r.left", 
+sel.al12 = c("correct", "r.diag", "r.left", 
             "wp.copy", "wp.matrix", 
             "d.union", 
             "ic.inc", 
@@ -695,11 +697,11 @@ resp.a1_logic3 = select.dist(dist.a1_logic3, sel.al3)
 resp.a1_logic3$ic.flip = cof(resp.a1_logic3$ic.inc, 
                              petalo.dx)
 
-resp.a1_logic3$d.union = cof(a1_logic3$Sq5, 
+resp.a1_logic3$d.union = cof(a1_logic3$Sq3, 
                             circle(s.x = 12, s.y = 12))
 
-resp.a1_logic3$wp.matrix = cof(a1_logic3$Sq5, 
-                              dot())
+resp.a1_logic3$wp.matrix = cof(a1_logic3$Sq4, petalo.giu, petalo.su, 
+            petalo.sx, petalo.dx)
 
 draw.dist(resp.a1_logic3, n.resp = 8)
 
@@ -747,14 +749,7 @@ draw.dist(resp.a1_logic3, n.resp = 8)
 #                                    rotation(slice(s.x = 10), 5), 
 #                                    rotation(slice(s.x = 10), 7)))),"AND")
 
-maxi = cof(luck(pos.x = pos.x+cost.x, pos.y = pos.x, rot=pi, 
- s.x = cost.x, s.y=cost.y, shd = "white"), 
-luck(pos.x = pos.x-cost.x, pos.y = pos.x, rot=-pi, 
- s.x = cost.x, s.y=cost.y, shd = "white"), 
-luck(pos.x = pos.x, pos.y = pos.x+cost.x, rot=-pi, 
- s.x = cost.y, s.y=cost.x, shd = "white"),
-luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi, 
- s.x = cost.y, s.y=cost.x, shd = "white")) 
+
 
 # a2_logic3a1 = apply(Raven(
 #   st1 = circle(s.x =15, s.y =15)
@@ -771,7 +766,14 @@ luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi,
 # 
 # draw(a2_logic3, hide =F)
 
-
+maxi = cof(luck(pos.x = pos.x+cost.x, pos.y = pos.x, rot=pi, 
+ s.x = cost.x, s.y=cost.y, shd = "white"), 
+luck(pos.x = pos.x-cost.x, pos.y = pos.x, rot=-pi, 
+ s.x = cost.x, s.y=cost.y, shd = "white"), 
+luck(pos.x = pos.x, pos.y = pos.x+cost.x, rot=-pi, 
+ s.x = cost.y, s.y=cost.x, shd = "white"),
+luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi, 
+ s.x = cost.y, s.y=cost.x, shd = "white")) 
 rect.x = 16
 rect.y =12
 a2_logic3a1 = apply(Raven(
@@ -795,7 +797,24 @@ rectangle(s.x=rect.x/2, s.y = rect.y/2, pos.x = -rect.x/2,
 
 ), "XOR")
 
-a2_logic3b = logic_rules(Raven(size(maxi, 2)), "AND")
+maxi.h = cof(luck(pos.x = pos.x+cost.x, pos.y = pos.x, rot=pi, 
+ s.x = cost.x, s.y=cost.y), 
+luck(pos.x = pos.x-cost.x, pos.y = pos.x, rot=-pi, 
+ s.x = cost.x, s.y=cost.y), single =T, name = "maxi.h")
+
+maxi.v = cof(luck(pos.x = pos.x, pos.y = pos.x+cost.x, rot=-pi, 
+ s.x = cost.y, s.y=cost.x),
+luck(pos.x = pos.x, pos.y = pos.x-cost.x, rot=-pi, 
+ s.x = cost.y, s.y=cost.x), single = T,
+name = "maxi.v")
+
+
+
+
+a2_logic3b = logic_rules(Raven(cof(size(maxi.v, 2), 
+                                   size(maxi.h, 2), 
+                                   empty(), 
+                                   empty())), "AND")
 
 a2_logic3 = com(a2_logic3a, a2_logic3a1,  a2_logic3b)
 
@@ -805,7 +824,7 @@ draw(a2_logic3, hide =F)
 ## ----r------------------------------------------------------------------------
 dist.a2_logic3 = responses(a2_logic3)
 
-sel.al23 = c("correct", "r.top", "r.left", 
+sel.al23 = c("correct", "r.diag", "r.left", 
             "wp.copy", "wp.matrix", 
             "d.union", 
             "ic.inc", 
@@ -819,12 +838,13 @@ resp.a2_logic3 = select.dist(dist.a2_logic3, sel.al23)
 #                             circle(s.x = 12, s.y = 12))
 
 resp.a2_logic3$ic.flip = cof(resp.a2_logic3$ic.inc,
-                              size(luck(pos.x = pos.x-cost.x, pos.y = pos.x, rot=-pi, 
- s.x = cost.x, s.y=cost.y), 2))
+                             size(maxi.h, 2))
 
-resp.a2_logic3$d.union = cof(a2_logic3$Sq5, 
-                             size(maxi, 2), 
-                             square())
+resp.a2_logic3$wp.matrix = cof(a2_logic3$Sq4, 
+                               size(maxi,2))
+
+resp.a2_logic3$d.union = cof(a2_logic3$Sq3, 
+                             ellipse(s.y = 15))
 
 draw.dist(resp.a2_logic3, n.resp = 8)
 
@@ -927,14 +947,23 @@ a2_visuo1a<-apply(Raven(cof(pentagon(),
 
 a2_visuo1c<-apply(Raven(cof(luck(s.x = 7, s.y = 5, shd = "white"),
 
-              ellipse(s.x = 7, s.y = 5, shd = "white"),
+              size(circle( shd = "white"), 3),
                square(s.x = 5, s.y = 5, shd = "white")),
                        c("diff_shapes"),
                        c("diff_shapes.inv")))
 
-a2_visuo1b<-apply(Raven(pacman(size.x = 10, shd = "white"),
+# a2_visuo1b<-apply(Raven(pacman(size.x = 10, shd = "white"),
+#                        hrule = "rotation",
+#                        vrule = "rotation.inv"))
+
+baguette = cof(ellipse(s.x = 12, s.y = 7, shd = "white", 
+                       rot = pi), 
+         hline(s.x=12), single = T, name = "coso2")
+
+a2_visuo1b<-apply(Raven(baguette,
                        hrule = "rotation",
                        vrule = "rotation.inv"))
+
 
 
 a2_visuo1 = com(a2_visuo1a, a2_visuo1b, a2_visuo1c)
@@ -954,7 +983,7 @@ resp.a2_visuo1 = select.dist(dist.a2_visuo1, sel.av21)
 p = split.mat(a2_visuo1)
 
 resp.a2_visuo1$ic.flip = cof(p$pentagon,
-                            rotation(p$pacman, 2),
+                            rotation(p$coso2, 2),
                             p$luck)
 
 p$pentagon$shade = "white"
@@ -1142,7 +1171,7 @@ a_3a = apply(
 
 a_3b = apply(
   Raven(
-    st1 = pacman(), 
+    st1 = baguette, 
     vrule = c("rotation"), 
     hrule = "rotation"
   )
@@ -1176,7 +1205,11 @@ resp.a3 = select.dist(dist.a3,
 
 resp.a3$d.union=cof(resp.a3$wp.copy, pie.4(s.x = 11))
 
-resp.a3$ic.flip = reflection(resp.a3$correct, 2)
+p = split.mat(a_3)
+
+resp.a3$ic.flip = replace(resp.a3$correct, 
+                          4, 
+                          rotation(p$coso2, 3))
 
 draw.dist(resp.a3, n.resp = 8, main = T)
 
