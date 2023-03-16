@@ -23,3 +23,5 @@
 
 
 [Studio Preliminare](StudioPreliminareI.html)
+
+[copia studio preliminare](StudioPreliminareI.html)
