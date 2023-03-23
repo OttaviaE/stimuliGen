@@ -658,9 +658,14 @@ resp.a2_logic2$d.union = cof(cof(circle(s.x = d,
                 lty = 1)
          ), dot())
 p = split.mat(a2_logic2, cell = 7)
-resp.a2_logic2$wp.matrix = cof(hide(a2_logic2$Sq3, 9), 
-                               p[[1]], p[[2]], 
-                               p[[3]])
+# resp.a2_logic2$wp.matrix = cof(hide(a2_logic2$Sq3, 9), 
+#                                p[[1]], p[[2]], 
+#                                p[[3]])
+resp.a2_logic2$wp.matrix = cof(a2_logic2$Sq7,
+                               a2_logic2$Sq3)
+
+
+
 draw.dist(resp.a2_logic2, n.resp = 8)
 
 ## ----r------------------------------------------------------------------------
@@ -919,8 +924,8 @@ resp.a_visuo1$ic.flip = cof(p$pentagon,
 resp.a_visuo1$d.union = cof(resp.a_visuo1$r.left, 
                             size(pie.4(), 2))
 
-resp.a_visuo1$wp.matrix = cof(a_visuo1$Sq4, 
-                              a_visuo1$Sq7)
+resp.a_visuo1$wp.matrix = cof(a_visuo1$Sq1, 
+                              a_visuo1$Sq3)
 
 
 draw.dist(resp.a_visuo1, n.resp = 8)
