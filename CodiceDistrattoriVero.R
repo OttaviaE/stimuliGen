@@ -29,10 +29,10 @@ split.mat = function(m, cell = NULL, vis = NULL, mat.type = 9) {
     cell = paste0("Sq", cell)
     m.start = m[[cell]]
   }
-  
+
   if(is.null(vis) == T) {
-    # index_elements<-which(m.start$visible==1 & unlist(lapply(m.start$num, all, 1)))
-    index_elements = which(m.start$visible == 1 & m.start$num == 1)
+     index_elements<-which(m.start$visible==1 & unlist(lapply(m.start$num, all, 1)))
+    #index_elements = which(m.start$visible == 1 & m.start$num == 1)
   } else {
     index_elements = 1:length(m.start$shape)
   }
@@ -252,8 +252,8 @@ ic.scale = function(m,
                     how.small = 2) {
   m.correct = correct(m, mat.type = mat.type)
   #index_elements = which(m.start$visible == 1 & m.start$num == 1)
-  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, function(x,y) all(x==y), 1)))
- # index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  #index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, function(x,y) all(x==y), 1)))
+  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
   
   if (length(index_elements) == 1) {
     ic.scale = size(m.correct, how.small)
@@ -306,8 +306,8 @@ ic.flip = function(m,
                    mat.type = 9, 
                    how.rot = 2) {
   m.correct = correct(m, mat.type = mat.type)
-  # index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
-   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, function(x,y) all(x==y), 1)))
+   index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  # index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, function(x,y) all(x==y), 1)))
   if (length(index_elements) == 1) {
     ic.rotation = rotation(m.correct, how.rot)
   } else {
@@ -380,7 +380,7 @@ ic.flip = function(m,
 ic.inc = function(m, which.element = NULL, 
                   mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
- # index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
   
   if (length(index_elements) == 1) {
     if (any(grep("pie.4", m.correct$shape)) == T)  {
@@ -550,7 +550,7 @@ change.col = function(obj) {
 
 ic.neg = function(m, mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
- # index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
+  index_elements<-which(m.correct$visible==1 & unlist(lapply(m.correct$num, all, 1)) )
   
   split.m = split.mat(m, mat.type = mat.type)
   
@@ -796,6 +796,7 @@ responses = function(m,
                      choose.fig = NULL, 
                      mat.type = 9) {
   m.correct = correct(m, mat.type = mat.type)
+
   resp = list(correct = m.correct, 
               r.top = repetition(m, mat.type = mat.type)$r.top,
               r.diag = repetition(m, mat.type = mat.type)$r.diag,
