@@ -1,0 +1,559 @@
+---
+title: "Esempio matrici con palette per daltonici"
+subtitle: "Riunione PRIN"
+author: "Ottavia" 
+date: 2023-04-11
+title-block-banner: true
+format: 
+  html: 
+    toc: true
+    toc-location: right
+layout: full
+execute: 
+  eval: true
+  echo: false
+---
+
+```{r include=FALSE}
+set.seed(999)
+knitr::opts_chunk$set(echo=FALSE,  
+                      eval=TRUE,  
+                      warning = FALSE, 
+                      message = FALSE, 
+                      fig.align = "center")
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+rm(list = ls())
+
+a=4.5 #proporzione dei canvas
+spessore= 1 # spessore linee 
+
+select.dist = function(dist.list, selection) {
+resp = list()
+for (i in 1:length(selection)) {
+resp[[i]] = dist.list[[selection[i]]]
+names(resp)[[i]] = selection[i]
+}
+return(resp)
+}
+library(DescTools)
+source("Shapes_list-10-11-Ottavia.R")
+source("Class and Methods v02.R")
+source("Rules_27102022.R")
+source("DrawRegPolygon.R")
+source("CodiceDistrattoriVero.R")
+draws<- function(obj, main = NULL, canvas = TRUE, bg = "white",mar=c(1,1,1,1),xlim=16,by=1.5) {
+library(DescTools)
+if (canvas == TRUE)
+{
+Canvas(xlim=xlim,mar=mar, main = main, bg = bg)
+}
+for(j in 1:length(obj$shape))
+{
+if(obj$visible[[j]]==1)
+{
+if(obj$num[[j]][1]==1){
+if(grepl("line",obj$shade[[j]][1]))
+{
+elements<-decof(obj)
+plotting_lines<-which(obj$visible==1 & grepl("line",unlist(obj$shade)))
+for(ll in 1:length(plotting_lines)){
+line(elements[[plotting_lines[[ll]]]],obj$shade[[j]][1],lwd=3,by=by) #Pejo tacon che sbrego
+}
+obj$shade[[j]][1] <- NA
+}
+DrawRegPolygon(x = obj$pos.x[[j]], y = obj$pos.y[[j]], rot = obj$rotation[[j]],
+ radius.x = obj$size.x[[j]], radius.y = obj$size.y[[j]], nv = obj$nv[[j]],
+ lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+}else{
+DrawCircle(x = obj$pos.x[[j]], y = obj$pos.y[[j]],
+ r.out = obj$size.x[[j]],r.in= obj$size.y[[j]], theta.1=obj$theta.1[[j]],
+ theta.2=obj$theta.2[[j]], nv = obj$nv[[j]],
+ lty=obj$lty[[j]],lwd=obj$lwd[[j]],col = obj$shade[[j]])
+}
+}
+}
+}
+empty <- function() {
+value <- list(
+shape = "empty",
+size.x = list(5),
+size.y = list(5),
+theta.1= list(0),
+theta.2= list(0),
+rotation = list(pi),
+pos.x = list(0),
+pos.y = list(0),
+lty = list(0),
+lwd = list(1),
+num = list(1),
+nv = list(101),
+shade = list(NA),
+visible = 0,
+tag=list(c('simple'))
+)
+attr(value, "class") <- "field"
+value
+}
+bow.tie.inv <- function(pos.x = 0) {
+value <-cof(triangle(pos.x = pos.x+10, pos.y = pos.x, rot=pi/3, 
+ s.x = 10, s.y=10), 
+triangle(pos.x = pos.x-10, pos.y = pos.x, rot=-pi, 
+ s.x = 10, s.y=10))
+value$tag <- list("compose2","fill", "rotate")
+attr(value, "class") <- "field"
+value
+}
+lilth<-lily()
+s.lilth<-s.lily()
+for(i in 1:length(lilth$shape)) {
+lilth$size.x[[i]] <-lilth$size.x[[i]]/2
+lilth$size.y[[i]] <-lilth$size.y[[i]]/2
+lilth$pos.y[[i]] <-lilth$pos.y[[i]]/2
+lilth$pos.x[[i]] <-lilth$pos.x[[i]]/2
+}
+s.lilth$size.x[[1]] <-s.lilth$size.x[[1]]/2
+s.lilth$size.y[[1]] <-s.lilth$size.y[[1]]/2
+s.lilth$pos.y[[1]] <-s.lilth$pos.y[[1]]/2
+s.lilth$pos.x[[1]] <-s.lilth$pos.x[[1]]/2
+papillon = bow.tie()
+u.papillon = u.bow.tie()
+for(i in 1:length(papillon$shape)) {
+papillon$size.x[[i]] <-papillon$size.x[[i]]/2
+papillon$size.y[[i]] <-papillon$size.y[[i]]/2
+papillon$pos.y[[i]] <-papillon$pos.y[[i]]/2
+papillon$pos.x[[i]] <-papillon$pos.x[[i]]/2
+}
+u.papillon$size.x[[1]] <-u.papillon$size.x[[1]]/2
+u.papillon$size.y[[1]] <-u.papillon$size.y[[1]]/2
+u.papillon$pos.y[[1]] <-u.papillon$pos.y[[1]]/2
+u.papillon$pos.x[[1]] <-u.papillon$pos.x[[1]]/2
+thepie = pie.4()
+u.thepie = u.pie.4()
+for(i in 1:length(thepie$shape)) {
+thepie$size.x[[i]] <-thepie$size.x[[i]]/2
+thepie$size.y[[i]] <-thepie$size.y[[i]]/2
+thepie$pos.y[[i]] <-thepie$pos.y[[i]]/2
+thepie$pos.x[[i]] <-thepie$pos.x[[i]]/2
+}
+u.thepie$size.x[[1]] <-u.thepie$size.x[[1]]/2
+u.thepie$size.y[[1]] <-u.thepie$size.y[[1]]/2
+u.thepie$pos.y[[1]] <-u.thepie$pos.y[[1]]/2
+u.thepie$pos.x[[1]] <-u.thepie$pos.x[[1]]/2
+biscuit = star()
+u.biscuit = u.star()
+for(i in 1:length(biscuit$shape)) {
+biscuit$size.x[[i]] <-biscuit$size.x[[i]]/2
+biscuit$size.y[[i]] <-biscuit$size.y[[i]]/2
+biscuit$pos.y[[i]] <-biscuit$pos.y[[i]]/2
+biscuit$pos.x[[i]] <-biscuit$pos.x[[i]]/2
+}
+u.biscuit$size.x[[1]] <-u.biscuit$size.x[[1]]/2
+u.biscuit$size.y[[1]] <-u.biscuit$size.y[[1]]/2
+u.biscuit$pos.y[[1]] <-u.biscuit$pos.y[[1]]/2
+u.biscuit$pos.x[[1]] <-u.biscuit$pos.x[[1]]/2
+square4bis <- function() {
+value <-cof(hline(pos.y=-11),vline(pos.x=11),
+hline(pos.y=11),vline(pos.x=-11))
+value$tag <- list("compose4")
+attr(value, "class") <- "field"
+value
+}
+smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
+value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.y, rot=pi/3, 
+ s.x = 5, s.y=5,shd = shd), 
+triangle(pos.x = pos.x-5, pos.y = pos.y, rot=-pi, 
+ s.x = 5, s.y=5,shd = shd))
+value$tag <- list("compose2","fill", "rotate")
+attr(value, "class") <- "field"
+value
+}
+u.smallbow.tie.inv <- function(pos.x = 0,pos.y=0,shd=NA) {
+value <-cof(triangle(pos.x = pos.x+5, pos.y = pos.y, rot=pi/3, 
+ s.x = 5, s.y=5,shd = shd), 
+triangle(pos.x = pos.x-5, pos.y = pos.y, rot=-pi, 
+ s.x = 5, s.y=5,shd = shd), 
+single = T, name = "u.smallbowtie.inv")
+value$tag <- list("compose2","fill", "rotate")
+attr(value, "class") <- "field"
+value
+}
+bow.tie.inv <- function(pos.x = 0) {
+value <-cof(triangle(pos.x = pos.x+10, pos.y = pos.x, rot=pi/3, 
+ s.x = 10, s.y=10), 
+triangle(pos.x = pos.x-10, pos.y = pos.x, rot=-pi, 
+ s.x = 10, s.y=10))
+value$tag <- list("compose2","fill", "rotate")
+attr(value, "class") <- "field"
+value
+}
+blu = "deepskyblue3"
+giallo = "gold"
+rosso = "firebrick"
+
+blu.1 = "#56B4E9"
+
+giallo.1 = "#F0E442"
+
+rosso.1 = "#D55E00"
+```
+
+
+
+## Monotematiche 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Come è 
+
+
+```{r}
+Canvas(xlim = 17,ylim = 17, pty="s")
+draw(rectangle(s.x=-50,s.y=50,shd=blu,pos.x=+10,pos.y=-7), canvas = F)
+draw(diagline(pos.x=-50, s.x = 50, lwd = 3, shd = giallo), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline(pos.x = i, s.x=40, lwd = 3),
+       canvas = F)
+}
+
+
+draw(diagline.inv(pos.x=-50, s.x = 50, lwd = 3), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline.inv(pos.x = i, s.x=40, lwd = 3),
+       canvas = F)
+}
+
+
+clip(6,18,-18,-6)
+draw(rectangle(s.x=20,s.y=20,shd="white",pos.x=12,pos.y=-12,lty=0),
+     canvas = FALSE)
+```
+
+```{r out.width="80%"}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+container = rectangle(s.x=10,s.y=10,shd=blu,lty=0)
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+#draw(rectangle(s.x=-6,s.y=6,shd=blu,pos.x=0,pos.y=0), canvas = F)
+
+
+draw(diagline(pos.x=-50, s.x = 50, lwd = spessore, shd = giallo), canvas = F)
+for(i in seq(-50+12, 50-12, by = 3.5)) {
+  draw(diagline(pos.x = i, s.x=40, lwd = spessore),
+       canvas = F)
+}
+
+draw(diagline.inv(pos.x=-50+12, s.x = 50-12, lwd = spessore), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline.inv(pos.x = i, s.x=40, lwd = spessore),
+       canvas = F)
+}
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+draws(rectangle(s.x=10,s.y=10,shd="line.12",lty = 0),
+      canvas = FALSE)
+draws(rectangle(s.x=10,s.y=10,shd="line.12.h",lty = 0),
+      canvas = FALSE)
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(vline(pos.x = i, s.x=7, lwd = spessore), canvas = F)
+}
+
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(hline(pos.y = i, s.x=7, lwd = spessore), canvas = F)
+}
+
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+### Come diventerebbe
+
+```{r}
+Canvas(xlim = 17,ylim = 17, pty="s")
+draw(rectangle(s.x=-50,s.y=50,shd=blu.1,pos.x=+10,pos.y=-7), canvas = F)
+draw(diagline(pos.x=-50, s.x = 50, lwd = 3, shd = giallo), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline(pos.x = i, s.x=40, lwd = 3),
+       canvas = F)
+}
+
+
+draw(diagline.inv(pos.x=-50, s.x = 50, lwd = 3), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline.inv(pos.x = i, s.x=40, lwd = 3),
+       canvas = F)
+}
+
+
+clip(6,18,-18,-6)
+draw(rectangle(s.x=20,s.y=20,shd="white",pos.x=12,pos.y=-12,lty=0),
+     canvas = FALSE)
+```
+
+```{r out.width="80%"}
+par(mfrow =c(2, 3), mar = c(0.5, 6, 0.5, 2) + .1, 
+mai=c(.1,.1,.1,.1),oma=c(4,4,0.2,0.2) )
+container = rectangle(s.x=10,s.y=10,shd=blu.1,lty=0)
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+#draw(rectangle(s.x=-6,s.y=6,shd=blu.1,pos.x=0,pos.y=0), canvas = F)
+
+
+draw(diagline(pos.x=-50, s.x = 50, lwd = spessore, shd = giallo), canvas = F)
+for(i in seq(-50+12, 50-12, by = 3.5)) {
+  draw(diagline(pos.x = i, s.x=40, lwd = spessore),
+       canvas = F)
+}
+
+draw(diagline.inv(pos.x=-50+12, s.x = 50-12, lwd = spessore), canvas = F)
+for(i in seq(-50, 50, by = 3.5)) {
+  draw(diagline.inv(pos.x = i, s.x=40, lwd = spessore),
+       canvas = F)
+}
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+draws(rectangle(s.x=10,s.y=10,shd="line.12",lty = 0),
+      canvas = FALSE)
+draws(rectangle(s.x=10,s.y=10,shd="line.12.h",lty = 0),
+      canvas = FALSE)
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+for (i in seq(-6, 7, by = 3)) {
+  for (j in seq(-3, 3, by = 3)) {
+    draw(dot(pos.x = i, pos.y = j, size.x = 0.5, size.y = 0.5), canvas = F)
+  }
+}
+
+
+Canvas(xlim = a)
+clip(6,-6,6,-6)
+draw(container,canvas = FALSE)
+
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(vline(pos.x = i, s.x=7, lwd = spessore), canvas = F)
+}
+
+for(i in seq(-20, 20, by = 3.5)) {
+  draw(hline(pos.y = i, s.x=7, lwd = spessore), canvas = F)
+}
+
+```
+
+:::
+
+::::
+
+##  $2 \times 2$ 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Come è 
+
+
+
+```{r}
+young007a = apply(Raven(
+st1 = pacman(size.x = 7, shd = rosso), 
+hrule = "reflection", 
+vrule = "reflection"
+))
+young007b = apply(Raven(
+st1 = pentagon(shd = giallo), 
+hrule = "identity", 
+vrule = "identity"
+))
+young007c = apply(Raven(
+st1 = size(dot(shd = "black"),2), 
+hrule = "identity", 
+vrule = "identity"
+))
+young007 = com(young007b,  young007a, young007c)
+draw(young007, n.cell = 4)
+```
+
+
+```{r}
+dist_young007 = responses(young007,mat.type = 4)
+selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+resp_young007 = select.dist(dist_young007, selection)
+resp_young007[["d.union"]] = cof(resp_young007[["d.union"]], 
+ pie.4())
+resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]], 
+ dice())
+p = split.mat(young007, mat.type= 4)
+resp_young007[["ic.flip"]] = cof((p[[1]]), 
+ rotation(p[[2]], 7), p$dot) 
+draw.dist(resp_young007, n.resp = 5, main = T)
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+### Come diventerebbe
+```{r}
+young007a = apply(Raven(
+st1 = pacman(size.x = 7, shd = rosso.1), 
+hrule = "reflection", 
+vrule = "reflection"
+))
+young007b = apply(Raven(
+st1 = pentagon(shd = giallo), 
+hrule = "identity", 
+vrule = "identity"
+))
+young007c = apply(Raven(
+st1 = size(dot(shd = "black"),2), 
+hrule = "identity", 
+vrule = "identity"
+))
+young007 = com(young007b,  young007a, young007c)
+draw(young007, n.cell = 4)
+```
+
+
+```{r}
+dist_young007 = responses(young007,mat.type = 4)
+selection = c("correct", "r.top", "d.union", "wp.matrix", "ic.flip")
+resp_young007 = select.dist(dist_young007, selection)
+resp_young007[["d.union"]] = cof(resp_young007[["d.union"]], 
+ pie.4())
+resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]], 
+ dice())
+p = split.mat(young007, mat.type= 4)
+resp_young007[["ic.flip"]] = cof((p[[1]]), 
+ rotation(p[[2]], 7), p$dot) 
+
+draw.dist(resp_young007)
+```
+
+:::
+
+::::
+
+
+## $3 \times 3$
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Come è 
+```{r}
+select.new = c("correct", "r.diag", "wp.copy", "wp.matrix", "d.union", "ic.scale", "ic.inc", "ic.flip")
+young032a = apply(Raven(
+st1=cof(square(shd = giallo, s.x = 18, s.y = 18), 
+square(shd = blu, s.x = 18, s.y = 18), 
+square(shd = rosso, s.x = 18, s.y = 18)), 
+hrule = "diff_shapes"
+))
+young032b = apply(Raven(
+st1 = cof(u.smallbow.tie.inv(shd = "black"), size(u.star(), 2), 
+size(pacman(shd = "black"), 2)), 
+vrule= "diff_shapes"
+))
+young032 = com(young032a, young032b)
+draw(young032)
+```
+
+```{r}
+dist_young032 = responses(young032)
+resp_young032 = select.dist(dist_young032, 
+select.new)
+p= split.mat(young032)
+# resp_young032$ic.scale = cof(p$square, 
+#size(p$pacman, 2))
+resp_young032$wp.matrix = cof(resp_young032$wp.matrix, 
+(vertical.eight()))
+# resp_young032$ic.inc = cof(p$square)
+# 
+resp_young032$ic.flip = cof(p$square,
+reflection(p$pacman, 2))
+draw.dist(resp_young032, 
+n.resp = 8)
+```
+:::
+
+::: {.column width="50%"}
+
+### Come diventerebbe 
+
+```{r}
+young032a = apply(Raven(
+st1=cof(square(shd = giallo.1, s.x = 18, s.y = 18), 
+square(shd = blu.1, s.x = 18, s.y = 18), 
+square(shd = rosso.1, s.x = 18, s.y = 18)), 
+hrule = "diff_shapes"
+))
+young032b = apply(Raven(
+st1 = cof(u.smallbow.tie.inv(shd = "black"), size(u.star(), 2), 
+size(pacman(shd = "black"), 2)), 
+vrule= "diff_shapes"
+))
+young032 = com(young032a, young032b)
+draw(young032)
+```
+
+```{r }
+dist_young032 = responses(young032)
+resp_young032 = select.dist(dist_young032, 
+select.new)
+p= split.mat(young032)
+# resp_young032$ic.scale = cof(p$square, 
+#size(p$pacman, 2))
+resp_young032$wp.matrix = cof(resp_young032$wp.matrix, 
+(vertical.eight()))
+# resp_young032$ic.inc = cof(p$square)
+# 
+resp_young032$ic.flip = cof(p$square,
+reflection(p$pacman, 2))
+draw.dist(resp_young032, 
+n.resp = 8)
+```
+
+:::
+
+::::
+
+
