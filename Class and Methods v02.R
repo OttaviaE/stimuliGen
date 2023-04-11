@@ -348,17 +348,17 @@ decof<- function(obj) {
 
 decof.field<-function(obj)
 {
-  if(length(obj$shape)==1){
-    nobj<-length(obj$nv[[1]])
-  }else{
+  # if(length(obj$shape)==1){
+  #   nobj<-length(obj$nv[[1]])
+  # }else{
     nobj<-length(obj$nv)
-  }
-  
-  if(nobj!=length(obj$shape)){
-    name<-rep("token",nobj)
-  }else{
+  # }
+  # 
+  # if(nobj!=length(obj$shape)){
+  #   name<-rep("token",nobj)
+  # }else{
     name<-obj$shape
-  }
+  # }
   newobj<-list()
   for(i in 1:nobj)
   {
