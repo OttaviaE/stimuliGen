@@ -170,9 +170,11 @@ value$tag <- list("compose2","fill", "rotate")
 attr(value, "class") <- "field"
 value
 }
-blu = "deepskyblue3"
-giallo = "gold"
-rosso = "firebrick"
+blu = "#56B4E9"
+
+giallo = "#F0E442"
+
+rosso = "#D55E00"
 
 ## -----------------------------------------------------------------------------
 Canvas(xlim = 17,ylim = 17, pty="s")
@@ -580,7 +582,7 @@ resp_young007[["wp.matrix"]] = cof(resp_young007[["wp.matrix"]],
  dice())
 p = split.mat(young007, mat.type= 4)
 resp_young007[["ic.flip"]] = cof((p[[1]]), 
- reflection(p[[2]], 2), p$dot) 
+ rotation(p[[2]], 7), p$dot) 
 draw.dist(resp_young007, n.resp = 5, main = T)
 
 ## -----------------------------------------------------------------------------
@@ -947,7 +949,7 @@ st1 = cof(s.lily(),size(u.biscuit, 3))
 )
 young021b = apply(
 Raven(
-st1 =e.hexagon(shd="firebrick") )
+st1 =e.hexagon(shd=rosso) )
 )
 young021<-com(young021b,young021a)
 draw(young021, n.cell = 4, bg="white")

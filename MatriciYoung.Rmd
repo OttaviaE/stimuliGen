@@ -179,9 +179,11 @@ value$tag <- list("compose2","fill", "rotate")
 attr(value, "class") <- "field"
 value
 }
-blu = "deepskyblue3"
-giallo = "gold"
-rosso = "firebrick"
+blu = "#56B4E9"
+
+giallo = "#F0E442"
+
+rosso = "#D55E00"
 ```
 
 \newpage
@@ -1074,7 +1076,7 @@ st1 = cof(s.lily(),size(u.biscuit, 3))
 )
 young021b = apply(
 Raven(
-st1 =e.hexagon(shd="firebrick") )
+st1 =e.hexagon(shd=rosso) )
 )
 young021<-com(young021b,young021a)
 draw(young021, n.cell = 4, bg="white")
