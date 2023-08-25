@@ -1,0 +1,413 @@
+---
+title: "Prova MatRiks"
+output: pdf_document
+date: "2023-08-24"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(matRiks)
+```
+
+## Young006
+
+```{r}
+young006 = mat_apply(cof(circle(shd = "blue"), 
+                         triangle(size.x = 12, size.y = 12, shd = "yellow", 
+                                  pos.y = 0)), hrules = "identity", 
+                     vrules = "reflect", mat.type = 4)
+draw(young006,  hide = F)
+```
+
+```{r}
+draw(response_list(young006))
+```
+
+## Young007 
+
+```{r}
+young007a =  mat_apply(pacman(size.x = 7, shd = "red"), 
+  hrules  = "reflect", 
+  vrules = "reflect", mat.type = 4
+)
+young007b = mat_apply(pentagon(shd = "yellow"), 
+  hrules = "identity", 
+  vrules = "identity", mat.type = 4
+)
+young007c = mat_apply(size(dot(shd = "black"),2), 
+  hrules = "identity", 
+  vrules = "identity", mat.type = 4
+)
+young007 = com(young007b,  young007a, young007c)
+draw(young007, n.cell = 4)
+```
+
+
+```{r}
+draw(response_list(young007))
+```
+
+
+## Young008
+
+```{r}
+young008a = mat_apply(
+   cof(dot(shd = "white"), dot(shd = "black"), 
+            dot(shd = "grey")), 
+  vrules = "shape", mat.type = 4
+)
+young008b = mat_apply(
+   pacman(shd = "red"), 
+  "reflection", mat.type = 4
+)
+young008 = com(young008b, young008a)
+draw(young008, n.cell = 4)
+```
+
+
+```{r}
+draw(response_list(young008))
+```
+
+
+## Young009 
+
+```{r}
+young009a = mat_apply(
+   cof(s_lily(), 
+            pacman(size.x = 5), ellipse()),
+  vrules = "shape", mat.type = 4
+)
+young009b = mat_apply(
+   cof(hexagon(shd = "blue"), 
+            circle(shd = "yellow",size.x = 15, size.y = 15), 
+            triangle()), 
+  vrules = "shape", mat.type = 4
+)
+young009 = com(young009b, young009a)
+draw(young009, n.cell = 4)
+```
+
+
+```{r}
+draw(response_list(young009))
+```
+
+
+## Young010 
+
+```{r}
+young010a = mat_apply(
+   cof(s_pizza_2(size.x = 5, shd = "blue"),
+            s_pizza_4(size.x = 5, shd = "red"), ellipse()),
+  vrules = "shape", mat.type = 4
+)
+young010b = mat_apply(
+   cof(hexagon(shd = "yellow", size.x = 13, size.y = 13),
+            triangle(shd = "yellow", size.x = 15, size.y = 15),
+            circle()),
+  hrules = "shape", mat.type = 4
+)
+young010 = com(young010b, young010a)
+draw(young010, n.cell = 4)
+```
+
+
+```{r}
+draw(response_list(young010))
+```
+
+## Young011
+
+```{r}
+young011a = mat_apply(
+   cof(pentagon(shd = "yellow", size.x = 13, size.y = 13),
+            triangle(shd = "yellow", size.x = 15, size.y = 15),
+            circle()),
+  vrules = "reflect", 
+  hrules = c( "reflect", "shape"), mat.type = 4
+)
+young011b = mat_apply(
+   semi_circle(size.x = 5, shd = "red"), 
+  hrules = "reflect", 
+  vrules = "reflect", mat.type = 4
+)
+young011 = com(young011a, young011b)
+draw(young011, n.cell = 4)
+```
+
+```{r}
+draw(response_list(young011))
+```
+
+## Young012
+
+```{r}
+young012a = mat_apply(
+   cof(pentagon(shd = "yellow", size.x = 13, size.y = 13),
+            triangle(shd = "yellow", size.x = 15, size.y = 15),
+            circle()),
+  vrules = "shape",
+  hrules = "reflect", mat.type = 4
+)
+young012b = mat_apply(
+   dot(size.x = 2, size.y = 1, shd = "red"), mat.type = 4
+)
+young012 = com(young012a, young012b)
+
+draw(young012)
+```
+
+```{r}
+draw(response_list(young012))
+```
+
+## Young013
+
+```{r}
+young013a = mat_apply(
+     pentagon(rot=pi/2), 
+    vrules = "reflect", mat.type = 4
+  )
+
+young013b = mat_apply(
+     size(dot(), 2), 
+    vrules = "identity", mat.type = 4
+  )
+young013 = com(young013a, young013b)
+draw(young013, n.cell = 4)
+```
+
+```{r}
+draw(response_list(young013))
+```
+
+
+```{r}
+young014a = mat_apply(
+     pacman(), 
+    vrules = "reflect",
+    hrules = "reflect", mat.type = 4)
+young014b = mat_apply(
+     size(dot(), 2), 
+    vrules = "identity", mat.type = 4
+)
+young014 = com(young014a, young014b)
+draw(young014, n.cell = 4)
+```
+
+```{r}
+draw(response_list(young014))
+```
+
+## Young015
+
+```{r}
+young015a = mat_apply(
+     triangle(), 
+    vrules = "shade",
+    hrules = "reflect", mat.type = 4
+)
+young015b = mat_apply(
+     size(dot(), 2), 
+    vrules = "identity", mat.type = 4
+)
+young015 = com(young015a, young015b)
+draw(young015, n.cell = 4)
+
+```
+
+```{r}
+draw(response_list(young015))
+```
+
+
+## Young016
+
+```{r}
+young016a = mat_apply(
+     cof(square(),hexagon(),pacman()), 
+    vrules = c("shape","shade"), mat.type = 4
+)
+young016b = mat_apply(
+     cof(size(s_biscuit(), 2),
+              size(pacman(shd = "black"), 2),
+              size(dot(), 2)), 
+    vrules = "shape", mat.type = 4
+)
+young016 = com(young016a, young016b)
+draw(young016, n.cell = 4)
+```
+
+
+```{r}
+draw(response_list(young016))
+```
+
+## Young017
+
+```{r}
+young017a = mat_apply(
+     cof(luck(),circle(),pacman()), 
+    vrules = c("shade"), 
+    hrules = "shape", mat.type = 4
+)
+young017b = mat_apply(
+     cof(dot(),triangle(size.x=3,size.y = 3, shd = "black"),pacman()), 
+    hrules = c("shape"), mat.type = 4
+)
+young017<- com(young017a,young017b)
+draw(young017, n.cell = 4)
+```
+
+```{r}
+draw(response_list(young017))
+```
+
+## Young018
+
+```{r}
+young018a = mat_apply(
+     cof(pentagon(),triangle() ,pacman()), 
+    vrules = c("shape","reflect"), mat.type = 4
+)
+young018b = mat_apply(
+   slice(size.x = 7), 
+  hrules = "reflect", 
+  vrules = "reflect", mat.type = 4
+)
+young018c = mat_apply(
+   size(dot(), 2), mat.type = 4
+)
+young018 = com(young018a, young018b, young018c)
+draw(young018, n.cell = 4)
+```
+
+
+
+```{r}
+draw(response_list(young018))
+```
+
+
+
+## Young019
+
+```{r}
+young019a = mat_apply(
+     cof(triangle(rot = pi) ,pacman(),square()), 
+    vrules = c("shape"),
+    hrules = c("reflect"), mat.type = 4
+)
+young019b = mat_apply(
+   size(dot(), 2), mat.type = 4
+)
+young019 = com(young019a, young019b)
+draw(young019, n.cell = 4)
+```
+
+```{r}
+draw(response_list(young019))
+```
+
+## Young020
+
+```{r, eval = F, echo=TRUE}
+young020 = obj_addition_rules(
+  (
+     cof(pacman(shd = "yellow"), dot()) 
+  ), rule="v.add"
+)
+young020frame =mat_apply((
+   rectangle(size.x = 20, size.y = 15, shd = "blue", lty = 0)
+))
+young020 = com(young020frame, young020)
+draw(young020, n.cell = 4)
+```
+
+## Young021
+
+```{r eval = F, echo=TRUE}
+young021a = obj_addition_rules(
+  (
+     cof(s.lily(),size(u.biscuit, 3)) 
+  ), rule="vh.sott"
+)
+young021b = mat_apply(
+  (
+    e.hexagon(shd="red") )
+)
+young021<-com(young021b,young021a)
+draw(young021, n.cell = 4, bg="white")
+```
+
+
+## Young022
+
+```{r eval = F, echo=TRUE}
+young022a = obj_addition_rules(
+  (
+     cof(cross(),vertical.eight())
+  )
+  , rule="vh.sott"
+)
+young022b = mat_apply(
+  (
+    square(shd = "gold") )
+)
+young022<-com(young022b,young022a)
+draw(young022, n.cell = 4)
+```
+
+## Young023
+
+```{r eval = F, echo=TRUE}
+young023b = obj_addition_rules(
+  (
+     cof(size(u.bow.tie(shd = "grey"), 2), size(horizontal.eight(), 2)) 
+  ), rule="v.sott"
+)
+young023a = mat_apply((
+   square(rot = pi)
+))
+young023 = com(young023a, young023b)
+draw(young023, n.cell = 4)
+```
+
+
+## Young024
+
+```{r eval = F, echo=TRUE}
+young024a = obj_addition_rules(
+  (
+     cof(circle(size.x=8,size.y = 8),dot()) 
+  ), rule="vh.add"
+)
+young024b = mat_apply(
+  (
+     pentagon() )
+)
+young024<-com(young024a,young024b)
+draw(young024, n.cell = 4)
+```
+
+
+## Young025
+
+```{r eval = F, echo=TRUE}
+young025a = obj_addition_rules(
+  (
+     cof(cof(circle(size.x = 5,size.y = 5),size(dot(), 2),name="oggetto",single=TRUE ),
+              size(dice(), 2)) 
+  ), rule="vh.add"
+)
+young025b = mat_apply(
+  (
+    luck(size.x = 8, size.y = 10) )
+)
+young025<-com(young025a,young025b)
+draw(young025, n.cell = 4)
+```
+
