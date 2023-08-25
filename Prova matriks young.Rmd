@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(matRiks)
 ```
 
+\newpage
+
 ## Young006
 
 ```{r}
@@ -130,7 +132,7 @@ young011a = mat_apply(
   hrules = c( "reflect", "shape"), mat.type = 4
 )
 young011b = mat_apply(
-   semi_circle(size.x = 5, shd = "red"), 
+   semi_circle_top(size.x = 5, shd = "red"), 
   hrules = "reflect", 
   vrules = "reflect", mat.type = 4
 )
@@ -409,5 +411,319 @@ young025b = mat_apply(
 )
 young025<-com(young025a,young025b)
 draw(young025, n.cell = 4)
+```
+
+## Young026 
+
+```{r}
+young026a = mat_apply(
+     cof(square(shd = "yellow"),s_vert_bow_tie(shd = "yellow"), triangle(rot = pi/2, shd = "yellow")), 
+    vrules = c("shape"), 
+    hrules = "identity"
+)
+young026b = mat_apply((
+   cof(dot(shd = "blue"))
+))
+young026 = com(young026a, young026b)
+draw(young026, n.cell = 9)
+
+```
+
+```{r}
+draw(response_list(young026))
+```
+
+## Young027
+
+```{r}
+young027a= mat_apply(
+     cof(pentagon(shd = "red")), 
+    vrules = "identity"
+)
+young027b = mat_apply(
+   cof(dot(shd = "yellow", size.x = 7)), 
+  hrules = "size"
+)
+young027 = com(young027a, young027b)
+draw(young027, hide = F)
+```
+
+```{r}
+draw(response_list(young027))
+```
+
+## Young028
+
+```{r}
+young028a = mat_apply(
+   square(shd = "yellow")
+)
+young028b = mat_apply(
+   pacman(), 
+  hrules = "shade"
+)
+young028 = com(young028a, young028b)
+draw(young028)
+
+```
+
+```{r}
+draw(response_list(young028))
+```
+
+## Young029
+
+```{r}
+young029a = mat_apply(
+  square(shd = "blue", size.x = 20, size.y = 15, lty = 0)
+)
+
+young029b= mat_apply(
+     cof(pentagon(shd = "black", size.x = 12, size.y = 12), s_biscuit(), square(shd = "black")), 
+    vrules = c("shape", "size"), 
+    hrules = "identity"
+)
+young029 = com(young029a, young029b)
+draw(young029)
+```
+
+
+```{r}
+draw(response_list(young029))
+```
+
+## Young030
+
+```{r}
+young030a = mat_apply(
+   cof(square(size.x = 18, size.y = 18), hexagon(), 
+            pentagon()), 
+  hrules = "shape"
+)
+young030b = mat_apply(
+   pacman(shd = "red", size.x = 8), 
+  vrules = "size"
+)
+young030 = com(young030a, young030b)
+draw(young030)
+```
+
+
+```{r}
+draw(response_list(young030))
+```
+
+## Young031
+
+```{r}
+young031a = mat_apply(
+  square(shd = "yellow", size.x = 20, size.y = 15, lty = 0)
+)
+young031b = mat_apply(
+   cof(size(s_hor_bow_tie(shd = "blue"), 3), 
+       size(s_biscuit(), 2), 
+       size(s_pizza_4( 
+    shd = "red"), 2)), 
+  vrules= "shape"
+)
+young031 = com(young031a, young031b)
+draw(young031)
+
+```
+
+```{r}
+draw(response_list(young031))
+```
+
+
+## Young032
+
+```{r}
+young032a = mat_apply(
+  cof(square(shd = "yellow", size.x = 18, size.y = 18), 
+          square(shd = "blue", size.x = 18, size.y = 18), 
+          square(shd = "red", size.x = 18, size.y = 18)), 
+  hrules = "shape"
+)
+young032b = mat_apply(
+   cof(size(s_hor_bow_tie(shd = "black"), 3), 
+       size(s_biscuit(), 2), 
+            size(pacman(shd = "black"), 2)), 
+  vrules= "shape"
+)
+young032 = com(young032a, young032b)
+draw(young032)
+```
+
+```{r error = FALSE, eval = FALSE}
+#draw(response_list(young032))
+draw(repetition(young032))
+draw(wp(young032))
+draw(difference(young032))
+draw(ic_neg(young032))
+draw(ic_inc(young032))
+#draw(ic_flip(young032)) # non va 
+draw(ic_size(young032))
+```
+
+
+## Young033
+
+```{r}
+young033 = mat_apply(
+     cof(square(shd = "black"), s_biscuit(), triangle(rot = pi/2, shd = "black")), 
+    vrules = c("shape", "size")
+  )
+
+draw(young033, n.cell = 9, hide = F)
+```
+
+```{r}
+draw(response_list(young033))
+```
+
+## Young034
+
+```{r}
+young034a = mat_apply(
+   cof(s_biscuit(), pentagon(shd = "black"), hexagon(shd = "black")), 
+  vrules = "shape"
+)
+young034b = mat_apply(
+     dot(shd = "white", size.x = 10), 
+    hrules = c("size")
+)
+young034 = com(young034a, young034b)
+draw(young034, n.cell = 9, hide = F)
+```
+
+```{r}
+draw(response_list(young034))
+```
+
+## Young035
+
+```{r}
+young035a = mat_apply(
+   square()
+)
+young035b = mat_apply(
+   cof(s_hor_bow_tie(), s_pizza_2(), pacman()), 
+  vrules = c("shape", "shade")
+)
+young035 = com(young035a, young035b)
+draw(young035)
+```
+
+
+```{r}
+draw(response_list(young035))
+```
+
+## Young036
+
+```{r}
+young036a = mat_apply(
+     cof(circle(size.x = 17, size.y = 17), 
+              pentagon(size.x = 16, size.y = 16), 
+              hexagon(size.x = 17, size.y = 17)), 
+    vrules = c("shape")
+)
+young036b = mat_apply(
+     pacman()
+)
+young036c = mat_apply(
+     circle(size.x = 2, size.y = 2), 
+    hrules = c("shade")
+)
+young036 = com(young036a, young036b, young036c)
+draw(young036, hide = F)
+
+```
+
+```{r}
+draw(response_list(young036))
+```
+
+## Young037
+
+```{r}
+
+young037a = mat_apply(
+  pacman(), 
+  hrules = "rotate"
+)
+young037b = mat_apply(
+  dot(), 
+  hrules = "shade"
+)
+young037 = com(young037a, young037b)
+draw(young037)
+```
+
+
+```{r}
+draw(response_list(young037))
+```
+
+## Young038
+
+```{r}
+young038a = mat_apply(
+  slice(), 
+  vrules = "rotate"
+)
+young038b = mat_apply(
+  square(size.x = 3, size.y = 3), 
+  hrules = "shade"
+)
+young038 = com(young038a, young038b)
+draw(young038)
+```
+
+
+```{r}
+draw(response_list(young038))
+```
+
+
+## Young039
+
+```{r}
+young039a = mat_apply(
+   cof(square(size.x =16, size.y = 16), pentagon(), hexagon()), 
+  hrules = "shape"
+)
+young039b = mat_apply(
+   pacman(size.x = 8), 
+  vrules = c("rotate", "size")
+)
+young039 = com(young039a, young039b)
+draw(young039)
+```
+
+
+## Young040
+
+```{r}
+young040b = mat_apply(
+   semi_circle_top(), 
+  hrules =c("rotate", "shade"),
+  vrules = c("identity")
+)
+young040a = mat_apply(
+   cof(circle(size.x = 15, size.y = 15), 
+            square(size.x = 17, size.y = 17), 
+            hexagon()), 
+  vrules = "shape", 
+  hrules= c("identity")
+)
+young040 = com(young040a, young040b)
+draw(young040)
+```
+
+
+```{r}
+draw(response_list(young040))
 ```
 
