@@ -1,0 +1,1052 @@
+---
+title: "Prova MatRiks"
+output: pdf_document
+date: "2023-08-24"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(matRiks)
+```
+
+\newpage
+
+## Adult001
+
+```{r eval = FALSE, echo = TRUE}
+
+adult001b = obj_addition_rules(
+  Raven(
+    cof(size(u.bow.tie(shd = "grey"), 2), size(horizontal.eight(), 2)) 
+  ), rule="v.sott"
+)
+
+
+adult001a = apply(Raven(
+  square(rot = pi)
+))
+
+adult001 = com(adult001a, adult001b)
+
+
+draw(adult001, n.cell = 4)
+
+
+```
+
+
+
+## Adult002
+
+```{r eval = FALSE, echo = TRUE}
+adult002a = obj_addition_rules(
+  Raven(
+    cof(circle(s.x=8,s.y = 8),dot()) 
+  ), rule="vh.add"
+)
+
+adult002b = apply(
+  Raven(
+    pentagon() )
+)
+
+adult002<-com(adult002a,adult002b)
+draw(adult002, n.cell = 4)
+
+```
+
+
+## Adult003
+
+```{r eval = FALSE, echo = TRUE}
+adult003a = obj_addition_rules(
+  Raven(
+    cof(cof(circle(s.x = 5,s.y = 5),size(dot(), 2),name="oggetto",single=TRUE ),
+              size(dice(), 2)) 
+  ), rule="vh.add"
+)
+
+adult003b = apply(
+  Raven(
+    st1 =luck(s.x = 8, s.y = 10) )
+)
+
+adult003<-com(adult003a,adult003b)
+draw(adult003, n.cell = 4)
+```
+
+
+
+## Adult004
+
+```{r eval = FALSE, echo = TRUE}
+set.seed(999)
+adult004a = mat_apply(
+    cof(square(), s_vert_bow_tie(), triangle(rot = pi/2)), 
+    vrule = c("shape"), 
+    hrule = "identity"
+  )
+
+
+adult004b = mat_apply(
+  cof(dot())
+)
+
+adult004 = com(adult004a, adult004b)
+draw(adult004, n.cell = 9)
+```
+
+
+## Adult005
+
+```{r}
+adult005a= mat_apply(
+    cof(pentagon()), 
+    vrule = "identity"
+  )
+
+adult005b = mat_apply(
+  cof(dot(size.x = 7)), 
+  hrule = "size"
+)
+
+
+adult005 = com(adult005a, adult005b)
+
+draw(adult005, hide = F)
+```
+
+```{r}
+draw(response_list(adult005))
+```
+
+## Adult006
+
+```{r }
+adult006a = mat_apply(
+  square()
+)
+
+adult006b = mat_apply(
+  pacman(), 
+  hrule = "shade"
+)
+
+adult006 = com(adult006a, adult006b)
+draw(adult006)
+```
+
+```{r}
+draw(response_list(adult006))
+```
+
+
+## Adult007
+
+```{r}
+adult007 = mat_apply(
+    cof(square(shd = "black"), s_biscuit(), triangle(rot = pi/2, shd = "black")), 
+    vrule = c("shape", "size")
+  )
+draw(adult007, n.cell = 9, hide = F)
+
+```
+
+```{r}
+draw(response_list(adult007))
+```
+
+
+## Adult008
+
+```{r}
+adult008a = mat_apply(
+  cof(s_biscuit(), pentagon(shd = "black"), hexagon(shd = "black")), 
+  vrule = "shape"
+)
+
+adult008b = mat_apply(
+    dot(shd = "white", size.x = 10), 
+    hrule = c("size")
+  )
+
+adult008 = com(adult008a, adult008b)
+
+
+draw(adult008, n.cell = 9, hide = F)
+```
+
+```{r}
+draw(response_list(adult008))
+```
+
+
+## Adult009 
+
+```{r}
+adult009a = mat_apply(
+  square()
+)
+
+adult009b = mat_apply(
+  cof(size(s_hor_bow_tie(), 3), s_pizza_2(), pacman()), 
+  vrule = c("shape", "shade")
+)
+
+adult009 = com(adult009a, adult009b)
+
+
+draw(adult009)
+
+```
+
+```{r}
+draw(response_list(adult009))
+```
+
+## Adult010
+
+```{r}
+adult010a = mat_apply(
+    cof(circle(size.x = 17, size.y  = 17), 
+              pentagon(size.x = 16, size.y = 16), 
+              hexagon(size.x = 17, size.y = 17)), 
+    vrule = c("shape"), 
+    hrule = "shape"
+  )
+
+adult010b = mat_apply(
+    pacman()
+  )
+
+
+
+adult010c = mat_apply(
+    circle(size.x = 2, size.y = 2), 
+    vrule = c("shade"), 
+    hrule = "shade"
+  )
+
+adult010 = com(adult010a, adult010b, adult010c)
+draw(adult010, hide = F)
+```
+
+```{r}
+draw(response_list(adult010))
+```
+
+## Adult011
+
+```{r}
+adult011a = mat_apply(
+  cof(square(shd = "grey", 
+                   size.x = 20, 
+                   size.y = 20)), 
+  "identity"
+)
+
+adult011b = mat_apply(
+  cof(luck(shd = "black", size.x = 10, size.y =8), s_biscuit(), 
+            triangle(shd = "black", size.x = 10, size.y = 10)), 
+  hrule = "shape", 
+  vrule = c("shape", "size")
+)
+
+adult011 = com(adult011a, adult011b)
+
+draw(adult011)
+```
+
+```{r}
+draw(response_list(adult011))
+```
+
+## Adult012
+
+```{r}
+adult012a =mat_apply(
+  cof(rectangle(size.x = 20, size.y = 15), 
+            pentagon(size.x = 17, size.y = 17), 
+            hexagon()), 
+  hrule = "shape.inv", 
+  vrule = "shape.inv"
+)
+
+
+adult012bb = mat_apply(
+  circle(shd = "black"), 
+  vrule = "size", 
+  hrule = "size"
+)
+
+adult012 = com(adult012a, adult012bb)
+
+draw(adult012)
+```
+
+```{r}
+draw(response_list(adult012))
+```
+
+## Adult013
+
+```{r}
+adult013a<-mat_apply(cof(phantom(),cross(),X()),"shape")
+adult013b<-mat_apply(cof(pentagon(size.x=15, size.y=15),hexagon(size.x=14, size.y=14),
+                           square(size.x=15, size.y=15)),vrule = "shape")
+adult013<-com(adult013a,adult013b)
+draw(adult013)
+```
+
+```{r}
+draw(response_list(adult013))
+```
+
+## Adult014
+
+```{r}
+adult014a<-mat_apply(cof(size(dice(), 2),phantom(),size(cross(), 1)),"shape","shape")
+adult014b<-mat_apply(cof(luck(size.x = 3, size.y = 5, shd = "black"),size(s_lily(lwd = 2),3),
+                           dot()),vrule = "shape.inv","shape.inv")
+adult014<-com(adult014a,adult014b)
+draw(adult014)
+```
+
+```{r}
+draw(response_list(adult014))
+```
+
+## Adult015
+
+```{r}
+adult015a<-mat_apply(cof(cross_dice(),cross(),X()),"shape")
+adult015b<-mat_apply(cof(square(shd="grey",size.x=9,size.y=9),
+                         hexagon(shd="grey",size.x=9,size.y=9),
+                           luck(shd="grey",size.x=7,size.y=9)),vrule = "shape")
+adult015<-com(adult015b,adult015a)
+draw(adult015)
+```
+
+```{r}
+draw(response_list(adult015))
+```
+
+## Adult016
+
+```{r}
+adult016a<-mat_apply(cof(circle(),square(),pentagon()),"shape","shape")
+adult016b<-mat_apply(cof(size(circle(),3),size(circle(),2),
+                           square(size.x=3,size.y=3)),vrule = "shape.inv","shape.inv")
+adult016<-com(adult016a,adult016b)
+draw(adult016)
+```
+
+```{r}
+draw(response_list(adult016))
+```
+
+## Adult017
+
+```{r}
+adult017a = mat_apply(
+    square(), 
+    vrule = c("lty"), 
+    hrule = c("identity")
+  )
+
+
+
+
+adult017b = mat_apply(
+    cof(circle(size.x = 3, size.y = 3, shd = "grey"), 
+              pentagon(size.x = 5, size.y = 5, shd = "grey"), 
+              luck(size.x = 5, size.y = 3, shd = "grey")), 
+    vrule = c( "shape.inv"), 
+    hrule = c( "shape.inv")
+  )
+
+
+# adult017c = apply(
+# Raven(
+# square(size.x = 13, size.y = 13), 
+# vrule = c("lty"), 
+# hrule = c("identity")
+# )
+# )
+
+
+
+adult017 = com(adult017a, adult017b) 
+draw(adult017)
+
+```
+
+```{r}
+draw(response_list(adult017))
+```
+
+
+## Adult018
+
+```{r}
+adult018a = mat_apply(
+  cof(pentagon(), hexagon(), 
+            rectangle(size.y = 10, size.x = 15)), 
+  hrule = c("shape.inv", "lty"), 
+  vrule = c("shape", "lty")
+)
+
+
+adult018b = mat_apply(
+  size(lily(), 2), 
+  hrule = c("identity"), 
+  vrule = c("identity")
+)
+
+adult018c = mat_apply(
+  dot(shd = "black"),
+  hrule = c("identity"),
+  vrule = c("identity")
+)
+
+adult018 = com(adult018a, adult018b, adult018c)
+
+draw(adult018)
+```
+
+```{r}
+draw(response_list(adult018))
+```
+
+
+## Adult019
+
+```{r eval = FALSE, echo=TRUE}
+adult019a = mat_apply(pacman()))
+adult019= numeric_progression(adult019a,"TL-LR-increasing")
+draw(adult019)
+```
+
+## Adult020
+```{r eval = FALSE, echo=TRUE}
+adult020a = mat_apply(hexagon()))
+adult020= numeric_progression(adult020a,"LL-TR")
+draw(adult020)
+```
+
+
+## Adult021
+
+```{r eval = FALSE, echo=TRUE}
+adult021a = mat_apply(
+  cof(s_biscuit(), triangle(shd = "black"), pacman(shd = "black")), 
+  vrule = "shape"
+))
+adult021 = numeric_progression(adult021a, "v.increasing")
+
+draw(adult021)
+```
+
+
+## Adult022
+
+```{r eval = FALSE, echo=TRUE}
+adult022a = mat_apply(
+  cof(triangle(), square(), pentagon()), 
+  hrule = "shape"
+))
+adult022 = numeric_progression(adult022a, "v.increasing")
+```
+
+
+## Adult023
+
+```{r eval = FALSE, echo=TRUE}
+adult023a = mat_apply(
+  pacman(), 
+  vrule = "rotate"
+))
+adult023 = numeric_progression(adult023a, "v.increasing")
+
+draw(adult023)
+```
+
+
+## Adult024
+
+```{r eval = FALSE, echo=TRUE}
+adult024a = mat_apply(
+  slice(), 
+  hrule = "rotate"
+))
+adult024 = numeric_progression(adult024a, "h.increasing")
+```
+
+
+## Adult025
+
+```{r}
+adult025a = mat_apply(
+  cof(pentagon(), 
+            hexagon(), 
+            ellipse(size.x = 13, size.y = 17)), 
+  vrule = c("shape"),
+  hrule= "lty"
+)
+
+
+
+adult025b = mat_apply(
+  hor_bow_tie(),
+  hrule = "identity",
+  vrule = "multishade"
+)
+
+adult025 = com(adult025a, adult025b)
+
+draw(adult025, hide = F)
+```
+
+```{r}
+draw(repetition(adult025), main = TRUE); draw(wp(adult025, main = TRUE)); draw(ic_neg(adult025), main = T); draw(ic_size(adult025), main = TRUE); # draw(ic_flip(adult025))
+```
+
+
+## Adult026
+
+```{r}
+adult026a = mat_apply(
+    square(), 
+    vrule = c("identity"), 
+    hrule = c("identity")
+  )
+
+
+
+
+adult026c = mat_apply(
+    cof(circle(size.x = 3, size.y = 3), 
+              hexagon(size.x = 5, size.y = 5), 
+              luck(size.x = 5, size.y = 3)), 
+    vrule = c("shade", "shape.inv"), 
+    hrule = c("shade", "shape.inv")
+  )
+adult026b = mat_apply(
+    square(size.x = 13, size.y = 13), 
+    vrule = c("lty"), 
+    hrule = c("identity")
+  )
+
+
+
+
+adult026 = com(adult026a, adult026b, adult026c) 
+draw(adult026)
+```
+
+```{r}
+draw(response_list(adult026))
+```
+
+
+## Adult027
+
+```{r}
+adult027a = mat_apply(
+  cof(pentagon(), hexagon(), 
+            rectangle(size.y = 10, size.x = 15)), 
+  hrule = "shape.inv", 
+  vrule = "shape.inv"
+)
+
+
+adult027b = mat_apply(
+  hor_bow_tie(), 
+  hrule = c("lty"), 
+  vrule = c("lty")
+)
+
+adult027c = mat_apply(
+  dot(), 
+  hrule = c("shade"), 
+  vrule = c("shade")
+)
+
+adult027 = com(adult027a, adult027b, adult027c)
+
+draw(adult027)
+```
+
+```{r}
+draw(response_list(adult027))
+```
+
+
+## Adult028
+
+```{r}
+adult028a = mat_apply(
+  cof(square(size.x = 17, size.y = 17), 
+            hexagon(shd = ), 
+            luck(shd = )), 
+  vrule = "shape"
+)
+
+adult028b = mat_apply(
+  pacman(size.x = 10), 
+  vrule = "size", hrule = "shade"
+)
+
+adult028 = com(adult028a, adult028b)
+
+
+draw(adult028)
+
+```
+
+```{r}
+draw(response_list(adult028))
+```
+
+## Adult029
+
+```{r}
+adult029a = mat_apply(
+  cof(hexagon(), 
+            square(), 
+            pentagon()), 
+  hrule = c("shape.inv"), 
+  vrule = c("shape.inv")
+)
+adult029b = mat_apply(
+    circle(shd = "black", size.x = 5, size.y = 5), 
+    vrule = "size"
+  )
+
+
+adult029 = com(adult029a, adult029b)
+
+draw(adult029)
+```
+
+```{r}
+draw(response_list(adult029))
+```
+
+## Adult030
+
+```{r}
+adult030a = mat_apply(
+  rectangle(size.x = 18, size.y = 18)
+)
+
+adult030b = mat_apply(
+    cof(circle(shd = "white"), 
+              luck(shd = "white"), 
+              pacman(shd = "white")), 
+    vrule = c("size", "shape.inv", "shade"),
+    hrule = c("shape.inv", "shade")
+  )
+
+adult030 = com(adult030a, adult030b)
+
+draw(adult030)
+```
+
+```{r}
+draw(response_list(adult030))
+```
+
+## Adult031
+
+```{r}
+adult031<-mat_apply(pizza_4(),"AND")
+draw(adult031)
+
+```
+
+```{r}
+draw(response_list(adult031))
+```
+
+## Adult032
+
+```{r}
+adult032<-mat_apply(cof(
+  semi_circle_top(lty=0),
+  semi_circle_bottom(lty=0),
+  semi_circle_top(lwd=5),semi_circle_bottom(lwd=5)
+),"AND")
+draw(adult032)
+
+```
+
+```{r}
+draw(response_list(adult032))
+```
+
+
+## Adult033
+
+```{r}
+adult033<-mat_apply(cof(cof(diagline(),diagline_inv(),name="oggetto",single=TRUE),
+                                hline(),vline(),circle(size.x = 11,size.y = 11)),"AND")
+draw(adult033)
+```
+
+```{r}
+draw(response_list(adult033))
+```
+
+## Adult034
+
+```{r}
+adult034<-mat_apply(cof(square(),lily()),"OR")
+draw(adult034)
+```
+
+```{r}
+draw(response_list(adult034))
+```
+
+
+## Adult035
+
+```{r}
+adult035<-mat_apply(cof(diagline(),diagline_inv(),square(),dot()),"OR")
+draw(adult035)
+```
+
+```{r}
+draw(response_list(adult035))
+```
+
+
+
+## Adult036
+
+```{r}
+adult036<-mat_apply(cof(pentagon(),pentagon(shd="grey",lty=0),
+                                cof(diagline(),diagline_inv(),name = "croce",single = TRUE),
+                                dot(pos.y = 15)),"OR")
+draw(adult036)
+```
+
+```{r}
+draw(response_list(adult036))
+```
+
+## Adult037 
+
+```{r}
+adult037a<-mat_apply(cof(hline(pos.y = 3),hline(pos.y = -3),
+                           pentagon(size.x=3,size.y=3),
+                         pentagon(size.x=2.5,size.y=2.5,shd="grey",lty = 0)),"XOR")
+adult037b<-mat_apply(pentagon(size.x=17, size.y=17))
+adult037<-com(adult037b,adult037a)
+draw(adult037)
+
+```
+
+```{r}
+draw(response_list(adult037))
+```
+
+## Adult038 
+
+```{r}
+adult038<- mat_apply(cof(cross(),square(),
+                                margin(square(size.x=18,size.y=18),1,"lty"), 
+                        cross_dice()),"XOR")
+draw(adult038)
+```
+
+```{r}
+draw(response_list(adult038))
+```
+
+## adult039
+
+```{r}
+adult039<-mat_apply(cof(cof(vline(pos.x = -15,size.x=15 ),vline(pos.x = 15,size.x=15 ),name="oggetto",single =TRUE) 
+                                ,pentagon(shd="grey"),
+                                margin(pacman(shd = "white"),1,"lty")
+                                ,dot(pos.x = 5)),"XOR")
+draw(adult039)
+```
+
+```{r}
+draw(response_list(adult039))
+```
+
+## Adult040
+
+```{r}
+adult040<-mat_apply(cof(size(dice(), 2),size(dot(),2),size(cross_dice(),2),size(X(), 2)),"XOR")
+draw(adult040)
+```
+
+```{r}
+draw(response_list(adult040))
+```
+
+## Adult041
+
+```{r}
+adult041a<-mat_apply(cof(hline(pos.y = 3,size.y=10),hline(pos.y = -3,size.y=10),
+                                 square(),pentagon(size.x=3,size.y=3,shd="white")),
+                       "XOR")
+adult041b <- mat_apply(cof(vline(pos.x = 13, size.x = 13),
+                                   vline(pos.x = -13, size.x = 13 ),
+                                   hline(pos.y = 13, size.x=13),
+                                   hline(pos.y = -13, size.x=13)),"AND")
+adult041<-com(adult041a,adult041b)
+draw(adult041)
+```
+
+```{r}
+draw(response_list(adult041))
+```
+
+## Adult042 ????
+
+```{r}
+adult042a<- mat_apply(cof(circle(pos.x = 10,pos.y = 10, size.x=3,size.y=3),
+                            circle(pos.x = 0,pos.y = 0, size.x=3,size.y=3),
+                            cof(diagline(pos.x = 10,pos.y = -10,size.x=3,size.y=3),
+                                diagline_inv(pos.x = 10,pos.y = -10,size.x=3,size.y=3),
+                                single = F,name = "smallcross"),
+                            cof(diagline(pos.x = -10,pos.y = -10,size.x=3,size.y=3),
+                                diagline_inv(pos.x = -10,pos.y = -10,size.x=3,size.y=3),
+                                single = F,name = "smallcross")
+,hrules = "XOR"))
+
+adult042b<- mat_apply(cof(margin(hline(pos.y=5,size.x = 12),1,"lty"),
+                            margin(hline(pos.y=-5,size.x = 12),1,"lty"),
+                            margin(vline(pos.x=5,size.x = 12),1,"lty"),
+                            margin(vline(pos.x=-5,size.x = 12),1,"lty"),vrules="AND"))
+
+adult042<-com(adult042b,adult042a)
+draw(adult042)
+
+```
+
+```{r}
+#draw(repetition(adult042))
+
+```
+
+## Adult043
+
+```{r}
+adult043a<-mat_apply(cof(vert_bow_tie(),
+                                 hor_bow_tie()),"XOR")
+
+adult043b<-mat_apply(cof(circle(size.x=4,size.y=4,shd="black")
+                                 ,cross_dice(),
+                                 hline(),vline()),"OR")
+adult043<-com(adult043a,adult043b)
+draw(adult043)
+```
+
+```{r}
+draw(repetition(adult043))
+draw(wp(adult043))
+draw(difference(adult043))
+draw(ic_inc(adult043))
+#draw(ic_flip(adult043))
+#draw(ic_size(adult043))
+#draw(ic_neg(adult043))
+
+```
+
+## Adult044
+
+```{r}
+adult044a<-mat_apply(cof(hline(pos.y = 3,size.x=7),hline(pos.y = -3,size.x=7),
+                           margin(circle(size.x=7.5, size.y = 7.5),5,"lwd"),
+                           hexagon(size.x=3,size.y=3)),"XOR")
+adult044b<- mat_apply(cof(hline(pos.y = -11),hline(pos.y = 11),
+                            vline(pos.x = -11),vline(pos.x = +11)),"identity","OR")
+adult044<-com(adult044a,adult044b)
+draw(adult044)
+```
+
+```{r}
+draw(response_list(adult044))
+```
+
+## Adult045
+
+```{r}
+adult045a<-mat_apply(cof(luck(size.x = 6,size.y = 6),
+                         circle(size.x = 3,size.y = 3)),"trans.shade.line")
+adult045b<-mat_apply(cof(pentagon(),ellipse(size.x=14,size.y=17),triangle(size.x=17,size.y=17)),vrule = "shape.inv")
+
+adult045 = com(adult045b, adult045a)
+
+draw(adult045)
+
+```
+
+```{r}
+draw(response_list(adult045))
+```
+
+## Adult046
+
+```{r}
+adult046a<-mat_apply(cof(pentagon(size.x = 6,size.y = 6),ellipse(size.x = 4,size.y = 3)),"trans.shade")
+adult046b<-mat_apply(cof(hexagon(), luck(size.x=14,size.y=14),square(size.x=17,size.y=17)),"shape","shape")
+
+adult046 = com(adult046b, adult046a)
+
+draw(adult046)
+
+```
+
+```{r}
+draw(response_list(adult046))
+```
+
+## Adult047 
+
+```{r}
+adult047a<-mat_apply(cof(circle(size.x = 12,size.y = 12),pentagon(size.x = 12,size.y = 12)),"trans.shade.line")
+adult047b<-mat_apply(cof(pentagon(size.x = 4, size.y = 4,shd = "white"), luck(size.x=4,size.y=5,shd = "white"),
+                           triangle(size.x=4,size.y=4,shd = "white")),
+                       c("shape","rotate.inv6"),c("shape","rotate.inv3"))
+
+adult047 = com(adult047a, adult047b)
+
+draw(adult047)
+
+```
+
+```{r}
+draw(response_list(adult047))
+```
+
+## Adult048 
+
+```{r eval=FALSE, echo = T}
+adult048a<-mat_apply(cof(circle(size.x = 14,size.y = 14),pentagon(size.x = 14,size.y = 14)),
+                       "trans.shade")
+
+adult048b<-mat_apply(cof(triangle(shd="white"),hexagon(shd="white"),
+                           square(shd="white")),
+                       c("shape"),c("shape"))
+adult048b<-numeric_progression(adult048b,"LL-TR")
+
+adult048 = com(adult048a, adult048b)
+
+draw(adult048)
+
+```
+
+
+
+## Adult049 
+
+```{r}
+adult049a = mat_apply(
+  pacman(), 
+  hrule = "rotate"
+)
+
+adult049b = mat_apply(
+  dot(), 
+  hrule = "shade"
+)
+
+
+adult049 = com(adult049a, adult049b)
+
+
+draw(adult049)
+
+```
+
+```{r}
+draw(response_list(adult049))
+```
+
+## Adult050
+
+```{r}
+adult050a = mat_apply(
+  slice(), 
+  vrule = "rotate"
+)
+
+adult050b = mat_apply(
+  square(size.x = 3, size.y = 3), 
+  hrule = "shade"
+)
+
+
+adult050 = com(adult050a, adult050b)
+
+draw(adult050)
+```
+
+```{r}
+draw(response_list(adult050))
+```
+
+## Adult051
+
+```{r}
+adult051a = mat_apply(
+  cof(square(size.x =16, size.y = 16), pentagon(), hexagon()), 
+  hrule = "shape"
+)
+
+adult051b = mat_apply(
+  pacman(size.x = 8), 
+  vrule = c("rotate", "size")
+)
+
+adult051 = com(adult051a, adult051b)
+
+draw(adult051)
+
+```
+
+```{r}
+draw(response_list(adult051))
+```
+
+## Adult052
+
+```{r}
+adult052b = mat_apply(
+  semi_circle_top(), 
+  hrule =c("rotate", "shade"),
+  vrule = c("identity")
+)
+
+
+adult052a = mat_apply(
+  cof(circle(size.x = 15, size.y = 15), 
+            square(size.x = 17, size.y = 17), 
+            hexagon()), 
+  vrule = "shape", 
+  hrule= c("identity")
+)
+
+
+adult052 = com(adult052a, adult052b)
+
+draw(adult052)
+
+```
+
+```{r}
+draw(response_list(adult052))
+```
+
+
+
